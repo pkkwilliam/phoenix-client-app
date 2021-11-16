@@ -20,7 +20,7 @@ Vue.use(uView);
 Vue.config.productionTip = false;
 
 // const PROD = true;
-const DEVELOP_SERVICE_URL = "http://localhost:8081";
+const DEVELOP_SERVICE_URL = "http://localhost:3081";
 const UAT_SERVICE_URL = "https://phoenix-uat-api.bitcode.mo";
 const PROD_SERVICE_URL = "https://phoenix-api.bitcode.mo";
 // let HOST = PROD ? PROD_SERVICE_URL : DEVELOP_SERVICE_URL;

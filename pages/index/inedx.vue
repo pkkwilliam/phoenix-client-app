@@ -6,7 +6,7 @@
       <block slot="content">首页</block>
     </cu-custom>
 
-    <add-tip :tip="tip" :duration="duration" />
+    <search-bar />
 
     <text>My Mpay Test</text>
     <text>Count {{ count }}</text>
@@ -143,15 +143,17 @@
 </template>
 
 <script>
-const mpay = uni.requireNativePlugin("sn-mpay");
-mpay.setEnvironmentType(2);
-mpay.setMPayAppId(2);
+// const mpay = uni.requireNativePlugin("sn-mpay");
+// mpay.setEnvironmentType(2);
+// mpay.setMPayAppId(2);
 import proData from "@/common/projectData.js";
 import addTip from "../../components/wxcomponents/struggler-uniapp-add-tip/struggler-uniapp-add-tip.vue";
 import { submitAndroidMpay } from "../../payment/mpay";
+import SearchBar from "../../components/searchBar.vue";
 export default {
   components: {
     addTip,
+    SearchBar,
   },
   data() {
     return {

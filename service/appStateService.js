@@ -1,10 +1,7 @@
 import {
-  GET_PARCEL_ALL,
-  GET_ACTIVE_SHOP,
+  GET_CATEGORY_ALL,
+  GET_SUB_CATEGORY_BY_CATEGORY,
   GET_USER_PROFILE,
-  GET_ANNOUNCEMENT_ALL,
-  GET_CAROUSEL_IMAGE_ALL,
-  GET_COMPANY_CUSTOMISE,
 } from "./service";
 
 export default class AppStateService {
@@ -24,16 +21,13 @@ export default class AppStateService {
     return this._store;
   }
 
-  getAnnouncement(force = false) {
-    const { dirty, content } = this.store.state.announcement;
+  getCategory({ force = false } = {}) {
+    const { dirty, content } = this.store.state.category;
     return new Promise((resolve, reject) => {
       if (dirty || force) {
-        this.execute(GET_ANNOUNCEMENT_ALL()).then((announcements) => {
-          const sortedAnnouncement = announcements.sort(
-            (a1, a2) => a2.createTime - a1.createTime
-          );
-          this.store.commit("setAnnouncement", sortedAnnouncement);
-          return resolve(sortedAnnouncement);
+        this.execute(GET_CATEGORY_ALL()).then((categories) => {
+          this.store.commit("setCategory", categories);
+          return resolve(categories);
         });
       } else {
         return resolve(content);
@@ -41,66 +35,25 @@ export default class AppStateService {
     });
   }
 
-  getCarouselImage(force = false) {
-    const { dirty, content } = this.store.state.carouselImage;
+  // THIS NEED TO BE FIX, but dont waste time yet - problem: you need to loop through the object to check if sub category is existed
+  getSubCategory(category, { force = false } = {}) {
+    const { content } = this.store.state.subCategory;
+    const categoryId = category.id;
     return new Promise((resolve, reject) => {
-      if (dirty || force) {
-        this.execute(GET_CAROUSEL_IMAGE_ALL()).then((carouselImages) => {
-          this.store.commit("setCarouselImage", carouselImages);
-          return resolve(carouselImage);
-        });
+      if (!content[categoryId] || force) {
+        this.execute(GET_SUB_CATEGORY_BY_CATEGORY(categoryId)).then(
+          (subCategories) => {
+            this.store.commit("setSubCategory", { category, subCategories });
+            return resolve(subCategories);
+          }
+        );
       } else {
-        return resolve(content);
+        return content[categoryId];
       }
     });
   }
 
-  getCompanyCustomise(force = false) {
-    const { dirty, content } = this.store.state.companyCustomise;
-    return new Promise((resolve, reject) => {
-      if (dirty || force) {
-        this.execute(GET_COMPANY_CUSTOMISE()).then((companyCustomise) => {
-          this.store.commit("setCompanyCustomise", companyCustomise);
-          return resolve(companyCustomise);
-        });
-      } else {
-        return resolve(content);
-      }
-    });
-  }
-
-  getParcels(force = false) {
-    const { dirty, parcels } = this.store.state.parcel;
-    return new Promise((resolve, reject) => {
-      if (dirty || force) {
-        this.execute(GET_PARCEL_ALL()).then((parcels) => {
-          const sortedParcel = parcels.sort((p1, p2) =>
-            !p1.active && p2.active ? 1 : -1
-          );
-          this.store.commit("setParcel", sortedParcel);
-          return resolve(parcels);
-        });
-      } else {
-        return resolve(parcels);
-      }
-    });
-  }
-
-  getShops(force = false) {
-    const { dirty, shops } = this.store.state.shop;
-    return new Promise((resolve, reject) => {
-      if (dirty || force) {
-        this.execute(GET_ACTIVE_SHOP()).then((shops) => {
-          this.store.commit("setShop", shops);
-          return resolve(shops);
-        });
-      } else {
-        return resolve(shops);
-      }
-    });
-  }
-
-  getUserProfile(force = false) {
+  getUserProfile({ force = false } = {}) {
     const { dirty, profile } = this.store.state.userProfile;
     return new Promise((resolve, reject) => {
       if (dirty || force) {

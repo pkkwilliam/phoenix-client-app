@@ -1,8 +1,8 @@
-const mpay = uni.requireNativePlugin("sn-mpay");
-mpay.setEnvironmentType(2);
-mpay.setMPayAppId(2);
+const mpay = uni?.requireNativePlugin("sn-mpay") ?? undefined;
 
 export const submitAndroidMpay = () => {
+  mpay.setEnvironmentType(2);
+  mpay.setMPayAppId(2);
   uni.request({
     success: (response) => {
       mpay.newPayAll(response.data.preSignString, (e) => {
@@ -17,6 +17,8 @@ export const submitAndroidMpay = () => {
 };
 
 export const submitIOSMpay = () => {
+  mpay.setEnvironmentType(2);
+  mpay.setMPayAppId(2);
   uni.request({
     success: (response) => {
       mpay.mpay(

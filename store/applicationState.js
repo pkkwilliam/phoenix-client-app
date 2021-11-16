@@ -5,26 +5,13 @@ Vue.use(Vuex);
 
 let store = new Vuex.Store({
   state: {
-    announcement: {
-      dirty: true,
-      content: [],
-    },
-    carouselImage: {
-      dirty: true,
-      content: [],
-    },
-    companyCustomise: {
-      dirty: true,
-      content: {},
-    },
-    parcel: {
-      dirty: true,
-      parcels: [],
-    },
     bearerToken: "",
-    shop: {
+    category: {
       dirty: true,
-      shops: [],
+      content: [],
+    },
+    subCategory: {
+      content: {},
     },
     userProfile: {
       dirty: true,
@@ -32,37 +19,20 @@ let store = new Vuex.Store({
     },
   },
   mutations: {
-    setAnnouncement(state, announcement) {
-      state.announcement = {
-        dirty: false,
-        content: announcement,
-      };
-    },
     setBearerToken(state, bearerToken) {
       state.bearerToken = bearerToken;
     },
-    setCarouselImage(state, carouselImage) {
-      state.carouselImage = {
+    setCategory(state, categories) {
+      state.category = {
         dirty: false,
-        content: carouselImage,
+        content: categories,
       };
     },
-    setCompanyCustomise(state, companyCustomise) {
-      state.companyCustomise = {
-        dirty: false,
-        content: companyCustomise,
-      };
-    },
-    setParcel(state, parcels) {
-      state.parcel = {
-        dirty: false,
-        parcels,
-      };
-    },
-    setShop(state, shops) {
-      state.shop = {
-        dirty: false,
-        shops,
+    setSubCategory(state, { category, subCategories }) {
+      const content = state.subCategory.content;
+      content[category] = subCategories;
+      state.subCategory = {
+        content,
       };
     },
     setUserProfile(state, userProfile) {

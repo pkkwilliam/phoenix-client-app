@@ -16,5 +16,6 @@ export const REGISTER_PAGE = () => ({ url: "/pages/me/register" });
 export const SHOP_LIST_PAGE = () => ({ url: "/pages/shopListPage" });
 
 // tab
+export const CREATE_ITEM_TAB = () => ({ url: "/pages/createItemPage" });
 export const LANDING_TAB = () => ({ url: "/pages/index/landingPage" });
 export const ME_TAB = () => ({ url: "/pages/index/me" });

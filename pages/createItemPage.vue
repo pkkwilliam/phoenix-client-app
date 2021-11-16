@@ -20,7 +20,12 @@
       ></u-input>
     </view>
     <view class="view-container">
-      <image-uploader />
+      <scroll-view
+        class="scroll-view-horizontal item-detail-scroll-view"
+        scroll-x="true"
+      >
+        <media-uploader :onChangeMedia="onChangeMediaList" />
+      </scroll-view>
     </view>
     <view class="view-container">
       <icon-sub-header
@@ -29,7 +34,10 @@
         :onSelect="onSelectCategory"
       />
       <view class="sub-view-container">
-        <scroll-view scroll-x="true">
+        <scroll-view
+          class="scroll-view-horizontal item-detail-scroll-view"
+          scroll-x="true"
+        >
           <selectable-area-location-tags :onSelect="onSelectAreaLocation" />
         </scroll-view>
       </view>
@@ -80,8 +88,9 @@
 </template>
 
 <script>
+import MediaUploader from "../common/mediaUploader.vue";
 import IconSubHeader from "../common/iconSubHeader.vue";
-import ImageUploader from "../common/imageUploader.vue";
+import ImageUploader from "../common/mediaUploader.vue";
 import PrimaryButton from "../common/primaryButton.vue";
 import SelectableAreaLocationTags from "../common/selectableAreaLocationTags.vue";
 import SelectableCategoryTags from "../common/selectableCategoryTags.vue";
@@ -98,6 +107,7 @@ export default {
     SelectableCategoryTags,
     SelectableSubCategoryTags,
     ImageUploader,
+    MediaUploader,
   },
   computed: {
     getCategory() {
@@ -109,6 +119,7 @@ export default {
       selectedAreaLocation: undefined,
       selectedCategory: undefined,
       selectedItemCondition: undefined,
+      selectedMedia: [],
       selectedSubCategory: undefined,
     };
   },
@@ -119,13 +130,18 @@ export default {
         selectedCategory,
         selectedItemCondition,
         selectedSubCategory,
+        selectedMedia,
       } = this;
       console.log(
         selectedAreaLocation,
         selectedCategory,
         selectedItemCondition,
-        selectedSubCategory
+        selectedSubCategory,
+        selectedMedia.length
       );
+    },
+    onChangeMediaList(listOfMedia) {
+      this.selectedMedia = listOfMedia;
     },
     onSelectAreaLocation(areaLocation) {
       this.selectedAreaLocation = areaLocation;

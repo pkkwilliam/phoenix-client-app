@@ -43,7 +43,7 @@
         :disabled="sumbitButtonDisabled"
         type="primary"
         @click="onClickVerify"
-        >找回賬號</u-button
+        >註冊</u-button
       >
       <u-action-sheet
         :list="countryCodes"
@@ -55,16 +55,13 @@
 </template>
 
 <script>
-import UActionSheet from "../../uview-ui/components/u-action-sheet/u-action-sheet.vue";
-import UButton from "../../uview-ui/components/u-button/u-button.vue";
-import uFormItem from "../../uview-ui/components/u-form-item/u-form-item.vue";
-import UInput from "../../uview-ui/components/u-input/u-input.vue";
-import {
-  FORGOT_PASSWORD_REQUEST_VERIFICATION,
-  FORGOT_PASSWORD_VERIFY,
-} from "../../common/service";
-import { COUNTRY_CODES } from "../../common/countryCodes";
-import { LANDING_TAB } from "../../route/applicationRoute";
+import UActionSheet from "../uview-ui/components/u-action-sheet/u-action-sheet.vue";
+import UButton from "../uview-ui/components/u-button/u-button.vue";
+import uFormItem from "../uview-ui/components/u-form-item/u-form-item.vue";
+import UInput from "../uview-ui/components/u-input/u-input.vue";
+import { REQUEST_VERIFICATION, VERIFY } from "../service/service";
+import { COUNTRY_CODES } from "../common/countryCodes";
+import { LANDING_TAB } from "../route/applicationRoute";
 export default {
   components: { uFormItem, UInput, UActionSheet, UButton },
   computed: {
@@ -96,21 +93,14 @@ export default {
       selectedCountryCodeIndex: 0,
       show: false,
       smsNumber: "",
-      wechatOneTimeCode: "",
     };
   },
   methods: {
     onClickRequestVerify() {
       this.disableRequestVerificationButton = true;
       const { countryCodes, selectedCountryCodeIndex, smsNumber } = this;
-      uni.login({
-        provider: "weixin",
-        success: (info) => {
-          this.wechatOneTimeCode = info.code;
-        },
-      });
       this.execute(
-        FORGOT_PASSWORD_REQUEST_VERIFICATION({
+        REQUEST_VERIFICATION({
           countryCode: countryCodes[selectedCountryCodeIndex].value,
           smsNumber,
         })
@@ -132,7 +122,6 @@ export default {
         passwordConfirm,
         selectedCountryCodeIndex,
         smsNumber,
-        wechatOneTimeCode,
       } = this;
       if (password !== passwordConfirm) {
         uni.showToast({
@@ -141,16 +130,15 @@ export default {
         });
       } else {
         this.execute(
-          FORGOT_PASSWORD_VERIFY({
+          VERIFY({
             countryCode: COUNTRY_CODES[selectedCountryCodeIndex].value,
             oneTimePassword,
             password,
             smsNumber,
-            wechatOneTimeCode,
           })
         ).then((userProfile) => {
           this.$store.commit("setUserProfile", userProfile);
-          uni.switchTab({
+          uni.redirectTo({
             url: LANDING_TAB().url,
           });
         });

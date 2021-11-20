@@ -11,6 +11,7 @@ import AppStateService from "./service/appStateService";
 import TnCustom from "./components/TnCustom/TnCustom.vue";
 import cuCustom from "./colorui/components/cu-custom.vue";
 import uView from "uview-ui";
+import CHINESE_TRADITION_LABEL from "./label/label.zh_cn.json";
 
 Vue.component("cu-custom", cuCustom);
 Vue.component("tn-custom", TnCustom);
@@ -58,6 +59,7 @@ let appStateService = new AppStateService(store, executeService);
 Vue.prototype.$myGlobalVariable = "value";
 
 Vue.prototype.$appStateService = appStateService;
+Vue.prototype.$label = CHINESE_TRADITION_LABEL;
 
 App.mpType = "app";
 

@@ -1,7 +1,7 @@
 <template>
   <view class="container safearea-container">
     <view class="top-button-row view-container">
-      <text>取消</text>
+      <text @click="onClickCancel">取消</text>
       <u-button
         class="submit-button"
         shape="circle"
@@ -16,13 +16,14 @@
         class="textarea-input"
         placeholder="說說你的使用感受，入手渠道，轉手原因..."
         type="textarea"
+        v-model="description"
         :height="200"
       ></u-input>
     </view>
     <view class="view-container">
       <scroll-view
         class="scroll-view-horizontal item-detail-scroll-view"
-        scroll-x="true"
+        :scroll-x="true"
       >
         <media-uploader :onChangeMedia="onChangeMediaList" />
       </scroll-view>
@@ -82,7 +83,19 @@
       </view>
     </view>
     <view class="view-container">
-      <icon-sub-header iconName="rmb" label="價格" />
+      <u-collapse>
+        <u-collapse-item>
+          <view class="collapse-container" slot="title">
+            <icon-sub-header iconName="rmb" label="價格" />
+            <display-curreny-price :value="displayPrice" />
+          </view>
+          <view class="cost-input-container">
+            <cost-input-text-field
+              :onSubmit="onConfirmDeliveryTypeAndShippingCharge"
+            />
+          </view>
+        </u-collapse-item>
+      </u-collapse>
     </view>
   </view>
 </template>
@@ -97,6 +110,11 @@ import SelectableCategoryTags from "../common/selectableCategoryTags.vue";
 import SelectableItemConditionTags from "../common/selectableItemConditionTags.vue";
 import SelectableSubCategoryTags from "../common/selectableSubCategoryTags.vue";
 import UButton from "../uview-ui/components/u-button/u-button.vue";
+import CostInputTextField from "../common/costInputTextField.vue";
+import DisplayCurrenyPrice from "../common/displayCurrenyPrice.vue";
+import { createItemServiceRequestBody } from "../service/serviceRequestBodyUtil";
+import { CREATE_ITEM } from "../service/service";
+import { uploadMedia } from "../util/uploadMediaUtil";
 export default {
   components: {
     PrimaryButton,
@@ -108,14 +126,25 @@ export default {
     SelectableSubCategoryTags,
     ImageUploader,
     MediaUploader,
+    CostInputTextField,
+    DisplayCurrenyPrice,
   },
   computed: {
+    displayPrice() {
+      let price = 0;
+      if (this.deliveryTypeAndShippingCharge) {
+        return (price = this.deliveryTypeAndShippingCharge.price);
+      }
+      return price;
+    },
     getCategory() {
       return this.selectedCategory;
     },
   },
   data() {
     return {
+      deliveryTypeAndShippingCharge: undefined,
+      description: undefined,
       selectedAreaLocation: undefined,
       selectedCategory: undefined,
       selectedItemCondition: undefined,
@@ -124,24 +153,54 @@ export default {
     };
   },
   methods: {
-    onClickSubmit() {
+    onClickCancel() {
+      uni.navigateBack();
+    },
+    async onClickSubmit() {
       const {
+        deliveryTypeAndShippingCharge,
+        description,
         selectedAreaLocation,
         selectedCategory,
         selectedItemCondition,
         selectedSubCategory,
         selectedMedia,
       } = this;
-      console.log(
+      const {
+        allowFaceToFace,
+        price,
+        originalPrice,
+        selectedShippingChargeType,
+        shippingCost,
+      } = deliveryTypeAndShippingCharge;
+      const imageUrlsJsonResponse = await Promise.all(
+        selectedMedia.map(
+          async (media) => await uploadMedia(media.url, this.execute)
+        )
+      );
+      const requestBody = createItemServiceRequestBody(
+        description,
+        imageUrlsJsonResponse,
         selectedAreaLocation,
         selectedCategory,
-        selectedItemCondition,
         selectedSubCategory,
-        selectedMedia.length
+        selectedItemCondition,
+        price,
+        originalPrice,
+        selectedShippingChargeType,
+        shippingCost,
+        allowFaceToFace
       );
+      this.execute(CREATE_ITEM(requestBody)).then((response) => {
+        uni.navigateBack();
+      });
     },
     onChangeMediaList(listOfMedia) {
       this.selectedMedia = listOfMedia;
+    },
+    onConfirmDeliveryTypeAndShippingCharge(values) {
+      this.deliveryTypeAndShippingCharge = values;
+      this.showCostInputTextField = false;
     },
     onSelectAreaLocation(areaLocation) {
       this.selectedAreaLocation = areaLocation;
@@ -160,8 +219,21 @@ export default {
 </script>
 
 <style scope lang="scss">
+.collapse-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
 .container {
   margin: 20rpx;
+}
+.cost-input-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+  padding: 20rpx;
 }
 .item-detail-scroll-view {
   margin-left: 20rpx;

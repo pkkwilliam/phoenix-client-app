@@ -1,26 +1,27 @@
 <template>
   <view>
-    <index v-if="PageCur == 'index'"></index>
+    <landing-page v-if="PageCur == 'landingPage'"></landing-page>
     <search v-if="PageCur == 'search'"></search>
     <cases v-if="PageCur == 'cases'"></cases>
-    <create-item-page v-if="PageCur == 'createItemPage'" />
+    <create-item-page v-if="PageCur == 'createItemPage' && !isUserLogin" />
+    <login-page v-else-if="PageCur == 'createItemPage'" />
     <news v-if="PageCur == 'news'"></news>
     <me v-if="PageCur == 'me'"></me>
 
     <view class="box">
       <view class="cu-bar tabbar bg-white shadow foot">
-        <view class="action" @click="NavChange" data-cur="index">
+        <view class="action" @click="NavChange" data-cur="landingPage">
           <view class="cuIcon-cu-image">
             <image
-              v-if="PageCur == 'index'"
+              v-if="PageCur == 'landingPage'"
               src="../../static/tabBar/index_cur.png"
             ></image>
             <image
-              v-if="PageCur != 'index'"
+              v-if="PageCur != 'landingPage'"
               src="../../static/tabBar/index.png"
             ></image>
           </view>
-          <view :class="PageCur == 'index' ? 'color_main' : 'text-gray'"
+          <view :class="PageCur == 'landingPage' ? 'color_main' : 'text-gray'"
             >首页</view
           >
         </view>
@@ -49,7 +50,7 @@
           <image
             class="logo_btn"
             mode="widthFix"
-            src="../../static/logo.png"
+            src="../../static/tabBar/create_item_button.png"
           ></image>
           <view
             :class="PageCur == 'createItemPage' ? 'color_main' : 'text-gray'"
@@ -102,6 +103,9 @@ import cases from "./main.vue"; //宅家学
 import createItemPage from "../createItemPage.vue";
 import news from "./news.vue"; //资讯
 import me from "./me.vue"; //个人中心
+import LoginPage from "../loginPage.vue";
+import LandingPage from "../landingPage.vue";
+import { CREATE_ITEM_TAB, LOGIN_PAGE } from "../../route/applicationRoute";
 export default {
   components: {
     index,
@@ -110,15 +114,15 @@ export default {
     createItemPage,
     news,
     me,
+    LandingPage,
+    LoginPage,
   },
   data() {
     return {
-      PageCur: "index",
-
+      PageCur: "landingPage",
       message: "2",
       openId: "",
       access_token: "",
-
       tip: "我是提示",
       duration: 1,
     };
@@ -142,9 +146,13 @@ export default {
   },
   methods: {
     NavChange: function (e) {
-      console.log(e.currentTarget.dataset.cur);
-
-      this.PageCur = e.currentTarget.dataset.cur;
+      const targetTab = e.currentTarget.dataset.cur;
+      console.log("target tab:", targetTab);
+      if (targetTab === "createItemPage") {
+        this.navigateToCreateItemPage();
+      } else {
+        this.PageCur = targetTab;
+      }
 
       if (this.PageCur == "index") {
         // document.title = '首页'
@@ -165,6 +173,15 @@ export default {
       // 		console.log('保存成功！');
       // 	}
       // });
+    },
+    navigateToCreateItemPage() {
+      console.log("haha");
+      console.log(this.isLogin);
+      if (this.isLogin()) {
+        uni.navigateTo({ url: CREATE_ITEM_TAB().url });
+      } else {
+        uni.navigateTo({ url: LOGIN_PAGE().url });
+      }
     },
     NavChange_xd: function () {
       uni.navigateTo({

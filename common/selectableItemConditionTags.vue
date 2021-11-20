@@ -19,7 +19,7 @@ import {
   ITEM_CONDITION_GOOD,
   ITEM_CONDITION_LIKE_NEW,
   ITEM_CONDITION_NEW,
-} from "./itemCondition";
+} from "../enum/itemCondition";
 
 export default {
   computed: {

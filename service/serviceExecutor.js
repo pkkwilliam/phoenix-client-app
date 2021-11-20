@@ -1,6 +1,6 @@
 import ApplicationExceptionCode from "./applicationExceptionCode.json";
 
-const TOKEN_HEADER = "Authorization";
+const TOKEN_HEADER = "authorization ";
 
 export const execute = (
   host,

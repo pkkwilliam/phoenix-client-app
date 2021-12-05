@@ -1,6 +1,6 @@
 <template>
-  <view class="container">
-    <text class="currency">MOP</text>
+  <view class="item-detail-container">
+    <text class="currency">$</text>
     <text class="value">{{ value }}</text>
   </view>
 </template>
@@ -18,15 +18,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
+.item-detail-container {
   align-items: flex-end;
-  color: #eb523f;
+  color: $u-phoenix-price-primary;
   display: flex;
   flex-direction: row;
   font-weight: 500;
 }
 .currency {
   font-size: 26rpx;
+  font-weight: 300;
 }
 .value {
   font-size: 32rpx;

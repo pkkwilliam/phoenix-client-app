@@ -17,7 +17,9 @@
         placeholder="說說你的使用感受，入手渠道，轉手原因..."
         type="textarea"
         v-model="description"
+        :autoHeight="true"
         :height="200"
+        :maxlength="9999"
       ></u-input>
     </view>
     <view class="view-container">
@@ -200,7 +202,6 @@ export default {
     },
     onConfirmDeliveryTypeAndShippingCharge(values) {
       this.deliveryTypeAndShippingCharge = values;
-      this.showCostInputTextField = false;
     },
     onSelectAreaLocation(areaLocation) {
       this.selectedAreaLocation = areaLocation;

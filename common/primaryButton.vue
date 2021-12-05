@@ -1,5 +1,7 @@
 <template>
-  <u-button>{{ label }}</u-button>
+  <u-button shape="circle" type="primary" @click="$emit('click')">{{
+    label
+  }}</u-button>
 </template>
 
 <script>
@@ -14,7 +16,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  color: "blue";
-}
 </style>

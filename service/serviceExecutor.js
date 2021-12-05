@@ -1,6 +1,6 @@
 import ApplicationExceptionCode from "./applicationExceptionCode.json";
 
-const TOKEN_HEADER = "authorization ";
+const TOKEN_HEADER = "authorization";
 
 export const execute = (
   host,
@@ -33,7 +33,7 @@ export const execute = (
         } else if (statusCode >= 202 && statusCode < 300) {
           return resolve(data);
         } else if (statusCode === 403) {
-          this.removeUserToken();
+          removeUserToken();
           return reject("用戶被登出");
         } else if (statusCode >= 400 && statusCode < 500) {
           // reject(data.message);

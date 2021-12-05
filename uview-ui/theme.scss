@@ -2,6 +2,8 @@
 // uni.scss中引入的样式会同时混入到全局样式文件和单独每一个页面的样式中，造成微信程序包太大，
 // 故uni.scss只建议放scss变量名相关样式，其他的样式可以通过main.js或者App.vue引入
 
+// color
+
 $u-main-color: #303133;
 $u-content-color: #606266;
 $u-tips-color: #909399;
@@ -38,6 +40,67 @@ $u-form-item-height: 70rpx;
 $u-form-item-border-color: #dcdfe6;
 
 $u-phoneix-primary: #ffe24b;
-$u-type-primary-light: #ecf5ff;
-$u-type-primary-disabled: #a0cfff;
-$u-type-primary-dark: #2b85e4;
+$u-phoneix-primary-gradient: linear-gradient(
+  90deg,
+  #fa6f23 50%,
+  #f71c68 96.94%
+);
+
+$u-phoenix-light-grey: #a3a3a3;
+$u-phoenix-price-primary: #eb523f;
+$u-phoenix-font-dark: #3a3a3a;
+
+$u-phoenix-blue: #007aff;
+$u-phoenix-brown: #4d3009;
+
+// application text
+
+.text {
+  margin: 0;
+}
+
+.h1 {
+  @extend .text;
+  font-size: 38rpx;
+}
+
+.h2 {
+  @extend .text;
+  font-size: 34rpx;
+}
+
+.h3 {
+  @extend .text;
+  font-size: 32rpx;
+}
+
+.h4 {
+  @extend .text;
+  font-size: 28rpx;
+}
+
+.h5 {
+  @extend .text;
+  font-size: 24rpx;
+}
+
+.h6 {
+  @extend .text;
+  font-size: 18rpx;
+}
+
+.primary {
+  color: $u-phoneix-primary;
+}
+
+.secondary {
+  color: $u-phoenix-light-grey;
+}
+
+.blue {
+  color: $u-phoenix-blue;
+}
+
+.brown {
+  color: $u-phoenix-brown;
+}

@@ -1,6 +1,6 @@
 <template>
   <view>
-    <u-form :model="form" ref="uForm">
+    <u-form ref="uForm">
       <u-form-item label="電話" labelPosition="top">
         <u-input
           type="select"
@@ -9,8 +9,8 @@
         />
         <u-input
           placeholder="請輸入你的手機號"
+          type="number"
           v-model="smsNumber"
-          :type="text"
         />
       </u-form-item>
       <u-form-item label="密碼" labelPosition="top">
@@ -36,15 +36,10 @@
 </template>
 
 <script>
-import UActionSheet from "../uview-ui/components/u-action-sheet/u-action-sheet.vue";
-import UButton from "../uview-ui/components/u-button/u-button.vue";
-import uFormItem from "../uview-ui/components/u-form-item/u-form-item.vue";
-import UInput from "../uview-ui/components/u-input/u-input.vue";
 import { LOGIN, REQUEST_VERIFICATION } from "../service/service";
 import { COUNTRY_CODES } from "../common/countryCodes";
-import { LANDING_TAB } from "../route/applicationRoute";
 export default {
-  components: { uFormItem, UInput, UActionSheet, UButton },
+  components: {},
   computed: {
     countryCodes() {
       return COUNTRY_CODES;

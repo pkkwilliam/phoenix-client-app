@@ -26,13 +26,14 @@ const UAT_SERVICE_URL = "https://phoenix-uat-api.bitcode.mo";
 const PROD_SERVICE_URL = "https://phoenix-api.bitcode.mo";
 // let HOST = PROD ? PROD_SERVICE_URL : DEVELOP_SERVICE_URL;
 
-console.log(process.env.NODE_ENV);
+console.log("env:", process.env.NODE_ENV);
 if (process.env.NODE_ENV === "development") {
   host = DEVELOP_SERVICE_URL;
+  console.log(host);
 } else {
   host = PROD_SERVICE_URL;
 }
-
+console.log(getUserToken());
 let host;
 let executeService = (service) =>
   serviceExecutor(

@@ -1,3 +1,35 @@
+.column-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.row-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.row-center-container {
+  @extend .row-container;
+  align-items: center;
+}
+
+.align-center-container {
+  @extend .column-container;
+  align-items: center;
+}
+
+.space-around-container {
+  @extend .row-container;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.space-between-container {
+  @extend .row-container;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .view-container {
   margin-top: 20rpx;
 }

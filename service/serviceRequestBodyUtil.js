@@ -13,7 +13,7 @@ export function createItemServiceRequestBody(
   priceRequest,
   originalPriceRequest,
   shippingChargeTypeRequest,
-  shippingFeeRequest,
+  fixedShippingCharge,
   allowFaceToFaceRequest
 ) {
   const category = { id: categoryRequest.id };
@@ -31,7 +31,10 @@ export function createItemServiceRequestBody(
     }),
     itemCondition: conditionRequest.key,
     itemLocation,
-    itemShippingChargeType: shippingChargeTypeRequest,
+    itemShippingInfo: {
+      fixedShippingCharge,
+      itemShippingChargeType: shippingChargeTypeRequest,
+    },
     category,
     originalPrice: originalPriceRequest,
     price: priceRequest,

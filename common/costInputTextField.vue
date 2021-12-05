@@ -109,10 +109,10 @@ export default {
       } = this;
       const deliveryTypeAndShippingCharge = {
         allowFaceToFace,
-        price,
-        originalPrice,
+        price: parseFloat(price),
+        originalPrice: parseFloat(originalPrice),
         selectedShippingChargeType,
-        shippingCost,
+        shippingCost: parseFloat(shippingCost),
       };
       this.onSubmit(deliveryTypeAndShippingCharge);
     },

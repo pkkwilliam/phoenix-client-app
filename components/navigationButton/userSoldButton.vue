@@ -1,0 +1,22 @@
+<template>
+  <view class="align-center-container" @click="onClick">
+    <u-icon name="home" size="28" />
+    <text class="h5 secondary">{{ text }}</text>
+  </view>
+</template>
+
+<script>
+import { USER_SOLD_PAGE } from "../../route/applicationRoute";
+export default {
+  computed: {
+    text() {
+      return "我賣出的 3";
+    },
+  },
+  methods: {
+    onClick() {
+      uni.navigateTo({ url: USER_SOLD_PAGE().url });
+    },
+  },
+};
+</script>

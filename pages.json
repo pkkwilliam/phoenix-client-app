@@ -12,6 +12,24 @@
       }
     },
     {
+      "path": "pages/addressFormPage",
+      "style": {
+        "navigationBarTitleText": "收貨地址"
+      }
+    },
+    {
+      "path": "pages/addressSelectionPage",
+      "style": {
+        "navigationBarTitleText": "收貨地址"
+      }
+    },
+    {
+      "path": "pages/changePasswordPage",
+      "style": {
+        "navigationBarTitleText": "修改密碼"
+      }
+    },
+    {
       "path": "pages/createItemPage",
       "style": {
         "navigationBarTitleText": "創建物品",
@@ -19,9 +37,51 @@
       }
     },
     {
+      "path": "pages/itemDetailPage",
+      "style": {
+        "navigationBarTitleText": "物品詳細"
+      }
+    },
+    {
       "path": "pages/loginPage",
       "style": {
         "navigationBarTitleText": "登入"
+      }
+    },
+    {
+      "path": "pages/user/userOrderPage",
+      "style": {
+        "navigationBarTitleText": "訂單"
+      }
+    },
+    {
+      "path": "pages/user/userPostPage",
+      "style": {
+        "navigationBarTitleText": "我發布的"
+      }
+    },
+    {
+      "path": "pages/user/userSaveItemPage",
+      "style": {
+        "navigationBarTitleText": "我收藏的"
+      }
+    },
+    {
+      "path": "pages/user/userSoldPage",
+      "style": {
+        "navigationBarTitleText": "我賣出的"
+      }
+    },
+    {
+      "path": "pages/user/userViewItemPage",
+      "style": {
+        "navigationBarTitleText": "我的足跡"
+      }
+    },
+    {
+      "path": "pages/orderConfirmPage",
+      "style": {
+        "navigationBarTitleText": "購買寶貝"
       }
     },
     {
@@ -34,6 +94,12 @@
       "path": "pages/forgotPasswordPage",
       "style": {
         "navigationBarTitleText": "忘記密碼"
+      }
+    },
+    {
+      "path": "pages/workbenchPage",
+      "style": {
+        "navigationBarTitleText": "工作台PRO"
       }
     },
     {

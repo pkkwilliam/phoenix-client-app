@@ -5,8 +5,24 @@ Vue.use(Vuex);
 
 let store = new Vuex.Store({
   state: {
+    address: {
+      dirty: true,
+      content: [],
+    },
     bearerToken: "",
     category: {
+      dirty: true,
+      content: [],
+    },
+    buyerPendingOrder: {
+      dirty: true,
+      content: [],
+    },
+    orderConfirm: {
+      deliveryAddress: {},
+      paymentChannel: {},
+    },
+    sellerPendingOrder: {
       dirty: true,
       content: [],
     },
@@ -17,15 +33,44 @@ let store = new Vuex.Store({
       dirty: true,
       profile: {},
     },
+    userSaveItem: {
+      dirty: true,
+      content: [],
+    },
+    userViewItem: {
+      dirty: true,
+      content: [],
+    },
   },
   mutations: {
+    setAddress(state, addresses) {
+      state.address = {
+        dirty: false,
+        content: addresses,
+      };
+    },
     setBearerToken(state, bearerToken) {
       state.bearerToken = bearerToken;
+    },
+    setBuyerPendingOrder(state, buyerPendingOrder) {
+      state.buyerPendingOrder = {
+        dirty: false,
+        content: buyerPendingOrder,
+      };
     },
     setCategory(state, categories) {
       state.category = {
         dirty: false,
         content: categories,
+      };
+    },
+    setOrderConfirm(state, orderConfirm) {
+      state.orderConfirm = orderConfirm;
+    },
+    setSellerPendingOrder(state, sellerPendingOrder) {
+      state.sellerPendingOrder = {
+        dirty: false,
+        content: sellerPendingOrder,
       };
     },
     setSubCategory(state, { category, subCategories }) {
@@ -39,6 +84,18 @@ let store = new Vuex.Store({
       state.userProfile = {
         dirty: false,
         profile: userProfile,
+      };
+    },
+    setUserSaveItem(state, userSaveItem) {
+      state.userSaveItem = {
+        dirty: false,
+        content: userSaveItem,
+      };
+    },
+    setUserViewItem(state, userViewItem) {
+      state.userViewItem = {
+        dirty: false,
+        content: userViewItem,
       };
     },
   },

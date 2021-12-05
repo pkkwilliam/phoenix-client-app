@@ -6,7 +6,7 @@
     <create-item-page v-if="PageCur == 'createItemPage' && !isUserLogin" />
     <login-page v-else-if="PageCur == 'createItemPage'" />
     <news v-if="PageCur == 'news'"></news>
-    <me v-if="PageCur == 'me'"></me>
+    <user-page v-if="PageCur == 'me'"></user-page>
 
     <view class="box">
       <view class="cu-bar tabbar bg-white shadow foot">
@@ -22,7 +22,7 @@
             ></image>
           </view>
           <view :class="PageCur == 'landingPage' ? 'color_main' : 'text-gray'"
-            >首页</view
+            >首頁</view
           >
         </view>
 
@@ -54,7 +54,7 @@
           ></image>
           <view
             :class="PageCur == 'createItemPage' ? 'color_main' : 'text-gray'"
-            >组件模板</view
+            >出手物品</view
           >
         </view>
 
@@ -88,7 +88,7 @@
             ></image>
           </view>
           <view :class="PageCur == 'me' ? 'color_main' : 'text-gray'"
-            >个人中心</view
+            >我的</view
           >
         </view>
       </view>
@@ -106,6 +106,7 @@ import me from "./me.vue"; //个人中心
 import LoginPage from "../loginPage.vue";
 import LandingPage from "../landingPage.vue";
 import { CREATE_ITEM_TAB, LOGIN_PAGE } from "../../route/applicationRoute";
+import UserPage from "../user/userPage.vue";
 export default {
   components: {
     index,
@@ -116,6 +117,7 @@ export default {
     me,
     LandingPage,
     LoginPage,
+    UserPage,
   },
   data() {
     return {
@@ -146,40 +148,41 @@ export default {
   },
   methods: {
     NavChange: function (e) {
+      const requireAuthTab = ["createItemPage", "me"];
       const targetTab = e.currentTarget.dataset.cur;
-      console.log("target tab:", targetTab);
-      if (targetTab === "createItemPage") {
-        this.navigateToCreateItemPage();
+      if (requireAuthTab.includes(targetTab) && !this.isLogin()) {
+        uni.navigateTo({ url: LOGIN_PAGE().url });
       } else {
         this.PageCur = targetTab;
+        if (this.PageCur == "index") {
+          // document.title = '首页'
+        } else if (this.PageCur == "component") {
+          // document.title = '积分商城'
+        } else if (this.PageCur == "createItemPage") {
+          uni.navigateTo({ url: CREATE_ITEM_TAB().url });
+          // uni.navigateTo({ url: page().url });
+          // document.title = '宅家学'
+        } else if (this.PageCur == "news") {
+          // document.title = '文章资讯'
+        } else if (this.PageCur == "me") {
+          // document.title = '个人中心'
+        }
       }
-
-      if (this.PageCur == "index") {
-        // document.title = '首页'
-      } else if (this.PageCur == "component") {
-        // document.title = '积分商城'
-      } else if (this.PageCur == "cases") {
-        // document.title = '宅家学'
-      } else if (this.PageCur == "news") {
-        // document.title = '文章资讯'
-      } else if (this.PageCur == "me") {
-        // document.title = '个人中心'
-      }
-
-      // uni.setStorage({
-      // 	key: 'PageCur',
-      // 	data: this.PageCur,
-      // 	success: function() {
-      // 		console.log('保存成功！');
-      // 	}
-      // });
     },
-    navigateToCreateItemPage() {
-      console.log("haha");
-      console.log(this.isLogin);
+    navigateToAuthenticatedPage(page) {
       if (this.isLogin()) {
-        uni.navigateTo({ url: CREATE_ITEM_TAB().url });
+        uni.navigateTo({ url: page().url });
       } else {
+        uni.navigateTo({ url: LOGIN_PAGE().url });
+      }
+    },
+    navigateToAuthenticatedTab(tab) {
+      if (!this.isLogin()) {
+        uni.navigateTo({ url: LOGIN_PAGE().url });
+      }
+    },
+    validateAuthStatusAndNavigate() {
+      if (!this.isLogin()) {
         uni.navigateTo({ url: LOGIN_PAGE().url });
       }
     },

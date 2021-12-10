@@ -16,6 +16,7 @@ export const execute = (
     if (authenticatedRequest && (!userToken || userToken === "")) {
       return reject("用戶需要先登入");
     }
+    console.log(host + url);
     uni.request({
       url: host + url,
       method,

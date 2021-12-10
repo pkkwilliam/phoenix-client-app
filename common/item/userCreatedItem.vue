@@ -1,0 +1,87 @@
+<template>
+  <view @click="onClickItem">
+    <view class="space-between-center-container">
+      <text class="h5 secondary">ID: {{ item.id }} {{ createDate }}</text>
+      <view>
+        <display-curreny-price :value="item.price" />
+      </view>
+    </view>
+    <view class="row-container view-container">
+      <image class="image" mode="aspectFill" :src="coverImage" />
+      <text class="h4 black lightly-bold description-text">{{
+        description
+      }}</text>
+    </view>
+    <view class="space-between-center-container view-container">
+      <mpay-guarantee />
+      <item-view-and-save-count
+        :viewCount="item.viewCount"
+        :saveCount="item.saveCount"
+      />
+    </view>
+    <view class="end-center-container view-container">
+      <u-button
+        class="button edit"
+        :plain="true"
+        size="mini"
+        shape="circle"
+        type="primary"
+        >修改</u-button
+      >
+      <u-button
+        class="button"
+        :plain="true"
+        size="mini"
+        shape="circle"
+        type="error"
+        >删除</u-button
+      >
+    </view>
+  </view>
+</template>
+
+<script>
+import { ITEM_DETAIL_PAGE } from "../../route/applicationRoute";
+import { convertSystemDateToDisplayDateYear } from "../../util/dateUtil";
+import displayCurrenyPrice from "../displayCurrenyPrice.vue";
+import MpayGuarantee from "../mpayGuarantee.vue";
+import ItemViewAndSaveCount from "./itemViewAndSaveCount.vue";
+export default {
+  components: { displayCurrenyPrice, MpayGuarantee, ItemViewAndSaveCount },
+  computed: {
+    coverImage() {
+      return this.item.images[0];
+    },
+    createDate() {
+      const { createTime, updateTime } = this.item;
+      const convertDate = updateTime ? updateTime : createTime;
+      return convertSystemDateToDisplayDateYear(convertDate);
+    },
+    description() {
+      return this.item.description.substring(0, 30);
+    },
+  },
+  methods: {
+    onClickItem() {
+      uni.navigateTo({ url: ITEM_DETAIL_PAGE(this.item).url });
+    },
+  },
+  props: {
+    item: Object,
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.button {
+  margin: 0px 10rpx;
+}
+.image {
+  border-radius: 8px;
+  height: 185rpx;
+  width: 185rpx;
+}
+.description-text {
+  margin-left: 20rpx;
+}
+</style>

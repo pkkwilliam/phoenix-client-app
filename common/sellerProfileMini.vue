@@ -1,15 +1,25 @@
 <template>
-  <view class="container">
+  <view class="row-center-container">
     <u-avatar size="47" :src="userAvatarImageUrl" />
-    <text class="nickname-text">{{ userNickname }}</text>
+    <text class="h6 secondary nickname-text">{{ userNickname }}</text>
+    <u-icon
+      class="icon"
+      :color="arrowIconColor"
+      v-if="showRightArrowIcon"
+      name="arrow-right"
+    />
   </view>
 </template>
 
 <script>
 import uAvatar from "../uview-ui/components/u-avatar/u-avatar.vue";
+import styles from "../uview-ui/theme.scss";
 export default {
   components: { uAvatar },
   computed: {
+    arrowIconColor() {
+      return styles.secondary;
+    },
     userAvatarImageUrl() {
       const { user } = this;
       return user.imageUrl
@@ -21,22 +31,22 @@ export default {
       return user.nickname ? user.nickname : "小棕熊";
     },
   },
+  mounted() {},
   props: {
+    showRightArrowIcon: {
+      default: true,
+      type: Boolean,
+    },
     user: Object,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.container {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
+.icon {
+  margin-left: 15rpx;
 }
 .nickname-text {
-  color: $u-phoenix-light-grey;
-  font-size: 22rpx;
-  font-weight: 300;
   margin-left: 15rpx;
 }
 </style>

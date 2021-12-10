@@ -3,6 +3,7 @@ import App from "./App";
 import { execute as serviceExecutor } from "./service/serviceExecutor";
 import store from "./store/applicationState";
 import {
+  getLanguage,
   getUserToken,
   removeUserToken,
   setUserToken,
@@ -46,6 +47,9 @@ let executeService = (service) =>
   );
 
 Vue.mixin({
+  data() {
+    return { appLabel: CHINESE_TRADITION_LABEL, appLanguage: getLanguage() };
+  },
   methods: {
     execute: (service) => executeService(service),
     isLogin: () => store.state.userProfile.profile.active,
@@ -61,6 +65,7 @@ Vue.prototype.$myGlobalVariable = "value";
 
 Vue.prototype.$appStateService = appStateService;
 Vue.prototype.$label = CHINESE_TRADITION_LABEL;
+Vue.prototype.$language = getLanguage();
 
 App.mpType = "app";
 

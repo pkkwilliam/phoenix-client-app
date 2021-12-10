@@ -12,7 +12,7 @@ export default {
   components: { ForgotPassword },
   computed: {
     getAppName() {
-      return this.$label.appName;
+      return this.appLabel.appName;
     },
   },
 };

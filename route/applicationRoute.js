@@ -11,6 +11,11 @@ export const ADDRESS_SELECTION_PAGE = () => ({
 export const ANNOUNCEMENT_DETAIL_PAGE = () => ({
   url: "/pages/announcementDetailPage",
 });
+export const BUYER_SOLD_ORDER_DETAIL_PAGE = (orderObject) => ({
+  url:
+    "/pages/soldOrder/buyerSoldOrderDetailPage?order=" +
+    JSON.stringify(orderObject),
+});
 export const CHANGE_PASSWORD_PAGE = () => ({
   url: "/pages/changePasswordPage",
 });
@@ -32,6 +37,11 @@ export const ORDER_CONFIRM_PAGE = () => ({
 export const PARCEL_LIST_PAGE = () => ({ url: "/pages/parcelListPage" });
 export const PICKUP_CODE_PAGE = () => ({ url: "/pages/pickupCodePage" });
 export const REGISTER_PAGE = () => ({ url: "/pages/registerPage" });
+export const SELLER_SOLD_ORDER_DETAIL_PAGE = (orderObject) => ({
+  url:
+    "/pages/soldOrder/sellerSoldOrderDetailPage?order=" +
+    JSON.stringify(orderObject),
+});
 export const SHOP_LIST_PAGE = () => ({ url: "/pages/shopListPage" });
 export const USER_ORDER_PAGE = () => ({
   url: "/pages/user/userOrderPage",

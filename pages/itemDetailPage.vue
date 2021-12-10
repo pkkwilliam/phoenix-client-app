@@ -19,6 +19,7 @@ import ItemSubmitBar from "../common/item//itemSubmitBar.vue";
 import SellerCard from "../common/sellerCard.vue";
 import SellerCardRecetInfo from "../common/sellerCardRecetInfo.vue";
 import { getRouterJsonParam } from "../route/applicationRoute";
+import { GET_ITEM } from "../service/service";
 export default {
   components: { itemDetail, SellerCard, ItemSubmitBar, SellerCardRecetInfo },
   data() {
@@ -28,7 +29,8 @@ export default {
   },
   onLoad(option) {
     const item = getRouterJsonParam(option, "item");
-    this.item = item;
+    // this.item = item;
+    this.execute(GET_ITEM(item.id)).then((response) => (this.item = response));
   },
 };
 </script>

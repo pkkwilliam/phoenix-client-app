@@ -2,38 +2,47 @@
 <template>
   <view class="landing-page-container">
     <search-bar />
-    <waterfall-item-list :serviceRequest="getRecentCreatedItem" />
-    <u-button @click="onClickPay" type="primary">PP</u-button>
+    <item-category-waterfall />
   </view>
 </template>
 
 <script>
-import WaterfallItemList from "../common/waterfallItemList.vue";
+import ItemCategoryWaterfall from "../components/item/itemCategoryWaterfall.vue";
+import PaginationItemDisplay from "../common/itemDisplayList/paginationItemDisplay.vue";
+import CategoryTap from "../components/category/categoryTap.vue";
 import SearchBar from "../components/searchBar.vue";
-import { testIOSMpay } from "../payment/mpay";
-import { GET_RECENT_CREATED_ITEM } from "../service/service";
+import { LANDING_TAB } from "../route/applicationRoute";
+import { TabbarEventBus } from "./index/tabbar.vue";
+
+export const ON_CHANGE_CATEGORY_EMIT = "ON_CHANGE_CATEGORY_EMIT";
 export default {
   components: {
     SearchBar,
-    WaterfallItemList,
+    PaginationItemDisplay,
+    CategoryTap,
+    ItemCategoryWaterfall,
   },
   data() {
-    return {};
+    return {
+      selectedCategory: undefined,
+      paginationUtil: undefined,
+      items: [],
+    };
   },
-  watch: {},
   methods: {
-    getRecentCreatedItem(pageRequest, pageSize) {
-      return GET_RECENT_CREATED_ITEM(pageRequest, pageSize);
-    },
-    onClickPay() {
-      testIOSMpay();
+    loadPaginationItems() {
+      this.paginationUtil.loadData().then((response) => {
+        this.items = response;
+      });
     },
   },
   mounted() {
+    // this method is for when tabbar emits onReachBottom and this will set dirty as true for pagination
+    TabbarEventBus.$on("onReachBottom", () =>
+      this.$appStateService.setItemPagination(LANDING_TAB)
+    );
     this.$appStateService.getAddress();
     this.$appStateService.getUserProfile();
-    const { clientid = "" } = plus.push.getClientInfo() || {}; // 获取cid
-    console.log("client id", clientid);
   },
 };
 </script>

@@ -5,8 +5,6 @@
 </template>
 
 <script>
-import uSearch from "../uview-ui/components/u-search/u-search.vue";
-
 export default {};
 </script>
 

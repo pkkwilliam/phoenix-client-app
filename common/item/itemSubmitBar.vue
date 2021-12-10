@@ -1,11 +1,10 @@
 <template>
   <view class="navigation">
     <view class="left">
-      <!-- <view class="item">
-        <u-icon name="server-fill" :size="40" :color="$u.color['contentColor']">
-        </u-icon>
-        <view class="text u-line-1">客服</view>
-      </view> -->
+      <view class="item" @click="onClickSaveItem">
+        <u-icon name="home" :size="40"> </u-icon>
+        <view class="text u-line-1">收藏</view>
+      </view>
       <!-- <view class="item">
         <u-icon name="home" :size="40" :color="$u.color['contentColor']">
         </u-icon>
@@ -30,8 +29,15 @@
 
 <script>
 import { LOGIN_PAGE, ORDER_CONFIRM_PAGE } from "../../route/applicationRoute";
+import {
+  CREATE_USER_SAVE_ITEM,
+  DELETE_USER_SAVE_ITEM,
+} from "../../service/service";
 import { setOrderConfirmItem } from "../order/orderConfirmAppStateHelper";
 export default {
+  data() {
+    return { save: false };
+  },
   methods: {
     onClickPurchase() {
       if (!this.isLogin()) {
@@ -40,6 +46,24 @@ export default {
         setOrderConfirmItem(this.$store, this.item);
         uni.navigateTo({ url: ORDER_CONFIRM_PAGE().url });
       }
+    },
+    onClickSaveItem() {
+      if (this.save) {
+        this.execute(DELETE_USER_SAVE_ITEM({ item: this.item })).then(
+          (response) => {
+            this.save = true;
+          }
+        );
+      } else {
+        this.execute(CREATE_USER_SAVE_ITEM({ item: this.item })).then(
+          (response) => {
+            this.save = true;
+          }
+        );
+      }
+    },
+    mounted() {
+      this.save = this.props.save;
     },
   },
   props: {

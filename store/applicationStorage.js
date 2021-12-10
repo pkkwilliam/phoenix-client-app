@@ -1,5 +1,19 @@
-const USER_TOKEN = "USER_TOJEN";
+import { CHINESE_TRADITIONAL } from "../enum/language";
 
+const LANGUAGE = "LANGUAGE";
+const USER_TOKEN = "USER_TOKEN";
+
+// Language
+export function getLanguage() {
+  const language = getStorage(LANGUAGE);
+  return language ? language : CHINESE_TRADITIONAL;
+}
+
+export function setLanguage(language) {
+  setStorage(LANGUAGE, language);
+}
+
+// Token
 export function getUserToken() {
   return getStorage(USER_TOKEN);
 }
@@ -12,6 +26,7 @@ export function removeUserToken() {
   removeStorage(USER_TOKEN);
 }
 
+// Wrapper
 export function getStorage(key) {
   return uni.getStorageSync(key);
 }

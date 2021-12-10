@@ -18,6 +18,10 @@ let store = new Vuex.Store({
       dirty: true,
       content: [],
     },
+    itemPagination: {
+      currentPage: undefined,
+      dirty: true,
+    },
     orderConfirm: {
       deliveryAddress: {},
       paymentChannel: {},
@@ -62,6 +66,15 @@ let store = new Vuex.Store({
       state.category = {
         dirty: false,
         content: categories,
+      };
+    },
+    setItemPagination(state, itemPagination) {
+      state.itemPagination = itemPagination;
+    },
+    setItemPaginationClean(state) {
+      state.itemPagination = {
+        ...state.itemPagination,
+        dirty: false,
       };
     },
     setOrderConfirm(state, orderConfirm) {

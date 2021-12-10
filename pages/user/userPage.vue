@@ -10,7 +10,7 @@
       <view class="line">
         <application-line-breaker />
       </view>
-      <view class="space-between-container">
+      <view class="space-between-center-container">
         <user-post-button />
         <user-sold-button />
         <user-order-button />
@@ -47,7 +47,6 @@ export default {
     UserPostButton,
     UserSoldButton,
     UserOrderButton,
-    WorkbenchButton,
   },
   computed: {
     userProfile() {

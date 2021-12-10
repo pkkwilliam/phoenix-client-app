@@ -46,61 +46,80 @@ $u-phoneix-primary-gradient: linear-gradient(
   #f71c68 96.94%
 );
 
+$u-phoenix-background-color: #f2f5f9;
 $u-phoenix-light-grey: #a3a3a3;
 $u-phoenix-price-primary: #eb523f;
 $u-phoenix-font-dark: #3a3a3a;
-
 $u-phoenix-blue: #007aff;
 $u-phoenix-brown: #4d3009;
+$u-phoenix-orange: #fd8204;
 
 // application text
-
 .text {
   margin: 0;
 }
-
+.lightly-bold {
+  font-weight: 500;
+}
+.bold {
+  font-weight: 600;
+}
 .h1 {
   @extend .text;
   font-size: 38rpx;
 }
-
 .h2 {
   @extend .text;
   font-size: 34rpx;
 }
-
 .h3 {
   @extend .text;
   font-size: 32rpx;
 }
-
 .h4 {
   @extend .text;
   font-size: 28rpx;
 }
-
 .h5 {
   @extend .text;
   font-size: 24rpx;
 }
-
 .h6 {
   @extend .text;
-  font-size: 18rpx;
+  font-size: 22rpx;
 }
 
 .primary {
   color: $u-phoneix-primary;
 }
-
 .secondary {
   color: $u-phoenix-light-grey;
 }
-
+.black {
+  color: $u-phoenix-font-dark;
+}
 .blue {
   color: $u-phoenix-blue;
 }
-
 .brown {
   color: $u-phoenix-brown;
+}
+.orange {
+  color: $u-phoenix-orange;
+}
+
+// effect
+.application-shadow {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+:export {
+  backgroundColor: $u-phoenix-background-color;
+  black: $u-phoenix-font-dark;
+  brown: $u-phoenix-brown;
+  orange: $u-phoenix-orange;
+  pricePrimary: $u-phoenix-price-primary;
+  priceSecondary: $u-phoenix-font-dark;
+  primary: $u-phoneix-primary;
+  secondary: $u-phoenix-light-grey;
 }

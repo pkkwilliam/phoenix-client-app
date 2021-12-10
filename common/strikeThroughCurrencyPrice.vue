@@ -1,7 +1,7 @@
 <template>
   <view class="item-detail-container">
-    <text class="currency">MOP</text>
-    <text class="value">{{ value }}</text>
+    <text class="h5 secondary">$</text>
+    <text class="h4 secondary">{{ value }}</text>
   </view>
 </template>
 

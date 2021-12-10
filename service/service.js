@@ -103,12 +103,34 @@ export const CREATE_ITEM = (request) => ({
   url: USER_ITEM,
 });
 
-export const GET_RECENT_CREATED_ITEM = (pageRequest, pageSize) => ({
+export const GET_CREATED_ITEMS = (pageRequest, pageSize) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url:
+    USER_ITEM +
+    `/created_items_pagination?pageRequest=${pageRequest}&pageSize=${pageSize}`,
+});
+
+export const GET_ITEM = (itemId) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url: PUBLIC_ITEM + `/${itemId}`,
+});
+
+/**
+ * this will return user save status
+ * @param {*} pageRequest
+ * @param {*} pageSize
+ * @returns
+ */
+export const GET_ITEMS = (pageRequest, pageSize, categoryId) => ({
   authenticatedRequest: false,
   method: GET_METHOD,
   url:
     PUBLIC_ITEM +
-    `/get_recent_created?pageRequest=${pageRequest}&pageSize=${pageSize}`,
+    `?pageRequest=${pageRequest}&pageSize=${pageSize}&categoryId=${
+      categoryId ? categoryId : 0
+    }`,
 });
 
 // Mpay Order
@@ -120,16 +142,40 @@ export const CREATE_MPAY_ORDER = (request) => ({
 });
 
 // Order
+export const GET_BUYER_INFO = (orderId) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url: USER_ORDER + `/${orderId}/buyer_info`,
+});
+
 export const GET_BUYER_PENDING_ORDERS = () => ({
   authenticatedRequest: true,
   method: GET_METHOD,
   url: USER_ORDER + "/get_buyer_pending_orders",
 });
 
+export const GET_ORDER_BY_ID = (orderId) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url: USER_ORDER + `/${orderId}`,
+});
+
 export const GET_SELLER_PENDING_ORDERS = () => ({
   authenticatedRequest: true,
   method: GET_METHOD,
   url: USER_ORDER + "/get_seller_pending_orders",
+});
+
+export const UPDATE_ORDER_AS_DEIVERED_BY_BUYER = (orderId) => ({
+  authenticatedRequest: true,
+  method: PUT_METHOD,
+  url: USER_ORDER + `/${orderId}/delivered`,
+});
+
+export const UPDATE_ORDER_AS_SHIPPED_BY_SELLER = (orderId) => ({
+  authenticatedRequest: true,
+  method: PUT_METHOD,
+  url: USER_ORDER + `/${orderId}/shipped`,
 });
 
 // Sub Category
@@ -147,33 +193,40 @@ export const GET_USER_PROFILE = () => ({
 });
 
 // User Save Item
-export const DELETE_USER_SAVE_ITEM = () => ({
+export const DELETE_USER_SAVE_ITEM = (request) => ({
   authenticatedRequest: true,
+  body: JSON.stringify(request),
   method: DELETE_METHOD,
   url: USER_SAVE_ITEM,
 });
 
-export const CREATE_USER_SAVE_ITEM = () => ({
+export const CREATE_USER_SAVE_ITEM = (request) => ({
   authenticatedRequest: true,
+  body: JSON.stringify(request),
   method: POST_METHOD,
   url: USER_SAVE_ITEM,
 });
 
-export const GET_USER_SAVE_ITEM = () => ({
+export const GET_USER_SAVE_ITEM = (pageRequest, pageSize) => ({
   authenticatedRequest: true,
   method: GET_METHOD,
-  url: USER_SAVE_ITEM + "/pagination_by_user",
+  url:
+    USER_SAVE_ITEM +
+    `/pagination_by_user?pageRequest=${pageRequest}&pageSize=${pageSize}`,
 });
 
 // User View Item
-export const DELETE_USER_VIEW_ITEM = () => ({
+export const DELETE_USER_VIEW_ITEM = (request) => ({
   authenticatedRequest: true,
+  body: JSON.stringify(request),
   method: DELETE_METHOD,
   url: USER_VIEW_ITEM,
 });
 
-export const GET_USER_VIEW_ITEM = () => ({
+export const GET_USER_VIEW_ITEM = (pageRequest, pageSize) => ({
   authenticatedRequest: true,
   method: GET_METHOD,
-  url: USER_VIEW_ITEM + "/pagination_by_user",
+  url:
+    USER_VIEW_ITEM +
+    `/pagination_by_user?pageRequest=${pageRequest}&pageSize=${pageSize}`,
 });

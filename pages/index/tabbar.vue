@@ -107,6 +107,10 @@ import LoginPage from "../loginPage.vue";
 import LandingPage from "../landingPage.vue";
 import { CREATE_ITEM_TAB, LOGIN_PAGE } from "../../route/applicationRoute";
 import UserPage from "../user/userPage.vue";
+import Vue from "vue";
+
+export const TabbarEventBus = new Vue();
+
 export default {
   components: {
     index,
@@ -193,6 +197,10 @@ export default {
         animationDuration: 200,
       });
     },
+  },
+  onReachBottom() {
+    console.log("tabbar reached bottom");
+    TabbarEventBus.$emit("onReachBottom");
   },
 };
 </script>

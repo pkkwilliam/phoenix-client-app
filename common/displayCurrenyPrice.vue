@@ -1,14 +1,28 @@
 <template>
-  <view class="item-detail-container">
+  <view class="item-detail-container" :style="{ color: color }">
     <text class="currency">$</text>
     <text class="value">{{ value }}</text>
   </view>
 </template>
 
 <script>
+import styles from "../uview-ui/theme.scss";
 export default {
-  computed: {},
+  computed: {
+    color() {
+      switch (this.priceColor) {
+        case "primary":
+          return styles.pricePrimary;
+        case "secondary":
+          return styles.priceSecondary;
+      }
+    },
+  },
   props: {
+    priceColor: {
+      default: "primary",
+      type: String,
+    },
     value: {
       default: 0,
       type: Number,
@@ -20,7 +34,6 @@ export default {
 <style lang="scss" scoped>
 .item-detail-container {
   align-items: flex-end;
-  color: $u-phoenix-price-primary;
   display: flex;
   flex-direction: row;
   font-weight: 500;

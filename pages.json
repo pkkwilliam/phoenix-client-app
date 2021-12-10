@@ -110,6 +110,22 @@
       }
     },
     {
+      "path": "pages/soldOrder/buyerSoldOrderDetailPage",
+      "style": {
+        "navigationBarBackgroundColor": "#ffe24b",
+        "navigationBarTitleText": "我買到的",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/soldOrder/sellerSoldOrderDetailPage",
+      "style": {
+        "navigationBarBackgroundColor": "#ffe24b",
+        "navigationBarTitleText": "我買到的",
+        "navigationStyle": "custom"
+      }
+    },
+    {
       "path": "pages/me/aboutMe",
       "style": {
         "navigationBarTitleText": "关于作者",

@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     appName() {
-      return this.$label.appName;
+      return this.appLabel.appName;
     },
   },
 };

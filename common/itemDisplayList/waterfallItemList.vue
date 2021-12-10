@@ -1,6 +1,6 @@
 <template>
   <view>
-    <u-waterfall v-model="content">
+    <u-waterfall ref="uWaterfall" v-model="itemData">
       <template v-slot:left="{ leftList }">
         <view
           class="container left-container"
@@ -10,6 +10,7 @@
           <view @click="onClickItem(item)">
             <item :item="item" />
             <seller-profile-mini
+              v-if="showSeller"
               class="seller-container"
               :user="item.createBy"
             />
@@ -25,6 +26,7 @@
           <view @click="onClickItem(item)">
             <item :item="item" />
             <seller-profile-mini
+              v-if="showSeller"
               class="seller-container"
               :user="item.createBy"
             />
@@ -36,35 +38,42 @@
 </template>
 
 <script>
-import item from "./item/item.vue";
-import { ITEM_DETAIL_PAGE } from "../route/applicationRoute";
-import sellerProfileMini from "./sellerProfileMini.vue";
+import item from "../item/item.vue";
+import { ITEM_DETAIL_PAGE } from "../../route/applicationRoute";
+import sellerProfileMini from "../sellerProfileMini.vue";
+import CategoryTap from "../../components/category/categoryTap.vue";
+
 export default {
-  components: { item, sellerProfileMini },
-  computed: {},
+  components: { item, sellerProfileMini, CategoryTap },
+
   data() {
-    return { content: [], pageRequest: 0, pageSize: 20 };
+    return { itemData: [] };
   },
   methods: {
+    onChangeCategory(selectedCategory) {
+      this.$appStateService.setItemPagination(LANDING_TAB);
+      this.selectedCategory = selectedCategory;
+    },
     onClickItem(item) {
       uni.navigateTo({ url: ITEM_DETAIL_PAGE(item).url });
     },
   },
-  mounted() {
-    const { execute, pageRequest, pageSize, serviceRequest } = this;
-    execute(serviceRequest(pageRequest, pageSize)).then(
-      (paginationResponse) => {
-        const { content, totalElements, totalPages } = paginationResponse;
-        this.content = content;
-      }
-    );
-  },
+  mounted() {},
   props: {
-    serviceRequest: {
-      default: (pageRequest, pageSize) => {
-        console.log("please pass serviceRequest function props");
+    items: {
+      default() {
+        return [];
       },
-      type: Function,
+      type: Array,
+    },
+    showSeller: {
+      default: true,
+      type: Boolean,
+    },
+  },
+  watch: {
+    items(newItems, oldItems) {
+      this.itemData = this.itemData.concat(newItems);
     },
   },
 };

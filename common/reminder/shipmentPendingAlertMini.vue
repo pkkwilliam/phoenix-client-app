@@ -1,15 +1,15 @@
 <template>
-  <view class="space-between-container container">
+  <view class="space-between-center-container container">
     <view class="row-center-container">
       <image class="image" :src="imageIcon" />
       <text class="h4 blue">買家已付款</text>
     </view>
     <u-button
       class="button"
-      plain="true"
       shape="circle"
       size="mini"
       type="primary"
+      :plain="true"
       >去發貨</u-button
     >
   </view>

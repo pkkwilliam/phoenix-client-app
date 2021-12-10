@@ -1,3 +1,9 @@
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20rpx;
+}
+
 .column-container {
   display: flex;
   flex-direction: column;
@@ -18,6 +24,17 @@
   align-items: center;
 }
 
+.align-end-container {
+  @extend .column-container;
+  align-items: end;
+}
+
+.end-center-container {
+  @extend .row-container;
+  align-items: center;
+  justify-content: end;
+}
+
 .space-around-container {
   @extend .row-container;
   align-items: center;
@@ -25,6 +42,11 @@
 }
 
 .space-between-container {
+  @extend .row-container;
+  justify-content: space-between;
+}
+
+.space-between-center-container {
   @extend .row-container;
   align-items: center;
   justify-content: space-between;
@@ -45,4 +67,24 @@
 .scroll-view-horizontal {
   white-space: nowrap;
   width: 100%;
+}
+
+.u-scroll-view {
+  width: 100%;
+  white-space: nowrap;
+  position: relative;
+}
+
+// space
+.large-margin-top-spacer {
+  margin-top: 28rpx;
+}
+.medium-margin-top-spacer {
+  margin-top: 20rpx;
+}
+.small-margin-top-spacer {
+  margin-top: 12rpx;
+}
+.mini-margin-top-spaceer {
+  margin-top: 8rpx;
 }

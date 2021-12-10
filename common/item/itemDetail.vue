@@ -1,21 +1,28 @@
 <template>
   <view>
     <view class="item-container">
-      <item-detail-price-info class="section-container" :item="item" />
-      <item-detail-shipping-info class="section-container" :item="item" />
-      <view class="section-container">
-        <text class="description-text">{{ item.description }}</text>
+      <item-detail-price-info class="view-container" :item="item" />
+      <item-detail-shipping-info class="view-container" :item="item" />
+      <view class="view-container">
+        <text class="h3 black">{{ item.description }}</text>
       </view>
       <view class="condition-container">
-        <text class="header">成色</text>
-        <text class="value">{{ conditionLabel }}</text>
+        <text class="h3 secondary lightly-bold">成色</text>
+        <text class="h3 black lightly-bold value">{{ conditionLabel }}</text>
       </view>
       <u-lazy-load
-        class="image-container"
+        class="view-container"
         v-for="(imageUrl, index) in item.images"
         :border-radius="15"
         :key="index"
         :image="imageUrl"
+      />
+    </view>
+    <view class="space-between-center-container view-container">
+      <mpay-guarantee />
+      <item-view-and-save-count
+        :saveCount="item.saveCount"
+        :viewCount="item.viewCount"
       />
     </view>
   </view>
@@ -29,6 +36,8 @@ import ItemDetailPriceInfo from "./itemDetailPriceInfo.vue";
 import ItemDetailShippingInfo from "./itemDetailShippingInfo.vue";
 import ItemSubmitBar from "./itemSubmitBar.vue";
 import StrikeThroughCurrencyPrice from "../strikeThroughCurrencyPrice.vue";
+import ItemViewAndSaveCount from "./itemViewAndSaveCount.vue";
+import MpayGuarantee from "../mpayGuarantee.vue";
 export default {
   components: {
     DisplayCurrenyPrice,
@@ -37,6 +46,8 @@ export default {
     ItemDetailPriceInfo,
     ItemDetailShippingInfo,
     ItemSubmitBar,
+    ItemViewAndSaveCount,
+    MpayGuarantee,
   },
   computed: {
     conditionLabel() {
@@ -51,24 +62,9 @@ export default {
 
 <style lang="scss" scoped>
 .condition-container {
-  font-size: 36rpx;
   margin-top: 28rpx;
-  .header {
-    color: $u-phoenix-light-grey;
-    margin-right: 20rpx;
-  }
   .value {
-    color: $u-phoenix-font-dark;
-    font-weight: 500;
+    margin-left: 20rpx;
   }
-}
-.description-text {
-  font-size: 32rpx;
-}
-.image-container {
-  margin-top: 28rpx;
-}
-.section-container {
-  margin-top: 20rpx;
 }
 </style>

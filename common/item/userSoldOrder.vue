@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import SoldOrderActualReceive from "../soldOrder/soldOrderActualReceive.vue";
-import SoldOrderPriceSummary from "../soldOrder/soldOrderPriceSummary.vue";
-import SoldOrderStatusMini from "../soldOrder/soldOrderStatusMini.vue";
+import SoldOrderActualReceive from "../order/orderActualReceive.vue";
+import SoldOrderPriceSummary from "../order/orderPriceSummary.vue";
+import SoldOrderStatusMini from "../order/orderStatusMini.vue";
 import BuyerCardMini from "../user/buyerCardMini.vue";
 import itemSold from "./soldItem.vue";
 export default {

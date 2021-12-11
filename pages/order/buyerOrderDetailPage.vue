@@ -37,16 +37,16 @@
 </template>
 
 <script>
-import sellerShipmentDeliveryHelper from "../../common/soldOrder/sellerShipmentDeliveryHelper.vue";
+import sellerShipmentDeliveryHelper from "../../common/order/sellerShipmentDeliveryHelper.vue";
 import SoldItem from "../../common/item/soldItem.vue";
 import applicationNavigationBar from "../../common/navigation/applicationNavigationBar.vue";
-import SoldOrderActionButton from "../../common/soldOrder/action/soldOrderActionButton.vue";
-import SoldOrderActualReceive from "../../common/soldOrder/soldOrderActualReceive.vue";
-import SoldOrderDetailInfo from "../../common/soldOrder/soldOrderDetailInfo.vue";
-import SoldOrderPriceSummary from "../../common/soldOrder/soldOrderPriceSummary.vue";
-import SoldOrderReceiver from "../../common/soldOrder/soldOrderReceiver.vue";
-import SoldOrderStatus from "../../common/soldOrder/soldOrderStatus.vue";
-import SoldOrderStatusStep from "../../common/soldOrder/soldOrderStatusStep.vue";
+import SoldOrderActionButton from "../../common/order/action/orderActionButton.vue";
+import SoldOrderActualReceive from "../../common/order/orderActualReceive.vue";
+import SoldOrderDetailInfo from "../../common/order/orderDetailInfo.vue";
+import SoldOrderPriceSummary from "../../common/order/orderPriceSummary.vue";
+import SoldOrderReceiver from "../../common/order/orderReceiver.vue";
+import SoldOrderStatus from "../../common/order/orderStatus.vue";
+import SoldOrderStatusStep from "../../common/order/orderStatusStep.vue";
 import { getRouterJsonParam } from "../../route/applicationRoute";
 import { GET_ORDER_BY_ID } from "../../service/service";
 

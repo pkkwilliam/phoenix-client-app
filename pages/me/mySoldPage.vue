@@ -17,8 +17,8 @@
 <script>
 import itemRevisitDisplay from "../../common/item/itemRevisitDisplay.vue";
 import UserSoldOrder from "../../common/item/userSoldOrder.vue";
-import SoldOrderActionButtonMini from "../../common/soldOrder/action/soldOrderActionButtonMini.vue";
-import { SELLER_SOLD_ORDER_DETAIL_PAGE } from "../../route/applicationRoute";
+import SoldOrderActionButtonMini from "../../common/order/action/orderActionButtonMini.vue";
+import { SELLER_ORDER_DETAIL_PAGE } from "../../route/applicationRoute";
 export default {
   components: { itemRevisitDisplay, UserSoldOrder, SoldOrderActionButtonMini },
   computed: {
@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     onClickOrder(order) {
-      uni.navigateTo({ url: SELLER_SOLD_ORDER_DETAIL_PAGE(order).url });
+      uni.navigateTo({ url: SELLER_ORDER_DETAIL_PAGE(order).url });
     },
   },
   mounted() {

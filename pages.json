@@ -79,7 +79,23 @@
       }
     },
     {
-      "path": "pages/orderConfirmPage",
+      "path": "pages/order/buyerOrderDetailPage",
+      "style": {
+        "navigationBarBackgroundColor": "#ffe24b",
+        "navigationBarTitleText": "我買到的",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/order/sellerOrderDetailPage",
+      "style": {
+        "navigationBarBackgroundColor": "#ffe24b",
+        "navigationBarTitleText": "我買到的",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/preOrderPage",
       "style": {
         "navigationBarTitleText": "購買寶貝"
       }
@@ -103,7 +119,7 @@
       }
     },
     {
-      "path": "pages/user/userDetailPage",
+      "path": "pages/user/userPage",
       "style": {
         "navigationBarTitleText": ""
       }
@@ -112,22 +128,6 @@
       "path": "pages/me/salary",
       "style": {
         "navigationBarTitleText": "薪资排行",
-        "navigationStyle": "custom"
-      }
-    },
-    {
-      "path": "pages/soldOrder/buyerSoldOrderDetailPage",
-      "style": {
-        "navigationBarBackgroundColor": "#ffe24b",
-        "navigationBarTitleText": "我買到的",
-        "navigationStyle": "custom"
-      }
-    },
-    {
-      "path": "pages/soldOrder/sellerSoldOrderDetailPage",
-      "style": {
-        "navigationBarBackgroundColor": "#ffe24b",
-        "navigationBarTitleText": "我買到的",
         "navigationStyle": "custom"
       }
     },

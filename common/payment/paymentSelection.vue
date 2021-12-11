@@ -15,7 +15,7 @@
 <script>
 import { M_PAY, ALIPAY, WECHAT_PAY } from "../../enum/paymentChannel";
 import UIcon from "../../uview-ui/components/u-icon/u-icon.vue";
-import { setOrderConfirmPaymentChannel } from "../order/orderConfirmAppStateHelper";
+import { setOrderConfirmPaymentChannel } from "../pre-order/preOrderConfirmAppStateHelper";
 import payment from "./payment.vue";
 const PAYMENT_CHANNELS = [M_PAY, ALIPAY, WECHAT_PAY];
 export default {

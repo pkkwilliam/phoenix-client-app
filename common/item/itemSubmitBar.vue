@@ -28,12 +28,12 @@
 </template>
 
 <script>
-import { LOGIN_PAGE, ORDER_CONFIRM_PAGE } from "../../route/applicationRoute";
+import { LOGIN_PAGE, PRE_ORDER_PAGE } from "../../route/applicationRoute";
 import {
   CREATE_USER_SAVE_ITEM,
   DELETE_USER_SAVE_ITEM,
 } from "../../service/service";
-import { setOrderConfirmItem } from "../order/orderConfirmAppStateHelper";
+import { setOrderConfirmItem } from "../pre-order/preOrderConfirmAppStateHelper";
 export default {
   data() {
     return { save: false };
@@ -44,7 +44,7 @@ export default {
         uni.navigateTo({ url: LOGIN_PAGE().url });
       } else {
         setOrderConfirmItem(this.$store, this.item);
-        uni.navigateTo({ url: ORDER_CONFIRM_PAGE().url });
+        uni.navigateTo({ url: PRE_ORDER_PAGE().url });
       }
     },
     onClickSaveItem() {

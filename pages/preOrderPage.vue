@@ -51,17 +51,17 @@ import {
 } from "../enum/itemDeliveryType";
 import uLazyLoad from "../uview-ui/components/u-lazy-load/u-lazy-load.vue";
 import "../css/applicationTextField.scss";
-import OrderConfirmItemCard from "../common/order/orderConfirmItemCard.vue";
-import OrderConfirmShippingSubsection from "../common/order/orderConfirmShippingSubsection.vue";
-import OrderConfirmFaceToFaceSubsection from "../common/order/orderConfirmFaceToFaceSubsection.vue";
+import OrderConfirmItemCard from "../common/pre-order/preOrderConfirmItemCard.vue";
+import OrderConfirmShippingSubsection from "../common/pre-order/preOrderConfirmShippingSubsection.vue";
+import OrderConfirmFaceToFaceSubsection from "../common/pre-order/preOrderConfirmFaceToFaceSubsection.vue";
 import ULine from "../uview-ui/components/u-line/u-line.vue";
 import {
   getOrderConform,
   setOrderConfirmItemDeliveryType,
-} from "../common/order/orderConfirmAppStateHelper";
-import OrderConfirmSubmitBar from "../common/order/orderConfirmSubmitBar.vue";
+} from "../common/pre-order/preOrderConfirmAppStateHelper";
+import OrderConfirmSubmitBar from "../common/pre-order/preOrderConfirmSubmitBar.vue";
 import PaymentSelection from "../common/payment/paymentSelection.vue";
-import { sumbitMpayOrder } from "../common/order/submitOrderUtil";
+import { sumbitMpayOrder } from "../common/pre-order/submitOrderUtil";
 import { LANDING_TAB } from "../route/applicationRoute";
 
 const DELIVERY_TYPES = [

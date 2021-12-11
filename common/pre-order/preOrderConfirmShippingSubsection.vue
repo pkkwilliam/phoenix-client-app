@@ -19,7 +19,7 @@ import DisplayCurrenyPrice from "../displayCurrenyPrice.vue";
 import {
   getOrderConfirmAddress,
   setOrderConfirmAddress,
-} from "./orderConfirmAppStateHelper";
+} from "./preOrderConfirmAppStateHelper";
 export default {
   components: { deliveryAddressDisplay, DisplayCurrenyPrice },
   computed: {

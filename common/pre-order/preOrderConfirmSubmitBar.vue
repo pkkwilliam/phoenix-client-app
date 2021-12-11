@@ -13,7 +13,7 @@
 import { ITEM_DELIVERY_TYPE_FACE_TO_FACE } from "../../enum/itemDeliveryType";
 import { ITEM_SHIPPING_CHARGE_TYPE_INCLUDE } from "../../enum/itemShippingChargeTypes";
 import displayCurrenyPrice from "../displayCurrenyPrice.vue";
-import { getOrderConform } from "./orderConfirmAppStateHelper";
+import { getOrderConform } from "./preOrderConfirmAppStateHelper";
 export default {
   components: { displayCurrenyPrice },
   computed: {

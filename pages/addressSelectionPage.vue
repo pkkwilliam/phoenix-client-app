@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { setOrderConfirmAddress } from "../common/order/orderConfirmAppStateHelper";
+import { setOrderConfirmAddress } from "../common/pre-order/preOrderConfirmAppStateHelper";
 import primaryButton from "../common/primaryButton.vue";
 import { ADDRESS_FORM_PAGE } from "../route/applicationRoute";
 export default {

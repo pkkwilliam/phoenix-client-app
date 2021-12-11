@@ -49,31 +49,31 @@
       }
     },
     {
-      "path": "pages/user/userOrderPage",
+      "path": "pages/me/myOrderPage",
       "style": {
         "navigationBarTitleText": "訂單"
       }
     },
     {
-      "path": "pages/user/userPostPage",
+      "path": "pages/me/myListPage",
       "style": {
         "navigationBarTitleText": "我發布的"
       }
     },
     {
-      "path": "pages/user/userSaveItemPage",
+      "path": "pages/me/mySaveItemPage",
       "style": {
         "navigationBarTitleText": "我收藏的"
       }
     },
     {
-      "path": "pages/user/userSoldPage",
+      "path": "pages/me/mySoldPage",
       "style": {
         "navigationBarTitleText": "我賣出的"
       }
     },
     {
-      "path": "pages/user/userViewItemPage",
+      "path": "pages/me/myViewItemPage",
       "style": {
         "navigationBarTitleText": "我的足跡"
       }
@@ -100,6 +100,12 @@
       "path": "pages/workbenchPage",
       "style": {
         "navigationBarTitleText": "工作台PRO"
+      }
+    },
+    {
+      "path": "pages/user/userDetailPage",
+      "style": {
+        "navigationBarTitleText": ""
       }
     },
     {

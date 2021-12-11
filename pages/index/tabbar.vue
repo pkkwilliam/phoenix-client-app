@@ -6,7 +6,7 @@
     <create-item-page v-if="PageCur == 'createItemPage' && !isUserLogin" />
     <login-page v-else-if="PageCur == 'createItemPage'" />
     <news v-if="PageCur == 'news'"></news>
-    <user-page v-if="PageCur == 'me'"></user-page>
+    <my-page v-if="PageCur == 'me'"></my-page>
 
     <view class="box">
       <view class="cu-bar tabbar bg-white shadow foot">
@@ -106,7 +106,7 @@ import me from "./me.vue"; //个人中心
 import LoginPage from "../loginPage.vue";
 import LandingPage from "../landingPage.vue";
 import { CREATE_ITEM_TAB, LOGIN_PAGE } from "../../route/applicationRoute";
-import UserPage from "../user/userPage.vue";
+import MyPage from "../me/myPage.vue";
 import Vue from "vue";
 
 export const TabbarEventBus = new Vue();
@@ -121,7 +121,7 @@ export default {
     me,
     LandingPage,
     LoginPage,
-    UserPage,
+    MyPage,
   },
   data() {
     return {

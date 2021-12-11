@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { USER_SOLD_PAGE } from "../../route/applicationRoute";
+import { MY_SOLD_PAGE } from "../../route/applicationRoute";
 export default {
   computed: {
     text() {
@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     onClick() {
-      uni.navigateTo({ url: USER_SOLD_PAGE().url });
+      uni.navigateTo({ url: MY_SOLD_PAGE().url });
     },
   },
 };

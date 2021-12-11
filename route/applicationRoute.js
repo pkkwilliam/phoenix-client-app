@@ -43,20 +43,20 @@ export const SELLER_SOLD_ORDER_DETAIL_PAGE = (orderObject) => ({
     JSON.stringify(orderObject),
 });
 export const SHOP_LIST_PAGE = () => ({ url: "/pages/shopListPage" });
-export const USER_ORDER_PAGE = () => ({
-  url: "/pages/user/userOrderPage",
+export const MY_ORDER_PAGE = () => ({
+  url: "/pages/me/myOrderPage",
 });
-export const USER_POST_PAGE = () => ({
-  url: "/pages/user/userPostPage",
+export const MY_LIST_PAGE = () => ({
+  url: "/pages/me/myListPage",
 });
-export const USER_SAVE_ITEM_PAGE = () => ({
-  url: "/pages/user/userSaveItemPage",
+export const MY_SAVE_ITEM_PAGE = () => ({
+  url: "/pages/me/mySaveItemPage",
 });
-export const USER_SOLD_PAGE = () => ({
-  url: "/pages/user/userSoldPage",
+export const MY_SOLD_PAGE = () => ({
+  url: "/pages/me/mySoldPage",
 });
-export const USER_VIEW_ITEM_PAGE = () => ({
-  url: "/pages/user/userViewItemPage",
+export const MY_VIEW_ITEM_PAGE = () => ({
+  url: "/pages/me/myViewItemPage",
 });
 export const WORKBENCH_PAGE = () => ({
   url: "/pages/workbenchPage",

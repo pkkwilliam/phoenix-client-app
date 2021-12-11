@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import { USER_SAVE_ITEM_PAGE } from "../../route/applicationRoute";
+import { MY_SAVE_ITEM_PAGE } from "../../route/applicationRoute";
 export default {
   methods: {
     onClick() {
-      uni.navigateTo({ url: USER_SAVE_ITEM_PAGE().url });
+      uni.navigateTo({ url: MY_SAVE_ITEM_PAGE().url });
     },
   },
 };

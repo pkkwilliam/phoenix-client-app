@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import { USER_VIEW_ITEM_PAGE } from "../../route/applicationRoute";
+import { MY_VIEW_ITEM_PAGE } from "../../route/applicationRoute";
 export default {
   methods: {
     onClick() {
-      uni.navigateTo({ url: USER_VIEW_ITEM_PAGE().url });
+      uni.navigateTo({ url: MY_VIEW_ITEM_PAGE().url });
     },
   },
 };

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { USER_POST_PAGE } from "../../route/applicationRoute";
+import { MY_LIST_PAGE } from "../../route/applicationRoute";
 export default {
   computed: {
     text() {
@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     onClick() {
-      uni.navigateTo({ url: USER_POST_PAGE().url });
+      uni.navigateTo({ url: MY_LIST_PAGE().url });
     },
   },
 };

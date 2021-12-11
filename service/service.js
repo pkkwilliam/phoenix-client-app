@@ -133,6 +133,14 @@ export const GET_ITEMS = (pageRequest, pageSize, categoryId) => ({
     }`,
 });
 
+export const GET_ITEMS_BY_USER_ID = (userSid, pageRequestt, pageSize) => ({
+  authenticatedRequest: false,
+  method: GET_METHOD,
+  url:
+    PUBLIC_ITEM +
+    `/user/${userSid}?pageRequest=${pageRequest}&pageSize=${pageSize}`,
+});
+
 // Mpay Order
 export const CREATE_MPAY_ORDER = (request) => ({
   authenticatedRequest: true,

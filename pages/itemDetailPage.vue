@@ -11,38 +11,56 @@
       <user-card :user="item.createBy" />
     </view>
     <view class="cu-bar foot">
-      <item-submit-bar :item="item" />
+      <stick-bottom-bar>
+        <template slot="left">
+          <save-item-button :item="item" />
+        </template>
+        <template slot="right">
+          <navigate-to-pre-order-button :item="item" />
+        </template>
+      </stick-bottom-bar>
     </view>
   </view>
 </template>
 
 <script>
 import itemDetail from "../common/item/itemDetail.vue";
-import ItemSubmitBar from "../common/item//itemSubmitBar.vue";
 import SellerCard from "../common/sellerCard.vue";
 import SellerCardRecetInfo from "../common/sellerCardRecetInfo.vue";
 import { getRouterJsonParam } from "../route/applicationRoute";
 import { GET_ITEM } from "../service/service";
 import UserCard from "../common/user/userCard.vue";
 import SubscribeUserButton from "../components/subscribe/subscribeUserButton.vue";
+import SaveItemButton from "../components/item/saveItemButton.vue";
+import StickBottomBar from "../common/navigation/stickBottomBar.vue";
+import NavigateToPreOrderButton from "../components/navigationButton/item/navigateToPreOrderButton.vue";
 export default {
   components: {
     itemDetail,
     SellerCard,
-    ItemSubmitBar,
     SellerCardRecetInfo,
     UserCard,
     SubscribeUserButton,
+    SaveItemButton,
+    StickBottomBar,
+    NavigateToPreOrderButton,
   },
   data() {
     return {
       item: undefined,
     };
   },
+  methods: {
+    getItem() {
+      this.execute(GET_ITEM(this.item.id)).then(
+        (response) => (this.item = response)
+      );
+    },
+  },
   onLoad(option) {
     const item = getRouterJsonParam(option, "item");
-    // this.item = item;
-    this.execute(GET_ITEM(item.id)).then((response) => (this.item = response));
+    this.item = item;
+    this.getItem();
   },
 };
 </script>

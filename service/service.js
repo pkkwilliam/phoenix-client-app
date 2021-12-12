@@ -201,18 +201,16 @@ export const GET_USER_PROFILE = () => ({
 });
 
 // User Save Item
-export const DELETE_USER_SAVE_ITEM = (request) => ({
+export const CREATE_USER_SAVE_ITEM = (itemId) => ({
   authenticatedRequest: true,
-  body: JSON.stringify(request),
-  method: DELETE_METHOD,
-  url: USER_SAVE_ITEM,
+  method: POST_METHOD,
+  url: USER_SAVE_ITEM + `/item/${itemId}`,
 });
 
-export const CREATE_USER_SAVE_ITEM = (request) => ({
+export const DELETE_USER_SAVE_ITEM = (itemId) => ({
   authenticatedRequest: true,
-  body: JSON.stringify(request),
-  method: POST_METHOD,
-  url: USER_SAVE_ITEM,
+  method: DELETE_METHOD,
+  url: USER_SAVE_ITEM + `/item/${itemId}`,
 });
 
 export const GET_USER_SAVE_ITEM = (pageRequest, pageSize) => ({
@@ -221,6 +219,12 @@ export const GET_USER_SAVE_ITEM = (pageRequest, pageSize) => ({
   url:
     USER_SAVE_ITEM +
     `/pagination_by_user?pageRequest=${pageRequest}&pageSize=${pageSize}`,
+});
+
+export const GET_USER_SAVE_ITEM_BY_ITEM_ID = (itemId) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url: USER_SAVE_ITEM + `/item/${itemId}`,
 });
 
 // User View Item

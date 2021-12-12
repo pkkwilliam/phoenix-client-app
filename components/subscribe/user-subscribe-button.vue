@@ -1,14 +1,12 @@
 <template>
-  <view>
-    <u-button
-      shape="circle"
-      type="primary"
-      :custom-style="{ margin: '0px' }"
-      :size="size"
-      @click="onClick"
-      >{{ label }}</u-button
-    >
-  </view>
+  <u-button
+    shape="circle"
+    type="primary"
+    :custom-style="{ margin: '0px' }"
+    :size="size"
+    @click="onClick"
+    >{{ label }}</u-button
+  >
 </template>
 
 <script>
@@ -27,6 +25,7 @@ export default {
     },
   },
   props: {
+    fullWidth: {},
     size: {
       default: "medium",
       type: String,

@@ -8,8 +8,8 @@
           <user-subscribe-count-button class="user-interaction-button" />
           <user-fans-count-button class="user-interaction-button" />
         </view>
-        <view class="small-margin-top-spacer">
-          <user-subscribe-button :user="user" />
+        <view class="medium-margin-top-spacer full-width">
+          <user-subscribe-button size="default" :user="user" />
         </view>
       </view>
     </view>
@@ -24,7 +24,7 @@
         <text>{{ user.description }}</text>
       </view>
       <view class="small-margin-top-spacer">
-        <text>ID: {{ user.sid }}</text>
+        <text class="secondary">{{ user.sid }}</text>
       </view>
       <view class="medium-margin-top-spacer">
         <application-line-breaker />
@@ -107,7 +107,7 @@ export default {
   padding-right: 20rpx;
 }
 .user-interaction-button {
-  margin-left: 12rpx;
-  margin-right: 12rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
 }
 </style>

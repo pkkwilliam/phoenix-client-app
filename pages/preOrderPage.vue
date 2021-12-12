@@ -62,7 +62,7 @@ import {
 import OrderConfirmSubmitBar from "../common/pre-order/preOrderConfirmSubmitBar.vue";
 import PaymentSelection from "../common/payment/paymentSelection.vue";
 import { sumbitMpayOrder } from "../common/pre-order/submitOrderUtil";
-import { LANDING_TAB } from "../route/applicationRoute";
+import { getRouterJsonParam, LANDING_TAB } from "../route/applicationRoute";
 
 const DELIVERY_TYPES = [
   ITEM_DELIVERY_TYPE_THIRD_PARTY_DELIVERY,
@@ -104,9 +104,14 @@ export default {
       selectedDeliveryMethodIndex: 0,
     };
   },
+  onLoad(options) {
+    const item = getRouterJsonParam(options, "item");
+    this.item = item;
+  },
   methods: {
     getCurrentItem() {
-      return this.$store.state.orderConfirm.item;
+      // return this.$store.state.orderConfirm.item;
+      return this.item;
     },
     deliverySectionChange(index) {
       this.selectedDeliveryMethodIndex = index;
@@ -127,9 +132,7 @@ export default {
     },
   },
   mounted() {
-    if (!this.isLogin()) {
-      uni.navigateTo({ url: LANDING_TAB().url });
-    }
+    this.$appStateService.getAddress();
   },
 };
 </script>

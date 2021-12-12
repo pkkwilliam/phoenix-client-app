@@ -29,8 +29,8 @@ export const LOGIN_PAGE = () => ({
 export const MATCH_BAD_PARCEL_PAGE = () => ({
   url: "/pages/matchBadParcelPage",
 });
-export const PRE_ORDER_PAGE = () => ({
-  url: "/pages/preOrderPage",
+export const PRE_ORDER_PAGE = (item) => ({
+  url: "/pages/preOrderPage?item=" + JSON.stringify(item),
 });
 export const PARCEL_LIST_PAGE = () => ({ url: "/pages/parcelListPage" });
 export const PICKUP_CODE_PAGE = () => ({ url: "/pages/pickupCodePage" });

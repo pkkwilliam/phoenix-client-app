@@ -34,7 +34,6 @@ import DiscountTag from "../discountTag.vue";
 import DisplayCurrenyPrice from "../displayCurrenyPrice.vue";
 import ItemDetailPriceInfo from "./itemDetailPriceInfo.vue";
 import ItemDetailShippingInfo from "./itemDetailShippingInfo.vue";
-import ItemSubmitBar from "./itemSubmitBar.vue";
 import StrikeThroughCurrencyPrice from "../strikeThroughCurrencyPrice.vue";
 import ItemViewAndSaveCount from "./itemViewAndSaveCount.vue";
 import MpayGuarantee from "../mpayGuarantee.vue";
@@ -45,7 +44,6 @@ export default {
     DiscountTag,
     ItemDetailPriceInfo,
     ItemDetailShippingInfo,
-    ItemSubmitBar,
     ItemViewAndSaveCount,
     MpayGuarantee,
   },

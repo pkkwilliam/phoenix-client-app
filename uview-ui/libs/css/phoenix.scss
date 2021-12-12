@@ -14,13 +14,13 @@
   flex-direction: row;
 }
 
-.row-center-container {
-  @extend .row-container;
+.column-center-container {
+  @extend .column-container;
   align-items: center;
 }
 
-.align-center-container {
-  @extend .column-container;
+.row-center-container {
+  @extend .row-container;
   align-items: center;
 }
 

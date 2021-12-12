@@ -1,6 +1,6 @@
 <template>
   <u-navbar
-    :background="navigationBarBackgorunrColor"
+    :background="navigationBarBackgroundColor"
     :back-icon-color="titleColor"
     :title="title"
     :title-color="titleColor"
@@ -15,7 +15,7 @@ export default {
     titleColor() {
       return styles.black;
     },
-    navigationBarBackgorunrColor() {
+    navigationBarBackgroundColor() {
       return {
         backgroundColor: styles.primary,
       };

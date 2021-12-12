@@ -1,5 +1,5 @@
 <template>
-  <u-tag type="warning  " :text="discountText" />
+  <u-tag type="warning" :text="discountText" />
 </template>
 
 <script>

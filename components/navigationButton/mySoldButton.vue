@@ -1,5 +1,5 @@
 <template>
-  <view class="align-center-container" @click="onClick">
+  <view class="column-center-container" @click="onClick">
     <u-icon name="home" size="28" />
     <text class="h5 secondary">{{ text }}</text>
   </view>

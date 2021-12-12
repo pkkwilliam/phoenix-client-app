@@ -62,7 +62,7 @@ export default {
   watch: {
     dirty(newDirty, oldDirty) {
       if (newDirty) {
-        this.getItems();
+        this.getServiceResponse();
       }
     },
   },

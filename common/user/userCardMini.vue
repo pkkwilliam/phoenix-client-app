@@ -1,5 +1,5 @@
 <template>
-  <view class="row-center-container">
+  <view class="row-center-container" @click="onClick">
     <u-avatar size="47" :src="userAvatarImageUrl" />
     <text class="h6 secondary nickname-text">{{ userNickname }}</text>
     <u-icon
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { USER_PAGE } from "../../route/applicationRoute";
 import styles from "../../uview-ui/theme.scss";
 export default {
   components: {},
@@ -28,6 +29,11 @@ export default {
     userNickname() {
       const { user } = this;
       return user.nickname ? user.nickname : "小棕熊";
+    },
+  },
+  methods: {
+    onClick() {
+      uni.navigateTo({ url: USER_PAGE(this.user).url });
     },
   },
   mounted() {},

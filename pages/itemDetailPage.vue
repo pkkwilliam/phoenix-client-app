@@ -1,11 +1,14 @@
 <template>
   <view class="container">
-    <view class="top-container">
-      <seller-card-recet-info :user="item.createBy" />
+    <view class="card">
+      <view class="space-between-center-container">
+        <user-card :user="item.createBy" />
+      </view>
       <item-detail :item="item" />
     </view>
-    <view class="seller-card-container">
-      <seller-card :user="item.createBy" />
+    <view class="card medium-margin-top-spacer">
+      <!-- <seller-card :user="item.createBy" /> -->
+      <user-card :user="item.createBy" />
     </view>
     <view class="cu-bar foot">
       <item-submit-bar :item="item" />
@@ -20,8 +23,17 @@ import SellerCard from "../common/sellerCard.vue";
 import SellerCardRecetInfo from "../common/sellerCardRecetInfo.vue";
 import { getRouterJsonParam } from "../route/applicationRoute";
 import { GET_ITEM } from "../service/service";
+import UserCard from "../common/user/userCard.vue";
+import SubscribeUserButton from "../components/subscribe/subscribeUserButton.vue";
 export default {
-  components: { itemDetail, SellerCard, ItemSubmitBar, SellerCardRecetInfo },
+  components: {
+    itemDetail,
+    SellerCard,
+    ItemSubmitBar,
+    SellerCardRecetInfo,
+    UserCard,
+    SubscribeUserButton,
+  },
   data() {
     return {
       item: undefined,
@@ -38,14 +50,5 @@ export default {
 <style lang="scss" scoped>
 .container {
   padding-bottom: 100rpx;
-}
-.seller-card-container {
-  padding: 20rpx;
-  background-color: #ffffff;
-}
-.top-container {
-  background-color: #ffffff;
-  margin-bottom: 20rpx;
-  padding: 20rpx;
 }
 </style>

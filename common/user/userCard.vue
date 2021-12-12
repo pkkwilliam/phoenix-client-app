@@ -1,16 +1,17 @@
 <template>
-  <view class="personal-info-container">
+  <view class="row-center-container" @click="onClick">
     <view>
       <u-avatar size="108" :src="userAvatarImageUrl" />
     </view>
-    <view class="text-container">
-      <text class="nickname">{{ userNickname }}</text>
-      <text class="description">{{ userDescription }}</text>
+    <view class="column-container text-container">
+      <text class="h3 black">{{ userNickname }}</text>
+      <text class="h5 secondary">{{ userDescription }}</text>
     </view>
   </view>
 </template>
 
 <script>
+import { USER_PAGE } from "../../route/applicationRoute";
 import UAvatar from "../../uview-ui/components/u-avatar/u-avatar.vue";
 
 export default {
@@ -30,6 +31,11 @@ export default {
       return user.nickname ? user.nickname : "小棕熊";
     },
   },
+  methods: {
+    onClick() {
+      uni.navigateTo({ url: USER_PAGE(this.user).url });
+    },
+  },
   props: {
     user: Object,
   },
@@ -37,22 +43,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.personal-info-container {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-}
 .text-container {
-  color: $u-phoenix-font-dark;
-  display: flex;
-  flex-direction: column;
   margin-left: 20rpx;
-  .nickname {
-    font-size: 38rpx;
-    font-weight: 600;
-  }
-  .description {
-    font-size: 28rpx;
-  }
 }
 </style>

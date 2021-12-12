@@ -3,17 +3,17 @@
     <user-card :user="userProfile" />
     <view class="my-order">
       <view class="space-around-container">
-        <user-saved-item-button />
-        <user-viewed-item-button />
+        <my-saved-item-button />
+        <my-viewed-item-button />
         <workbench-button />
       </view>
       <view class="line">
         <application-line-breaker />
       </view>
       <view class="space-between-center-container">
-        <user-post-button />
-        <user-sold-button />
-        <user-order-button />
+        <my-item-list-button />
+        <my-sold-button />
+        <my-order-button />
       </view>
       <shipment-pending-alert-rows />
     </view>
@@ -28,25 +28,25 @@ import userCard from "../../common/user/userCard.vue";
 import ApplicationLineBreaker from "../../components/applicationLineBreaker.vue";
 import ShipmentPendingAlertRows from "../../components/myOrder/shipmentPendingAlert/shipmentPendingAlertRows.vue";
 import UserMenu from "../../components/user/userMenu.vue";
-import UserSavedItemButton from "../../components/navigationButton/userSaveItemButton.vue";
-import UserViewedItemButton from "../../components/navigationButton/userViewItemButton.vue";
+import MySavedItemButton from "../../components/navigationButton/mySaveItemButton.vue";
+import MyViewedItemButton from "../../components/navigationButton/myViewItemButton.vue";
 import WorkbenchButton from "../../components/navigationButton/workbenchButton.vue";
-import UserPostButton from "../../components/navigationButton/userPostButton.vue";
-import UserSoldButton from "../../components/navigationButton/userSoldButton.vue";
-import UserOrderButton from "../../components/navigationButton/userOrderButton.vue";
+import MyItemListButton from "../../components/navigationButton/myItemListButton.vue";
+import MySoldButton from "../../components/navigationButton/mySoldButton.vue";
+import MyOrderButton from "../../components/navigationButton/myOrderButton.vue";
 
 export default {
   components: {
     userCard,
     UserMenu,
     ApplicationLineBreaker,
-    UserViewedItemButton,
-    UserSavedItemButton,
+    MyViewedItemButton,
+    MySavedItemButton,
     WorkbenchButton,
     ShipmentPendingAlertRows,
-    UserPostButton,
-    UserSoldButton,
-    UserOrderButton,
+    MyItemListButton,
+    MySoldButton,
+    MyOrderButton,
   },
   computed: {
     userProfile() {

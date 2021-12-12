@@ -9,7 +9,7 @@
         >
           <view @click="onClickItem(item)">
             <item :item="item" />
-            <seller-profile-mini
+            <user-card-mini
               v-if="showSeller"
               class="seller-container"
               :user="item.createBy"
@@ -25,7 +25,7 @@
         >
           <view @click="onClickItem(item)">
             <item :item="item" />
-            <seller-profile-mini
+            <user-card-mini
               v-if="showSeller"
               class="seller-container"
               :user="item.createBy"
@@ -40,11 +40,12 @@
 <script>
 import item from "../item/item.vue";
 import { ITEM_DETAIL_PAGE } from "../../route/applicationRoute";
-import sellerProfileMini from "../sellerProfileMini.vue";
+
 import CategoryTap from "../../components/category/categoryTap.vue";
+import UserCardMini from "../user/userCardMini.vue";
 
 export default {
-  components: { item, sellerProfileMini, CategoryTap },
+  components: { item, CategoryTap, UserCardMini },
 
   data() {
     return { itemData: [] };

@@ -1,7 +1,7 @@
 <template>
   <view>
     <view>
-      <seller-profile-mini :user="item.createBy" />
+      <user-card-mini :user="item.createBy" />
       <display-curreny-price :value="item.price" />
       <strike-through-currency-price :value="item.originalPrice" />
     </view>
@@ -20,16 +20,16 @@
 <script>
 import DisplayCurrenyPrice from "../displayCurrenyPrice.vue";
 import MpayGuarantee from "../mpayGuarantee.vue";
-import sellerProfileMini from "../sellerProfileMini.vue";
 import StrikeThroughCurrencyPrice from "../strikeThroughCurrencyPrice.vue";
+import UserCardMini from "../user/userCardMini.vue";
 import ItemViewAndSaveCount from "./itemViewAndSaveCount.vue";
 export default {
   components: {
-    sellerProfileMini,
     DisplayCurrenyPrice,
     StrikeThroughCurrencyPrice,
     MpayGuarantee,
     ItemViewAndSaveCount,
+    UserCardMini,
   },
   computed: {
     description() {

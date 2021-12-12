@@ -1,15 +1,15 @@
 <template>
   <view class="container">
     <view class="main-content">
-      <view class="section-card">
+      <view class="card medium-margin-top-spacer">
         <order-confirm-item-card :item="currentItem" />
       </view>
-      <view class="section-card">
+      <view class="card medium-margin-top-spacer">
         <application-subsection
           :list="deliveryMethods"
           @onChange="deliverySectionChange"
         />
-        <view class="delivery-type-container">
+        <view class="large-margin-top-spacer">
           <order-confirm-shipping-subsection
             v-if="selectedDeliveryMethodIndex === 0"
             :item="currentItem"
@@ -17,19 +17,19 @@
           <order-confirm-face-to-face-subsection v-else />
         </view>
 
-        <view class="textfield-container">
+        <view class="large-margin-top-spacer">
           <text>備註</text>
           <u-input
-            class="textfield"
+            class="medium-margin-top-spacer"
             type="text"
             v-model="remark"
             :placeholder="remarkPlaceHolder"
           />
         </view>
       </view>
-      <view class="section-card">
+      <view class="card medium-margin-top-spacer">
         <text>請選擇支付方式</text>
-        <view class="payment-selection-line">
+        <view class="medium-margin-top-spacer">
           <u-line />
         </view>
         <payment-selection />
@@ -135,28 +135,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-}
 .main-content {
   padding-left: 20rpx;
   padding-right: 20rpx;
-}
-.delivery-type-container {
-  margin-top: 35rpx;
-}
-.textfield-container {
-  margin-top: 35rpx;
-  .textfield {
-    margin-top: 20rpx;
-  }
-}
-.section-card {
-  background-color: #ffffff;
-  border-radius: 8px;
-  padding: 20rpx;
-  margin-top: 20rpx;
-}
-.payment-selection-line {
-  margin-top: 15rpx;
 }
 </style>

@@ -10,7 +10,7 @@
         >
           <view @click="onClickItem(item)">
             <item :item="item" />
-            <seller-profile-mini
+            <user-card-mini
               class="seller-container"
               :showRightArrowIcon="false"
               :user="item.createBy"
@@ -26,7 +26,7 @@
         >
           <view @click="onClickItem(item)">
             <item :item="item" />
-            <seller-profile-mini
+            <user-card-mini
               class="seller-container"
               :showRightArrowIcon="false"
               :user="item.createBy"
@@ -41,12 +41,12 @@
 <script>
 import item from "../../common/item/item.vue";
 import { ITEM_DETAIL_PAGE } from "../../route/applicationRoute";
-import sellerProfileMini from "../../common/sellerProfileMini.vue";
 import CategoryTap from "../category/categoryTap.vue";
 import { GET_ITEMS } from "../../service/service";
+import UserCardMini from "../../common/user/userCardMini.vue";
 
 export default {
-  components: { item, sellerProfileMini, CategoryTap },
+  components: { item, CategoryTap, UserCardMini },
   computed: {
     dirty() {
       return this.$store.state.itemPagination.dirty;

@@ -1,13 +1,5 @@
 <template>
   <view @click="onClickItem">
-    <view class="space-between-center-container">
-      <seller-profile-mini :user="item.createBy" />
-      <view class="row-center-container">
-        <display-curreny-price class="price" :value="item.price" />
-        <strike-through-currency-price :value="item.originalPrice" />
-      </view>
-    </view>
-
     <scroll-view
       scroll-x
       class="u-scroll-view view-container"
@@ -41,16 +33,16 @@ import { ITEM_DETAIL_PAGE } from "../../route/applicationRoute";
 import { convertSystemDateToDisplayDateYear } from "../../util/dateUtil";
 import displayCurrenyPrice from "../displayCurrenyPrice.vue";
 import MpayGuarantee from "../mpayGuarantee.vue";
-import SellerProfileMini from "../sellerProfileMini.vue";
 import StrikeThroughCurrencyPrice from "../strikeThroughCurrencyPrice.vue";
+import UserCardMini from "../user/userCardMini.vue";
 import ItemViewAndSaveCount from "./itemViewAndSaveCount.vue";
 export default {
   components: {
     displayCurrenyPrice,
     MpayGuarantee,
     ItemViewAndSaveCount,
-    SellerProfileMini,
     StrikeThroughCurrencyPrice,
+    UserCardMini,
   },
   computed: {
     createDate() {

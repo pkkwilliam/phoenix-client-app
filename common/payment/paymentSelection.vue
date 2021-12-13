@@ -15,7 +15,6 @@
 <script>
 import { M_PAY, ALIPAY, WECHAT_PAY } from "../../enum/paymentChannel";
 import UIcon from "../../uview-ui/components/u-icon/u-icon.vue";
-import { setOrderConfirmPaymentChannel } from "../pre-order/preOrderConfirmAppStateHelper";
 import payment from "./payment.vue";
 const PAYMENT_CHANNELS = [M_PAY, ALIPAY, WECHAT_PAY];
 export default {
@@ -30,15 +29,9 @@ export default {
   },
   methods: {
     onClickPaymentMethod(paymentChannel, index) {
-      setOrderConfirmPaymentChannel(this.$store, paymentChannel);
+      // setOrderConfirmPaymentChannel(this.$store, paymentChannel);
       this.selectedPaymentIndex = index;
-      this.onSelect(paymentChannel);
-    },
-  },
-  props: {
-    onSelect: {
-      default: () => {},
-      type: Function,
+      this.$emit("onSelectPaymentChannel", paymentChannel);
     },
   },
 };

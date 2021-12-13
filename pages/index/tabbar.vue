@@ -26,7 +26,7 @@
           >
         </view>
 
-        <view class="action" @click="NavChange" data-cur="search">
+        <!-- <view class="action" @click="NavChange" data-cur="search">
           <view class="cuIcon-cu-image">
             <image
               v-if="PageCur == 'search'"
@@ -40,7 +40,7 @@
           <view :class="PageCur == 'search' ? 'color_main' : 'text-gray'"
             >技术栈</view
           >
-        </view>
+        </view> -->
 
         <view
           @click="NavChange"
@@ -57,7 +57,7 @@
             >出手物品</view
           >
         </view>
-
+        <!-- 
         <view class="action" @click="NavChange" data-cur="news">
           <view class="cuIcon-cu-image">
             <view class="cu-tag badge">{{ message }}</view>
@@ -73,7 +73,7 @@
           <view :class="PageCur == 'news' ? 'color_main' : 'text-gray'"
             >文章资讯</view
           >
-        </view>
+        </view> -->
 
         <view class="action" @click="NavChange" data-cur="me">
           <view class="cuIcon-cu-image">

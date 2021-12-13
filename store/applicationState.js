@@ -22,10 +22,6 @@ let store = new Vuex.Store({
       currentPage: undefined,
       dirty: true,
     },
-    orderConfirm: {
-      deliveryAddress: {},
-      paymentChannel: {},
-    },
     sellerPendingOrder: {
       dirty: true,
       content: [],
@@ -76,9 +72,6 @@ let store = new Vuex.Store({
         ...state.itemPagination,
         dirty: false,
       };
-    },
-    setOrderConfirm(state, orderConfirm) {
-      state.orderConfirm = orderConfirm;
     },
     setSellerPendingOrder(state, sellerPendingOrder) {
       state.sellerPendingOrder = {

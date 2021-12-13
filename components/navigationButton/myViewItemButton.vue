@@ -1,6 +1,6 @@
 <template>
-  <view @click="onClick">
-    <u-icon name="home" size="28" />
+  <view class="row-center-container" @click="onClick">
+    <u-icon custom-prefix="phoenix-custom-icon" name="shoe" size="58" />
     <text class="text">足跡</text>
   </view>
 </template>

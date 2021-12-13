@@ -2,22 +2,38 @@
   <view class="container">
     <view class="main-content">
       <view class="card medium-margin-top-spacer">
-        <order-confirm-item-card :item="currentItem" />
+        <order-confirm-item-card :item="item" />
       </view>
       <view class="card medium-margin-top-spacer">
         <application-subsection
           :list="deliveryMethods"
           @onChange="deliverySectionChange"
         />
-        <view class="large-margin-top-spacer">
-          <order-confirm-shipping-subsection
-            v-if="selectedDeliveryMethodIndex === 0"
-            :item="currentItem"
-          />
-          <order-confirm-face-to-face-subsection v-else />
+        <view
+          class="large-margin-top-spacer"
+          v-if="selectedDeliveryTypeIndex === 0"
+        >
+          <view class="space-between-container">
+            <text>收貨地址</text>
+            <delivery-address-display :address="selectedAddress" />
+          </view>
+          <view class="space-between-center-container medium-margin-top-spacer">
+            <text>運費</text>
+            <pre-order-shipping-fee :item="item" />
+          </view>
         </view>
-
-        <view class="large-margin-top-spacer">
+        <view class="large-margin-top-spacer" v-else>
+          <view>
+            <text class="h4 price-primary">
+              推薦使用本平台交易以保障自身權益
+            </text>
+          </view>
+          <view class="space-between-center-container medium-margin-top-spacer">
+            <text>聯絡電話</text>
+            <text class="h4 black bold">{{ receiverNumber }}</text>
+          </view>
+        </view>
+        <view class="medium-margin-top-spacer">
           <text>備註</text>
           <u-input
             class="medium-margin-top-spacer"
@@ -32,11 +48,18 @@
         <view class="medium-margin-top-spacer">
           <u-line />
         </view>
-        <payment-selection />
+        <payment-selection @onSelectPaymentChannel="onSelectPaymentChannel" />
       </view>
     </view>
     <view class="cu-bar foot">
-      <order-confirm-submit-bar :onClickSubmit="onClickSubmit" />
+      <!-- <order-confirm-submit-bar :onClickSubmit="onClickSubmit" /> -->
+      <stick-bottom-bar>
+        <template slot="right">
+          <text class="label">實付款:</text>
+          <display-curreny-price class="should-pay" :value="orderCost" />
+          <view class="buy btn u-line-1" @click="onClickSubmit">確認購買</view>
+        </template>
+      </stick-bottom-bar>
     </view>
   </view>
 </template>
@@ -52,23 +75,20 @@ import {
 import uLazyLoad from "../uview-ui/components/u-lazy-load/u-lazy-load.vue";
 import "../css/applicationTextField.scss";
 import OrderConfirmItemCard from "../common/pre-order/preOrderConfirmItemCard.vue";
-import OrderConfirmShippingSubsection from "../common/pre-order/preOrderConfirmShippingSubsection.vue";
-import OrderConfirmFaceToFaceSubsection from "../common/pre-order/preOrderConfirmFaceToFaceSubsection.vue";
 import ULine from "../uview-ui/components/u-line/u-line.vue";
-import {
-  getOrderConform,
-  setOrderConfirmItemDeliveryType,
-} from "../common/pre-order/preOrderConfirmAppStateHelper";
-import OrderConfirmSubmitBar from "../common/pre-order/preOrderConfirmSubmitBar.vue";
 import PaymentSelection from "../common/payment/paymentSelection.vue";
-import { sumbitMpayOrder } from "../common/pre-order/submitOrderUtil";
-import { getRouterJsonParam, LANDING_TAB } from "../route/applicationRoute";
+import {
+  calculateOrderCost,
+  sumbitMpayOrder,
+} from "../common/pre-order/submitOrderUtil";
+import { getRouterJsonParam } from "../route/applicationRoute";
+import PreOrderShippingFee from "../common/pre-order/preOrderShippingFee.vue";
+import StickBottomBar from "../common/navigation/stickBottomBar.vue";
 
 const DELIVERY_TYPES = [
   ITEM_DELIVERY_TYPE_THIRD_PARTY_DELIVERY,
   ITEM_DELIVERY_TYPE_FACE_TO_FACE,
 ];
-
 export default {
   components: {
     uLazyLoad,
@@ -76,32 +96,38 @@ export default {
     ApplicationSubsection,
     DeliveryAddressDisplay,
     OrderConfirmItemCard,
-    OrderConfirmShippingSubsection,
-    OrderConfirmFaceToFaceSubsection,
     ULine,
-    OrderConfirmSubmitBar,
     PaymentSelection,
+    PreOrderShippingFee,
+    StickBottomBar,
   },
   computed: {
-    currentItem() {
-      return this.getCurrentItem();
-    },
     deliveryMethods() {
       return DELIVERY_TYPES.map((item) => item.label);
     },
+    orderCost() {
+      return calculateOrderCost(
+        this.item,
+        DELIVERY_TYPES[this.selectedDeliveryTypeIndex]
+      );
+    },
+    receiverNumber() {
+      const { countryCode, smsNumber } = this.$store.state.userProfile.profile;
+      return `(${countryCode}) ${smsNumber}`;
+    },
     remarkPlaceHolder() {
-      return this.selectedDeliveryMethodIndex === 0
+      return this.selectedDeliveryTypeIndex === 0
         ? "請輸入備註...如: 送貨時間"
         : "請輸入當面交易備註...如: 意向交易地點、時間";
     },
   },
   data() {
     return {
-      contactNumber: undefined,
       item: undefined,
-      paymentChannel: undefined,
       remark: undefined,
-      selectedDeliveryMethodIndex: 0,
+      selectedAddress: undefined,
+      selectedDeliveryTypeIndex: 0,
+      selectedPaymentChannel: undefined,
     };
   },
   onLoad(options) {
@@ -109,30 +135,36 @@ export default {
     this.item = item;
   },
   methods: {
-    getCurrentItem() {
-      // return this.$store.state.orderConfirm.item;
-      return this.item;
-    },
     deliverySectionChange(index) {
-      this.selectedDeliveryMethodIndex = index;
-      setOrderConfirmItemDeliveryType(this.$store, DELIVERY_TYPES[index]);
+      this.selectedDeliveryTypeIndex = index;
     },
     onClickSubmit() {
-      const { item, itemDeliveryType, paymentChannel } = getOrderConform(
-        this.$store
-      );
-      sumbitMpayOrder(
-        this.execute,
-        null,
+      const {
+        execute,
         item,
-        itemDeliveryType,
-        paymentChannel,
-        this.remark
+        remark,
+        selectedAddress,
+        selectedDeliveryTypeIndex,
+        selectedPaymentChannel,
+      } = this;
+      sumbitMpayOrder(
+        execute,
+        selectedAddress,
+        item,
+        DELIVERY_TYPES[selectedDeliveryTypeIndex],
+        selectedPaymentChannel,
+        remark
       );
     },
+    onSelectPaymentChannel(paymentChannel) {
+      this.selectedPaymentChannel = paymentChannel;
+    },
   },
-  mounted() {
-    this.$appStateService.getAddress();
+  async mounted() {
+    this.$appStateService.getUserProfile();
+    await this.$appStateService.getAddress();
+    const { address } = this.$store.state;
+    this.selectedAddress = address.content[0];
   },
 };
 </script>

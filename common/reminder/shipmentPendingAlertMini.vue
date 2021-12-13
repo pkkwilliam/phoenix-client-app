@@ -2,7 +2,7 @@
   <view class="space-between-center-container container">
     <view class="row-center-container">
       <image class="image" :src="imageIcon" />
-      <text class="h4 blue">買家已付款</text>
+      <text class="h4 blue text">買家已付款</text>
     </view>
     <u-button
       class="button"
@@ -10,17 +10,25 @@
       size="mini"
       type="primary"
       :plain="true"
+      @click="onClickButton"
       >去發貨</u-button
     >
   </view>
 </template>
 
 <script>
+import { SELLER_ORDER_DETAIL_PAGE } from "../../route/applicationRoute";
 export default {
   components: {},
   computed: {
     imageIcon() {
-      return "https://smalltotall.info/wp-content/uploads/2017/04/google-favicon-vector-400x400.png";
+      const { images } = this.order.item;
+      return images[0];
+    },
+  },
+  methods: {
+    onClickButton() {
+      uni.navigateTo({ url: SELLER_ORDER_DETAIL_PAGE(this.order).url });
     },
   },
   props: {
@@ -43,5 +51,8 @@ export default {
   border-radius: 8px;
   height: 65rpx;
   width: 65rpx;
+}
+.text {
+  margin-left: 16rpx;
 }
 </style>

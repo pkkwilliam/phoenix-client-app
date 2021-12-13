@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import { setOrderConfirmAddress } from "../common/pre-order/preOrderConfirmAppStateHelper";
 import primaryButton from "../common/primaryButton.vue";
 import { ADDRESS_FORM_PAGE } from "../route/applicationRoute";
 export default {
@@ -38,8 +37,10 @@ export default {
   },
   methods: {
     onClickAddress(address) {
-      setOrderConfirmAddress(this.$store, address);
-      uni.navigateBack();
+      let pages = getCurrentPages();
+      let prevPage = pages[pages.length - 2];
+      prevPage.selectedAddress = address;
+      uni.navigateBack({ delta: 1 });
     },
     onClickCreateAddress() {
       uni.navigateTo({ url: ADDRESS_FORM_PAGE().url });

@@ -107,5 +107,6 @@ export default {
 <style lang="scss">
 @import "colorui/main.css";
 @import "colorui/icon.css";
+@import "static/custom-icon/iconfont.css";
 @import "uview-ui/index.scss";
 </style>

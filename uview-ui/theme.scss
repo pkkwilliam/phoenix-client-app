@@ -53,6 +53,7 @@ $u-phoenix-font-dark: #3a3a3a;
 $u-phoenix-blue: #007aff;
 $u-phoenix-brown: #4d3009;
 $u-phoenix-orange: #fd8204;
+$u-phoenix-yellow: #fcbc17;
 
 // application text
 .text {
@@ -107,6 +108,12 @@ $u-phoenix-orange: #fd8204;
 .orange {
   color: $u-phoenix-orange;
 }
+.price-primary {
+  color: $u-phoenix-price-primary;
+}
+.yellow {
+  color: $u-phoenix-yellow;
+}
 
 // effect
 .application-shadow {
@@ -122,4 +129,5 @@ $u-phoenix-orange: #fd8204;
   priceSecondary: $u-phoenix-font-dark;
   primary: $u-phoneix-primary;
   secondary: $u-phoenix-light-grey;
+  yellow: $u-phoenix-yellow;
 }

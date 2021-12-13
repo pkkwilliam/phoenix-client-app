@@ -5,8 +5,12 @@
       :key="index"
       @click="onClick(menuItem)"
     >
-      <view class="button">
-        <u-icon :name="menuItem.iconName" size="28" />
+      <view class="row-center-container button">
+        <u-icon
+          custom-prefix="phoenix-custom-icon"
+          :name="menuItem.iconName"
+          size="48"
+        />
         <text class="label">{{ menuItem.label }}</text>
       </view>
       <application-line-breaker v-if="index < menuItems.length - 1" />
@@ -28,8 +32,12 @@ export default {
   computed: {
     menuItems() {
       return [
-        { iconName: "home", label: "收貨地址", toPage: ADDRESS_SELECTION_PAGE },
-        { iconName: "home", label: "更改密碼", toPage: CHANGE_PASSWORD_PAGE },
+        {
+          iconName: "address",
+          label: "收貨地址",
+          toPage: ADDRESS_SELECTION_PAGE,
+        },
+        { iconName: "lock", label: "更改密碼", toPage: CHANGE_PASSWORD_PAGE },
       ];
     },
   },
@@ -46,7 +54,7 @@ export default {
   padding-bottom: 35rpx;
   padding-top: 35rpx;
   .label {
-    margin-left: 35rpx;
+    margin-left: 18rpx;
   }
 }
 </style>

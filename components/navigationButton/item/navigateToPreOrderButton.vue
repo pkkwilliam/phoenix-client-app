@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import { setOrderConfirmItem } from "../../../common/pre-order/preOrderConfirmAppStateHelper";
 import { LOGIN_PAGE, PRE_ORDER_PAGE } from "../../../route/applicationRoute";
 export default {
   methods: {
@@ -11,7 +10,6 @@ export default {
       if (!this.isLogin()) {
         uni.navigateTo({ url: LOGIN_PAGE().url });
       } else {
-        setOrderConfirmItem(this.$store, this.item);
         uni.navigateTo({ url: PRE_ORDER_PAGE(this.item).url });
       }
     },

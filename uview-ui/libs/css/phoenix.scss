@@ -42,6 +42,11 @@
 
 .space-around-container {
   @extend .row-container;
+  justify-content: space-around;
+}
+
+.space-around-center-container {
+  @extend .row-container;
   align-items: center;
   justify-content: space-around;
 }

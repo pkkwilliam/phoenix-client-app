@@ -2,7 +2,7 @@
   <view class="container">
     <user-card :user="userProfile" />
     <view class="my-order">
-      <view class="space-around-container">
+      <view class="space-around-center-container">
         <my-saved-item-button />
         <my-viewed-item-button />
         <workbench-button />
@@ -10,10 +10,16 @@
       <view class="line">
         <application-line-breaker />
       </view>
-      <view class="space-between-center-container">
-        <my-item-list-button />
-        <my-sold-button />
-        <my-order-button />
+      <view class="medium-margin-top-spacer">
+        <view class="space-between-center-container">
+          <text class="h3 black bold">我的交易</text>
+          <money-made />
+        </view>
+        <view class="space-around-center-container medium-margin-top-spacer">
+          <my-item-list-button />
+          <my-sold-button />
+          <my-order-button />
+        </view>
       </view>
       <shipment-pending-alert-rows />
     </view>
@@ -34,6 +40,7 @@ import WorkbenchButton from "../../components/navigationButton/workbenchButton.v
 import MyItemListButton from "../../components/navigationButton/myItemListButton.vue";
 import MySoldButton from "../../components/navigationButton/mySoldButton.vue";
 import MyOrderButton from "../../components/navigationButton/myOrderButton.vue";
+import MoneyMade from "../../components/user/moneyMade.vue";
 
 export default {
   components: {
@@ -47,6 +54,7 @@ export default {
     MyItemListButton,
     MySoldButton,
     MyOrderButton,
+    MoneyMade,
   },
   computed: {
     userProfile() {

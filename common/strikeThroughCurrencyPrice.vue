@@ -1,7 +1,13 @@
 <template>
-  <view class="item-detail-container">
-    <text class="h5 secondary">$</text>
-    <text class="h4 secondary">{{ value }}</text>
+  <view class="row-center-container item-detail-container secondary">
+    <u-icon
+      class="icon-container"
+      custom-prefix="phoenix-custom-icon"
+      name="dollar"
+      size="22"
+      :top="0"
+    />
+    <text>{{ value }}</text>
   </view>
 </template>
 
@@ -19,18 +25,7 @@ export default {
 
 <style lang="scss" scoped>
 .item-detail-container {
-  align-items: flex-end;
-  color: $u-phoenix-light-grey;
-  display: flex;
-  flex-direction: row;
   text-decoration-line: line-through;
-}
-.currency {
-  font-size: 26rpx;
-  font-weight: 300;
-}
-.value {
-  font-size: 32rpx;
-  margin-left: 8rpx;
+  text-decoration-thickness: 3px;
 }
 </style>

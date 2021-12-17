@@ -49,11 +49,20 @@ export const MY_LIST_PAGE = () => ({
 export const MY_SAVE_ITEM_PAGE = () => ({
   url: "/pages/me/mySaveItemPage",
 });
+export const MY_SETTING_PAGE = () => ({
+  url: "/pages/me/mySettingPage",
+});
 export const MY_SOLD_PAGE = () => ({
   url: "/pages/me/mySoldPage",
 });
 export const MY_VIEW_ITEM_PAGE = () => ({
   url: "/pages/me/myViewItemPage",
+});
+export const ORDER_CONFIRMATION_PAGE = (order) => ({
+  url: "/pages/order/orderConfirmationPage?order=" + JSON.stringify(order),
+});
+export const SEARCH_ITEM_PAGE = () => ({
+  url: "/pages/item/searchItemPage",
 });
 export const WORKBENCH_PAGE = () => ({
   url: "/pages/workbenchPage",

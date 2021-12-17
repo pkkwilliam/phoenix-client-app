@@ -55,7 +55,7 @@ export default {};
       margin-right: 30rpx;
     }
     .buy {
-      background: $u-phoneix-primary-gradient;
+      background: $u-phoenix-primary-gradient;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
   }

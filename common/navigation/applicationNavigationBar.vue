@@ -2,6 +2,7 @@
   <u-navbar
     :background="navigationBarBackgroundColor"
     :back-icon-color="titleColor"
+    :isBack="isBack"
     :title="title"
     :title-color="titleColor"
   >
@@ -9,7 +10,7 @@
 </template>
 
 <script>
-import styles from "../../uview-ui/theme.scss";
+import styles from "../../uview-ui/theme.js";
 export default {
   computed: {
     titleColor() {
@@ -17,11 +18,19 @@ export default {
     },
     navigationBarBackgroundColor() {
       return {
-        backgroundColor: styles.primary,
+        backgroundColor: this.backgroundColor,
       };
     },
   },
   props: {
+    backgroundColor: {
+      default: styles.primary,
+      type: String,
+    },
+    isBack: {
+      default: true,
+      type: Boolean,
+    },
     title: {
       default: "",
       type: String,

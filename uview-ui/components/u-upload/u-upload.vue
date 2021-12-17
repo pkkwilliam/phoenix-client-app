@@ -202,7 +202,7 @@ export default {
     // 上传区域的提示文字
     uploadText: {
       type: String,
-      default: "选择图片",
+      default: "選擇圖片",
     },
     // 是否自动上传
     autoUpload: {
@@ -352,11 +352,11 @@ export default {
             if (!multiple && index >= 1) return;
             if (val.size > maxSize) {
               this.$emit("on-oversize", val, this.lists, this.index);
-              this.showToast("超出允许的文件大小");
+              this.showToast("超出允許的文件大小");
             } else {
               if (maxCount <= lists.length) {
                 this.$emit("on-exceed", val, this.lists, this.index);
-                this.showToast("超出最大允许的文件个数");
+                this.showToast("超出最大允許的文件個數");
                 return;
               }
               lists.push({
@@ -394,7 +394,7 @@ export default {
       this.lists[index].error = false;
       this.lists[index].response = null;
       uni.showLoading({
-        title: "重新上传",
+        title: "重新上傳",
       });
       this.uploadFile(index);
     },
@@ -443,7 +443,7 @@ export default {
       }
       // 检查上传地址
       if (!this.action) {
-        this.showToast("请配置上传地址", true);
+        this.showToast("請配置上傳地址", true);
         return;
       }
       this.lists[index].error = false;
@@ -494,13 +494,13 @@ export default {
       this.lists[index].error = true;
       this.lists[index].response = null;
       this.$emit("on-error", err, index, this.lists, this.index);
-      this.showToast("上传失败，请重试");
+      this.showToast("上傳失敗，請重試");
     },
     // 删除一个图片
     deleteItem(index) {
       uni.showModal({
         title: "提示",
-        content: "您确定要删除此项吗？",
+        content: "您確定要刪除此圖片嗎？",
         success: async (res) => {
           if (res.confirm) {
             // 先检查是否有定义before-remove移除前钩子
@@ -549,7 +549,7 @@ export default {
       this.lists.splice(index, 1);
       this.$forceUpdate();
       this.$emit("on-remove", index, this.lists, this.index);
-      this.showToast("移除成功");
+      this.showToast("刪除成功");
     },
     // 用户通过ref手动的形式，移除一张图片
     remove(index) {
@@ -571,7 +571,7 @@ export default {
         },
         fail: () => {
           uni.showToast({
-            title: "预览图片失败",
+            title: "預覽圖片失敗",
             icon: "none",
           });
         },
@@ -597,7 +597,7 @@ export default {
         // 转为小写
         return ext.toLowerCase() === fileExt;
       });
-      if (!noArrowExt) this.showToast(`不允许选择${fileExt}格式的文件`);
+      if (!noArrowExt) this.showToast(`不允許選擇${fileExt}格式的文件`);
       return noArrowExt;
     },
   },

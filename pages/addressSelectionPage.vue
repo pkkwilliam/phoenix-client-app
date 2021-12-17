@@ -1,35 +1,40 @@
 <template>
-  <view class="container">
-    <view
-      class="address-container"
-      v-for="(address, index) in addresses"
-      :key="index"
-    >
-      <view class="info-container" @click="onClickAddress(address)">
-        <text class="receiver-text">{{
-          `${address.contactName} ${address.phoneNumber}`
-        }}</text>
-        <text class="receiver-address-text">{{
-          `${address.street} ${address.unit}`
-        }}</text>
+  <view>
+    <view class="container">
+      <view
+        class="space-between-center-container card medium-margin-top-spacer"
+        v-for="(address, index) in addresses"
+        :key="index"
+      >
+        <view class="column-container" @click="onClickAddress(address)">
+          <text class="h3 black bold">{{
+            `${address.contactName} ${address.phoneNumber}`
+          }}</text>
+          <text class="h4 secondary">{{
+            `${address.street} ${address.unit}`
+          }}</text>
+        </view>
+        <u-icon
+          class="arrow-right"
+          name="arrow-right"
+          color="#a3a3a3"
+          :size="26"
+          @click="onClickRightIcon(address)"
+        />
       </view>
-      <u-icon
-        class="arrow-right"
-        name="arrow-right"
-        color="#a3a3a3"
-        :size="26"
-        @click="onClickRightIcon(address)"
-      />
     </view>
-    <primary-button label="創建地址" @click="onClickCreateAddress" />
+    <view class="cu-bar foot bottom-container">
+      <primary-button label="創建地址" @click="onClickCreateAddress" />
+    </view>
   </view>
 </template>
 
 <script>
-import primaryButton from "../common/primaryButton.vue";
+import StickBottomBar from "../common/navigation/stickBottomBar.vue";
+import primaryButton from "../common/button/primaryButton.vue";
 import { ADDRESS_FORM_PAGE } from "../route/applicationRoute";
 export default {
-  components: { primaryButton },
+  components: { primaryButton, StickBottomBar },
   computed: {
     addresses() {
       return this.$store.state.address.content;
@@ -49,6 +54,9 @@ export default {
       uni.navigateTo({ url: ADDRESS_FORM_PAGE(address).url });
     },
   },
+  mounted() {
+    this.$appStateService.getAddress();
+  },
 };
 </script>
 
@@ -57,28 +65,7 @@ export default {
   padding-left: 20rpx;
   padding-right: 20rpx;
 }
-.address-container {
-  background-color: #ffffff;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 20rpx;
-  padding: 35rpx;
-}
-.info-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  .receiver-text {
-    color: $u-phoenix-font-dark;
-    font-size: 32rpx;
-    font-weight: 600;
-  }
-  .receiver-address-text {
-    color: $u-phoenix-light-grey;
-    font-size: 28rpx;
-    margin-top: 15rpx;
-  }
+.bottom-container {
+  padding: 20rpx;
 }
 </style>

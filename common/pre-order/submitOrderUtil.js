@@ -11,23 +11,23 @@ export async function sumbitMpayOrder(
   paymentChannel,
   remark
 ) {
-  console.log(itemDeliveryType);
   const requestBody = {
-    deliveryAddress: deliveryAddress ? deliveryAddress : undefined,
+    deliveryAddress: deliveryAddress ? { id: deliveryAddress.id } : undefined,
     item: { id: item.id },
     itemDeliveryType: itemDeliveryType.key,
     paymentChannel: paymentChannel.key,
     remark,
   };
-  // const mpayRequestInfoRequest = await execute(CREATE_MPAY_ORDER(requestBody));
-  // console.log(
-  //   "received mpay request presign string:",
-  //   mpayRequestInfoRequest.preSignString
-  // );
-  // const paymentResult = submitMpayPayment(
-  //   mpayRequestInfoRequest,
-  //   paymentChannel
-  // );
+  console.log("Pre Order Page Payment requestBody:", requestBody);
+  const mpayRequestInfoRequest = await execute(CREATE_MPAY_ORDER(requestBody));
+  console.log(
+    "received mpay request presign string:",
+    mpayRequestInfoRequest.preSignString
+  );
+  const paymentResult = submitMpayPayment(
+    mpayRequestInfoRequest,
+    paymentChannel
+  );
 }
 
 export function calculateOrderCost(item, selectedDeliveryType) {

@@ -1,5 +1,8 @@
 <template>
-  <view class="container">
+  <view class="container large-margin-top-spacer">
+    <view class="align-end-container">
+      <my-setting-button />
+    </view>
     <user-card :user="userProfile" />
     <view class="my-order">
       <view class="space-around-center-container">
@@ -33,7 +36,7 @@
 import userCard from "../../common/user/userCard.vue";
 import ApplicationLineBreaker from "../../components/applicationLineBreaker.vue";
 import ShipmentPendingAlertRows from "../../components/myOrder/shipmentPendingAlert/shipmentPendingAlertRows.vue";
-import UserMenu from "../../components/user/userMenu.vue";
+import UserMenu from "../../components/menu/userMenu.vue";
 import MySavedItemButton from "../../components/navigationButton/mySaveItemButton.vue";
 import MyViewedItemButton from "../../components/navigationButton/myViewItemButton.vue";
 import WorkbenchButton from "../../components/navigationButton/workbenchButton.vue";
@@ -41,6 +44,7 @@ import MyItemListButton from "../../components/navigationButton/myItemListButton
 import MySoldButton from "../../components/navigationButton/mySoldButton.vue";
 import MyOrderButton from "../../components/navigationButton/myOrderButton.vue";
 import MoneyMade from "../../components/user/moneyMade.vue";
+import MySettingButton from "../../components/navigationButton/me/mySettingButton.vue";
 
 export default {
   components: {
@@ -55,6 +59,7 @@ export default {
     MySoldButton,
     MyOrderButton,
     MoneyMade,
+    MySettingButton,
   },
   computed: {
     userProfile() {

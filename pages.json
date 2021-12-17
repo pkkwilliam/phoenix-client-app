@@ -32,6 +32,7 @@
     {
       "path": "pages/createItemPage",
       "style": {
+        "disableScroll": true,
         "navigationBarTitleText": "創建物品",
         "navigationStyle": "custom"
       }
@@ -40,6 +41,12 @@
       "path": "pages/itemDetailPage",
       "style": {
         "navigationBarTitleText": "物品詳細"
+      }
+    },
+    {
+      "path": "pages/item/searchItemPage",
+      "style": {
+        "navigationBarTitleText": "搜索物品"
       }
     },
     {
@@ -67,6 +74,12 @@
       }
     },
     {
+      "path": "pages/me/mySettingPage",
+      "style": {
+        "navigationBarTitleText": "設置"
+      }
+    },
+    {
       "path": "pages/me/mySoldPage",
       "style": {
         "navigationBarTitleText": "我賣出的"
@@ -83,6 +96,14 @@
       "style": {
         "navigationBarBackgroundColor": "#ffe24b",
         "navigationBarTitleText": "我買到的",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/order/orderConfirmationPage",
+      "style": {
+        "navigationBarBackgroundColor": "#ffe24b",
+        "navigationBarTitleText": "交易成功",
         "navigationStyle": "custom"
       }
     },
@@ -313,9 +334,10 @@
     }
   ],
   "globalStyle": {
+    "backgroundColor": "#F8F8F8",
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "scrollIndicator": "none"
   }
 }

@@ -24,6 +24,18 @@
   align-items: center;
 }
 
+.column-center-center-container {
+  @extend .column-container;
+  align-items: center;
+  justify-content: center;
+}
+
+.row-center-center-container {
+  @extend .row-container;
+  align-items: center;
+  justify-content: center;
+}
+
 .row-center-container {
   @extend .row-container;
   align-items: center;
@@ -62,14 +74,6 @@
   justify-content: space-between;
 }
 
-.view-container {
-  margin-top: 20rpx;
-}
-
-.sub-view-container {
-  margin-top: 20rpx;
-}
-
 .safearea-container {
   padding-top: var(--status-bar-height);
 }
@@ -85,7 +89,51 @@
   position: relative;
 }
 
+.u-scroll-view-item {
+  display: inline-block;
+  white-space: pre-wrap;
+}
+
 // space
+.large-margin-bottom-spacer {
+  margin-bottom: 28rpx;
+}
+.medium-margin-bottom-spacer {
+  margin-bottom: 20rpx;
+}
+.small-margin-bottom-spacer {
+  margin-bottom: 12rpx;
+}
+.mini-margin-bottom-spaceer {
+  margin-bottom: 8rpx;
+}
+
+.large-margin-left-spacer {
+  margin-left: 28rpx;
+}
+.medium-margin-left-spacer {
+  margin-left: 20rpx;
+}
+.small-margin-left-spacer {
+  margin-left: 12rpx;
+}
+.mini-margin-left-spaceer {
+  margin-left: 8rpx;
+}
+
+.large-margin-right-spacer {
+  margin-right: 28rpx;
+}
+.medium-margin-right-spacer {
+  margin-right: 20rpx;
+}
+.small-margin-right-spacer {
+  margin-right: 12rpx;
+}
+.mini-margin-right-spaceer {
+  margin-right: 8rpx;
+}
+
 .large-margin-top-spacer {
   margin-top: 28rpx;
 }

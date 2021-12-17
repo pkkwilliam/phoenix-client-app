@@ -100,13 +100,6 @@ export default {
         this.getItems();
       }
     },
-    // items(newItems, oldItems) {
-    //   if (newItems.length === 0) {
-    //     this.$refs.uWaterfall.clear();
-    //   } else {
-    //     this.itemData = this.itemData.concat(newItems);
-    //   }
-    // },
   },
 };
 </script>

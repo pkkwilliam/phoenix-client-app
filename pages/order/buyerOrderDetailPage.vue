@@ -104,7 +104,7 @@ export default {
   padding-right: 20rpx;
 }
 .step-container {
-  background-color: $u-phoneix-primary;
+  background-color: $u-phoenix-primary;
   padding: 30rpx;
   padding-bottom: 60rpx;
 }

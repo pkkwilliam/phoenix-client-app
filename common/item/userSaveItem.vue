@@ -2,7 +2,7 @@
   <view @click="onClickItem">
     <scroll-view
       scroll-x
-      class="u-scroll-view view-container"
+      class="u-scroll-view medium-margin-top-spacer"
       scroll-with-animation
     >
       <image
@@ -12,13 +12,12 @@
         :src="image"
         :key="index"
       />
-      <view v-if="showBar" class="u-tab-bar" :style="[tabBarStyle]"></view>
     </scroll-view>
 
-    <view class="view-container">
+    <view class="medium-margin-top-spacer">
       <text class="h4 black lightly-bold">{{ description }}</text>
     </view>
-    <view class="space-between-center-container view-container">
+    <view class="space-between-center-container medium-margin-top-spacer">
       <mpay-guarantee />
       <item-view-and-save-count
         :viewCount="item.viewCount"

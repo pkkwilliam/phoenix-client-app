@@ -55,9 +55,11 @@
       <!-- <order-confirm-submit-bar :onClickSubmit="onClickSubmit" /> -->
       <stick-bottom-bar>
         <template slot="right">
-          <text class="label">實付款:</text>
-          <display-curreny-price class="should-pay" :value="orderCost" />
-          <view class="buy btn u-line-1" @click="onClickSubmit">確認購買</view>
+          <view class="row-center-container medium-margin-right-spacer">
+            <text class="label">實付款:</text>
+            <display-curreny-price class="should-pay" :value="orderCost" />
+          </view>
+          <primary-gradient-button />
         </template>
       </stick-bottom-bar>
     </view>
@@ -84,6 +86,7 @@ import {
 import { getRouterJsonParam } from "../route/applicationRoute";
 import PreOrderShippingFee from "../common/pre-order/preOrderShippingFee.vue";
 import StickBottomBar from "../common/navigation/stickBottomBar.vue";
+import PrimaryGradientButton from "../common/button/primaryGradientButton.vue";
 
 const DELIVERY_TYPES = [
   ITEM_DELIVERY_TYPE_THIRD_PARTY_DELIVERY,
@@ -100,6 +103,7 @@ export default {
     PaymentSelection,
     PreOrderShippingFee,
     StickBottomBar,
+    PrimaryGradientButton,
   },
   computed: {
     deliveryMethods() {

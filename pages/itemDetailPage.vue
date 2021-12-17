@@ -16,7 +16,7 @@
           <save-item-button :item="item" />
         </template>
         <template slot="right">
-          <navigate-to-pre-order-button :item="item" />
+          <primary-gradient-button label="我想要" @click="onClickBuy" />
         </template>
       </stick-bottom-bar>
     </view>
@@ -27,23 +27,27 @@
 import itemDetail from "../common/item/itemDetail.vue";
 import SellerCard from "../common/sellerCard.vue";
 import SellerCardRecetInfo from "../common/sellerCardRecetInfo.vue";
-import { getRouterJsonParam } from "../route/applicationRoute";
+import {
+  getRouterJsonParam,
+  LOGIN_PAGE,
+  PRE_ORDER_PAGE,
+} from "../route/applicationRoute";
 import { GET_ITEM } from "../service/service";
 import UserCard from "../common/user/userCard.vue";
-import SubscribeUserButton from "../components/subscribe/subscribeUserButton.vue";
+import UserSubscribeButton from "../components/subscribe/UserSubscribeButton.vue";
 import SaveItemButton from "../components/item/saveItemButton.vue";
 import StickBottomBar from "../common/navigation/stickBottomBar.vue";
-import NavigateToPreOrderButton from "../components/navigationButton/item/navigateToPreOrderButton.vue";
+import PrimaryGradientButton from "../common/button/primaryGradientButton.vue";
 export default {
   components: {
     itemDetail,
     SellerCard,
     SellerCardRecetInfo,
     UserCard,
-    SubscribeUserButton,
+    UserSubscribeButton,
     SaveItemButton,
     StickBottomBar,
-    NavigateToPreOrderButton,
+    PrimaryGradientButton,
   },
   data() {
     return {
@@ -55,6 +59,13 @@ export default {
       this.execute(GET_ITEM(this.item.id)).then(
         (response) => (this.item = response)
       );
+    },
+    onClickBuy() {
+      if (!this.isLogin()) {
+        uni.navigateTo({ url: LOGIN_PAGE().url });
+      } else {
+        uni.navigateTo({ url: PRE_ORDER_PAGE(this.item).url });
+      }
     },
   },
   onLoad(option) {

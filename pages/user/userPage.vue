@@ -52,7 +52,7 @@
 <script>
 import { getRouterJsonParam, USER_PAGE } from "../../route/applicationRoute";
 import PhoneNumberVerifiedTag from "../../components/user-qualification/phoneNumberVerifiedTag.vue";
-import UserSubscribeButton from "../../components/subscribe/user-subscribe-button.vue";
+import UserSubscribeButton from "../../components/subscribe/UserSubscribeButton.vue";
 import PaginationItemDisplay from "../../common/itemDisplayList/paginationItemDisplay.vue";
 import { GET_ITEMS_BY_USER_ID } from "../../service/service";
 import UserSaveItem from "../../common/item/userSaveItem.vue";

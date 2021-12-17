@@ -39,8 +39,8 @@ $u-type-info-light: #f4f4f5;
 $u-form-item-height: 70rpx;
 $u-form-item-border-color: #dcdfe6;
 
-$u-phoneix-primary: #ffe24b;
-$u-phoneix-primary-gradient: linear-gradient(
+$u-phoenix-primary: #ffe24b;
+$u-phoenix-primary-gradient: linear-gradient(
   90deg,
   #fa6f23 50%,
   #f71c68 96.94%
@@ -52,8 +52,17 @@ $u-phoenix-price-primary: #eb523f;
 $u-phoenix-font-dark: #3a3a3a;
 $u-phoenix-blue: #007aff;
 $u-phoenix-brown: #4d3009;
+$u-phoenix-dark-orange: #fe5006;
+$u-phoenix-light-yellow: #fefbe1;
 $u-phoenix-orange: #fd8204;
+$u-phoenix-white: #ffffff;
 $u-phoenix-yellow: #fcbc17;
+
+// application button
+.primary-gradient-button {
+  background: $u-phoenix-primary-gradient;
+  color: #ffffff;
+}
 
 // application text
 .text {
@@ -91,7 +100,7 @@ $u-phoenix-yellow: #fcbc17;
 }
 
 .primary {
-  color: $u-phoneix-primary;
+  color: $u-phoenix-primary;
 }
 .secondary {
   color: $u-phoenix-light-grey;
@@ -105,11 +114,20 @@ $u-phoenix-yellow: #fcbc17;
 .brown {
   color: $u-phoenix-brown;
 }
+.dark-orange {
+  color: $u-phoenix-dark-orange;
+}
+.light-yellow {
+  color: $u-phoenix-light-yellow;
+}
 .orange {
   color: $u-phoenix-orange;
 }
 .price-primary {
   color: $u-phoenix-price-primary;
+}
+.white {
+  color: $u-phoenix-white;
 }
 .yellow {
   color: $u-phoenix-yellow;
@@ -127,7 +145,8 @@ $u-phoenix-yellow: #fcbc17;
   orange: $u-phoenix-orange;
   pricePrimary: $u-phoenix-price-primary;
   priceSecondary: $u-phoenix-font-dark;
-  primary: $u-phoneix-primary;
+  primary: $u-phoenix-primary;
   secondary: $u-phoenix-light-grey;
+  white: $u-phoenix-white;
   yellow: $u-phoenix-yellow;
 }

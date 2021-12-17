@@ -7,13 +7,7 @@
 
 <script>
 import { MY_SAVE_ITEM_PAGE } from "../../route/applicationRoute";
-import styles from "../../uview-ui/theme.scss";
 export default {
-  computed: {
-    iconColor() {
-      return styles.primary;
-    },
-  },
   methods: {
     onClick() {
       uni.navigateTo({ url: MY_SAVE_ITEM_PAGE().url });

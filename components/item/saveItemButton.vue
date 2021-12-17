@@ -1,6 +1,11 @@
 <template>
   <view class="column-center-container" @click="onClickSaveItem">
-    <u-icon name="home" :size="40"> </u-icon>
+    <u-icon
+      class="yellow"
+      custom-prefix="phoenix-custom-icon"
+      :name="iconName"
+      :size="40"
+    />
     <text>收藏</text>
   </view>
 </template>
@@ -13,6 +18,9 @@ import {
 } from "../../service/service";
 export default {
   computed: {
+    iconName() {
+      return this.userSaveItem !== undefined ? "star-fill" : "star";
+    },
     saved() {
       return this.userSaveItem !== undefined;
     },

@@ -56,7 +56,11 @@ export default {
       this.selectedCategory = selectedCategory;
     },
     onClickItem(item) {
-      uni.navigateTo({ url: ITEM_DETAIL_PAGE(item).url });
+      uni.navigateTo({
+        animationType: "slide-in-right",
+        animationDuration: 200,
+        url: ITEM_DETAIL_PAGE(item).url,
+      });
     },
   },
   mounted() {},

@@ -4,7 +4,7 @@
     upload-text="選擇圖片"
     :auto-upload="false"
     :size-type="['compressed']"
-    :maxCount="9"
+    :maxCount="6"
     @on-choose-complete="onChooseComplete"
     @on-remove="onRemove"
   />

@@ -1,6 +1,7 @@
 import ApplicationExceptionCode from "./applicationExceptionCode.json";
 
-const TOKEN_HEADER = "authorization";
+const TOKEN_HEADER_LOWER = "authorization";
+const TOKEN_HEADER_UPPER = "Authorization";
 
 export const execute = (
   host,
@@ -26,8 +27,12 @@ export const execute = (
       success: (response) => {
         const { data, header, statusCode } = response;
         if (statusCode === 200) {
-          if (header[TOKEN_HEADER]) {
-            setUserToken(header[TOKEN_HEADER]);
+          if (header[TOKEN_HEADER_LOWER] || header[TOKEN_HEADER_UPPER]) {
+            setUserToken(
+              header[TOKEN_HEADER_LOWER]
+                ? header[TOKEN_HEADER_LOWER]
+                : header[TOKEN_HEADER_UPPER]
+            );
           }
           return resolve(data);
         } else if (statusCode >= 202 && statusCode < 300) {

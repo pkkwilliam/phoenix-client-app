@@ -14,11 +14,11 @@
 
 <script>
 export const ON_CHANGE_CATEGORY_EMIT = "ON_CHANGE_CATEGORY_EMIT";
-import styles from "../../uview-ui/theme.scss";
+import styles from "../../uview-ui/theme.js";
 export default {
   computed: {
     activeColor() {
-      return styles.orange;
+      return styles.black;
     },
     inactiveColor() {
       return styles.secondary;

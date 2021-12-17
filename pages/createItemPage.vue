@@ -1,6 +1,6 @@
 <template>
   <view class="container safearea-container">
-    <view class="top-button-row view-container">
+    <view class="space-between-center-container medium-margin-top-spacer">
       <text @click="onClickCancel">取消</text>
       <u-button
         class="submit-button"
@@ -8,96 +8,91 @@
         size="mini"
         type="primary"
         @click="onClickSubmit"
-        >發佈</u-button
-      >
+        >發佈
+      </u-button>
     </view>
-    <view class="view-container">
+    <view class="medium-margin-top-spacer">
       <u-input
-        class="textarea-input"
         placeholder="說說你的使用感受，入手渠道，轉手原因..."
         type="textarea"
         v-model="description"
         :autoHeight="true"
         :height="200"
         :maxlength="9999"
-      ></u-input>
+      />
     </view>
-    <view class="view-container">
-      <scroll-view
-        class="scroll-view-horizontal item-detail-scroll-view"
-        :scroll-x="true"
-      >
+    <!-- image upload -->
+    <view class="medium-margin-top-spacer">
+      <scroll-view class="u-scroll-view" scroll-x scroll-with-animation>
         <media-uploader :onChangeMedia="onChangeMediaList" />
       </scroll-view>
     </view>
-    <view class="view-container">
+    <!-- item location -->
+    <view class="medium-margin-top-spacer">
       <icon-sub-header
         iconName="map"
         label="物品所在地區"
         :onSelect="onSelectCategory"
       />
-      <view class="sub-view-container">
-        <scroll-view
-          class="scroll-view-horizontal item-detail-scroll-view"
-          scroll-x="true"
-        >
+      <view class="medium-margin-top-spacer">
+        <scroll-view scroll-x class="u-scroll-view" scroll-with-animation>
           <selectable-area-location-tags :onSelect="onSelectAreaLocation" />
         </scroll-view>
       </view>
     </view>
-    <view class="view-container">
+    <!-- item category and condition -->
+    <view class="medium-margin-top-spacer">
       <icon-sub-header iconName="list" label="分類/類型/成色" />
-      <view class="sub-view-container">
-        <view class="item-detail-sub-section-view">
+      <view class="row-center-container medium-margin-top-spacer">
+        <view class="label-container medium-margin-right-spacer">
           <text>分類</text>
-          <scroll-view
-            class="scroll-view-horizontal item-detail-scroll-view"
-            scroll-x="true"
-          >
-            <selectable-category-tags :onSelect="onSelectCategory" />
-          </scroll-view>
         </view>
-        <view
-          class="item-detail-sub-section-view"
-          v-if="getCategory"
-          :onSelect="onSelectCategory"
-        >
+        <scroll-view scroll-x class="u-scroll-view" scroll-with-animation>
+          <selectable-category-tags :onSelect="onSelectCategory" />
+        </scroll-view>
+      </view>
+      <view
+        class="row-center-container medium-margin-top-spacer"
+        v-if="selectedCategory"
+        :onSelect="onSelectCategory"
+      >
+        <view class="label-container medium-margin-right-spacer">
           <text>類型</text>
-          <scroll-view
-            class="scroll-view-horizontal item-detail-scroll-view"
-            scroll-x="true"
-          >
-            <selectable-sub-category-tags
-              :category="getCategory"
-              :onSelect="onSelectSubCategory"
-            />
-          </scroll-view>
         </view>
-        <view class="item-detail-sub-section-view">
+        <scroll-view class="u-scroll-view" scroll-x scroll-with-animation>
+          <selectable-sub-category-tags
+            :category="selectedCategory"
+            :onSelect="onSelectSubCategory"
+          />
+        </scroll-view>
+      </view>
+      <view class="row-center-container medium-margin-top-spacer">
+        <view class="label-container medium-margin-right-spacer">
           <text>成色</text>
-          <scroll-view
-            class="scroll-view-horizontal item-detail-scroll-view"
-            scroll-x="true"
-          >
-            <selectable-item-condition-tags :onSelect="onSelectItemCondition" />
+        </view>
+        <view>
+          <scroll-view class="u-scroll-view" scroll-x>
+            <selectable-item-condition-tags @onSelect="onSelectItemCondition" />
           </scroll-view>
         </view>
       </view>
     </view>
-    <view class="view-container">
-      <u-collapse>
-        <u-collapse-item>
-          <view class="collapse-container" slot="title">
-            <icon-sub-header iconName="rmb" label="價格" />
-            <display-curreny-price :value="displayPrice" />
-          </view>
-          <view class="cost-input-container">
-            <cost-input-text-field
-              :onSubmit="onConfirmDeliveryTypeAndShippingCharge"
-            />
-          </view>
-        </u-collapse-item>
-      </u-collapse>
+
+    <view class="medium-margin-top-spacer">
+      <view class="space-between-center-container">
+        <icon-sub-header iconName="rmb" label="價格" />
+        <view class="row-center-container" @click="onToggleCostInput">
+          <display-curreny-price :value="displayPrice" />
+          <u-icon name="arrow-right" color="#a3a3a3" :size="26" />
+        </view>
+      </view>
+      <u-popup border-radius="16" mode="bottom" v-model="showCostInput">
+        <view class="card">
+          <cost-input-text-field
+            @onSubmit="onConfirmDeliveryTypeAndShippingCharge"
+          />
+        </view>
+      </u-popup>
     </view>
   </view>
 </template>
@@ -106,17 +101,22 @@
 import MediaUploader from "../common/mediaUploader.vue";
 import IconSubHeader from "../common/iconSubHeader.vue";
 import ImageUploader from "../common/mediaUploader.vue";
-import PrimaryButton from "../common/primaryButton.vue";
-import SelectableAreaLocationTags from "../common/selectableAreaLocationTags.vue";
-import SelectableCategoryTags from "../common/selectableCategoryTags.vue";
-import SelectableItemConditionTags from "../common/selectableItemConditionTags.vue";
-import SelectableSubCategoryTags from "../common/selectableSubCategoryTags.vue";
+import PrimaryButton from "../common/button/primaryButton.vue";
+import SelectableAreaLocationTags from "../common/createItem/selectableAreaLocationTags.vue";
+import SelectableCategoryTags from "../common/createItem/selectableCategoryTags.vue";
+import SelectableItemConditionTags from "../common/createItem/selectableItemConditionTags.vue";
+import SelectableSubCategoryTags from "../common/createItem/selectableSubCategoryTags.vue";
 import UButton from "../uview-ui/components/u-button/u-button.vue";
 import CostInputTextField from "../common/costInputTextField.vue";
 import DisplayCurrenyPrice from "../common/displayCurrenyPrice.vue";
 import { createItemServiceRequestBody } from "../service/serviceRequestBodyUtil";
 import { CREATE_ITEM } from "../service/service";
 import { uploadMedia } from "../util/uploadMediaUtil";
+import UPopup from "../uview-ui/components/u-popup/u-popup.vue";
+import {
+  getRouterJsonParam,
+  ITEM_DETAIL_PAGE,
+} from "../route/applicationRoute";
 export default {
   components: {
     PrimaryButton,
@@ -130,6 +130,7 @@ export default {
     MediaUploader,
     CostInputTextField,
     DisplayCurrenyPrice,
+    UPopup,
   },
   computed: {
     displayPrice() {
@@ -147,11 +148,13 @@ export default {
     return {
       deliveryTypeAndShippingCharge: undefined,
       description: undefined,
+      isEdit: false,
       selectedAreaLocation: undefined,
       selectedCategory: undefined,
       selectedItemCondition: undefined,
       selectedMedia: [],
       selectedSubCategory: undefined,
+      showCostInput: false,
     };
   },
   methods: {
@@ -168,6 +171,7 @@ export default {
         selectedSubCategory,
         selectedMedia,
       } = this;
+      this.showLoading("上傳圖片");
       const {
         allowFaceToFace,
         price,
@@ -180,6 +184,7 @@ export default {
           async (media) => await uploadMedia(media.url, this.execute)
         )
       );
+      this.showLoading("整合資料");
       const requestBody = createItemServiceRequestBody(
         description,
         imageUrlsJsonResponse,
@@ -193,8 +198,14 @@ export default {
         shippingCost,
         allowFaceToFace
       );
+      this.showLoading("上傳資料");
       this.execute(CREATE_ITEM(requestBody)).then((response) => {
-        uni.navigateBack();
+        uni.hideLoading();
+        uni.showToast({ title: "創建成功" });
+        setTimeout(() => {
+          uni.navigateBack();
+          uni.navigateTo({ url: ITEM_DETAIL_PAGE(response).url });
+        }, 1000);
       });
     },
     onChangeMediaList(listOfMedia) {
@@ -202,6 +213,7 @@ export default {
     },
     onConfirmDeliveryTypeAndShippingCharge(values) {
       this.deliveryTypeAndShippingCharge = values;
+      this.showCostInput = false;
     },
     onSelectAreaLocation(areaLocation) {
       this.selectedAreaLocation = areaLocation;
@@ -209,53 +221,58 @@ export default {
     onSelectCategory(category) {
       this.selectedCategory = category;
     },
-    onSelectItemCondition(ItemCondition) {
-      this.selectedItemCondition = ItemCondition;
+    onSelectItemCondition(itemCondition) {
+      this.selectedItemCondition = itemCondition;
     },
     onSelectSubCategory(subCategory) {
       this.selectedSubCategory = subCategory;
     },
+    onToggleCostInput() {
+      this.showCostInput = !this.showCostInput;
+    },
+    setEditItem(item) {
+      this.isEdit = true;
+      const {
+        availableDeliveryTypes,
+        description,
+        images,
+        itemCondition,
+        itemLocation,
+        itemShippingInfo,
+        category,
+        originalPrice,
+        price,
+        quantity,
+        subCategory,
+        title,
+      } = item;
+    },
+    showLoading(title) {
+      uni.hideLoading();
+      uni.showLoading({
+        mask: true,
+        title,
+      });
+    },
+  },
+
+  onLoad(options) {
+    const item = getRouterJsonParam(options, "item");
+    if (item) {
+      this.setEditItem(item);
+    }
   },
 };
 </script>
 
 <style scope lang="scss">
-.collapse-container {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-}
 .container {
-  margin: 20rpx;
-}
-.cost-input-container {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
   padding: 20rpx;
 }
-.item-detail-scroll-view {
-  margin-left: 20rpx;
-}
-.item-detail-sub-section-view {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  margin-top: 20rpx;
+.label-container {
   white-space: nowrap;
 }
-.top-button-row {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  .submit-button {
-    margin: 0px;
-  }
-}
-.textarea-input {
-  margin-left: 20rpx;
-  margin-right: 20rpx;
+.submit-button {
+  margin: 0px;
 }
 </style>

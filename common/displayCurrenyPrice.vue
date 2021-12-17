@@ -1,21 +1,25 @@
 <template>
-  <view class="item-detail-container" :style="{ color: color }">
-    <text class="currency">$</text>
-    <text class="value">{{ value }}</text>
+  <view :class="colorClass">
+    <u-icon
+      class="icon-container"
+      custom-prefix="phoenix-custom-icon"
+      name="dollar"
+      size="22"
+      :top="2"
+    />
+    <text class="h2">{{ value }}</text>
   </view>
 </template>
 
 <script>
-import styles from "../uview-ui/theme.scss";
+import uIcon from "../uview-ui/components/u-icon/u-icon.vue";
 export default {
+  components: { uIcon },
   computed: {
-    color() {
-      switch (this.priceColor) {
-        case "primary":
-          return styles.pricePrimary;
-        case "secondary":
-          return styles.priceSecondary;
-      }
+    colorClass() {
+      return this.priceColor === "primary"
+        ? "row-center-container price-primary"
+        : "row-center-container price-secondary";
     },
   },
   props: {
@@ -32,18 +36,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.item-detail-container {
-  align-items: flex-end;
-  display: flex;
-  flex-direction: row;
-  font-weight: 500;
-}
-.currency {
-  font-size: 26rpx;
-  font-weight: 300;
-}
-.value {
-  font-size: 32rpx;
-  margin-left: 8rpx;
-}
 </style>

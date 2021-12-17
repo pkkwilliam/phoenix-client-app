@@ -1,7 +1,7 @@
 <template>
   <view class="row-center-container" @click="onClick">
     <u-avatar size="47" :src="userAvatarImageUrl" />
-    <text class="h6 secondary nickname-text">{{ userNickname }}</text>
+    <text class="h5 secondary nickname-text">{{ userNickname }}</text>
     <u-icon
       class="icon"
       :color="arrowIconColor"
@@ -13,7 +13,7 @@
 
 <script>
 import { USER_PAGE } from "../../route/applicationRoute";
-import styles from "../../uview-ui/theme.scss";
+import styles from "../../uview-ui/theme.js";
 export default {
   components: {},
   computed: {

@@ -21,7 +21,7 @@ import {
   UPDATE_ORDER_AS_DEIVERED_BY_BUYER,
   UPDATE_ORDER_AS_SHIPPED_BY_SELLER,
 } from "../../../service/service";
-import PrimaryButton from "../../primaryButton.vue";
+import PrimaryButton from "../../button/primaryButton.vue";
 export default {
   components: {
     PrimaryButton,

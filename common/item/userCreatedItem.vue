@@ -6,20 +6,20 @@
         <display-curreny-price :value="item.price" />
       </view>
     </view>
-    <view class="row-container view-container">
+    <view class="row-container medium-margin-top-spacer">
       <image class="image" mode="aspectFill" :src="coverImage" />
       <text class="h4 black lightly-bold description-text">{{
         description
       }}</text>
     </view>
-    <view class="space-between-center-container view-container">
+    <view class="space-between-center-container medium-margin-top-spacer">
       <mpay-guarantee />
       <item-view-and-save-count
         :viewCount="item.viewCount"
         :saveCount="item.saveCount"
       />
     </view>
-    <view class="end-center-container view-container">
+    <view class="end-center-container medium-margin-top-spacer">
       <u-button
         class="button edit"
         :plain="true"

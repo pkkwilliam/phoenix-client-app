@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="row-center-container">
     <u-icon class="icon" :name="iconName" size="28" />
     <text class="icon-text">{{ label }}</text>
   </view>

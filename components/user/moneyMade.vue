@@ -8,7 +8,7 @@
 export default {
   computed: {
     value() {
-      return 92322.12;
+      return "(開發中)";
     },
   },
 };

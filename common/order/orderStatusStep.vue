@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import styles from "../../uview-ui/theme.scss";
+import styles from "../../uview-ui/theme.js";
 import {
   ORDER_STATUS_PAYMENT_PENDING,
   ORDER_STATUS_SHIPMENT_PENDING,

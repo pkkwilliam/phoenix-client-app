@@ -1,6 +1,6 @@
 <template>
   <view>
-    <view class="textfield-row">
+    <view class="row-center-container">
       <text>價格</text>
       <u-input
         class="textfield"
@@ -11,7 +11,7 @@
       />
     </view>
     <u-divider :half-width="500" :use-slot="false" />
-    <view class="textfield-row">
+    <view class="row-center-container">
       <text>入手價</text>
       <u-input
         class="textfield"
@@ -22,7 +22,7 @@
       />
     </view>
     <u-divider :half-width="500" :use-slot="false" />
-    <view class="textfield-row">
+    <view class="row-center-container">
       <text>運費</text>
       <u-input
         class="textfield"
@@ -46,13 +46,12 @@
       </view>
     </view>
     <u-divider :half-width="500" :use-slot="false" />
-    <view class="textfield-row-space-between">
+    <view class="space-between-center-container medium-margin-top-spacer">
       <text>允許當面交易</text>
       <u-checkbox v-model="allowFaceToFace" />
     </view>
-    <view>
+    <view class="large-margin-top-spacer">
       <u-button
-        class="confirm-button"
         shape="circle"
         type="primary"
         :disabled="disabledConfirmButton"
@@ -114,7 +113,7 @@ export default {
         selectedShippingChargeType,
         shippingCost: parseFloat(shippingCost),
       };
-      this.onSubmit(deliveryTypeAndShippingCharge);
+      this.$emit("onSubmit", deliveryTypeAndShippingCharge);
     },
     onSelectShippingChargeType() {
       this.shippingCost = undefined;
@@ -131,21 +130,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.confirm-button {
-  margin-top: 20rpx;
-}
 .textfield {
   margin-left: 20px;
-}
-.textfield-row {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-}
-.textfield-row-space-between {
-  @extend .textfield-row;
-  justify-content: space-between;
-  margin-bottom: 20rpx;
-  margin-top: 20rpx;
 }
 </style>

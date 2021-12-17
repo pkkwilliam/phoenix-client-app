@@ -1,9 +1,9 @@
 <template>
   <view>
     <view class="item-container">
-      <item-detail-price-info class="view-container" :item="item" />
-      <item-detail-shipping-info class="view-container" :item="item" />
-      <view class="view-container">
+      <item-detail-price-info class="medium-margin-top-spacer" :item="item" />
+      <item-detail-shipping-info class="medium-margin-top-spacer" :item="item" />
+      <view class="medium-margin-top-spacer">
         <text class="h3 black">{{ item.description }}</text>
       </view>
       <view class="condition-container">
@@ -11,14 +11,14 @@
         <text class="h3 black lightly-bold value">{{ conditionLabel }}</text>
       </view>
       <u-lazy-load
-        class="view-container"
+        class="medium-margin-top-spacer"
         v-for="(imageUrl, index) in item.images"
         :border-radius="15"
         :key="index"
         :image="imageUrl"
       />
     </view>
-    <view class="space-between-center-container view-container">
+    <view class="space-between-center-container medium-margin-top-spacer">
       <mpay-guarantee />
       <item-view-and-save-count
         :saveCount="item.saveCount"

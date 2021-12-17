@@ -1,7 +1,9 @@
 <!-- 首页 -->
 <template>
-  <view class="landing-page-container">
-    <search-bar />
+  <view
+    class="landing-page-container safearea-container medium-margin-top-spacer"
+  >
+    <search-bar :disabled="true" @click="onSearchBarClick" />
     <item-category-waterfall />
   </view>
 </template>
@@ -11,7 +13,7 @@ import ItemCategoryWaterfall from "../components/item/itemCategoryWaterfall.vue"
 import PaginationItemDisplay from "../common/itemDisplayList/paginationItemDisplay.vue";
 import CategoryTap from "../components/category/categoryTap.vue";
 import SearchBar from "../components/searchBar.vue";
-import { LANDING_TAB } from "../route/applicationRoute";
+import { LANDING_TAB, SEARCH_ITEM_PAGE } from "../route/applicationRoute";
 import { TabbarEventBus } from "./index/tabbar.vue";
 
 export const ON_CHANGE_CATEGORY_EMIT = "ON_CHANGE_CATEGORY_EMIT";
@@ -30,10 +32,8 @@ export default {
     };
   },
   methods: {
-    loadPaginationItems() {
-      this.paginationUtil.loadData().then((response) => {
-        this.items = response;
-      });
+    onSearchBarClick() {
+      uni.navigateTo({ url: SEARCH_ITEM_PAGE().url });
     },
   },
   mounted() {

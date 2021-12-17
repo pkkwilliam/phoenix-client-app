@@ -2,10 +2,6 @@
   <view>
     <landing-page v-if="PageCur == 'landingPage'"></landing-page>
     <search v-if="PageCur == 'search'"></search>
-    <cases v-if="PageCur == 'cases'"></cases>
-    <create-item-page v-if="PageCur == 'createItemPage' && !isUserLogin" />
-    <login-page v-else-if="PageCur == 'createItemPage'" />
-    <news v-if="PageCur == 'news'"></news>
     <my-page v-if="PageCur == 'me'"></my-page>
 
     <view class="box">
@@ -156,21 +152,10 @@ export default {
       const targetTab = e.currentTarget.dataset.cur;
       if (requireAuthTab.includes(targetTab) && !this.isLogin()) {
         uni.navigateTo({ url: LOGIN_PAGE().url });
+      } else if (targetTab === "createItemPage") {
+        uni.navigateTo({ url: CREATE_ITEM_TAB().url });
       } else {
         this.PageCur = targetTab;
-        if (this.PageCur == "index") {
-          // document.title = '首页'
-        } else if (this.PageCur == "component") {
-          // document.title = '积分商城'
-        } else if (this.PageCur == "createItemPage") {
-          uni.navigateTo({ url: CREATE_ITEM_TAB().url });
-          // uni.navigateTo({ url: page().url });
-          // document.title = '宅家学'
-        } else if (this.PageCur == "news") {
-          // document.title = '文章资讯'
-        } else if (this.PageCur == "me") {
-          // document.title = '个人中心'
-        }
       }
     },
     navigateToAuthenticatedPage(page) {

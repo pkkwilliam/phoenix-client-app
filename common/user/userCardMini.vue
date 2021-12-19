@@ -4,7 +4,7 @@
     <text class="h5 secondary nickname-text">{{ userNickname }}</text>
     <u-icon
       class="icon"
-      :color="arrowIconColor"
+      :color="$styles.arrowIconColor"
       v-if="showRightArrowIcon"
       name="arrow-right"
     />
@@ -13,13 +13,9 @@
 
 <script>
 import { USER_PAGE } from "../../route/applicationRoute";
-import styles from "../../uview-ui/theme.js";
 export default {
   components: {},
   computed: {
-    arrowIconColor() {
-      return styles.secondary;
-    },
     userAvatarImageUrl() {
       const { user } = this;
       return user.imageUrl
@@ -33,11 +29,17 @@ export default {
   },
   methods: {
     onClick() {
-      uni.navigateTo({ url: USER_PAGE(this.user).url });
+      if (this.clickable) {
+        uni.navigateTo({ url: USER_PAGE(this.user).url });
+      }
     },
   },
   mounted() {},
   props: {
+    clickable: {
+      default: true,
+      type: Boolean,
+    },
     showRightArrowIcon: {
       default: true,
       type: Boolean,

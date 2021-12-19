@@ -11,8 +11,8 @@
       type="primary"
       :plain="true"
       @click="onClickButton"
-      >去發貨</u-button
-    >
+      >去發貨
+    </u-button>
   </view>
 </template>
 

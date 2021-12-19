@@ -4,14 +4,14 @@
     <u-waterfall ref="uWaterfall" v-model="items">
       <template v-slot:left="{ leftList }">
         <view
-          class="container left-container"
+          class="left-container large-margin-bottom-spacer"
           v-for="(item, index) in leftList"
           :key="index"
         >
           <view @click="onClickItem(item)">
             <item :item="item" />
             <user-card-mini
-              class="seller-container"
+              class="small-margin-top-spacer"
               :showRightArrowIcon="false"
               :user="item.createBy"
             />
@@ -20,14 +20,14 @@
       </template>
       <template v-slot:right="{ rightList }">
         <view
-          class="container right-container"
+          class="right-container large-margin-bottom-spacer"
           v-for="(item, index) in rightList"
           :key="index"
         >
           <view @click="onClickItem(item)">
             <item :item="item" />
             <user-card-mini
-              class="seller-container"
+              class="small-margin-top-spacer"
               :showRightArrowIcon="false"
               :user="item.createBy"
             />
@@ -39,6 +39,9 @@
 </template>
 
 <script>
+/**
+ * nothing we can refactor yet until landing page is not nest inside tabbar
+ */
 import item from "../../common/item/item.vue";
 import { ITEM_DETAIL_PAGE } from "../../route/applicationRoute";
 import CategoryTap from "../category/categoryTap.vue";
@@ -105,16 +108,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container {
-  margin-bottom: 20rpx;
-}
 .left-container {
   margin-right: 10rpx;
 }
 .right-container {
   margin-left: 10rpx;
-}
-.seller-container {
-  margin-top: 15rpx;
 }
 </style>

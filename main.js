@@ -13,6 +13,7 @@ import TnCustom from "./components/TnCustom/TnCustom.vue";
 import cuCustom from "./colorui/components/cu-custom.vue";
 import uView from "uview-ui";
 import CHINESE_TRADITION_LABEL from "./label/label.zh_cn.json";
+import styles from "./uview-ui/theme.js";
 
 Vue.component("cu-custom", cuCustom);
 Vue.component("tn-custom", TnCustom);
@@ -29,7 +30,7 @@ const PROD_SERVICE_URL = "https://phoenix-api.bitcode.mo";
 
 console.log("env:", process.env.NODE_ENV);
 if (process.env.NODE_ENV === "development") {
-  host = DEVELOP_SERVICE_URL;
+  host = UAT_SERVICE_URL;
   console.log(host);
 } else {
   host = PROD_SERVICE_URL;
@@ -66,6 +67,7 @@ Vue.prototype.$myGlobalVariable = "value";
 Vue.prototype.$appStateService = appStateService;
 Vue.prototype.$label = CHINESE_TRADITION_LABEL;
 Vue.prototype.$language = getLanguage();
+Vue.prototype.$styles = styles;
 
 App.mpType = "app";
 

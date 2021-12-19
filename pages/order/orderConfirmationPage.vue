@@ -14,14 +14,18 @@
         <text class="h2 white lightly-bold">交易成功</text>
       </view>
       <view class="row-center-container medium-margin-top-spacer">
-        <white-border-button
+        <border-button
           class="medium-margin-right-spacer"
           label="返回首頁"
+          :backgroundColor="$styles.darkOrange"
+          :color="$styles.white"
           @onClick="onClickToHomePage"
         />
-        <white-border-button
+        <border-button
           class="medium-margin-left-spacer"
           label="我買到的"
+          :backgroundColor="$styles.darkOrange"
+          :color="$styles.white"
           @onClick="onClickToMyOrders"
         />
       </view>
@@ -30,17 +34,11 @@
 </template>
 
 <script>
-import WhiteBorderButton from "../../common/button/whiteBorderButton.vue";
+import BorderButton from "../../common/button/borderButton.vue";
 import applicationNavigationBar from "../../common/navigation/applicationNavigationBar.vue";
 import { LANDING_TAB, MY_ORDER_PAGE } from "../../route/applicationRoute";
-import styles from "../../uview-ui/theme.js";
 export default {
-  components: { applicationNavigationBar, WhiteBorderButton },
-  computed: {
-    styles() {
-      return styles;
-    },
-  },
+  components: { applicationNavigationBar, BorderButton },
   methods: {
     onClickToHomePage() {
       uni.reLaunch({ url: LANDING_TAB().url });

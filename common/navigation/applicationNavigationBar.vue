@@ -1,32 +1,28 @@
 <template>
   <u-navbar
     :background="navigationBarBackgroundColor"
-    :back-icon-color="titleColor"
+    :back-icon-color="$styles.black"
+    :border-bottom="false"
     :isBack="isBack"
     :title="title"
-    :title-color="titleColor"
+    :title-color="$styles.black"
   >
   </u-navbar>
 </template>
 
 <script>
-import styles from "../../uview-ui/theme.js";
 export default {
   computed: {
-    titleColor() {
-      return styles.black;
-    },
     navigationBarBackgroundColor() {
       return {
-        backgroundColor: this.backgroundColor,
+        backgroundColor: this.backgroundColor
+          ? this.backgroundColor
+          : this.$styles.primary,
       };
     },
   },
   props: {
-    backgroundColor: {
-      default: styles.primary,
-      type: String,
-    },
+    backgroundColor: undefined,
     isBack: {
       default: true,
       type: Boolean,

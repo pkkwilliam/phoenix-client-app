@@ -1,6 +1,6 @@
 <template>
   <view>
-    <text class="h4 secondary">{{ `在大熊賺了${value}元` }}</text>
+    <text class="h4 secondary">{{ `摸了${value}元` }}</text>
   </view>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <view>
-    <text class="h6 secondary" v-if="saveCount > 0">{{ saveCount }}想要-</text>
-    <text class="h6 secondary">瀏覽{{ viewCount }}</text>
+    <!-- <text class="h6 secondary" v-if="saveCount > 0">{{ saveCount }}想要-</text> -->
+    <text class="h5 secondary">{{ viewCount }}人想要</text>
   </view>
 </template>
 

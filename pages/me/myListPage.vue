@@ -1,7 +1,7 @@
 <template>
   <view class="container">
     <pagination-item-display
-      displayType="list"
+      ref="paginationItemDisplayRef"
       :serviceRequest="getCreatedItemServiceRequest"
     >
       <template v-slot:content="{ data }">
@@ -25,6 +25,9 @@ export default {
     },
   },
   mounted() {},
+  onReachBottom() {
+    this.$refs.paginationItemDisplayRef.getServiceResponse();
+  },
 };
 </script>
 

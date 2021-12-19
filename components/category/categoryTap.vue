@@ -1,10 +1,10 @@
 <template>
   <view>
     <u-tabs
-      :active-color="activeColor"
-      :bg-color="backgroundColor"
+      :active-color="$styles.black"
+      :bg-color="$styles.backgroundColor"
       :current="current"
-      :inactive-color="inactiveColor"
+      :inactive-color="$styles.secondary"
       :is-scroll="true"
       :list="categories"
       @change="change"
@@ -14,18 +14,8 @@
 
 <script>
 export const ON_CHANGE_CATEGORY_EMIT = "ON_CHANGE_CATEGORY_EMIT";
-import styles from "../../uview-ui/theme.js";
 export default {
   computed: {
-    activeColor() {
-      return styles.black;
-    },
-    inactiveColor() {
-      return styles.secondary;
-    },
-    backgroundColor() {
-      return styles.backgroundColor;
-    },
     categories() {
       return this.$store.state.category.content.map((category) => ({
         name: category.chineseName,

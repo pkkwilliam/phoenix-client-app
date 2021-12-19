@@ -2,17 +2,16 @@
   <view>
     <u-steps
       mode="number"
-      :active-color="activeColor"
+      :active-color="$styles.brown"
       :current="currentStep"
       :list="steps"
-      :un-active-color="unActiveColor"
+      :un-active-color="$styles.secondary"
     >
     </u-steps>
   </view>
 </template>
 
 <script>
-import styles from "../../uview-ui/theme.js";
 import {
   ORDER_STATUS_PAYMENT_PENDING,
   ORDER_STATUS_SHIPMENT_PENDING,
@@ -29,9 +28,6 @@ const ORDER_STATUSES = [
 ];
 export default {
   computed: {
-    activeColor() {
-      return styles.brown;
-    },
     currentStep() {
       return this.getCurrentOrderStatusIndex();
     },
@@ -43,9 +39,6 @@ export default {
             ? orderStatus.shortLabel
             : orderStatus.shortLabelPending,
       }));
-    },
-    unActiveColor() {
-      return styles.secondary;
     },
   },
   methods: {

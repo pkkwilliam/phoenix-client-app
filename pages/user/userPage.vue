@@ -31,7 +31,6 @@
       </view>
       <view>
         <pagination-item-display
-          displayType="list"
           :serviceRequest="getItemsByUserId"
           :showSeller="false"
         >

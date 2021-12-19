@@ -6,8 +6,8 @@
       shape="round"
       v-model="value"
       :animation="true"
-      :action-style="searchButton"
-      :border-color="styles.primary"
+      :action-style="$styles.searchButton"
+      :border-color="$styles.primary"
       :clearable="true"
       :disabled="disabled"
       :show-action="true"
@@ -18,18 +18,7 @@
 </template>
 
 <script>
-import styles from "../uview-ui/theme.js";
 export default {
-  computed: {
-    searchButton() {
-      return {
-        backgroundColor: styles.primary,
-      };
-    },
-    styles() {
-      return styles;
-    },
-  },
   data() {
     return {
       value: undefined,

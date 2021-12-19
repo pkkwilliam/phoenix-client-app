@@ -40,6 +40,9 @@ export const SELLER_ORDER_DETAIL_PAGE = (orderObject) => ({
     "/pages/order/sellerOrderDetailPage?order=" + JSON.stringify(orderObject),
 });
 export const SHOP_LIST_PAGE = () => ({ url: "/pages/shopListPage" });
+export const MY_BANK_ACCOUNT_PAGE = () => ({
+  url: "/pages/me/myBankAccountPage",
+});
 export const MY_ORDER_PAGE = () => ({
   url: "/pages/me/myOrderPage",
 });

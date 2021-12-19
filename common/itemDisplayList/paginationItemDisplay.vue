@@ -7,20 +7,14 @@
 </template>
 
 <script>
-import RowItemList from "./rowItemList.vue";
-import waterfallItemList from "./waterfallItemList.vue";
 export default {
-  components: { waterfallItemList, RowItemList },
-  computed: {
-    dirty() {
-      return this.$store.state.itemPagination.dirty;
-    },
-  },
+  components: {},
+  computed: {},
   data() {
     return {
       currentPage: 0,
       dataList: [],
-      totolElement: 0,
+      totalElement: 0,
       totalPage: 0,
     };
   },
@@ -33,38 +27,25 @@ export default {
         this.currentPage += 1;
         this.totalPage = totalPage;
         this.totalElement = totalElement;
-        this.dataList = content;
-        this.onGetItemPaginationSuccess();
+        this.dataList = this.dataList.concat(content);
       });
-    },
-    onGetItemPaginationSuccess() {
-      this.$store.commit("setItemPaginationClean");
     },
   },
   mounted() {
-    this.getServiceResponse();
+    if (this.requestUponMounted) {
+      this.getServiceResponse();
+    }
   },
   props: {
-    displayType: {
-      default: "waterfall",
-      type: String,
-    },
     requestSize: {
-      default: 5,
+      default: 10,
       type: Number,
     },
-    serviceRequest: Function,
-    showSeller: {
+    requestUponMounted: {
       default: true,
       type: Boolean,
     },
-  },
-  watch: {
-    dirty(newDirty, oldDirty) {
-      if (newDirty) {
-        this.getServiceResponse();
-      }
-    },
+    serviceRequest: Function,
   },
 };
 </script>

@@ -56,6 +56,12 @@
       }
     },
     {
+      "path": "pages/me/myBankAccountPage",
+      "style": {
+        "navigationBarTitleText": "銀行賬戶"
+      }
+    },
+    {
       "path": "pages/me/myOrderPage",
       "style": {
         "navigationBarTitleText": "我買到的"
@@ -136,7 +142,8 @@
     {
       "path": "pages/workbenchPage",
       "style": {
-        "navigationBarTitleText": "工作台PRO"
+        "navigationBarTitleText": "工作台PRO",
+        "navigationStyle": "custom"
       }
     },
     {

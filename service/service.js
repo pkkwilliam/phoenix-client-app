@@ -10,6 +10,7 @@ const PUBLIC_ITEM = "/public/item/v1";
 
 const USER_ADDRESS = "/user/address/v1";
 const USER_BANK_ACCOUNT = "/user/bank_account/v1";
+const USER_CASH_OUT = "/user/cash_out/v1";
 const USER_IMAGE_UPLOAD = "/user/image_upload/v1";
 const USER_ITEM = "/user/item/v1";
 const USER_MPAY_ORDER = "/user/mpay_order/v1";
@@ -132,6 +133,24 @@ export const UPDATE_BANK_ACCOUNT = (bankAccount) => ({
     length: 1000,
   },
   url: USER_BANK_ACCOUNT,
+});
+
+// Cash Out
+export const CREATE_CASH_OUT = (request) => ({
+  authenticatedRequest: true,
+  body: JSON.stringify(request),
+  method: POST_METHOD,
+  timer: {
+    title: "提交轉賬中",
+    length: 2000,
+  },
+  url: USER_CASH_OUT,
+});
+
+export const GET_CASH_OUT_PAGINATION = (pageRequest, pageSize) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url: USER_CASH_OUT + `/query?pageRequest=${pageRequest}&pageSize=${pageSize}`,
 });
 
 // Category

@@ -34,6 +34,7 @@
 import primaryButton from "../../common/button/primaryButton.vue";
 import { getBankLabelByKey } from "../../enum/bank";
 import { BANK_ACCOUNT_FORM_PAGE } from "../../route/applicationRoute";
+
 export default {
   components: { primaryButton },
   computed: {

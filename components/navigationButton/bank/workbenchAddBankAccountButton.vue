@@ -18,12 +18,12 @@
 
 <script>
 import borderButton from "../../../common/button/borderButton.vue";
-import { MY_BANK_ACCOUNT_PAGE } from "../../../route/applicationRoute";
+import { BANK_ACCOUNT_FORM_PAGE } from "../../../route/applicationRoute";
 export default {
   components: { borderButton },
   methods: {
     onClick() {
-      uni.navigateTo({ url: MY_BANK_ACCOUNT_PAGE().url });
+      uni.navigateTo({ url: BANK_ACCOUNT_FORM_PAGE().url });
     },
   },
 };

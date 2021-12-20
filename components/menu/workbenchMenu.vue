@@ -20,7 +20,8 @@
 
 <script>
 import {
-  CHANGE_PASSWORD_PAGE,
+  CASH_OUT_HISTORY_PAGE,
+  CASH_OUT_PAGE,
   MY_BANK_ACCOUNT_PAGE,
 } from "../../route/applicationRoute";
 import ApplicationLineBreaker from "../applicationLineBreaker.vue";
@@ -32,6 +33,12 @@ export default {
   computed: {
     menuItems() {
       return [
+        { iconName: "dollar", label: "提取現金", toPage: CASH_OUT_PAGE },
+        {
+          iconName: "dollar",
+          label: "提取現金歷史",
+          toPage: CASH_OUT_HISTORY_PAGE,
+        },
         { iconName: "dollar", label: "銀行賬戶", toPage: MY_BANK_ACCOUNT_PAGE },
       ];
     },

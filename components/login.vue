@@ -21,11 +21,12 @@
         />
       </u-form-item>
       <u-button
-        :disabled="sumbitButtonDisabled"
         type="primary"
+        :disabled="sumbitButtonDisabled"
         @click="onClickLogin"
-        >登錄</u-button
       >
+        登錄
+      </u-button>
       <u-action-sheet
         :list="countryCodes"
         v-model="show"
@@ -97,29 +98,12 @@ export default {
         password,
         smsNumber,
       };
-      this.execute(LOGIN(requestBody)).then((userProfile) => {
-        this.$store.commit("setUserProfile", userProfile);
-        uni.navigateBack();
-      });
-      // uni.login({
-      //   provider: "weixin",
-      //   success: (info) => {
-      //     this.execute(
-      //       LOGIN({
-      //         countryCode: COUNTRY_CODES[selectedCountryCodeIndex].value,
-      //         password,
-      //         smsNumber,
-      //         wechatOneTimeCode: info.code,
-      //       })
-      //     ).then((userProfile) => {
-      //       this.$store.commit("setUserProfile", userProfile);
-      //       uni.switchTab({
-      //         url: LANDING_TAB().url,
-      //       });
-      //     });
-      //   },
-      //   fail: (info) => console.log(info),
-      // });
+      this.execute(LOGIN(requestBody))
+        .then((userProfile) => {
+          this.$store.commit("setUserProfile", userProfile);
+          uni.navigateBack();
+        })
+        .catch(() => {});
     },
 
     startCountDown() {

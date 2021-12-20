@@ -19,7 +19,7 @@
         <view class="medium-margin-top-spacer" v-if="!hasBankAccount">
           <workbench-add-bank-account-button />
         </view>
-        <view class="medium-margin-top-spacer">
+        <view class="medium-margin-top-spacer" v-if="showCashOut">
           <workbench-cashout-button />
         </view>
       </view>
@@ -55,6 +55,7 @@ import WorkbenchCreateItemButton from "../components/navigationButton/item/workb
 import MyItemListButton from "../components/navigationButton/myItemListButton.vue";
 import MySoldButton from "../components/navigationButton/mySoldButton.vue";
 import moneyMade from "../components/user/moneyMade.vue";
+import { BANK_ACCOUNT_TYPE_USER } from "../enum/bankAccountType";
 export default {
   components: {
     moneyMade,
@@ -73,6 +74,9 @@ export default {
     hasBankAccount() {
       return this.$store.state.bankAccount.content.length > 0;
     },
+    showCashOut() {
+      return this.$store.state.userProfile.profile.balance >= 10;
+    },
     userProfile() {
       return this.$store.state.userProfile.profile;
     },
@@ -80,6 +84,7 @@ export default {
   mounted() {
     this.$appStateService.getBankAccount();
     this.$appStateService.getSellerPendingOrder();
+    this.$appStateService.getUserProfile();
   },
 };
 </script>
@@ -90,7 +95,7 @@ export default {
   padding-right: 20rpx;
 }
 .top-card-container {
-  margin-top: -100rpx;
+  margin-top: -80rpx;
 }
 .negative-margin-spacer {
   background-color: $u-phoenix-primary;

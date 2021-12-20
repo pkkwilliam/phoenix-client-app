@@ -14,6 +14,12 @@ export const ANNOUNCEMENT_DETAIL_PAGE = () => ({
 export const BUYER_ORDER_DETAIL_PAGE = (orderObject) => ({
   url: "/pages/order/buyerOrderDetailPage?order=" + JSON.stringify(orderObject),
 });
+export const CASH_OUT_PAGE = () => ({
+  url: "/pages/cashOut/cashOutFormPage",
+});
+export const CASH_OUT_HISTORY_PAGE = () => ({
+  url: "/pages/cashOut/cashOutHistoryPage",
+});
 export const CHANGE_PASSWORD_PAGE = () => ({
   url: "/pages/changePasswordPage",
 });

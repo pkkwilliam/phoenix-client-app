@@ -97,11 +97,23 @@ export default {
       await this.$appStateService.getBankAccount({ force: true });
       uni.navigateBack();
     },
-    async onClickDelete() {
-      const { id } = this;
-      await this.execute(DELETE_BANK_ACCOUNT({ id }));
-      await this.$appStateService.getBankAccount({ force: true });
-      uni.navigateBack();
+    onClickDelete() {
+      const confirmFunction = async () => {
+        const { id } = this;
+        await this.execute(DELETE_BANK_ACCOUNT({ id }));
+        await this.$appStateService.getBankAccount({ force: true });
+        uni.navigateBack();
+      };
+      uni.showModal({
+        content: "確定要刪除這個銀行賬戶嗎?",
+        cancelText: "取消",
+        confirmText: "確認",
+        success: (res) => {
+          if (res.confirm) {
+            confirmFunction();
+          }
+        },
+      });
     },
     onClickSubmit() {
       if (this.isEdit) {

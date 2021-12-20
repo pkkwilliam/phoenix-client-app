@@ -117,6 +117,9 @@ $u-phoenix-yellow: #fcbc17;
 .dark-orange {
   color: $u-phoenix-dark-orange;
 }
+.green {
+  color: $u-type-success;
+}
 .light-yellow {
   color: $u-phoenix-light-yellow;
 }
@@ -142,6 +145,7 @@ $u-phoenix-yellow: #fcbc17;
   backgroundColor: $u-phoenix-background-color;
   black: $u-phoenix-font-dark;
   brown: $u-phoenix-brown;
+  green: $u-type-success;
   orange: $u-phoenix-orange;
   pricePrimary: $u-phoenix-price-primary;
   priceSecondary: $u-phoenix-font-dark;

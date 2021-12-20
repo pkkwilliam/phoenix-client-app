@@ -3,7 +3,7 @@
     <view class="row-center-container">
       <u-icon name="home" :size="40" />
       <view class="small-margin-left-spacer">
-        <text>500.00現金可以提取</text>
+        <text>{{ `$${amount}現金可以提取` }}</text>
       </view>
     </view>
     <border-button
@@ -11,18 +11,31 @@
       size="mini"
       :backgroundColor="$styles.white"
       :color="$styles.darkOrange"
+      @onClick="onClick"
     />
   </view>
 </template>
 
 <script>
 import borderButton from "../../../common/button/borderButton.vue";
-import { CREATE_ITEM_TAB } from "../../../route/applicationRoute";
+import {
+  BANK_ACCOUNT_FORM_PAGE,
+  CASH_OUT_PAGE,
+} from "../../../route/applicationRoute";
 export default {
   components: { borderButton },
+  computed: {
+    amount() {
+      return this.$store.state.userProfile.profile.balance;
+    },
+  },
   methods: {
     onClick() {
-      uni.navigateTo({ url: CREATE_ITEM_TAB().url });
+      if (this.$store.state.bankAccount.content < 1) {
+        uni.navigateTo({ url: BANK_ACCOUNT_FORM_PAGE().url });
+      } else {
+        uni.navigateTo({ url: CASH_OUT_PAGE().url });
+      }
     },
   },
 };

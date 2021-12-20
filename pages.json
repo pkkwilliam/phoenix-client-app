@@ -36,6 +36,18 @@
       }
     },
     {
+      "path": "pages/cashOut/cashOutFormPage",
+      "style": {
+        "navigationBarTitleText": "提取現金"
+      }
+    },
+    {
+      "path": "pages/cashOut/cashOutHistoryPage",
+      "style": {
+        "navigationBarTitleText": "提取現金歷史"
+      }
+    },
+    {
       "path": "pages/changePasswordPage",
       "style": {
         "navigationBarTitleText": "修改密碼"

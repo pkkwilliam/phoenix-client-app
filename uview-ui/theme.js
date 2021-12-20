@@ -9,6 +9,7 @@ export default {
   brown: "#4d3009",
   darkOrange: "#fe5006",
   lightYellow: "#fefbe1",
+  green: "##19be6b",
   orange: "#fd8204",
   pricePrimary: "#eb523f",
   priceSecondary: "#3a3a3a",

@@ -42,7 +42,7 @@
         />
       </view>
     </view>
-    <view class="cu-bar foot column-center-container sticky-bottom-container">
+    <view class="cu-bar foot column-center-container container">
       <u-button
         class="submit-button"
         shape="circle"

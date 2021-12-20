@@ -75,10 +75,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  padding-left: 20rpx;
-  padding-right: 20rpx;
-}
 .my-order {
   background-color: #ffffff;
   border-radius: 8px;

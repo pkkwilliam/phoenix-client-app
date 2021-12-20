@@ -1,7 +1,7 @@
 <template>
   <view class="space-between-center-container">
     <view class="row-center-container">
-      <u-icon name="home" :size="40" />
+      <u-icon name="plus" size="38" />
       <view class="small-margin-left-spacer">
         <text>發布寶貝，通知鐵粉圍觀</text>
       </view>

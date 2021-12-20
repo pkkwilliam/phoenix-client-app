@@ -30,7 +30,7 @@ const PROD_SERVICE_URL = "https://phoenix-api.bitcode.mo";
 
 console.log("env:", process.env.NODE_ENV);
 if (process.env.NODE_ENV === "development") {
-  host = DEVELOP_SERVICE_URL;
+  host = UAT_SERVICE_URL;
   console.log(host);
 } else {
   host = PROD_SERVICE_URL;

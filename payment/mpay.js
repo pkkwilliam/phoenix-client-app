@@ -4,26 +4,26 @@ const mpay = uni?.requireNativePlugin("sn-mpay") ?? undefined;
 
 const isAndroid = uni.getSystemInfoSync().platform === "android";
 
-// if (process.env.NODE_ENV === "development") {
-//   // mpay.setAlipayEnv(1);
-//   mpay.setEnvironmentType(2);
-//   mpay.setMPayAppId(2);
-//   if (isAndroid) {
-//     mpay.setMPayAppId(2);
-//   }
-// } else {
-//   // mpay.setAlipayEnv(0);
-//   mpay.setEnvironmentType(0);
-// }
+if (process.env.NODE_ENV === "development") {
+  // mpay.setAlipayEnv(1);
+  mpay.setEnvironmentType(2);
+  mpay.setMPayAppId(2);
+  if (isAndroid) {
+    mpay.setMPayAppId(2);
+  }
+} else {
+  // mpay.setAlipayEnv(0);
+  mpay.setEnvironmentType(0);
+}
 
-// if (isAndroid) {
-//   mpay.initWeChatData("missing!!!");
-// } else {
-//   mpay.initWeChatData({
-//     appId: "missing!!!",
-//     universalLink: "",
-//   });
-// }
+if (isAndroid) {
+  mpay.initWeChatData("missing!!!");
+} else {
+  mpay.initWeChatData({
+    appId: "missing!!!",
+    universalLink: "",
+  });
+}
 
 export async function submitMpayPayment(request, paymentChannel) {
   console.log("attempt to submit mpay payment isAndroid:", isAndroid);

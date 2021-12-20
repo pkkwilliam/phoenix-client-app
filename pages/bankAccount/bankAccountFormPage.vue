@@ -3,11 +3,7 @@
     <view class="card container">
       <view class="medium-margin-top-spacer">
         <text class="h4 black bold">收款人</text>
-        <u-input
-          :custom-style="myStyle"
-          placeholder="請輸入收款人名字"
-          v-model="beneficialName"
-        />
+        <u-input placeholder="請輸入收款人名字" v-model="beneficialName" />
       </view>
       <view class="medium-margin-top-spacer">
         <text class="h4 black bold">銀行</text>
@@ -16,14 +12,13 @@
       <view class="medium-margin-top-spacer">
         <text class="h4 black bold">銀行賬戶</text>
         <u-input
-          :customStyle="myStyle"
           placeholder="請輸入收款銀行賬戶"
           v-model="beneficialAccountNumber"
         />
       </view>
     </view>
     <view>
-      <view class="cu-bar foot column-center-container sticky-bottom-container">
+      <view class="cu-bar foot column-center-container container">
         <u-button
           class="submit-button"
           shape="circle"
@@ -52,12 +47,6 @@ import {
 export default {
   components: { dropDownSelectableBank },
   computed: {
-    myStyle() {
-      return {
-        bankground: "#FFFFFF",
-        bankgroundColor: "#FFFFFF",
-      };
-    },
     submitButtonDisabled() {
       const { bank, beneficialName, beneficialAccountNumber } = this;
       return !bank || !beneficialName || !beneficialAccountNumber;

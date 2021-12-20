@@ -28,7 +28,7 @@
         </view>
       </view>
     </view>
-    <view class="cu-bar foot sticky-bottom-container">
+    <view class="cu-bar foot container">
       <primary-button label="提交" @click="onClickSubmit" />
     </view>
   </view>

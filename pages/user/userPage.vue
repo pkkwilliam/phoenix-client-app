@@ -101,10 +101,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  padding-left: 20rpx;
-  padding-right: 20rpx;
-}
 .user-interaction-button {
   margin-left: 30rpx;
   margin-right: 30rpx;

@@ -1,6 +1,6 @@
 <template>
   <view class="row-center-container">
-    <u-icon class="icon" :name="iconName" size="28" />
+    <u-icon custom-prefix="phoenix-custom-icon" :name="iconName" size="38" />
     <text class="icon-text">{{ label }}</text>
   </view>
 </template>

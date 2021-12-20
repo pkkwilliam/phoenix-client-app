@@ -24,7 +24,7 @@
         </view>
       </view>
     </view>
-    <view class="cu-bar foot sticky-bottom-container">
+    <view class="cu-bar foot container">
       <primary-button label="添加銀行賬戶" @click="onClickCreateBankAccount" />
     </view>
   </view>

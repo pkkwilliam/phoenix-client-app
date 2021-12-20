@@ -33,7 +33,7 @@ export default {
     menuItems() {
       return [
         {
-          iconName: "address",
+          iconName: "location",
           label: "收貨地址",
           toPage: ADDRESS_SELECTION_PAGE,
         },

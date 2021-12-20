@@ -1,14 +1,16 @@
 <template>
-  <view class="container">
-    <view class="card">
-      <view class="space-between-center-container">
+  <view>
+    <view class="sticky-bottom-container-padding">
+      <view class="card">
+        <view class="space-between-center-container">
+          <user-card :user="item.createBy" />
+        </view>
+        <item-detail :item="item" />
+      </view>
+      <view class="card medium-margin-top-spacer">
+        <!-- <seller-card :user="item.createBy" /> -->
         <user-card :user="item.createBy" />
       </view>
-      <item-detail :item="item" />
-    </view>
-    <view class="card medium-margin-top-spacer">
-      <!-- <seller-card :user="item.createBy" /> -->
-      <user-card :user="item.createBy" />
     </view>
     <view class="cu-bar foot">
       <stick-bottom-bar>
@@ -77,7 +79,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  padding-bottom: 100rpx;
-}
 </style>

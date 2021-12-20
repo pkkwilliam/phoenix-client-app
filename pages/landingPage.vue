@@ -1,8 +1,6 @@
 <!-- 首页 -->
 <template>
-  <view
-    class="landing-page-container safearea-container medium-margin-top-spacer"
-  >
+  <view class="container safearea-container medium-margin-top-spacer">
     <search-bar :disabled="true" @click="onSearchBarClick" />
     <item-category-waterfall />
   </view>
@@ -47,8 +45,4 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.landing-page-container {
-  padding-left: 20rpx;
-  padding-right: 20rpx;
-}
 </style>

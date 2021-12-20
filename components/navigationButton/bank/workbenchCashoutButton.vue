@@ -1,7 +1,7 @@
 <template>
   <view class="space-between-center-container">
     <view class="row-center-container">
-      <u-icon name="home" :size="40" />
+      <u-icon custom-prefix="phoenix-custom-icon" name="dollar-bag" size="38" />
       <view class="small-margin-left-spacer">
         <text>{{ `$${amount}現金可以提取` }}</text>
       </view>

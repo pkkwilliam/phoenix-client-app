@@ -1,10 +1,10 @@
 <template>
-  <view class="container">
+  <view class="sticky-bottom-container-padding">
     <application-navigation-bar title="我賣出的" />
     <view class="step-container">
       <sold-order-status-step :orderStatus="order.orderStatus" />
     </view>
-    <view class="content-container">
+    <view class="container">
       <view class="card order-status-action-container">
         <sold-order-status :orderStatus="order.orderStatus" />
       </view>
@@ -31,7 +31,7 @@
         <sold-order-detail-info type="seller" :order="order" />
       </view>
     </view>
-    <view class="cu-bar foot bottom-container">
+    <view class="cu-bar foot container">
       <sold-order-action-button
         type="seller"
         :order="order"
@@ -98,16 +98,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.bottom-container {
-  padding: 20rpx;
-}
-.container {
-  padding-bottom: 125rpx;
-}
-.content-container {
-  padding-left: 20rpx;
-  padding-right: 20rpx;
-}
 .step-container {
   background-color: $u-phoenix-primary;
   padding: 30rpx;

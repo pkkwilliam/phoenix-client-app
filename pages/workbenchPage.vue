@@ -55,7 +55,6 @@ import WorkbenchCreateItemButton from "../components/navigationButton/item/workb
 import MyItemListButton from "../components/navigationButton/myItemListButton.vue";
 import MySoldButton from "../components/navigationButton/mySoldButton.vue";
 import moneyMade from "../components/user/moneyMade.vue";
-import { BANK_ACCOUNT_TYPE_USER } from "../enum/bankAccountType";
 export default {
   components: {
     moneyMade,
@@ -90,10 +89,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  padding-left: 20rpx;
-  padding-right: 20rpx;
-}
 .top-card-container {
   margin-top: -80rpx;
 }

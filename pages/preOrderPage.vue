@@ -1,6 +1,6 @@
 <template>
-  <view class="container">
-    <view class="main-content">
+  <view>
+    <view class="container sticky-bottom-container-padding">
       <view class="card medium-margin-top-spacer">
         <order-confirm-item-card :item="item" />
       </view>
@@ -75,7 +75,6 @@ import {
   ITEM_DELIVERY_TYPE_THIRD_PARTY_DELIVERY,
 } from "../enum/itemDeliveryType";
 import uLazyLoad from "../uview-ui/components/u-lazy-load/u-lazy-load.vue";
-import "../css/applicationTextField.scss";
 import OrderConfirmItemCard from "../common/pre-order/preOrderConfirmItemCard.vue";
 import ULine from "../uview-ui/components/u-line/u-line.vue";
 import PaymentSelection from "../common/payment/paymentSelection.vue";
@@ -87,6 +86,8 @@ import { getRouterJsonParam } from "../route/applicationRoute";
 import PreOrderShippingFee from "../common/pre-order/preOrderShippingFee.vue";
 import StickBottomBar from "../common/navigation/stickBottomBar.vue";
 import PrimaryGradientButton from "../common/button/primaryGradientButton.vue";
+
+import "../css/applicationTextField.scss";
 
 const DELIVERY_TYPES = [
   ITEM_DELIVERY_TYPE_THIRD_PARTY_DELIVERY,
@@ -174,8 +175,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main-content {
-  padding-left: 20rpx;
-  padding-right: 20rpx;
-}
 </style>

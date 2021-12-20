@@ -25,7 +25,7 @@
         />
       </view>
     </view>
-    <view class="cu-bar foot sticky-bottom-container">
+    <view class="cu-bar foot container">
       <primary-button label="創建地址" @click="onClickCreateAddress" />
     </view>
   </view>

@@ -50,10 +50,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  padding-left: 20rpx;
-  padding-right: 20rpx;
-}
 .user-created-item-container {
   background-color: #ffffff;
   border-radius: 8px;

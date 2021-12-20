@@ -7,7 +7,14 @@
       @click="onClickPaymentMethod(paymentChannel, index)"
     >
       <payment :payment="paymentChannel" />
-      <u-icon name="checkmark" v-if="selectedPaymentIndex === index" />
+      <u-icon
+        custom-prefix="phoenix-custom-icon"
+        :color="
+          selectedPaymentIndex === index ? styles.primary : styles.secondary
+        "
+        :name="selectedPaymentIndex === index ? 'check-fill' : 'uncheck'"
+        :size="selectedPaymentIndex === index ? 56 : 48"
+      />
     </view>
   </view>
 </template>
@@ -16,12 +23,16 @@
 import { M_PAY, ALIPAY, WECHAT_PAY } from "../../enum/paymentChannel";
 import UIcon from "../../uview-ui/components/u-icon/u-icon.vue";
 import payment from "./payment.vue";
+import styles from "../../uview-ui/theme";
 const PAYMENT_CHANNELS = [M_PAY, ALIPAY, WECHAT_PAY];
 export default {
   components: { payment, UIcon },
   computed: {
     paymentChannels() {
       return PAYMENT_CHANNELS;
+    },
+    styles() {
+      return styles;
     },
   },
   data() {

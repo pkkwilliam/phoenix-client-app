@@ -7,6 +7,7 @@
         shape="circle"
         size="mini"
         type="primary"
+        :disabled="disabledSubmitButton"
         @click="onClickSubmit"
         >發佈
       </u-button>
@@ -30,7 +31,7 @@
     <!-- item location -->
     <view class="medium-margin-top-spacer">
       <icon-sub-header
-        iconName="map"
+        iconName="location"
         label="物品所在地區"
         :onSelect="onSelectCategory"
       />
@@ -80,7 +81,7 @@
 
     <view class="medium-margin-top-spacer">
       <view class="space-between-center-container">
-        <icon-sub-header iconName="rmb" label="價格" />
+        <icon-sub-header iconName="dollar" label="價格" />
         <view class="row-center-container" @click="onToggleCostInput">
           <display-curreny-price :value="displayPrice" />
           <u-icon name="arrow-right" color="#a3a3a3" :size="26" />
@@ -139,6 +140,9 @@ export default {
         return (price = this.deliveryTypeAndShippingCharge.price);
       }
       return price;
+    },
+    disabledSubmitButton() {
+      return false;
     },
     getCategory() {
       return this.selectedCategory;

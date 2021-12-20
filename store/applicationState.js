@@ -9,6 +9,10 @@ let store = new Vuex.Store({
       dirty: true,
       content: [],
     },
+    bankAccount: {
+      dirty: true,
+      content: [],
+    },
     bearerToken: "",
     category: {
       dirty: true,
@@ -47,6 +51,12 @@ let store = new Vuex.Store({
       state.address = {
         dirty: false,
         content: addresses,
+      };
+    },
+    setBankAccount(state, bankAccount) {
+      state.bankAccount = {
+        dirty: false,
+        content: bankAccount,
       };
     },
     setBearerToken(state, bearerToken) {

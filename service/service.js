@@ -9,6 +9,7 @@ const PUBLIC_SUB_CATEGORY = "/public/sub-category/v1";
 const PUBLIC_ITEM = "/public/item/v1";
 
 const USER_ADDRESS = "/user/address/v1";
+const USER_BANK_ACCOUNT = "/user/bank_account/v1";
 const USER_IMAGE_UPLOAD = "/user/image_upload/v1";
 const USER_ITEM = "/user/item/v1";
 const USER_MPAY_ORDER = "/user/mpay_order/v1";
@@ -22,6 +23,10 @@ export const CREATE_ADDRESS = (address) => ({
   authenticatedRequest: true,
   body: JSON.stringify(address),
   method: POST_METHOD,
+  timer: {
+    title: "創建地址",
+    length: 1000,
+  },
   url: USER_ADDRESS,
 });
 
@@ -29,6 +34,10 @@ export const DELETE_ADDRESS = (address) => ({
   authenticatedRequest: true,
   body: JSON.stringify(address),
   method: DELETE_METHOD,
+  timer: {
+    title: "删除地址",
+    length: 1000,
+  },
   url: USER_ADDRESS,
 });
 
@@ -42,6 +51,10 @@ export const UPDATE_ADDRESS = (address) => ({
   authenticatedRequest: true,
   body: JSON.stringify(address),
   method: PUT_METHOD,
+  timer: {
+    title: "更新地址",
+    length: 1000,
+  },
   url: USER_ADDRESS,
 });
 
@@ -81,6 +94,46 @@ export const FORGOT_PASSWORD_VERIFY = (smsRequest) => ({
   url: PUBLIC_AUTH + "/forgot_password_verify",
 });
 
+// Bank Account
+export const CREATE_BANK_ACCOUNT = (bankAccount) => ({
+  authenticatedRequest: true,
+  body: JSON.stringify(bankAccount),
+  method: POST_METHOD,
+  timer: {
+    title: "創建銀行賬戶",
+    length: 1000,
+  },
+  url: USER_BANK_ACCOUNT,
+});
+
+export const DELETE_BANK_ACCOUNT = (bankAccount) => ({
+  authenticatedRequest: true,
+  body: JSON.stringify(bankAccount),
+  method: DELETE_METHOD,
+  timer: {
+    title: "删除銀行賬戶",
+    length: 1000,
+  },
+  url: USER_BANK_ACCOUNT,
+});
+
+export const GET_BANK_ACCOUNT_ALL = () => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url: USER_BANK_ACCOUNT + "/all",
+});
+
+export const UPDATE_BANK_ACCOUNT = (bankAccount) => ({
+  authenticatedRequest: true,
+  body: JSON.stringify(bankAccount),
+  method: PUT_METHOD,
+  timer: {
+    title: "更新銀行賬戶",
+    length: 1000,
+  },
+  url: USER_BANK_ACCOUNT,
+});
+
 // Category
 export const GET_CATEGORY_ALL = () => ({
   authenticatedRequest: false,
@@ -100,6 +153,10 @@ export const CREATE_ITEM = (request) => ({
   authenticatedRequest: true,
   body: JSON.stringify(request),
   method: POST_METHOD,
+  timer: {
+    title: "創建中",
+    length: 1000,
+  },
   url: USER_ITEM,
 });
 

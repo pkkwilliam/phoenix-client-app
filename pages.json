@@ -24,6 +24,18 @@
       }
     },
     {
+      "path": "pages/bankAccount/bankAccountFormPage",
+      "style": {
+        "navigationBarTitleText": "銀行賬戶"
+      }
+    },
+    {
+      "path": "pages/bankAccount/myBankAccountPage",
+      "style": {
+        "navigationBarTitleText": "銀行賬戶"
+      }
+    },
+    {
       "path": "pages/changePasswordPage",
       "style": {
         "navigationBarTitleText": "修改密碼"
@@ -53,12 +65,6 @@
       "path": "pages/loginPage",
       "style": {
         "navigationBarTitleText": "登入"
-      }
-    },
-    {
-      "path": "pages/me/myBankAccountPage",
-      "style": {
-        "navigationBarTitleText": "銀行賬戶"
       }
     },
     {

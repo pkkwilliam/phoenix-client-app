@@ -3,7 +3,7 @@ import ApplicationExceptionCode from "./applicationExceptionCode.json";
 const TOKEN_HEADER_LOWER = "authorization";
 const TOKEN_HEADER_UPPER = "Authorization";
 
-export const execute = (
+export const execute = async (
   host,
   store,
   getUserToken,
@@ -11,7 +11,17 @@ export const execute = (
   removeUserToken,
   service
 ) => {
-  const { authenticatedRequest, body, method, url } = service;
+  const { authenticatedRequest, body, method, timer, url } = service;
+  uni.hideLoading();
+  if (timer) {
+    uni.showLoading({ mask: true, title: timer.title });
+    await new Promise((resolve, reject) =>
+      setTimeout(() => {
+        uni.hideLoading();
+        return resolve();
+      }, timer.length)
+    );
+  }
   return new Promise((resolve, reject) => {
     const userToken = getUserToken();
     if (authenticatedRequest && (!userToken || userToken === "")) {

@@ -1,38 +1,60 @@
 <template>
-  <view class="container">
-    <view class="textfield-container">
-      <view class="section-container">
-        <text class="label">收件人</text>
-        <u-input class="textfield" v-model="address.contactName" />
+  <view>
+    <view class="card container">
+      <view class="medium-margin-top-spacer">
+        <text class="h4 black bold">收件人</text>
+        <u-input
+          class="textfield"
+          placeholder="請輸入收件人"
+          v-model="address.contactName"
+        />
       </view>
-      <view class="section-container">
-        <text class="label">區號</text>
-        <u-input class="textfield" v-model="address.countryCode" />
+      <view class="medium-margin-top-spacer">
+        <text class="h4 black bold">區號</text>
+        <u-input
+          class="textfield"
+          placeholder="請輸入區號"
+          v-model="address.countryCode"
+        />
       </view>
-      <view class="section-container">
-        <text class="label">電話號碼</text>
-        <u-input class="textfield" v-model="address.phoneNumber" />
+      <view class="medium-margin-top-spacer">
+        <text class="h4 black bold">電話號碼</text>
+        <u-input
+          class="textfield"
+          placeholder="請輸入電話號碼"
+          v-model="address.phoneNumber"
+        />
       </view>
-      <view class="section-container">
-        <text class="label">街道及門牌號</text>
-        <u-input class="textfield" v-model="address.street" />
+      <view class="medium-margin-top-spacer">
+        <text class="h4 black bold">街道及門牌號</text>
+        <u-input
+          class="textfield"
+          placeholder="請輸入街道及門牌號"
+          v-model="address.street"
+        />
       </view>
-      <view class="section-container">
-        <text class="label">大廈及樓層</text>
-        <u-input class="textfield" v-model="address.unit" />
+      <view class="medium-margin-top-spacer">
+        <text class="h4 black bold">大廈及樓層</text>
+        <u-input
+          class="textfield"
+          placeholder="請輸入大廈及樓層"
+          v-model="address.unit"
+        />
       </view>
     </view>
-    <view class="button-container">
+    <view class="cu-bar foot column-center-container sticky-bottom-container">
       <u-button
         class="submit-button"
         shape="circle"
-        type="success"
+        type="primary"
         :disabled="submitButtonDisabled"
         :loading="false"
         @click="onClickSubmit"
         >{{ submitButtonLabel }}
       </u-button>
-      <text class="delete-button" @click="onClickDelete">删除</text>
+      <view class="medium-margin-top-spacer" v-if="isEdit">
+        <text class="secondary" @click="onClickDelete"> 删除 </text>
+      </view>
     </view>
   </view>
 </template>
@@ -102,34 +124,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.button-container {
-  align-items: center;
-  bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  padding-left: 20rpx;
-  padding-right: 20rpx;
+.submit-button {
   width: 100%;
-  .delete-button {
-    color: $u-phoenix-light-grey;
-    margin-top: 20rpx;
-  }
-  .submit-button {
-    width: 100%;
-  }
-}
-.textfield-container {
-  padding-left: 20rpx;
-  padding-right: 20rpx;
-  .section-container {
-    margin-top: 20rpx;
-    .label {
-      font-weight: 600;
-    }
-    .textfield {
-      margin-top: 15rpx;
-    }
-  }
 }
 </style>

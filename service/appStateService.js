@@ -1,5 +1,6 @@
 import {
   GET_ADDRESS_ALL,
+  GET_BANK_ACCOUNT_ALL,
   GET_BUYER_PENDING_ORDERS,
   GET_CATEGORY_ALL,
   GET_SELLER_PENDING_ORDERS,
@@ -39,6 +40,18 @@ export default class AppStateService {
       }
     });
   }
+
+  getBankAccount = ({ force = false } = {}) => {
+    const { dirty, content } = this.store.state.bankAccount;
+    return new Promise((resolve, reject) => {
+      if (dirty || force) {
+        this.execute(GET_BANK_ACCOUNT_ALL()).then((bankAccount) => {
+          this.store.commit("setBankAccount", bankAccount);
+          return resolve(bankAccount);
+        });
+      } else return resolve(content);
+    });
+  };
 
   getBuyerPendingOrder({ force = false } = {}) {
     const { dirty, content } = this.store.state.buyerPendingOrder;

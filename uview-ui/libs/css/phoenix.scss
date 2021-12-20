@@ -1,4 +1,14 @@
 // container size
+.container {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.sticky-bottom-container {
+  @extend .container;
+  padding-bottom: 20rpx;
+}
+
 .full-width {
   width: 100%;
 }

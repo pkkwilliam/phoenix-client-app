@@ -17,6 +17,11 @@ export const BUYER_ORDER_DETAIL_PAGE = (orderObject) => ({
 export const CHANGE_PASSWORD_PAGE = () => ({
   url: "/pages/changePasswordPage",
 });
+export const BANK_ACCOUNT_FORM_PAGE = (bankAccount) => ({
+  url:
+    "/pages/bankAccount/bankAccountFormPage?bankAccount=" +
+    JSON.stringify(bankAccount),
+});
 export const FORGOT_PASSWORD_PAGE = () => ({
   url: "/pages/forgotPasswordPage",
 });
@@ -41,7 +46,7 @@ export const SELLER_ORDER_DETAIL_PAGE = (orderObject) => ({
 });
 export const SHOP_LIST_PAGE = () => ({ url: "/pages/shopListPage" });
 export const MY_BANK_ACCOUNT_PAGE = () => ({
-  url: "/pages/me/myBankAccountPage",
+  url: "/pages/bankAccount/myBankAccountPage",
 });
 export const MY_ORDER_PAGE = () => ({
   url: "/pages/me/myOrderPage",

@@ -7,12 +7,14 @@
         :key="index"
       >
         <view class="column-container" @click="onClickAddress(address)">
-          <text class="h3 black bold">{{
+          <text class="h4 black bold">{{
             `${address.contactName} ${address.phoneNumber}`
           }}</text>
-          <text class="h4 secondary">{{
-            `${address.street} ${address.unit}`
-          }}</text>
+          <view class="mini-margin-top-spacer">
+            <text class="h4 secondary">{{
+              `${address.street} ${address.unit}`
+            }}</text>
+          </view>
         </view>
         <u-icon
           class="arrow-right"
@@ -23,7 +25,7 @@
         />
       </view>
     </view>
-    <view class="cu-bar foot bottom-container">
+    <view class="cu-bar foot sticky-bottom-container">
       <primary-button label="創建地址" @click="onClickCreateAddress" />
     </view>
   </view>
@@ -61,11 +63,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  padding-left: 20rpx;
-  padding-right: 20rpx;
-}
-.bottom-container {
-  padding: 20rpx;
-}
 </style>

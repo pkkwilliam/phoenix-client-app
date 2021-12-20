@@ -16,7 +16,7 @@
         <view class="medium-margin-top-spacer">
           <workbench-create-item-button />
         </view>
-        <view class="medium-margin-top-spacer">
+        <view class="medium-margin-top-spacer" v-if="!hasBankAccount">
           <workbench-add-bank-account-button />
         </view>
         <view class="medium-margin-top-spacer">
@@ -36,6 +36,9 @@
           <shipment-pending-alert-rows />
         </view>
       </view>
+      <view class="card medium-margin-top-spacer">
+        <workbench-menu />
+      </view>
     </view>
   </view>
 </template>
@@ -44,6 +47,7 @@
 import ApplicationNavigationBar from "../common/navigation/applicationNavigationBar.vue";
 import UserCard from "../common/user/userCard.vue";
 import MyState from "../components/me/myState.vue";
+import WorkbenchMenu from "../components/menu/workbenchMenu.vue";
 import ShipmentPendingAlertRows from "../components/myOrder/shipmentPendingAlert/shipmentPendingAlertRows.vue";
 import WorkbenchAddBankAccountButton from "../components/navigationButton/bank/workbenchAddBankAccountButton.vue";
 import WorkbenchCashoutButton from "../components/navigationButton/bank/workbenchCashoutButton.vue";
@@ -63,13 +67,18 @@ export default {
     WorkbenchCreateItemButton,
     WorkbenchAddBankAccountButton,
     WorkbenchCashoutButton,
+    WorkbenchMenu,
   },
   computed: {
+    hasBankAccount() {
+      return this.$store.state.bankAccount.content.length > 0;
+    },
     userProfile() {
       return this.$store.state.userProfile.profile;
     },
   },
   mounted() {
+    this.$appStateService.getBankAccount();
     this.$appStateService.getSellerPendingOrder();
   },
 };

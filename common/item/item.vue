@@ -30,7 +30,7 @@ export default {
     },
     shorternDescriptionText() {
       const { description } = this.item;
-      return description.substring(0, 30);
+      return description.substring(0, 20);
     },
   },
   props: {

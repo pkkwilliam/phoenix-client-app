@@ -52,14 +52,13 @@
       </view>
     </view>
     <view class="cu-bar foot">
-      <!-- <order-confirm-submit-bar :onClickSubmit="onClickSubmit" /> -->
       <stick-bottom-bar>
         <template slot="right">
           <view class="row-center-container medium-margin-right-spacer">
             <text class="label">實付款:</text>
             <display-curreny-price class="should-pay" :value="orderCost" />
           </view>
-          <primary-gradient-button />
+          <primary-gradient-button @click="onClickSubmit" />
         </template>
       </stick-bottom-bar>
     </view>

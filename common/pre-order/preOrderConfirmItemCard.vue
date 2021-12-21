@@ -23,7 +23,7 @@ export default {
       return this.item.images[0];
     },
     itemDescription() {
-      return this.item.description.substring(0, 30);
+      return this.item.description.substring(0, 20);
     },
     itemPrice() {
       return this.item.price;

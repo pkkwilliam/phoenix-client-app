@@ -288,6 +288,13 @@ export const GET_USER_PROFILE = () => ({
   url: USER_PROFILE,
 });
 
+export const LINK_USER_PUSH_NOTIFICATION_TOKEN = (request) => ({
+  authenticatedRequest: true,
+  body: JSON.stringify(),
+  method: PUT_METHOD,
+  url: USER_PROFILE + "/link_push_notification_token",
+});
+
 // User Save Item
 export const CREATE_USER_SAVE_ITEM = (itemId) => ({
   authenticatedRequest: true,

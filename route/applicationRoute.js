@@ -78,6 +78,9 @@ export const ORDER_CONFIRMATION_PAGE = (order) => ({
 export const SEARCH_ITEM_PAGE = () => ({
   url: "/pages/item/searchItemPage",
 });
+export const SHIPPING_COST_ESTIMATE_PAGE = () => ({
+  url: "/pages/shipping/shippingCostEstimatePage",
+});
 export const WORKBENCH_PAGE = () => ({
   url: "/pages/workbenchPage",
 });

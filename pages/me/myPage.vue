@@ -70,6 +70,10 @@ export default {
     this.$appStateService.getBuyerPendingOrder();
     this.$appStateService.getSellerPendingOrder();
   },
+  refresh() {
+    this.$appStateService.getBuyerPendingOrder({ force: true });
+    this.$appStateService.getSellerPendingOrder({ force: true });
+  },
 };
 </script>
 

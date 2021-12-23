@@ -8,6 +8,7 @@
         size="mini"
         type="primary"
         :disabled="disabledSubmitButton"
+        :loading="loading"
         @click="onClickSubmit"
         >發佈
       </u-button>
@@ -142,7 +143,30 @@ export default {
       return price;
     },
     disabledSubmitButton() {
-      return false;
+      const {
+        description,
+        selectedAreaLocation,
+        selectedCategory,
+        selectedItemCondition,
+        selectedMedia,
+        selectedSubCategory,
+      } = this;
+      const {
+        allowFaceToFace,
+        price,
+        originalPrice,
+        selectedShippingChargeType,
+        shippingCost,
+      } = this?.deliveryTypeAndShippingCharge ?? {};
+      return (
+        !description ||
+        !selectedAreaLocation ||
+        !selectedCategory ||
+        !selectedItemCondition ||
+        selectedMedia.length === 0 ||
+        !price ||
+        !selectedShippingChargeType
+      );
     },
     getCategory() {
       return this.selectedCategory;
@@ -153,12 +177,13 @@ export default {
       deliveryTypeAndShippingCharge: undefined,
       description: undefined,
       isEdit: false,
+      loading: false,
       selectedAreaLocation: undefined,
       selectedCategory: undefined,
       selectedItemCondition: undefined,
       selectedMedia: [],
       selectedSubCategory: undefined,
-      showCostInput: false,
+      showCostInput: true,
     };
   },
   methods: {
@@ -166,51 +191,52 @@ export default {
       uni.navigateBack();
     },
     async onClickSubmit() {
-      const {
-        deliveryTypeAndShippingCharge,
-        description,
-        selectedAreaLocation,
-        selectedCategory,
-        selectedItemCondition,
-        selectedSubCategory,
-        selectedMedia,
-      } = this;
-      this.showLoading("上傳圖片");
-      const {
-        allowFaceToFace,
-        price,
-        originalPrice,
-        selectedShippingChargeType,
-        shippingCost,
-      } = deliveryTypeAndShippingCharge;
-      const imageUrlsJsonResponse = await Promise.all(
-        selectedMedia.map(
-          async (media) => await uploadMedia(media.url, this.execute)
-        )
-      );
-      this.showLoading("整合資料");
-      const requestBody = createItemServiceRequestBody(
-        description,
-        imageUrlsJsonResponse,
-        selectedAreaLocation,
-        selectedCategory,
-        selectedSubCategory,
-        selectedItemCondition,
-        price,
-        originalPrice,
-        selectedShippingChargeType,
-        shippingCost,
-        allowFaceToFace
-      );
-      this.showLoading("上傳資料");
-      this.execute(CREATE_ITEM(requestBody)).then((response) => {
-        uni.hideLoading();
-        uni.showToast({ title: "創建成功" });
-        setTimeout(() => {
-          uni.navigateBack();
-          uni.navigateTo({ url: ITEM_DETAIL_PAGE(response).url });
-        }, 1000);
-      });
+      this.loading = true;
+      try {
+        const {
+          deliveryTypeAndShippingCharge,
+          description,
+          selectedAreaLocation,
+          selectedCategory,
+          selectedItemCondition,
+          selectedSubCategory,
+          selectedMedia,
+        } = this;
+        const {
+          allowFaceToFace,
+          price,
+          originalPrice,
+          selectedShippingChargeType,
+          shippingCost,
+        } = deliveryTypeAndShippingCharge;
+        const imageUrlsJsonResponse = await Promise.all(
+          selectedMedia.map(
+            async (media) => await uploadMedia(media.url, this.execute)
+          )
+        );
+        const requestBody = createItemServiceRequestBody(
+          description,
+          imageUrlsJsonResponse,
+          selectedAreaLocation,
+          selectedCategory,
+          selectedSubCategory,
+          selectedItemCondition,
+          price,
+          originalPrice,
+          selectedShippingChargeType,
+          shippingCost,
+          allowFaceToFace
+        );
+        this.execute(CREATE_ITEM(requestBody)).then((response) => {
+          uni.showToast({ title: "創建成功" });
+          setTimeout(() => {
+            uni.navigateBack();
+            uni.navigateTo({ url: ITEM_DETAIL_PAGE(response).url });
+          }, 1000);
+        });
+      } finally {
+        this.loading = false;
+      }
     },
     onChangeMediaList(listOfMedia) {
       this.selectedMedia = listOfMedia;
@@ -250,13 +276,6 @@ export default {
         subCategory,
         title,
       } = item;
-    },
-    showLoading(title) {
-      uni.hideLoading();
-      uni.showLoading({
-        mask: true,
-        title,
-      });
     },
   },
 

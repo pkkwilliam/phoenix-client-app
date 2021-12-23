@@ -176,6 +176,12 @@
       }
     },
     {
+      "path": "pages/shipping/shippingCostEstimatePage",
+      "style": {
+        "navigationBarTitleText": "運費計算"
+      }
+    },
+    {
       "path": "pages/workbenchPage",
       "style": {
         "navigationBarTitleText": "工作台PRO",
@@ -381,6 +387,9 @@
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
-    "scrollIndicator": "none"
+    "scrollIndicator": "none",
+    "app-plus": {
+      "softinputMode": "adjustResize"
+    }
   }
 }

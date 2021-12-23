@@ -184,10 +184,7 @@ export default {
       });
     },
   },
-  onReachBottom() {
-    console.log("tabbar reached bottom");
-    TabbarEventBus.$emit("onReachBottom");
-  },
+  onReachBottom() {},
 };
 </script>
 

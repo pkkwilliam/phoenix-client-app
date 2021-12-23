@@ -1,7 +1,7 @@
 <template>
   <view>
     <!-- <landing-page v-if="PageCur == 'landingPage'"></landing-page> -->
-    <landing-tabs-swiper v-if="PageCur == 'landingPage'" />
+    <landing-tabs-swiper-page v-if="PageCur == 'landingPage'" />
     <my-page v-if="PageCur == 'me'"></my-page>
 
     <view class="box">
@@ -40,7 +40,7 @@
 
         <view
           @click="NavChange"
-          class="action text-gray add-action"
+          class="action text-gray"
           data-cur="createItemPage"
         >
           <image
@@ -48,10 +48,6 @@
             mode="widthFix"
             src="../../static/tabBar/create_item_button.png"
           ></image>
-          <view
-            :class="PageCur == 'createItemPage' ? 'color_main' : 'text-gray'"
-            >出手物品</view
-          >
         </view>
         <!-- 
         <view class="action" @click="NavChange" data-cur="news">
@@ -102,6 +98,7 @@ import LoginPage from "../loginPage.vue";
 import { CREATE_ITEM_TAB, LOGIN_PAGE } from "../../route/applicationRoute";
 import MyPage from "../me/myPage.vue";
 import Vue from "vue";
+import LandingTabsSwiperPage from "../landing/landingTabsSwiperPage.vue";
 
 export const TabbarEventBus = new Vue();
 
@@ -114,6 +111,7 @@ export default {
     me,
     LoginPage,
     MyPage,
+    LandingTabsSwiperPage,
   },
   data() {
     return {
@@ -142,6 +140,9 @@ export default {
     // 	fail: function(res) {}
     // });
   },
+  mounted() {
+    this.$appStateService.getUserProfile();
+  },
   methods: {
     NavChange: function (e) {
       const requireAuthTab = ["createItemPage", "me"];
@@ -149,7 +150,11 @@ export default {
       if (requireAuthTab.includes(targetTab) && !this.isLogin()) {
         uni.navigateTo({ url: LOGIN_PAGE().url });
       } else if (targetTab === "createItemPage") {
-        uni.navigateTo({ url: CREATE_ITEM_TAB().url });
+        uni.navigateTo({
+          animationType: "slide-in-bottom",
+          animationDuration: 200,
+          url: CREATE_ITEM_TAB().url,
+        });
       } else {
         this.PageCur = targetTab;
       }
@@ -199,7 +204,7 @@ export default {
   height: 38 * 2rpx;
   position: absolute;
   z-index: 2;
-  border-radius: 50%;
+
   top: -40rpx;
   left: 0rpx;
   right: 0;

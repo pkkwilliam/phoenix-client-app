@@ -29,13 +29,7 @@ export default {
     };
   },
   methods: {},
-  mounted() {
-    // this method is for when tabbar emits onReachBottom and this will set dirty as true for pagination
-    TabbarEventBus.$on("onReachBottom", () =>
-      this.$appStateService.setItemPagination(LANDING_TAB)
-    );
-    this.$appStateService.getAddress();
-  },
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>

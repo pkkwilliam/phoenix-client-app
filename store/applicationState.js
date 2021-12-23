@@ -22,10 +22,6 @@ let store = new Vuex.Store({
       dirty: true,
       content: [],
     },
-    itemPagination: {
-      currentPage: undefined,
-      dirty: true,
-    },
     sellerPendingOrder: {
       dirty: true,
       content: [],
@@ -72,15 +68,6 @@ let store = new Vuex.Store({
       state.category = {
         dirty: false,
         content: categories,
-      };
-    },
-    setItemPagination(state, itemPagination) {
-      state.itemPagination = itemPagination;
-    },
-    setItemPaginationClean(state) {
-      state.itemPagination = {
-        ...state.itemPagination,
-        dirty: false,
       };
     },
     setSellerPendingOrder(state, sellerPendingOrder) {

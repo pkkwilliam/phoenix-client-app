@@ -54,7 +54,9 @@ Vue.mixin({
   methods: {
     execute: (service) => executeService(service),
     isLogin: () => store.state.userProfile.profile.active,
-    logout: () => setUserToken(undefined),
+    logout: () => {
+      setUserToken(undefined), store.commit("setUserProfile", {});
+    },
   },
 });
 

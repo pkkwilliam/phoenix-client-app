@@ -4,10 +4,17 @@
   },
   "pages": [
     {
+      "path": "pages/index/tabbar",
+      "style": {
+        "disableScroll": true,
+        "navigationBarTitleText": "摸魚",
+        "navigationStyle": "custom"
+      }
+    },
+    {
       "path": "pages/landing/landingTabsSwiperPage",
       "style": {
         "disableScroll": true,
-        "enablePullDownRefresh": true,
         "navigationBarTitleText": "摸魚",
         "navigationStyle": "custom"
       }
@@ -375,33 +382,5 @@
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
     "scrollIndicator": "none"
-  },
-  "tabBar": {
-    "color": "#a3a3a3",
-    "selectedColor": "#000000",
-    "borderStyle": "#FFFFFF",
-    "backgroundColor": "#FFFFFF",
-    "midButton": {
-      "pagePath": "pages/me/myOrderPage",
-      "iconPath": "static/tabBar/create_item_button.png",
-      "iconPath": "static/tabBar/create_item_button.png",
-      "width": "100px",
-      "height": "44px",
-      "iconWidth": "40px"
-    },
-    "list": [
-      {
-        "pagePath": "pages/landing/landingTabsSwiperPage",
-        "iconPath": "static/tabBar/index.png",
-        "selectedIconPath": "static/tabBar/index_cur.png",
-        "text": "摸魚"
-      },
-      {
-        "pagePath": "pages/me/myPage",
-        "iconPath": "static/tabBar/me.png",
-        "selectedIconPath": "static/tabBar/me.png",
-        "text": "我的"
-      }
-    ]
   }
 }

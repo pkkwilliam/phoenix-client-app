@@ -86,7 +86,9 @@ export const USER_PAGE = (user) => ({
 });
 // tab
 export const CREATE_ITEM_TAB = () => ({ url: "/pages/createItemPage" });
-export const LANDING_TAB = () => ({ url: "/pages/index/tabbar" });
+export const LANDING_TAB = () => ({
+  url: "/pages/index/tabbar",
+});
 export const ME_TAB = () => ({ url: "/pages/index/me" });
 
 export function getRouterJsonParam(option, paramName) {

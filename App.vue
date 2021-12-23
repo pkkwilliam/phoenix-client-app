@@ -1,6 +1,5 @@
 <script>
 import Vue from "vue";
-import { CREATE_ITEM_TAB } from "./route/applicationRoute";
 export default {
   onLaunch: function () {
     uni.getSystemInfo({
@@ -92,13 +91,6 @@ export default {
   },
   onShow: function () {
     console.log("App Show");
-    uni.onTabBarMidButtonTap(() => {
-      uni.navigateTo({
-        url: CREATE_ITEM_TAB().url,
-        animationType: "slide-in-bottom",
-        animationDuration: 200,
-      });
-    });
   },
   onHide: function () {
     console.log("App Hide");

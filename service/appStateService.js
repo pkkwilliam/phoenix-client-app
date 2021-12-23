@@ -154,8 +154,4 @@ export default class AppStateService {
       }
     });
   }
-
-  setItemPagination(currentPage) {
-    this.store.commit("setItemPagination", { currentPage, dirty: true });
-  }
 }

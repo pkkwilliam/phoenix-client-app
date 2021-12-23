@@ -66,7 +66,6 @@ export default {
       return this.$store.state.userProfile.profile;
     },
   },
-  methods: {},
   mounted() {
     this.$appStateService.getBuyerPendingOrder();
     this.$appStateService.getSellerPendingOrder();

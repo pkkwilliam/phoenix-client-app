@@ -107,6 +107,7 @@ import {
   ITEM_SHIPPING_CHARGE_TYPE_CHARGE_FIXED_RATE,
   ITEM_SHIPPING_CHARGE_TYPE_INCLUDE,
   ITEM_SHIPPING_CHARGE_TYPE_CHARGE_BY_DISTANCE,
+  getShippingChargeTypeObjectByKey,
 } from "../enum/itemShippingChargeTypes";
 import ApplicationTip from "./applicationTip.vue";
 import ShippingCostEstimateButton from "../components/navigationButton/shipping/shippingCostEstimateButton.vue";
@@ -162,18 +163,42 @@ export default {
       ) {
         this.showFixedShippingCostTextField = false;
         this.showItemDimensionTextField = true;
+        this.shippingCost = undefined;
       } else {
         this.showFixedShippingCostTextField = false;
         this.showItemDimensionTextField = false;
+        this.shippingCost = undefined;
       }
-      this.shippingCost = undefined;
     },
+  },
+  mounted() {
+    if (this.deliveryTypeAndShippingCharge) {
+      const {
+        allowFaceToFace,
+        price,
+        originalPrice,
+        selectedShippingChargeType,
+        shippingCost,
+      } = this.deliveryTypeAndShippingCharge;
+      this.allowFaceToFace = allowFaceToFace;
+      this.price = price;
+      this.originalPrice = originalPrice;
+      this.shippingCost = shippingCost;
+      this.selectedShippingChargeType = selectedShippingChargeType;
+      this.onSelectShippingChargeType(
+        getShippingChargeTypeObjectByKey(selectedShippingChargeType)
+      );
+    }
   },
   props: {
     onSubmit: {
       default: () =>
         console.log("please override onSubmit in costInputTextField.vue"),
       type: Function,
+    },
+    deliveryTypeAndShippingCharge: {
+      default: () => {},
+      type: Object,
     },
   },
 };

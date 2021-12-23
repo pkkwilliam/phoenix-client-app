@@ -91,6 +91,7 @@
       <u-popup border-radius="16" mode="bottom" v-model="showCostInput">
         <view class="card">
           <cost-input-text-field
+            :deliveryTypeAndShippingCharge="deliveryTypeAndShippingCharge"
             @onSubmit="onConfirmDeliveryTypeAndShippingCharge"
           />
         </view>
@@ -183,7 +184,7 @@ export default {
       selectedItemCondition: undefined,
       selectedMedia: [],
       selectedSubCategory: undefined,
-      showCostInput: true,
+      showCostInput: false,
     };
   },
   methods: {

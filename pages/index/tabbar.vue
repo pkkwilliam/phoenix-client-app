@@ -102,7 +102,6 @@ import LoginPage from "../loginPage.vue";
 import { CREATE_ITEM_TAB, LOGIN_PAGE } from "../../route/applicationRoute";
 import MyPage from "../me/myPage.vue";
 import Vue from "vue";
-import LandingTabsSwiper from "../landing/landingTabsSwiper.vue";
 
 export const TabbarEventBus = new Vue();
 
@@ -115,7 +114,6 @@ export default {
     me,
     LoginPage,
     MyPage,
-    LandingTabsSwiper,
   },
   data() {
     return {

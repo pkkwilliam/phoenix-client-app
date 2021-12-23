@@ -4,8 +4,10 @@
   },
   "pages": [
     {
-      "path": "pages/landing/landingTabsSwiper",
+      "path": "pages/landing/landingTabsSwiperPage",
       "style": {
+        "disableScroll": true,
+        "enablePullDownRefresh": true,
         "navigationBarTitleText": "摸魚",
         "navigationStyle": "custom"
       }
@@ -87,12 +89,14 @@
     {
       "path": "pages/me/myOrderPage",
       "style": {
+        "enablePullDownRefresh": true,
         "navigationBarTitleText": "我買到的"
       }
     },
     {
       "path": "pages/me/myPage",
       "style": {
+        "enablePullDownRefresh": true,
         "navigationBarTitleText": "我的",
         "navigationStyle": "custom"
       }
@@ -112,6 +116,7 @@
     {
       "path": "pages/me/mySoldPage",
       "style": {
+        "enablePullDownRefresh": true,
         "navigationBarTitleText": "我賣出的"
       }
     },
@@ -386,7 +391,7 @@
     },
     "list": [
       {
-        "pagePath": "pages/landing/landingTabsSwiper",
+        "pagePath": "pages/landing/landingTabsSwiperPage",
         "iconPath": "static/tabBar/index.png",
         "selectedIconPath": "static/tabBar/index_cur.png",
         "text": "摸魚"

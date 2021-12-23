@@ -95,6 +95,8 @@ export default {
     uni.onTabBarMidButtonTap(() => {
       uni.navigateTo({
         url: CREATE_ITEM_TAB().url,
+        animationType: "slide-in-bottom",
+        animationDuration: 200,
       });
     });
   },

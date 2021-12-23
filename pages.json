@@ -3,11 +3,10 @@
     "^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
   },
   "pages": [
-    // pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
     {
-      "path": "pages/index/tabbar",
+      "path": "pages/landing/landingTabsSwiper",
       "style": {
-        "navigationBarTitleText": "宅家学IT",
+        "navigationBarTitleText": "摸魚",
         "navigationStyle": "custom"
       }
     },
@@ -80,15 +79,22 @@
       }
     },
     {
+      "path": "pages/me/myListPage",
+      "style": {
+        "navigationBarTitleText": "我發布的"
+      }
+    },
+    {
       "path": "pages/me/myOrderPage",
       "style": {
         "navigationBarTitleText": "我買到的"
       }
     },
     {
-      "path": "pages/me/myListPage",
+      "path": "pages/me/myPage",
       "style": {
-        "navigationBarTitleText": "我發布的"
+        "navigationBarTitleText": "我的",
+        "navigationStyle": "custom"
       }
     },
     {
@@ -364,5 +370,33 @@
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
     "scrollIndicator": "none"
+  },
+  "tabBar": {
+    "color": "#a3a3a3",
+    "selectedColor": "#000000",
+    "borderStyle": "#FFFFFF",
+    "backgroundColor": "#FFFFFF",
+    "midButton": {
+      "pagePath": "pages/me/myOrderPage",
+      "iconPath": "static/tabBar/create_item_button.png",
+      "iconPath": "static/tabBar/create_item_button.png",
+      "width": "100px",
+      "height": "44px",
+      "iconWidth": "40px"
+    },
+    "list": [
+      {
+        "pagePath": "pages/landing/landingTabsSwiper",
+        "iconPath": "static/tabBar/index.png",
+        "selectedIconPath": "static/tabBar/index_cur.png",
+        "text": "摸魚"
+      },
+      {
+        "pagePath": "pages/me/myPage",
+        "iconPath": "static/tabBar/me.png",
+        "selectedIconPath": "static/tabBar/me.png",
+        "text": "我的"
+      }
+    ]
   }
 }

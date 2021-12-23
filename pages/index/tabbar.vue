@@ -1,7 +1,7 @@
 <template>
   <view>
-    <landing-page v-if="PageCur == 'landingPage'"></landing-page>
-    <search v-if="PageCur == 'search'"></search>
+    <!-- <landing-page v-if="PageCur == 'landingPage'"></landing-page> -->
+    <landing-tabs-swiper v-if="PageCur == 'landingPage'" />
     <my-page v-if="PageCur == 'me'"></my-page>
 
     <view class="box">
@@ -94,30 +94,28 @@
 
 <script>
 import index from "./inedx.vue"; //首页
-import search from "./search.vue"; //技术视频
 import cases from "./main.vue"; //宅家学
 import createItemPage from "../createItemPage.vue";
 import news from "./news.vue"; //资讯
 import me from "./me.vue"; //个人中心
 import LoginPage from "../loginPage.vue";
-import LandingPage from "../landingPage.vue";
 import { CREATE_ITEM_TAB, LOGIN_PAGE } from "../../route/applicationRoute";
 import MyPage from "../me/myPage.vue";
 import Vue from "vue";
+import LandingTabsSwiper from "../landing/landingTabsSwiper.vue";
 
 export const TabbarEventBus = new Vue();
 
 export default {
   components: {
     index,
-    search,
     cases,
     createItemPage,
     news,
     me,
-    LandingPage,
     LoginPage,
     MyPage,
+    LandingTabsSwiper,
   },
   data() {
     return {

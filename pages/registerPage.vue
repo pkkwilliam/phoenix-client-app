@@ -1,7 +1,7 @@
 <template>
   <view class="wrap">
     <view class="content">
-      <view class="title">{{ appName }}註冊</view>
+      <view class="title">註冊{{ appName }}</view>
       <register />
     </view>
     <view class="buttom">

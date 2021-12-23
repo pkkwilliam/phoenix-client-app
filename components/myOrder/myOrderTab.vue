@@ -26,6 +26,7 @@ export default {
       ];
     },
   },
+
   methods: {
     // use index instead of passing enum to simplify the logic
     onClick(index) {

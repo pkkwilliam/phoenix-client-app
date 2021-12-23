@@ -2,27 +2,33 @@ import { ALIPAY, M_PAY, WECHAT_PAY } from "../enum/paymentChannel";
 
 const mpay = uni?.requireNativePlugin("sn-mpay") ?? undefined;
 
-const isAndroid = uni.getSystemInfoSync().platform === "android";
+const { platform } = uni.getSystemInfoSync();
 
-if (process.env.NODE_ENV === "development") {
-  // mpay.setAlipayEnv(1);
-  mpay.setEnvironmentType(2);
-  mpay.setMPayAppId(2);
-  if (isAndroid) {
+const isApp = platform === "android" || platform === "ios";
+console.log(isApp);
+const isAndroid = platform === "android";
+
+if (isApp) {
+  if (process.env.NODE_ENV === "development") {
+    // mpay.setAlipayEnv(1);
+    mpay.setEnvironmentType(2);
     mpay.setMPayAppId(2);
+    if (isAndroid) {
+      mpay.setMPayAppId(2);
+    }
+  } else {
+    // mpay.setAlipayEnv(0);
+    mpay.setEnvironmentType(0);
   }
-} else {
-  // mpay.setAlipayEnv(0);
-  mpay.setEnvironmentType(0);
-}
 
-if (isAndroid) {
-  mpay.initWeChatData("missing!!!");
-} else {
-  mpay.initWeChatData({
-    appId: "missing!!!",
-    universalLink: "",
-  });
+  if (isAndroid) {
+    mpay.initWeChatData("missing!!!");
+  } else {
+    mpay.initWeChatData({
+      appId: "missing!!!",
+      universalLink: "",
+    });
+  }
 }
 
 export async function submitMpayPayment(request, paymentChannel) {

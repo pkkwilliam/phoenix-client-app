@@ -16,7 +16,7 @@
           <sold-order-price-summary :order="order" />
         </view>
         <view class="medium-margin-top-spacer">
-          <sold-order-actual-receive :order="order" />
+          <order-actual-pay :order="order" />
         </view>
       </view>
       <view class="card medium-margin-top-spacer">
@@ -41,7 +41,6 @@ import sellerShipmentDeliveryHelper from "../../common/order/sellerShipmentDeliv
 import SoldItem from "../../common/item/soldItem.vue";
 import applicationNavigationBar from "../../common/navigation/applicationNavigationBar.vue";
 import SoldOrderActionButton from "../../common/order/action/orderActionButton.vue";
-import SoldOrderActualReceive from "../../common/order/orderActualReceive.vue";
 import SoldOrderDetailInfo from "../../common/order/orderDetailInfo.vue";
 import SoldOrderPriceSummary from "../../common/order/orderPriceSummary.vue";
 import SoldOrderReceiver from "../../common/order/orderReceiver.vue";
@@ -49,6 +48,7 @@ import SoldOrderStatus from "../../common/order/orderStatus.vue";
 import SoldOrderStatusStep from "../../common/order/orderStatusStep.vue";
 import { getRouterJsonParam } from "../../route/applicationRoute";
 import { GET_ORDER_BY_ID } from "../../service/service";
+import OrderActualPay from "../../common/order/orderActualPay.vue";
 
 export default {
   components: {
@@ -58,10 +58,10 @@ export default {
     SoldOrderStatus,
     SoldItem,
     SoldOrderPriceSummary,
-    SoldOrderActualReceive,
     SoldOrderReceiver,
     SoldOrderDetailInfo,
     SoldOrderActionButton,
+    OrderActualPay,
   },
   computed: {
     itemDeliveryType() {
@@ -86,7 +86,7 @@ export default {
   onLoad(option) {
     const order = getRouterJsonParam(option, "order");
     this.order = order;
-    // for more accurate detail
+    // for more accurate detail since we not able to pass accurate date from url param
     this.getOrder();
   },
 };

@@ -22,26 +22,28 @@
     <view class="end-center-container medium-margin-top-spacer">
       <u-button
         class="button edit"
-        :plain="true"
         size="mini"
         shape="circle"
         type="primary"
+        :plain="true"
         >修改</u-button
       >
       <u-button
         class="button"
-        :plain="true"
         size="mini"
         shape="circle"
         type="error"
-        >删除</u-button
-      >
+        :plain="true"
+        @click="onClickDeleteItem"
+        >删除
+      </u-button>
     </view>
   </view>
 </template>
 
 <script>
 import { ITEM_DETAIL_PAGE } from "../../route/applicationRoute";
+import { DELETE_ITEM } from "../../service/service";
 import { convertSystemDateToDisplayDateYear } from "../../util/dateUtil";
 import displayCurrenyPrice from "../displayCurrenyPrice.vue";
 import MpayGuarantee from "../mpayGuarantee.vue";
@@ -58,10 +60,26 @@ export default {
       return convertSystemDateToDisplayDateYear(convertDate);
     },
     description() {
-      return this.item.description.substring(0, 20);
+      return this.item.description.substring(0, 15);
     },
   },
   methods: {
+    onClickDeleteItem() {
+      const onClickConfirm = async () => {
+        await this.execute(DELETE_ITEM(this.item.id));
+        this.$emit("onItemDeleted");
+      };
+      uni.showModal({
+        content: "删除此物品",
+        cancelText: "取消",
+        confirmText: "確定",
+        success: ({ confirm, cancel }) => {
+          if (confirm) {
+            onClickConfirm();
+          }
+        },
+      });
+    },
     onClickItem() {
       uni.navigateTo({ url: ITEM_DETAIL_PAGE(this.item).url });
     },

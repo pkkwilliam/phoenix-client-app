@@ -58,6 +58,10 @@ export default {
   mounted() {
     this.$appStateService.getBuyerPendingOrder();
   },
+  async onPullDownRefresh() {
+    await this.$appStateService.getBuyerPendingOrder({ force: true });
+    uni.stopPullDownRefresh();
+  },
 };
 </script>
 

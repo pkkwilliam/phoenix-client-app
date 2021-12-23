@@ -179,6 +179,16 @@ export const CREATE_ITEM = (request) => ({
   url: USER_ITEM,
 });
 
+export const DELETE_ITEM = (itemId) => ({
+  authenticatedRequest: true,
+  method: DELETE_METHOD,
+  timer: {
+    title: "删除中",
+    length: 1000,
+  },
+  url: USER_ITEM + `/${itemId}`,
+});
+
 export const GET_CREATED_ITEMS = (pageRequest, pageSize) => ({
   authenticatedRequest: true,
   method: GET_METHOD,
@@ -227,6 +237,16 @@ export const GET_ITEMS_BY_USER_ID = (userSid, pageRequest, pageSize) => ({
   url:
     PUBLIC_ITEM +
     `/user/${userSid}?pageRequest=${pageRequest}&pageSize=${pageSize}`,
+});
+
+export const UPDATE_ITEM = (request) => ({
+  authenticatedRequest: true,
+  method: PUT_METHOD,
+  timer: {
+    title: "更新中",
+    length: 1000,
+  },
+  url: USER_ITEM,
 });
 
 // Mpay Order

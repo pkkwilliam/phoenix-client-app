@@ -5,10 +5,15 @@
         <view class="space-between-center-container">
           <user-card :user="item.createBy" />
         </view>
+        <view
+          class="column-center-center-container medium-margin-top-spacer"
+          v-if="!item.active"
+        >
+          <text class="h4 secondary">此物品已失效，要不要看一下其他?</text>
+        </view>
         <item-detail :item="item" />
       </view>
       <view class="card medium-margin-top-spacer">
-        <!-- <seller-card :user="item.createBy" /> -->
         <user-card :user="item.createBy" />
       </view>
     </view>
@@ -18,7 +23,11 @@
           <save-item-button :item="item" />
         </template>
         <template slot="right">
-          <primary-gradient-button label="我想要" @click="onClickBuy" />
+          <primary-gradient-button
+            label="我想要"
+            :disabled="!item.active"
+            @click="onClickBuy"
+          />
         </template>
       </stick-bottom-bar>
     </view>

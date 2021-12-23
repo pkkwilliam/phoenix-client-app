@@ -4,7 +4,7 @@
     <text class="h5 secondary nickname-text">{{ userNickname }}</text>
     <u-icon
       class="icon"
-      :color="$styles.arrowIconColor"
+      :color="styles.secondary"
       v-if="showRightArrowIcon"
       name="arrow-right"
     />
@@ -13,6 +13,7 @@
 
 <script>
 import { USER_PAGE } from "../../route/applicationRoute";
+import styles from "../../uview-ui/theme.js";
 export default {
   components: {},
   computed: {
@@ -26,6 +27,9 @@ export default {
       const { user } = this;
       return user.nickname ? user.nickname : "小棕熊";
     },
+  },
+  data() {
+    return { styles };
   },
   methods: {
     onClick() {

@@ -30,6 +30,12 @@ export default {
         this.dataList = this.dataList.concat(content);
       });
     },
+    resetPagination() {
+      this.currentPage = 0;
+      this.dataList = [];
+      this.totalElement = 0;
+      this.totalPage = 0;
+    },
   },
   mounted() {
     if (this.requestUponMounted) {

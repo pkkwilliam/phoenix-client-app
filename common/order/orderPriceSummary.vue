@@ -4,7 +4,10 @@
       <text>商品總價</text>
       <text>${{ itemCost }}</text>
     </view>
-    <view class="space-between-container small-margin-top-spacer">
+    <view
+      class="space-between-container small-margin-top-spacer"
+      v-if="shippingCost"
+    >
       <text>運費</text>
       <text>${{ shippingCost }}</text>
     </view>

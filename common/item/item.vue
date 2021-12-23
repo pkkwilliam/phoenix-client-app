@@ -2,8 +2,8 @@
   <view>
     <u-lazy-load
       class="item-image"
-      border-radius="8px"
       :image="item.images[0]"
+      :border-radius="8"
     />
     <view class="description-container">
       <text class="h4 black bold description-text"
@@ -30,7 +30,7 @@ export default {
     },
     shorternDescriptionText() {
       const { description } = this.item;
-      return description.substring(0, 20);
+      return description.substring(0, 15);
     },
   },
   props: {

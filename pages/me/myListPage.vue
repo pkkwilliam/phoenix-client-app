@@ -6,7 +6,7 @@
     >
       <template v-slot:content="{ data }">
         <view class="user-created-item-container">
-          <user-created-item :item="data" />
+          <user-created-item :item="data" @onItemDeleted="onItemUpdated" />
         </view>
       </template>
     </pagination-item-display>
@@ -22,6 +22,10 @@ export default {
   methods: {
     getCreatedItemServiceRequest(pageRequest, pageSize) {
       return GET_CREATED_ITEMS(pageRequest, pageSize);
+    },
+    onItemUpdated() {
+      this.$refs.paginationItemDisplayRef.resetPagination();
+      this.$refs.paginationItemDisplayRef.getServiceResponse();
     },
   },
   mounted() {},

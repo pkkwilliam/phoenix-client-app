@@ -50,7 +50,7 @@ export default {
       return convertSystemDateToDisplayDateYear(convertDate);
     },
     description() {
-      return this.item.description.substring(0, 20);
+      return this.item.description.substring(0, 15);
     },
   },
   methods: {

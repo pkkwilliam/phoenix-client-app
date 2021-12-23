@@ -34,7 +34,7 @@
           </view>
           <view class="end-center-container medium-margin-top-spacer">
             <text class="h5">金額:</text>
-            <display-curreny-price :value="data.actualReceive" />
+            <display-curreny-price :value="data.amount - data.commissionFee" />
           </view>
         </view>
       </template>

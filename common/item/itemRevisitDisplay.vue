@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     description() {
-      return this.item.description.substring(0, 20);
+      return this.item.description.substring(0, 15);
     },
   },
   props: {

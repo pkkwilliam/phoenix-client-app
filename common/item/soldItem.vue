@@ -22,7 +22,7 @@ export default {
       return this.item.images[0];
     },
     description() {
-      return this.item.description.substring(0, 20);
+      return this.item.description.substring(0, 15);
     },
   },
   props: {

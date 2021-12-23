@@ -20,13 +20,13 @@ export default {
         this.order;
       const result = [];
       if (this.type === "buyer") {
-        result.push({ title: "賣家ID", value: item.createBy.sid });
+        result.push({ title: "賣家賬號", value: item.createBy.sid });
       } else {
-        result.push({ title: "買家ID", value: createBy.sid });
+        result.push({ title: "買家賬號", value: createBy.sid });
       }
       return [
         ...result,
-        { title: "訂單信息", value: remark },
+        remark ? { title: "訂單信息", value: remark } : {},
         { title: "交易單號", value: this.createOrderIdPrefix(createTime) + id },
         {
           title: "創建時間",

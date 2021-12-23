@@ -1,8 +1,11 @@
 <template>
   <view>
-    <view class="item-container">
+    <view>
       <item-detail-price-info class="medium-margin-top-spacer" :item="item" />
-      <item-detail-shipping-info class="medium-margin-top-spacer" :item="item" />
+      <item-detail-shipping-info
+        class="medium-margin-top-spacer"
+        :item="item"
+      />
       <view class="medium-margin-top-spacer">
         <text class="h3 black">{{ item.description }}</text>
       </view>

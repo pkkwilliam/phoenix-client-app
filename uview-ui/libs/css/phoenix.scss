@@ -53,13 +53,13 @@
 
 .align-end-container {
   @extend .column-container;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .end-center-container {
   @extend .row-container;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .space-around-container {

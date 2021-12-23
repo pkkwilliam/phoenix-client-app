@@ -7,6 +7,7 @@
       :inactive-color="$styles.secondary"
       :is-scroll="true"
       :list="categories"
+      :show-bar="false"
       @change="change"
     />
   </view>

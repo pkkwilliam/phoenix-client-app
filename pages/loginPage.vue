@@ -1,7 +1,7 @@
 <template>
   <view class="wrap">
     <view class="content">
-      <view class="title">{{ appName }}登錄</view>
+      <view class="title">登錄{{ appName }}</view>
       <view>
         <login />
       </view>

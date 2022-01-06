@@ -40,6 +40,9 @@ export const LOGIN_PAGE = () => ({
 export const MATCH_BAD_PARCEL_PAGE = () => ({
   url: "/pages/matchBadParcelPage",
 });
+export const PAYMENT_SELECTION_PAGE = (order) => ({
+  url: "/pages/payment/paymentSelectionPage?order=" + JSON.stringify(order),
+});
 export const PRE_ORDER_PAGE = (item) => ({
   url: "/pages/preOrderPage?item=" + JSON.stringify(item),
 });
@@ -72,8 +75,8 @@ export const MY_SOLD_PAGE = () => ({
 export const MY_VIEW_ITEM_PAGE = () => ({
   url: "/pages/me/myViewItemPage",
 });
-export const ORDER_CONFIRMATION_PAGE = (order) => ({
-  url: "/pages/order/orderConfirmationPage?order=" + JSON.stringify(order),
+export const ORDER_CONFIRMED_PAGE = (order) => ({
+  url: "/pages/order/orderConfirmedPage?order=" + JSON.stringify(order),
 });
 export const SEARCH_ITEM_PAGE = () => ({
   url: "/pages/item/searchItemPage",

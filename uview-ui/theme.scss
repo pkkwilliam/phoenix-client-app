@@ -51,8 +51,10 @@ $u-phoenix-light-grey: #a3a3a3;
 $u-phoenix-price-primary: #eb523f;
 $u-phoenix-font-dark: #3a3a3a;
 $u-phoenix-blue: #007aff;
+$u-phoenix-blue-gradient: linear-gradient(90deg, #007aff 100%, #7dbbff 100%);
 $u-phoenix-brown: #4d3009;
 $u-phoenix-dark-orange: #fe5006;
+$u-phoenix-light-blue: "#7DBBFF";
 $u-phoenix-light-yellow: #fefbe1;
 $u-phoenix-orange: #fd8204;
 $u-phoenix-white: #ffffff;
@@ -111,6 +113,9 @@ $u-phoenix-yellow: #fcbc17;
 .blue {
   color: $u-phoenix-blue;
 }
+.blue-gradient {
+  background-color: $u-phoenix-blue-gradient;
+}
 .brown {
   color: $u-phoenix-brown;
 }
@@ -119,6 +124,9 @@ $u-phoenix-yellow: #fcbc17;
 }
 .green {
   color: $u-type-success;
+}
+.light-blue {
+  color: $u-phoenix-light-blue;
 }
 .light-yellow {
   color: $u-phoenix-light-yellow;
@@ -139,18 +147,4 @@ $u-phoenix-yellow: #fcbc17;
 // effect
 .application-shadow {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-:export {
-  backgroundColor: $u-phoenix-background-color;
-  black: $u-phoenix-font-dark;
-  brown: $u-phoenix-brown;
-  green: $u-type-success;
-  orange: $u-phoenix-orange;
-  pricePrimary: $u-phoenix-price-primary;
-  priceSecondary: $u-phoenix-font-dark;
-  primary: $u-phoenix-primary;
-  secondary: $u-phoenix-light-grey;
-  white: $u-phoenix-white;
-  yellow: $u-phoenix-yellow;
 }

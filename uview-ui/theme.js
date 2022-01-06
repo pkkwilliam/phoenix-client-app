@@ -6,8 +6,11 @@
 export default {
   backgroundColor: "#f2f5f9",
   black: "#3a3a3a",
+  blue: "#007aff",
+  blueGradient: "linear-gradient(90deg, #007aff 100%, #7dbbff 100%)",
   brown: "#4d3009",
   darkOrange: "#fe5006",
+  lightBlue: "#7dbbff",
   lightYellow: "#fefbe1",
   green: "##19be6b",
   orange: "#fd8204",

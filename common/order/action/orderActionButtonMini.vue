@@ -21,6 +21,7 @@ import {
 } from "../../../enum/orderStatus";
 import {
   BUYER_ORDER_DETAIL_PAGE,
+  PAYMENT_SELECTION_PAGE,
   SELLER_ORDER_DETAIL_PAGE,
 } from "../../../route/applicationRoute";
 export default {
@@ -39,7 +40,7 @@ export default {
     buyerAction(order) {
       const { orderStatus } = order;
       if (orderStatus === ORDER_STATUS_PAYMENT_PENDING.key) {
-        return { label: "去付款", toPage: BUYER_ORDER_DETAIL_PAGE };
+        return { label: "去付款", toPage: () => PAYMENT_SELECTION_PAGE(order) };
       } else if (orderStatus === ORDER_STATUS_DELIVERY_PENDING.key) {
         return { label: "去收貨", toPage: BUYER_ORDER_DETAIL_PAGE };
       } else if (orderStatus === ORDER_STATUS_DELIVERED.key) {

@@ -44,11 +44,8 @@
         </view>
       </view>
       <view class="card medium-margin-top-spacer">
-        <text>請選擇支付方式</text>
-        <view class="medium-margin-top-spacer">
-          <u-line />
-        </view>
-        <payment-selection @onSelectPaymentChannel="onSelectPaymentChannel" />
+        <!-- <payment-selection @onSelectPaymentChannel="onSelectPaymentChannel" /> -->
+        <pre-order-payment-aid />
       </view>
     </view>
     <view class="cu-bar foot">
@@ -58,7 +55,11 @@
             <text class="label">實付款:</text>
             <display-curreny-price class="should-pay" :value="orderCost" />
           </view>
-          <primary-gradient-button @click="onClickSubmit" />
+          <primary-gradient-button
+            label="立即支付"
+            :disabled="disabledSubmitButton"
+            @click="onClickSubmit"
+          />
         </template>
       </stick-bottom-bar>
     </view>
@@ -77,16 +78,21 @@ import uLazyLoad from "../uview-ui/components/u-lazy-load/u-lazy-load.vue";
 import OrderConfirmItemCard from "../common/pre-order/preOrderConfirmItemCard.vue";
 import ULine from "../uview-ui/components/u-line/u-line.vue";
 import PaymentSelection from "../common/payment/paymentSelection.vue";
+import { calculateOrderCost } from "../common/pre-order/submitOrderUtil";
 import {
-  calculateOrderCost,
-  sumbitMpayOrder,
-} from "../common/pre-order/submitOrderUtil";
-import { getRouterJsonParam } from "../route/applicationRoute";
+  getRouterJsonParam,
+  MY_ORDER_PAGE,
+  ORDER_CONFIRMED_PAGE,
+  PAYMENT_SELECTION_PAGE,
+} from "../route/applicationRoute";
 import PreOrderShippingFee from "../common/pre-order/preOrderShippingFee.vue";
 import StickBottomBar from "../common/navigation/stickBottomBar.vue";
 import PrimaryGradientButton from "../common/button/primaryGradientButton.vue";
 
 import "../css/applicationTextField.scss";
+import { CREATE_ORDER } from "../service/service";
+import PreOrderPaymentAid from "../common/pre-order/preOrderPaymentAid.vue";
+import { ORDER_STATUS_SHIPMENT_PENDING } from "../enum/orderStatus";
 
 const DELIVERY_TYPES = [
   ITEM_DELIVERY_TYPE_THIRD_PARTY_DELIVERY,
@@ -104,10 +110,19 @@ export default {
     PreOrderShippingFee,
     StickBottomBar,
     PrimaryGradientButton,
+    PreOrderPaymentAid,
   },
   computed: {
     deliveryMethods() {
       return DELIVERY_TYPES.map((item) => item.label);
+    },
+    disabledSubmitButton() {
+      const { item, selectedAddress, selectedDeliveryTypeIndex } = this;
+      if (selectedDeliveryTypeIndex === 0) {
+        return !item || !selectedAddress;
+      } else {
+        return !item;
+      }
     },
     orderCost() {
       return calculateOrderCost(
@@ -131,7 +146,6 @@ export default {
       remark: undefined,
       selectedAddress: undefined,
       selectedDeliveryTypeIndex: 0,
-      selectedPaymentChannel: undefined,
     };
   },
   onLoad(options) {
@@ -142,26 +156,28 @@ export default {
     deliverySectionChange(index) {
       this.selectedDeliveryTypeIndex = index;
     },
-    onClickSubmit() {
-      const {
-        execute,
-        item,
-        remark,
-        selectedAddress,
-        selectedDeliveryTypeIndex,
-        selectedPaymentChannel,
-      } = this;
-      sumbitMpayOrder(
-        execute,
-        selectedAddress,
-        item,
-        DELIVERY_TYPES[selectedDeliveryTypeIndex],
-        selectedPaymentChannel,
-        remark
+    async onClickSubmit() {
+      const { item, remark, selectedAddress, selectedDeliveryTypeIndex } = this;
+      const deliveryAddress = selectedAddress
+        ? { id: selectedAddress.id }
+        : undefined;
+      const order = await this.execute(
+        CREATE_ORDER({
+          deliveryAddress,
+          item: { id: item.id },
+          itemDeliveryType: DELIVERY_TYPES[selectedDeliveryTypeIndex].key,
+          remark,
+        })
       );
+      this.onCreateOrderSuccess(order);
     },
-    onSelectPaymentChannel(paymentChannel) {
-      this.selectedPaymentChannel = paymentChannel;
+    onCreateOrderSuccess(order) {
+      if (order.orderState === ORDER_STATUS_SHIPMENT_PENDING.key) {
+        uni.navigateTo({ url: ORDER_CONFIRMED_PAGE(order).url });
+      } else {
+        uni.redirectTo({ url: MY_ORDER_PAGE().url });
+        uni.navigateTo({ url: PAYMENT_SELECTION_PAGE(order).url });
+      }
     },
   },
   async mounted() {

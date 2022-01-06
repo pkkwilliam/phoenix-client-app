@@ -250,14 +250,20 @@ export const UPDATE_ITEM = (request) => ({
 });
 
 // Mpay Order
-export const CREATE_MPAY_ORDER = (request) => ({
+export const REQUEST_MPAY_PAYMENT_INFO = (orderId, paymentChannel) => ({
   authenticatedRequest: true,
-  body: JSON.stringify(request),
   method: POST_METHOD,
-  url: USER_MPAY_ORDER,
+  url: USER_MPAY_ORDER + `/${orderId}?paymentChannel=${paymentChannel}`,
 });
 
 // Order
+export const CREATE_ORDER = (request) => ({
+  authenticatedRequest: true,
+  body: JSON.stringify(request),
+  method: POST_METHOD,
+  url: USER_ORDER,
+});
+
 export const GET_BUYER_INFO = (orderId) => ({
   authenticatedRequest: true,
   method: GET_METHOD,

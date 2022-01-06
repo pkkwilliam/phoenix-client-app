@@ -8,39 +8,54 @@ const isApp = platform === "android" || platform === "ios";
 console.log(isApp);
 const isAndroid = platform === "android";
 
-if (isApp) {
-  if (process.env.NODE_ENV === "development") {
-    // mpay.setAlipayEnv(1);
-    mpay.setEnvironmentType(2);
-    mpay.setMPayAppId(2);
-    if (isAndroid) {
-      mpay.setMPayAppId(2);
-    }
-  } else {
-    // mpay.setAlipayEnv(0);
-    mpay.setEnvironmentType(0);
-  }
+// if (isApp) {
+//   if (process.env.NODE_ENV === "development") {
+//     // mpay.setAlipayEnv(1);
+//     mpay.setEnvironmentType(2);
+//     mpay.setMPayAppId(2);
+//     if (isAndroid) {
+//       mpay.setMPayAppId(2);
+//     }
+//   } else {
+//     // mpay.setAlipayEnv(0);
+//     mpay.setEnvironmentType(0);
+//   }
 
-  if (isAndroid) {
-    mpay.initWeChatData("missing!!!");
-  } else {
-    mpay.initWeChatData({
-      appId: "missing!!!",
-      universalLink: "",
-    });
-  }
-}
+//   if (isAndroid) {
+//     mpay.initWeChatData("missing!!!");
+//   } else {
+//     mpay.initWeChatData({
+//       appId: "missing!!!",
+//       universalLink: "",
+//     });
+//   }
+// }
 
 export async function submitMpayPayment(request, paymentChannel) {
   console.log("attempt to submit mpay payment isAndroid:", isAndroid);
-  let executeFunction;
-  if (isAndroid) {
-    executeFunction = submitAndroidPayment;
-  } else {
-    executeFunction = getIosPaymentChannelMethod(paymentChannel);
-  }
-  console.log("executeFunction", executeFunction);
-  await executeFunction(request);
+  const { preSignString } = request;
+  console.log(preSignString);
+  mpay.mpay(
+    {
+      payJson: preSignString,
+      scheme: "",
+    },
+    (e) => {
+      console.log("response", e);
+      // e.code = 0:成功 | 1:失败
+      // e.order = {} // 当e.code = 0返回订单结果
+      // 当失败的时候，打印e可以看到具体错误信息
+    }
+  );
+  // console.log("attempt to submit mpay payment isAndroid:", isAndroid);
+  // let executeFunction;
+  // if (isAndroid) {
+  //   executeFunction = submitAndroidPayment;
+  // } else {
+  //   executeFunction = getIosPaymentChannelMethod(paymentChannel);
+  // }
+  // console.log("executeFunction", executeFunction);
+  // await executeFunction(request);
 }
 
 export function submitAndroidPayment(request) {

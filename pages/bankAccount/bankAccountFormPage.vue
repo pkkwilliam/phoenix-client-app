@@ -16,6 +16,10 @@
           v-model="beneficialAccountNumber"
         />
       </view>
+      <view class="medium-margin-top-spacer">
+        <text class="h4 black bold">備註</text>
+        <u-input placeholder="請輸入備註" v-model="remark" />
+      </view>
     </view>
     <view>
       <view class="cu-bar foot column-center-container container">
@@ -62,25 +66,33 @@ export default {
       beneficialAccountNumber: undefined,
       id: undefined,
       isEdit: false,
+      remark: undefined,
     };
   },
   methods: {
     async createBankAccount() {
-      const { bank, beneficialName, beneficialAccountNumber } = this;
+      const { bank, beneficialName, beneficialAccountNumber, remark } = this;
       await this.execute(
-        CREATE_BANK_ACCOUNT({ bank, beneficialName, beneficialAccountNumber })
+        CREATE_BANK_ACCOUNT({
+          bank,
+          beneficialName,
+          beneficialAccountNumber,
+          remark,
+        })
       );
       await this.$appStateService.getBankAccount({ force: true });
       uni.navigateBack();
     },
     async updateBankAccount() {
-      const { bank, beneficialName, beneficialAccountNumber, id } = this;
+      const { bank, beneficialName, beneficialAccountNumber, id, remark } =
+        this;
       await this.execute(
         UPDATE_BANK_ACCOUNT({
           id,
           bank,
           beneficialName,
           beneficialAccountNumber,
+          remark,
         })
       );
       await this.$appStateService.getBankAccount({ force: true });
@@ -118,13 +130,14 @@ export default {
   onLoad(option) {
     const bankRouterParam = getRouterJsonParam(option, "bankAccount");
     if (bankRouterParam) {
-      const { bank, beneficialName, beneficialAccountNumber, id } =
+      const { bank, beneficialName, beneficialAccountNumber, id, remark } =
         bankRouterParam;
       this.isEdit = true;
       this.bank = bank;
       this.beneficialName = beneficialName;
       this.beneficialAccountNumber = beneficialAccountNumber;
       this.id = id;
+      this.remark = remark;
     }
   },
 };

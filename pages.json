@@ -142,7 +142,7 @@
       }
     },
     {
-      "path": "pages/order/orderConfirmationPage",
+      "path": "pages/order/orderConfirmedPage",
       "style": {
         "navigationBarBackgroundColor": "#ffe24b",
         "navigationBarTitleText": "交易成功",
@@ -155,6 +155,12 @@
         "navigationBarBackgroundColor": "#ffe24b",
         "navigationBarTitleText": "我買到的",
         "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/payment/paymentSelectionPage",
+      "style": {
+        "navigationBarTitleText": "支付方式"
       }
     },
     {

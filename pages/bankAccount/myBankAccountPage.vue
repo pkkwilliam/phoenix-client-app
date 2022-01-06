@@ -13,6 +13,9 @@
               `${getBankLabel(bank.bank)} ${bank.beneficialAccountNumber}`
             }}</text>
           </view>
+          <text class="h4 secondary" v-if="bank.remark">{{
+            `${bank.remark}`
+          }}</text>
         </view>
         <view @click="onClickBankAccount(bank)">
           <u-icon

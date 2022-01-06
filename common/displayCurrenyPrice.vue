@@ -27,6 +27,7 @@ export default {
       default: "primary",
       type: String,
     },
+    type: {},
     value: {
       default: 0,
       type: Number,

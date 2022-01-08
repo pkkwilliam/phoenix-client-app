@@ -5,17 +5,17 @@
       <text class="description">{{ description }}</text>
     </view>
     <view class="align-end-container">
-      <display-curreny-price priceColor="secondary" :value="item.price" />
+      <display-currency-fish-coin priceColor="secondary" :value="item.price" />
       <text class="h6 secondary quantity-text">x{{ quantity }}</text>
     </view>
   </view>
 </template>
 
 <script>
-import displayCurrenyPrice from "../displayCurrenyPrice.vue";
+import DisplayCurrencyFishCoin from "../displayCurrency/displayCurrencyFishCoin.vue";
 
 export default {
-  components: { displayCurrenyPrice },
+  components: { DisplayCurrencyFishCoin },
   component: {},
   computed: {
     coverImage() {

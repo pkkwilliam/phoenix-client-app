@@ -31,7 +31,7 @@
 import { ITEM_DETAIL_PAGE } from "../../route/applicationRoute";
 import { convertSystemDateToDisplayDateYear } from "../../util/dateUtil";
 import displayCurrenyPrice from "../displayCurrenyPrice.vue";
-import MpayGuarantee from "../mpayGuarantee.vue";
+import MpayGuarantee from "../../components/guarantee/mpayGuarantee.vue";
 import StrikeThroughCurrencyPrice from "../strikeThroughCurrencyPrice.vue";
 import UserCardMini from "../user/userCardMini.vue";
 import ItemViewAndSaveCount from "./itemViewAndSaveCount.vue";

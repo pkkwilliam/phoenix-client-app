@@ -11,6 +11,9 @@ export const ADDRESS_SELECTION_PAGE = () => ({
 export const ANNOUNCEMENT_DETAIL_PAGE = () => ({
   url: "/pages/announcementDetailPage",
 });
+export const BARTER_PRE_ORDER_PAGE = (item) => ({
+  url: "/pages/order/barterPreOrderPage?item=" + JSON.stringify(item),
+});
 export const BUYER_ORDER_DETAIL_PAGE = (orderObject) => ({
   url: "/pages/order/buyerOrderDetailPage?order=" + JSON.stringify(orderObject),
 });

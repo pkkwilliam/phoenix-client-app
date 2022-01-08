@@ -1,3 +1,5 @@
+import queryParams from "../uview-ui/libs/function/queryParams";
+
 const GET_METHOD = "GET";
 const POST_METHOD = "POST";
 const PUT_METHOD = "PUT";
@@ -261,6 +263,10 @@ export const CREATE_ORDER = (request) => ({
   authenticatedRequest: true,
   body: JSON.stringify(request),
   method: POST_METHOD,
+  timer: {
+    title: "處理中",
+    length: 2000,
+  },
   url: USER_ORDER,
 });
 
@@ -268,6 +274,20 @@ export const GET_BUYER_INFO = (orderId) => ({
   authenticatedRequest: true,
   method: GET_METHOD,
   url: USER_ORDER + `/${orderId}/buyer_info`,
+});
+
+export const GET_BUYER_ORDERS_BY_ORDER_STATUS_PAGINATION = (
+  orderStatuses,
+  pageRequest,
+  direction,
+  orderBy
+) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url:
+    USER_ORDER +
+    "/get_buy_orders_by_order_status" +
+    queryParams({ orderStatuses, pageRequest }, true, "comma"),
 });
 
 export const GET_BUYER_PENDING_ORDERS = () => ({
@@ -286,6 +306,20 @@ export const GET_SELLER_PENDING_ORDERS = () => ({
   authenticatedRequest: true,
   method: GET_METHOD,
   url: USER_ORDER + "/get_seller_pending_orders",
+});
+
+export const GET_SELLER_ORDERS_BY_ORDER_STATUS = (
+  orderStatuses,
+  pageRequest,
+  direction,
+  orderBy
+) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url:
+    USER_ORDER +
+    "/get_seller_orders_by_order_status" +
+    queryParams({ orderStatuses, pageRequest }, true, "comma"),
 });
 
 export const UPDATE_ORDER_AS_DEIVERED_BY_BUYER = (orderId) => ({

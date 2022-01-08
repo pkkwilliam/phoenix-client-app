@@ -1,11 +1,11 @@
 <template>
   <view>
     <u-icon
-      class="icon-container blue-randient"
+      class="icon-container light-blue"
       custom-prefix="phoenix-custom-icon"
-      name="dollar"
-      size="22"
-      :top="2"
+      name="fish_coin"
+      size="38"
+      :top="3"
     />
     <text class="h2 blue">{{ value }}</text>
   </view>

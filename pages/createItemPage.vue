@@ -84,7 +84,7 @@
       <view class="space-between-center-container">
         <icon-sub-header iconName="dollar" label="價格" />
         <view class="row-center-container" @click="onToggleCostInput">
-          <display-curreny-price :value="displayPrice" />
+          <display-currency-fish-coin :value="displayPrice" />
           <u-icon name="arrow-right" color="#a3a3a3" :size="26" />
         </view>
       </view>
@@ -111,7 +111,6 @@ import SelectableItemConditionTags from "../common/createItem/selectableItemCond
 import SelectableSubCategoryTags from "../common/createItem/selectableSubCategoryTags.vue";
 import UButton from "../uview-ui/components/u-button/u-button.vue";
 import CostInputTextField from "../common/costInputTextField.vue";
-import DisplayCurrenyPrice from "../common/displayCurrenyPrice.vue";
 import { createItemServiceRequestBody } from "../service/serviceRequestBodyUtil";
 import { CREATE_ITEM } from "../service/service";
 import { uploadMedia } from "../util/uploadMediaUtil";
@@ -120,6 +119,7 @@ import {
   getRouterJsonParam,
   ITEM_DETAIL_PAGE,
 } from "../route/applicationRoute";
+import DisplayCurrencyFishCoin from "../common/displayCurrency/displayCurrencyFishCoin.vue";
 export default {
   components: {
     PrimaryButton,
@@ -132,8 +132,8 @@ export default {
     ImageUploader,
     MediaUploader,
     CostInputTextField,
-    DisplayCurrenyPrice,
     UPopup,
+    DisplayCurrencyFishCoin,
   },
   computed: {
     displayPrice() {

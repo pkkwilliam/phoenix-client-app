@@ -134,6 +134,12 @@
       }
     },
     {
+      "path": "pages/order/barterPreOrderPage",
+      "style": {
+        "navigationBarTitleText": "購買寶貝"
+      }
+    },
+    {
       "path": "pages/order/buyerOrderDetailPage",
       "style": {
         "navigationBarBackgroundColor": "#ffe24b",

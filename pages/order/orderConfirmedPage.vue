@@ -1,7 +1,7 @@
 <template>
   <view>
     <application-navigation-bar
-      :backgroundColor="styles.darkOrange"
+      :backgroundColor="$styles.darkOrange"
       :isBack="false"
     />
     <view class="column-center-container top-container">
@@ -9,7 +9,7 @@
         <u-icon
           name="checkmark-circle-fill small-margin-right-spacer"
           size="38"
-          :color="styles.white"
+          :color="$styles.white"
         />
         <text class="h2 white lightly-bold">交易成功</text>
       </view>

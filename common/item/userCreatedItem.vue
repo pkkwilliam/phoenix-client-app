@@ -3,7 +3,7 @@
     <view class="space-between-center-container">
       <text class="h5 secondary">ID: {{ item.id }} {{ createDate }}</text>
       <view>
-        <display-curreny-price :value="item.price" />
+        <display-currency-fish-coin :value="item.price" />
       </view>
     </view>
     <view class="row-container medium-margin-top-spacer">
@@ -45,11 +45,11 @@
 import { ITEM_DETAIL_PAGE } from "../../route/applicationRoute";
 import { DELETE_ITEM } from "../../service/service";
 import { convertSystemDateToDisplayDateYear } from "../../util/dateUtil";
-import displayCurrenyPrice from "../displayCurrenyPrice.vue";
-import MpayGuarantee from "../mpayGuarantee.vue";
+import DisplayCurrencyFishCoin from "../displayCurrency/displayCurrencyFishCoin.vue";
+import MpayGuarantee from "../../components/guarantee/mpayGuarantee.vue";
 import ItemViewAndSaveCount from "./itemViewAndSaveCount.vue";
 export default {
-  components: { displayCurrenyPrice, MpayGuarantee, ItemViewAndSaveCount },
+  components: { MpayGuarantee, ItemViewAndSaveCount, DisplayCurrencyFishCoin },
   computed: {
     coverImage() {
       return this.item.images[0];

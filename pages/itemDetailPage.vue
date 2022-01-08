@@ -23,10 +23,10 @@
           <save-item-button :item="item" />
         </template>
         <template slot="right">
-          <primary-gradient-button
+          <primary-button
             label="我想要"
             :disabled="!item.active"
-            @click="onClickBuy"
+            @onClick="onClickBuy"
           />
         </template>
       </stick-bottom-bar>
@@ -39,16 +39,17 @@ import itemDetail from "../common/item/itemDetail.vue";
 import SellerCard from "../common/sellerCard.vue";
 import SellerCardRecetInfo from "../common/sellerCardRecetInfo.vue";
 import {
+  BARTER_PRE_ORDER_PAGE,
   getRouterJsonParam,
   LOGIN_PAGE,
-  PRE_ORDER_PAGE,
 } from "../route/applicationRoute";
 import { GET_ITEM } from "../service/service";
 import UserCard from "../common/user/userCard.vue";
 import UserSubscribeButton from "../components/subscribe/UserSubscribeButton.vue";
 import SaveItemButton from "../components/item/saveItemButton.vue";
 import StickBottomBar from "../common/navigation/stickBottomBar.vue";
-import PrimaryGradientButton from "../common/button/primaryGradientButton.vue";
+import PrimaryButton from "../common/button/primaryButton.vue";
+
 export default {
   components: {
     itemDetail,
@@ -58,7 +59,7 @@ export default {
     UserSubscribeButton,
     SaveItemButton,
     StickBottomBar,
-    PrimaryGradientButton,
+    PrimaryButton,
   },
   data() {
     return {
@@ -75,7 +76,7 @@ export default {
       if (!this.isLogin()) {
         uni.navigateTo({ url: LOGIN_PAGE().url });
       } else {
-        uni.navigateTo({ url: PRE_ORDER_PAGE(this.item).url });
+        uni.navigateTo({ url: BARTER_PRE_ORDER_PAGE(this.item).url });
       }
     },
   },

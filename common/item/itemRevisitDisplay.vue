@@ -2,7 +2,7 @@
   <view>
     <view>
       <user-card-mini :user="item.createBy" />
-      <display-curreny-price :value="item.price" />
+      <display-currency-fish-coin :value="item.price" />
       <strike-through-currency-price :value="item.originalPrice" />
     </view>
     <image v-for="(image, index) in images" :key="index" />
@@ -18,18 +18,18 @@
 </template>
 
 <script>
-import DisplayCurrenyPrice from "../displayCurrenyPrice.vue";
-import MpayGuarantee from "../mpayGuarantee.vue";
+import DisplayCurrencyFishCoin from "../displayCurrency/displayCurrencyFishCoin.vue";
+import MpayGuarantee from "../../components/guarantee/mpayGuarantee.vue";
 import StrikeThroughCurrencyPrice from "../strikeThroughCurrencyPrice.vue";
 import UserCardMini from "../user/userCardMini.vue";
 import ItemViewAndSaveCount from "./itemViewAndSaveCount.vue";
 export default {
   components: {
-    DisplayCurrenyPrice,
     StrikeThroughCurrencyPrice,
     MpayGuarantee,
     ItemViewAndSaveCount,
     UserCardMini,
+    DisplayCurrencyFishCoin,
   },
   computed: {
     description() {

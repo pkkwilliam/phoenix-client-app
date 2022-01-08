@@ -1,15 +1,18 @@
 <template>
   <view class="space-between-container h4 black">
-    <text>實收款</text>
-    <text>$ {{ actualReceive }}</text>
+    <text>實收</text>
+    <display-fish-coin-price :value="actualReceive" />
   </view>
 </template>
 
 <script>
+import DisplayFishCoinPrice from "../displayCurrency/displayCurrencyFishCoin.vue";
+
 export default {
+  components: { DisplayFishCoinPrice },
   computed: {
     actualReceive() {
-      return this.order.cost - this.order.commissionFee;
+      return this.order.balanceUsedAmount;
     },
   },
   props: {

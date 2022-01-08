@@ -54,7 +54,7 @@ $u-phoenix-blue: #007aff;
 $u-phoenix-blue-gradient: linear-gradient(90deg, #007aff 100%, #7dbbff 100%);
 $u-phoenix-brown: #4d3009;
 $u-phoenix-dark-orange: #fe5006;
-$u-phoenix-light-blue: "#7DBBFF";
+$u-phoenix-light-blue: #7dbbff;
 $u-phoenix-light-yellow: #fefbe1;
 $u-phoenix-orange: #fd8204;
 $u-phoenix-white: #ffffff;
@@ -114,7 +114,7 @@ $u-phoenix-yellow: #fcbc17;
   color: $u-phoenix-blue;
 }
 .blue-gradient {
-  background-color: $u-phoenix-blue-gradient;
+  color: $u-phoenix-blue-gradient;
 }
 .brown {
   color: $u-phoenix-brown;

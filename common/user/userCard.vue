@@ -1,21 +1,27 @@
 <template>
-  <view class="row-center-container" @click="onClick">
-    <view>
-      <u-avatar size="108" :src="userAvatarImageUrl" />
+  <view>
+    <view class="row-center-container" @click="onClick">
+      <view>
+        <u-avatar size="108" :src="userAvatarImageUrl" />
+      </view>
+      <view class="column-container text-container">
+        <text class="h3 black">{{ userNickname }}</text>
+        <text class="h5 secondary">{{ userDescription }}</text>
+      </view>
     </view>
-    <view class="column-container text-container">
-      <text class="h3 black">{{ userNickname }}</text>
-      <text class="h5 secondary">{{ userDescription }}</text>
+    <view class="small-margin-top-spacer">
+      <phone-number-verified-tag />
     </view>
   </view>
 </template>
 
 <script>
+import PhoneNumberVerifiedTag from "../../components/tag/phoneNumberVerifiedTag.vue";
 import { USER_PAGE } from "../../route/applicationRoute";
 import UAvatar from "../../uview-ui/components/u-avatar/u-avatar.vue";
 
 export default {
-  components: { UAvatar },
+  components: { UAvatar, PhoneNumberVerifiedTag },
   computed: {
     userAvatarImageUrl() {
       const { user } = this;

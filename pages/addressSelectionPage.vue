@@ -26,7 +26,7 @@
       </view>
     </view>
     <view class="cu-bar foot container">
-      <primary-button label="創建地址" @click="onClickCreateAddress" />
+      <primary-button label="創建地址" @onClick="onClickCreateAddress" />
     </view>
   </view>
 </template>

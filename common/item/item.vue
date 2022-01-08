@@ -11,19 +11,29 @@
       </text>
     </view>
     <view class="row-center-container small-margin-top-spacer">
-      <display-curreny-price :value="item.price" />
+      <display-currency-fish-coin :value="item.price" />
       <view class="small-margin-left-spacer">
         <item-view-and-save-count :viewCount="item.viewCount" />
       </view>
+    </view>
+    <view>
+      <barter-tag />
     </view>
   </view>
 </template>
 
 <script>
+import BarterTag from "../../components/tag/barterTag.vue";
+import DisplayCurrencyFishCoin from "../displayCurrency/displayCurrencyFishCoin.vue";
 import DisplayCurrenyPrice from "../displayCurrenyPrice.vue";
 import ItemViewAndSaveCount from "./itemViewAndSaveCount.vue";
 export default {
-  components: { DisplayCurrenyPrice, ItemViewAndSaveCount },
+  components: {
+    DisplayCurrencyFishCoin,
+    DisplayCurrenyPrice,
+    ItemViewAndSaveCount,
+    BarterTag,
+  },
   computed: {
     coverImage() {
       return this.item.images[0];

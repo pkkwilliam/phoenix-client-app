@@ -1,15 +1,15 @@
 <template>
   <view>
     <text v-if="isShippingFeeIncluded">包郵</text>
-    <display-curreny-price v-else :value="fixedShippingFee" />
+    <display-currency-fish-coin v-else :value="fixedShippingFee" />
   </view>
 </template>
 
 <script>
 import { ITEM_SHIPPING_CHARGE_TYPE_INCLUDE } from "../../enum/itemShippingChargeTypes";
-import displayCurrenyPrice from "../displayCurrenyPrice.vue";
+import DisplayCurrencyFishCoin from "../displayCurrency/displayCurrencyFishCoin.vue";
 export default {
-  components: { displayCurrenyPrice },
+  components: { DisplayCurrencyFishCoin },
   computed: {
     isShippingFeeIncluded() {
       return (

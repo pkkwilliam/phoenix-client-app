@@ -9,7 +9,10 @@
           <view class="space-between-center-container">
             <user-card-mini :user="data.item.createBy" />
             <view class="row-center-container">
-              <display-curreny-price class="price" :value="data.item.price" />
+              <display-currency-fish-coin
+                class="price"
+                :value="data.item.price"
+              />
               <strike-through-currency-price :value="data.item.originalPrice" />
             </view>
           </view>
@@ -23,7 +26,7 @@
 </template>
 
 <script>
-import DisplayCurrenyPrice from "../../common/displayCurrenyPrice.vue";
+import DisplayCurrencyFishCoin from "../../common/displayCurrency/displayCurrencyFishCoin.vue";
 import UserSaveItem from "../../common/item/userSaveItem.vue";
 import paginationItemDisplay from "../../common/itemDisplayList/paginationItemDisplay.vue";
 import StrikeThroughCurrencyPrice from "../../common/strikeThroughCurrencyPrice.vue";
@@ -33,9 +36,9 @@ export default {
   components: {
     paginationItemDisplay,
     UserSaveItem,
-    DisplayCurrenyPrice,
     UserCardMini,
     StrikeThroughCurrencyPrice,
+    DisplayCurrencyFishCoin,
   },
   methods: {
     getUserSaveItem(pageRequest, pageSize) {

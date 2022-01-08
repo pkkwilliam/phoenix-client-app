@@ -55,11 +55,11 @@
       <stick-bottom-bar>
         <template slot="right">
           <view class="row-center-container medium-margin-right-spacer">
-            <text class="label small-margin-right-spacer">實付款:</text>
+            <text class="label small-margin-right-spacer">需要:</text>
             <display-currency-fish-coin class="should-pay" :value="orderCost" />
           </view>
           <primary-button
-            label="立即支付"
+            label="立即交易"
             :disabled="disabledSubmitButton"
             @onClick="onClickSubmit"
           />
@@ -70,33 +70,30 @@
 </template>
 
 <script>
-import DeliveryAddressDisplay from "../common/address/deliveryAddressDisplay.vue";
-import ApplicationSubsection from "../common/applicationSubsection.vue";
+import DeliveryAddressDisplay from "../../common/address/deliveryAddressDisplay.vue";
+import ApplicationSubsection from "../../common/applicationSubsection.vue";
 import {
   ITEM_DELIVERY_TYPE_FACE_TO_FACE,
   ITEM_DELIVERY_TYPE_THIRD_PARTY_DELIVERY,
-} from "../enum/itemDeliveryType";
-import uLazyLoad from "../uview-ui/components/u-lazy-load/u-lazy-load.vue";
-import OrderConfirmItemCard from "../common/pre-order/preOrderConfirmItemCard.vue";
-import ULine from "../uview-ui/components/u-line/u-line.vue";
-import PaymentSelection from "../common/payment/paymentSelection.vue";
-import { calculateOrderCost } from "../common/pre-order/submitOrderUtil";
+} from "../../enum/itemDeliveryType";
+import uLazyLoad from "../../uview-ui/components/u-lazy-load/u-lazy-load.vue";
+import OrderConfirmItemCard from "../../common/pre-order/preOrderConfirmItemCard.vue";
+import ULine from "../../uview-ui/components/u-line/u-line.vue";
+import PaymentSelection from "../../common/payment/paymentSelection.vue";
+import { calculateOrderCost } from "../../common/pre-order/submitOrderUtil";
 import {
   getRouterJsonParam,
-  MY_ORDER_PAGE,
   ORDER_CONFIRMED_PAGE,
-  PAYMENT_SELECTION_PAGE,
-} from "../route/applicationRoute";
-import PreOrderShippingFee from "../common/pre-order/preOrderShippingFee.vue";
-import StickBottomBar from "../common/navigation/stickBottomBar.vue";
-import PrimaryGradientButton from "../common/button/primaryGradientButton.vue";
+} from "../../route/applicationRoute";
+import PreOrderShippingFee from "../../common/pre-order/preOrderShippingFee.vue";
+import StickBottomBar from "../../common/navigation/stickBottomBar.vue";
+import PrimaryGradientButton from "../../common/button/primaryGradientButton.vue";
 
-import "../css/applicationTextField.scss";
-import { CREATE_ORDER } from "../service/service";
-import PreOrderPaymentAid from "../common/pre-order/preOrderPaymentAid.vue";
-import { ORDER_STATUS_SHIPMENT_PENDING } from "../enum/orderStatus";
-import DisplayCurrencyFishCoin from "../common/displayCurrency/displayCurrencyFishCoin.vue";
-import PrimaryButton from "../common/button/primaryButton.vue";
+import "../../css/applicationTextField.scss";
+import { CREATE_ORDER } from "../../service/service";
+import PreOrderPaymentAid from "../../common/pre-order/preOrderPaymentAid.vue";
+import DisplayCurrencyFishCoin from "../../common/displayCurrency/displayCurrencyFishCoin.vue";
+import PrimaryButton from "../../common/button/primaryButton.vue";
 
 const DELIVERY_TYPES = [
   ITEM_DELIVERY_TYPE_FACE_TO_FACE,
@@ -123,7 +120,7 @@ export default {
     },
     disabledSubmitButton() {
       const { item, selectedAddress, selectedDeliveryTypeIndex } = this;
-      if (selectedDeliveryTypeIndex === 0) {
+      if (selectedDeliveryTypeIndex === 1) {
         return !item || !selectedAddress;
       } else {
         return !item;
@@ -141,8 +138,8 @@ export default {
     },
     remarkPlaceHolder() {
       return this.selectedDeliveryTypeIndex === 0
-        ? "請輸入備註...如: 送貨時間"
-        : "請輸入當面交易備註...如: 意向交易地點、時間";
+        ? "請輸入當面交易備註...如: 意向交易地點、時間"
+        : "請輸入備註...如: 送貨時間";
     },
   },
   data() {
@@ -177,12 +174,7 @@ export default {
       this.onCreateOrderSuccess(order);
     },
     onCreateOrderSuccess(order) {
-      if (order.orderState === ORDER_STATUS_SHIPMENT_PENDING.key) {
-        uni.navigateTo({ url: ORDER_CONFIRMED_PAGE(order).url });
-      } else {
-        uni.redirectTo({ url: MY_ORDER_PAGE().url });
-        uni.navigateTo({ url: PAYMENT_SELECTION_PAGE(order).url });
-      }
+      uni.navigateTo({ url: ORDER_CONFIRMED_PAGE(order).url });
     },
   },
   async mounted() {

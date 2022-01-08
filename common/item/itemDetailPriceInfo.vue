@@ -1,20 +1,30 @@
 <template>
-  <view class="price-info-container">
-    <display-curreny-price class="content" :value="item.price" />
-    <strike-through-currency-price
-      class="content"
-      :value="item.originalPrice"
+  <view class="row-center-container">
+    <display-currency-fish-coin
+      class="medium-margin-right-spacer"
+      :value="item.price"
     />
-    <discount-tag class="content" :value="discountRate" />
+    <barter-tag class="medium-margin-right-spacer" />
+    <face-to-face-trade-tag />
   </view>
 </template>
 
 <script>
+import BarterTag from "../../components/tag/barterTag.vue";
+import FaceToFaceTradeTag from "../../components/tag/faceToFaceTradeTag.vue";
 import DiscountTag from "../discountTag.vue";
+import DisplayCurrencyFishCoin from "../displayCurrency/displayCurrencyFishCoin.vue";
 import displayCurrenyPrice from "../displayCurrenyPrice.vue";
 import StrikeThroughCurrencyPrice from "../strikeThroughCurrencyPrice.vue";
 export default {
-  components: { displayCurrenyPrice, StrikeThroughCurrencyPrice, DiscountTag },
+  components: {
+    DisplayCurrencyFishCoin,
+    displayCurrenyPrice,
+    StrikeThroughCurrencyPrice,
+    DiscountTag,
+    BarterTag,
+    FaceToFaceTradeTag,
+  },
   computed: {
     discountRate() {
       const { price, originalPrice } = this.item;
@@ -28,12 +38,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content {
-  margin-right: 15rpx;
-}
-.price-info-container {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-}
 </style>

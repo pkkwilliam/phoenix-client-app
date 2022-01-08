@@ -28,7 +28,10 @@
       </view>
     </view>
     <view class="cu-bar foot container">
-      <primary-button label="添加銀行賬戶" @click="onClickCreateBankAccount" />
+      <primary-button
+        label="添加銀行賬戶"
+        @onClick="onClickCreateBankAccount"
+      />
     </view>
   </view>
 </template>

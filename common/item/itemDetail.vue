@@ -22,7 +22,7 @@
       />
     </view>
     <view class="space-between-center-container medium-margin-top-spacer">
-      <mpay-guarantee />
+      <platform-guarantee />
       <item-view-and-save-count
         :saveCount="item.saveCount"
         :viewCount="item.viewCount"
@@ -33,22 +33,21 @@
 
 <script>
 import { getItemConditionLabelByKey } from "../../enum/itemCondition";
-import DiscountTag from "../discountTag.vue";
 import DisplayCurrenyPrice from "../displayCurrenyPrice.vue";
 import ItemDetailPriceInfo from "./itemDetailPriceInfo.vue";
 import ItemDetailShippingInfo from "./itemDetailShippingInfo.vue";
 import StrikeThroughCurrencyPrice from "../strikeThroughCurrencyPrice.vue";
 import ItemViewAndSaveCount from "./itemViewAndSaveCount.vue";
-import MpayGuarantee from "../mpayGuarantee.vue";
+import PlatformGuarantee from "../../components/guarantee/platformGuarantee.vue";
+
 export default {
   components: {
     DisplayCurrenyPrice,
     StrikeThroughCurrencyPrice,
-    DiscountTag,
     ItemDetailPriceInfo,
     ItemDetailShippingInfo,
     ItemViewAndSaveCount,
-    MpayGuarantee,
+    PlatformGuarantee,
   },
   computed: {
     conditionLabel() {

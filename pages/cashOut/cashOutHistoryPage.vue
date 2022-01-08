@@ -34,7 +34,9 @@
           </view>
           <view class="end-center-container medium-margin-top-spacer">
             <text class="h5">金額:</text>
-            <display-curreny-price :value="data.amount - data.commissionFee" />
+            <display-currency-fish-coin
+              :value="data.amount - data.commissionFee"
+            />
           </view>
         </view>
       </template>
@@ -43,14 +45,14 @@
 </template>
 
 <script>
-import DisplayCurrenyPrice from "../../common/displayCurrenyPrice.vue";
+import DisplayCurrencyFishCoin from "../../common/displayCurrency/displayCurrencyFishCoin.vue";
 import paginationItemDisplay from "../../common/itemDisplayList/paginationItemDisplay.vue";
 import { getBankLabelByKey } from "../../enum/bank";
 import { GET_CASH_OUT_PAGINATION } from "../../service/service";
 import { convertSystemDateToDisplayDateTimeMinute } from "../../util/dateUtil";
 
 export default {
-  components: { paginationItemDisplay, DisplayCurrenyPrice },
+  components: { paginationItemDisplay, DisplayCurrencyFishCoin },
   methods: {
     getCashOutPagination(pageRequest, pageSize) {
       return GET_CASH_OUT_PAGINATION(pageRequest, pageSize);

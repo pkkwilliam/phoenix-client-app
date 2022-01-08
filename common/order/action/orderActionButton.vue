@@ -1,8 +1,9 @@
 <template>
   <primary-button
+    class="button"
     v-if="action"
     :label="action.label"
-    @click="onClickActionButton"
+    @onClick="onClickActionButton"
   />
 </template>
 
@@ -99,4 +100,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.button {
+  width: 100%;
+}
 </style>

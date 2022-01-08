@@ -9,15 +9,15 @@
     />
     <view class="item-text-container">
       <text class="item-description">{{ itemDescription }}</text>
-      <display-curreny-price class="price" :value="itemPrice" />
+      <display-currency-fish-coin class="price" :value="itemPrice" />
     </view>
   </view>
 </template>
 
 <script>
-import displayCurrenyPrice from "../displayCurrenyPrice.vue";
+import DisplayCurrencyFishCoin from "../displayCurrency/displayCurrencyFishCoin.vue";
 export default {
-  components: { displayCurrenyPrice },
+  components: { DisplayCurrencyFishCoin },
   computed: {
     itemCoverImage() {
       return this.item.images[0];

@@ -29,7 +29,7 @@
       </view>
     </view>
     <view class="cu-bar foot container">
-      <primary-button label="提交" @click="onClickSubmit" />
+      <primary-button label="提交" @onClick="onClickSubmit" />
     </view>
   </view>
 </template>

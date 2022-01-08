@@ -2,8 +2,10 @@
   <u-button
     class="custom-style"
     shape="circle"
-    type="primary"
-    @click="$emit('click')"
+    :hairLine="true"
+    :loading="loading"
+    :size="size"
+    @click="$emit('onClick')"
     >{{ label }}</u-button
   >
 </template>
@@ -12,17 +14,30 @@
 export default {
   computed: {},
   props: {
+    disabled: {
+      default: false,
+      type: Boolean,
+    },
     label: {
       default: "提交",
       type: String,
     },
-    size: {},
+    loading: {
+      default: false,
+      type: Boolean,
+    },
+    size: {
+      default: "default",
+      type: String,
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .custom-style {
-  width: 100%;
+  color: black;
+  background-color: $u-phoenix-primary;
+  margin: 0px;
 }
 </style>

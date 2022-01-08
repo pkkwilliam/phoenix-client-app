@@ -37,7 +37,7 @@
           <template v-slot:content="{ data }">
             <view class="card medium-margin-top-spacer">
               <view class="align-end-container">
-                <display-curreny-price class="price" :value="data.price" />
+                <display-currency-fish-coin class="price" :value="data.price" />
               </view>
               <user-save-item :item="data" />
             </view>
@@ -50,29 +50,29 @@
 
 <script>
 import { getRouterJsonParam, USER_PAGE } from "../../route/applicationRoute";
-import PhoneNumberVerifiedTag from "../../components/user-qualification/phoneNumberVerifiedTag.vue";
+import PhoneNumberVerifiedTag from "../../components/tag/phoneNumberVerifiedTag.vue";
 import UserSubscribeButton from "../../components/subscribe/UserSubscribeButton.vue";
 import PaginationItemDisplay from "../../common/itemDisplayList/paginationItemDisplay.vue";
 import { GET_ITEMS_BY_USER_ID } from "../../service/service";
 import UserSaveItem from "../../common/item/userSaveItem.vue";
-import DisplayCurrenyPrice from "../../common/displayCurrenyPrice.vue";
 import StrikeThroughCurrencyPrice from "../../common/strikeThroughCurrencyPrice.vue";
 import ApplicationLineBreaker from "../../components/applicationLineBreaker.vue";
 import UserLikeCountButton from "../../components/navigationButton/user/userLikeCountButton.vue";
 import UserSubscribeCountButton from "../../components/navigationButton/user/userSubscribeCountButton.vue";
 import UserFansCountButton from "../../components/navigationButton/user/userFansCountButton.vue";
+import DisplayCurrencyFishCoin from "../../common/displayCurrency/displayCurrencyFishCoin.vue";
 export default {
   components: {
     PaginationItemDisplay,
     PhoneNumberVerifiedTag,
     UserSaveItem,
     UserSubscribeButton,
-    DisplayCurrenyPrice,
     StrikeThroughCurrencyPrice,
     ApplicationLineBreaker,
     UserFansCountButton,
     UserLikeCountButton,
     UserSubscribeCountButton,
+    DisplayCurrencyFishCoin,
   },
   computed: {
     userAvatarImageUrl() {

@@ -19,11 +19,6 @@ export default {
       const { createBy, id, item, createTime, paymentTime, remark } =
         this.order;
       const result = [];
-      if (this.type === "buyer") {
-        result.push({ title: "賣家賬號", value: item.createBy.sid });
-      } else {
-        result.push({ title: "買家賬號", value: createBy.sid });
-      }
       return [
         ...result,
         remark ? { title: "訂單信息", value: remark } : {},

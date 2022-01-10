@@ -6,7 +6,7 @@
       v-for="(itemLocation, index) in itemLocations"
       :key="index"
       :text="itemLocation"
-      :type="currentSelectedIndex === index ? 'warning' : 'info'"
+      :type="itemLocation === value ? 'warning' : 'info'"
       @click="onSelectAreaLocation(index)"
     />
   </view>
@@ -19,21 +19,12 @@ export default {
       return ["澳門半島", "氹仔", "路環"];
     },
   },
-  data() {
-    return { currentSelectedIndex: -1 };
-  },
   methods: {
     onSelectAreaLocation(index) {
-      this.currentSelectedIndex = index;
-      this.onSelect(this.itemLocations[index]);
+      this.$emit("input", this.itemLocations[index]);
     },
   },
-  props: {
-    onSelect: {
-      default: (selectedItem) => {},
-      type: Function,
-    },
-  },
+  props: ["value"],
 };
 </script>
 

@@ -6,7 +6,7 @@
       v-for="(category, index) in categories"
       :key="index"
       :text="category.chineseName"
-      :type="currentSelectedIndex === index ? 'warning' : 'info'"
+      :type="category.id === currentSelectValueId ? 'warning' : 'info'"
       @click="onSelectCategory(index)"
     />
   </view>
@@ -18,28 +18,21 @@ export default {
     categories() {
       return this.$store.state.category.content;
     },
-  },
-  data() {
-    return {
-      currentSelectedIndex: -1,
-    };
+    currentSelectValueId() {
+      return this.value?.id ?? 0;
+    },
   },
   methods: {
     onSelectCategory(index) {
-      this.currentSelectedIndex = index;
-      this.onSelect(this.categories[index]);
-      this.$appStateService.getSubCategory(this.categories[index]);
+      const selectedCategory = this.categories[index];
+      this.$appStateService.getSubCategory(selectedCategory);
+      this.$emit("input", selectedCategory);
     },
   },
   mounted() {
     this.$appStateService.getCategory();
   },
-  props: {
-    onSelect: {
-      default: () => {},
-      type: Function,
-    },
-  },
+  props: ["value"],
 };
 </script>
 

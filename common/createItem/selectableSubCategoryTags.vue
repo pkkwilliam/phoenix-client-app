@@ -6,7 +6,7 @@
       v-for="(subCategory, index) in subCategories"
       :key="index"
       :text="subCategory.chineseName"
-      :type="currentSelectedIndex === index ? 'warning' : 'info'"
+      :type="subCategory.id === currentSelectedId ? 'warning' : 'info'"
       @click="onSelectSubCategory(index)"
     />
   </view>
@@ -15,6 +15,9 @@
 <script>
 export default {
   computed: {
+    currentSelectedId() {
+      return this.value?.id ?? 0;
+    },
     subCategories() {
       if (this.category) {
         return this.$store.state.subCategory.content[this.category];
@@ -22,26 +25,13 @@ export default {
       return [];
     },
   },
-  data() {
-    return {
-      currentSelectedIndex: -1,
-    };
-  },
   methods: {
     onSelectSubCategory(index) {
-      this.currentSelectedIndex = index;
-      this.onSelect(this.subCategories[index]);
+      const selectedSubCategory = this.subCategories[index];
+      this.$emit("input", selectedSubCategory);
     },
   },
-  props: {
-    category: {
-      type: Object,
-    },
-    onSelect: {
-      default: () => {},
-      type: Function,
-    },
-  },
+  props: ["value", "category"],
 };
 </script>
 

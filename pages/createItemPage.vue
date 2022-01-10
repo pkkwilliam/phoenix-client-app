@@ -32,14 +32,10 @@
     </view>
     <!-- item location -->
     <view class="medium-margin-top-spacer">
-      <icon-sub-header
-        iconName="location"
-        label="物品所在地區"
-        :onSelect="onSelectCategory"
-      />
+      <icon-sub-header iconName="location" label="物品所在地區" />
       <view class="medium-margin-top-spacer">
         <scroll-view scroll-x class="u-scroll-view" scroll-with-animation>
-          <selectable-area-location-tags :onSelect="onSelectAreaLocation" />
+          <selectable-area-location-tags v-model="selectedAreaLocation" />
         </scroll-view>
       </view>
     </view>
@@ -51,21 +47,20 @@
           <text>分類</text>
         </view>
         <scroll-view scroll-x class="u-scroll-view" scroll-with-animation>
-          <selectable-category-tags :onSelect="onSelectCategory" />
+          <selectable-category-tags v-model="selectedCategory" />
         </scroll-view>
       </view>
       <view
         class="row-center-container medium-margin-top-spacer"
         v-if="selectedCategory"
-        :onSelect="onSelectCategory"
       >
         <view class="label-container medium-margin-right-spacer">
           <text>類型</text>
         </view>
         <scroll-view class="u-scroll-view" scroll-x scroll-with-animation>
           <selectable-sub-category-tags
+            v-model="selectedSubCategory"
             :category="selectedCategory"
-            :onSelect="onSelectSubCategory"
           />
         </scroll-view>
       </view>
@@ -75,7 +70,7 @@
         </view>
         <view>
           <scroll-view class="u-scroll-view" scroll-x>
-            <selectable-item-condition-tags @onSelect="onSelectItemCondition" />
+            <selectable-item-condition-tags v-model="selectedItemCondition" />
           </scroll-view>
         </view>
       </view>
@@ -249,18 +244,6 @@ export default {
     onConfirmDeliveryTypeAndShippingCharge(values) {
       this.deliveryTypeAndShippingCharge = values;
       this.showCostInput = false;
-    },
-    onSelectAreaLocation(areaLocation) {
-      this.selectedAreaLocation = areaLocation;
-    },
-    onSelectCategory(category) {
-      this.selectedCategory = category;
-    },
-    onSelectItemCondition(itemCondition) {
-      this.selectedItemCondition = itemCondition;
-    },
-    onSelectSubCategory(subCategory) {
-      this.selectedSubCategory = subCategory;
     },
     onToggleCostInput() {
       this.showCostInput = !this.showCostInput;

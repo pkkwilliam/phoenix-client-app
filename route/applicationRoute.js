@@ -94,7 +94,9 @@ export const USER_PAGE = (user) => ({
   url: `/pages/user/userPage?user=${JSON.stringify(user)}`,
 });
 // tab
-export const CREATE_ITEM_TAB = () => ({ url: "/pages/createItemPage" });
+export const CREATE_ITEM_TAB = (item) => ({
+  url: "/pages/createItemPage?item=" + JSON.stringify(item),
+});
 export const LANDING_TAB = () => ({
   url: "/pages/index/tabbar",
 });

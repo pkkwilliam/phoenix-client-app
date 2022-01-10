@@ -10,7 +10,8 @@
         :disabled="disabledSubmitButton"
         :loading="loading"
         @click="onClickSubmit"
-        >發佈
+      >
+        {{ submitLabel }}
       </u-button>
     </view>
     <view class="medium-margin-top-spacer">
@@ -172,6 +173,9 @@ export default {
     getCategory() {
       return this.selectedCategory;
     },
+    submitLabel() {
+      return this.isEdit ? "修改" : "發佈";
+    },
   },
   data() {
     return {
@@ -277,6 +281,12 @@ export default {
         subCategory,
         title,
       } = item;
+      this.description = description;
+      this.selectedMedia = images;
+      this.selectedItemCondition = itemCondition;
+      this.selectedAreaLocation = itemLocation;
+      this.selectedCategory = category;
+      this.selectedSubCategory = subCategory;
     },
   },
 

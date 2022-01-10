@@ -28,8 +28,8 @@
             "Statistic" : {}
         },
         "distribute" : {
-			"debug" : true, // "是否开启调试功能",
-			"syncDebug" : true, // "是否为真机运行基座"
+            "debug" : true, // "是否开启调试功能",
+            "syncDebug" : true, // "是否为真机运行基座"
             "android" : {
                 "permissions" : [
                     "<uses-feature android:name=\"android.hardware.camera\"/>",
@@ -138,5 +138,5 @@
         "enable" : false
     },
     "_spaceID" : "4c7380e8-755f-4717-9f87-173b7bdadbe3",
-    "vueVersion" : "2"
+    "vueVersion" : "3"
 }

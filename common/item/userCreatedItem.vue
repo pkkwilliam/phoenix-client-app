@@ -13,7 +13,7 @@
       }}</text>
     </view>
     <view class="space-between-center-container medium-margin-top-spacer">
-      <mpay-guarantee />
+      <platform-guarantee />
       <item-view-and-save-count
         :viewCount="item.viewCount"
         :saveCount="item.saveCount"
@@ -26,6 +26,7 @@
         shape="circle"
         type="primary"
         :plain="true"
+        @click="onClickEdit"
         >修改</u-button
       >
       <u-button
@@ -42,14 +43,21 @@
 </template>
 
 <script>
-import { ITEM_DETAIL_PAGE } from "../../route/applicationRoute";
+import {
+  CREATE_ITEM_TAB,
+  ITEM_DETAIL_PAGE,
+} from "../../route/applicationRoute";
 import { DELETE_ITEM } from "../../service/service";
 import { convertSystemDateToDisplayDateYear } from "../../util/dateUtil";
 import DisplayCurrencyFishCoin from "../displayCurrency/displayCurrencyFishCoin.vue";
-import MpayGuarantee from "../../components/guarantee/mpayGuarantee.vue";
 import ItemViewAndSaveCount from "./itemViewAndSaveCount.vue";
+import platformGuarantee from "../../components/guarantee/platformGuarantee.vue";
 export default {
-  components: { MpayGuarantee, ItemViewAndSaveCount, DisplayCurrencyFishCoin },
+  components: {
+    ItemViewAndSaveCount,
+    DisplayCurrencyFishCoin,
+    platformGuarantee,
+  },
   computed: {
     coverImage() {
       return this.item.images[0];
@@ -79,6 +87,9 @@ export default {
           }
         },
       });
+    },
+    onClickEdit() {
+      uni.navigateTo({ url: CREATE_ITEM_TAB(this.item).url });
     },
     onClickItem() {
       uni.navigateTo({ url: ITEM_DETAIL_PAGE(this.item).url });

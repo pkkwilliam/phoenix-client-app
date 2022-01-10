@@ -86,7 +86,7 @@
       </view>
       <u-popup border-radius="16" mode="bottom" v-model="showCostInput">
         <view class="card">
-          <cost-input-text-field
+          <barter-cost-input-text-field
             :deliveryTypeAndShippingCharge="deliveryTypeAndShippingCharge"
             @onSubmit="onConfirmDeliveryTypeAndShippingCharge"
           />
@@ -116,6 +116,7 @@ import {
   ITEM_DETAIL_PAGE,
 } from "../route/applicationRoute";
 import DisplayCurrencyFishCoin from "../common/displayCurrency/displayCurrencyFishCoin.vue";
+import BarterCostInputTextField from "../common/createItem/barterCostInputTextField.vue";
 export default {
   components: {
     PrimaryButton,
@@ -130,6 +131,7 @@ export default {
     CostInputTextField,
     UPopup,
     DisplayCurrencyFishCoin,
+    BarterCostInputTextField,
   },
   computed: {
     displayPrice() {
@@ -270,6 +272,9 @@ export default {
       this.selectedAreaLocation = itemLocation;
       this.selectedCategory = category;
       this.selectedSubCategory = subCategory;
+      this.deliveryTypeAndShippingCharge = {
+        price,
+      };
     },
   },
 

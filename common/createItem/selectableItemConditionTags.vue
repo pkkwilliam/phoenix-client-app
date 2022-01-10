@@ -6,7 +6,7 @@
       v-for="(itemCondition, index) in itemConditions"
       :key="index"
       :text="itemCondition.label"
-      :type="itemCondition.key === selectedItemConditonKey ? 'warning' : 'info'"
+      :type="itemCondition.key === value ? 'warning' : 'info'"
       @click="onSelectItemConditon(index)"
     />
   </view>
@@ -32,14 +32,11 @@ export default {
         ITEM_CONDITION_DEFECT,
       ];
     },
-    selectedItemConditonKey() {
-      return this.value?.key;
-    },
   },
   methods: {
     onSelectItemConditon(index) {
       const selectedItemCondition = this.itemConditions[index];
-      this.$emit("input", selectedItemCondition);
+      this.$emit("input", selectedItemCondition.key);
     },
   },
   props: ["value"],

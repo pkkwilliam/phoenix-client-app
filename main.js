@@ -4,8 +4,10 @@ import { execute as serviceExecutor } from "./service/serviceExecutor";
 import store from "./store/applicationState";
 import {
   getLanguage,
+  getPushNotificationToken,
   getUserToken,
   removeUserToken,
+  setPushNotificationToken,
   setUserToken,
 } from "./store/applicationStorage";
 import AppStateService from "./service/appStateService";
@@ -29,6 +31,7 @@ const PROD_SERVICE_URL = "https://phoenix-api.bitcode.mo";
 // let HOST = PROD ? PROD_SERVICE_URL : DEVELOP_SERVICE_URL;
 
 console.log("env:", process.env.NODE_ENV);
+
 if (process.env.NODE_ENV === "development") {
   host = UAT_SERVICE_URL;
   console.log(host);
@@ -53,10 +56,13 @@ Vue.mixin({
   },
   methods: {
     execute: (service) => executeService(service),
+    getPushNotificationToken,
     isLogin: () => store.state.userProfile.profile.active,
     logout: () => {
       setUserToken(undefined), store.commit("setUserProfile", {});
     },
+    setPushNotificationToken: (pushNotificationToken) =>
+      setPushNotificationToken(pushNotificationToken),
   },
 });
 

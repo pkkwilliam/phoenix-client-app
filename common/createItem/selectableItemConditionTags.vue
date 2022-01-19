@@ -39,7 +39,9 @@ export default {
       this.$emit("input", selectedItemCondition.key);
     },
   },
-  props: ["value"],
+  props: {
+    value: String,
+  },
 };
 </script>
 

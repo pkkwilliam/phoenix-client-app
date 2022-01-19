@@ -12,6 +12,7 @@ const PUBLIC_ITEM = "/public/item/v1";
 
 const USER_ADDRESS = "/user/address/v1";
 const USER_BANK_ACCOUNT = "/user/bank_account/v1";
+const USER_BUSINESS = "/user/business/v1";
 const USER_CASH_OUT = "/user/cash_out/v1";
 const USER_IMAGE_UPLOAD = "/user/image_upload/v1";
 const USER_ITEM = "/user/item/v1";
@@ -137,6 +138,39 @@ export const UPDATE_BANK_ACCOUNT = (bankAccount) => ({
   url: USER_BANK_ACCOUNT,
 });
 
+// Business
+export const CREATE_BUSINESS = (request) => ({
+  authenticatedRequest: true,
+  body: JSON.stringify(request),
+  method: POST_METHOD,
+  timer: {
+    title: "提交申請中",
+    length: 2000,
+  },
+  url: USER_BUSINESS,
+});
+
+export const GET_BUSINESS_ALL = () => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  timer: {
+    title: "獲取企業中",
+    length: 2000,
+  },
+  url: USER_BUSINESS + "/all",
+});
+
+export const UPDATE_BUSINESS = (request) => ({
+  authenticatedRequest: true,
+  body: JSON.stringify(request),
+  method: PUT_METHOD,
+  timer: {
+    title: "提交申請中",
+    length: 2000,
+  },
+  url: USER_BUSINESS,
+});
+
 // Cash Out
 export const CREATE_CASH_OUT = (request) => ({
   authenticatedRequest: true,
@@ -243,6 +277,7 @@ export const GET_ITEMS_BY_USER_ID = (userSid, pageRequest, pageSize) => ({
 
 export const UPDATE_ITEM = (request) => ({
   authenticatedRequest: true,
+  body: JSON.stringify(request),
   method: PUT_METHOD,
   timer: {
     title: "更新中",
@@ -263,10 +298,6 @@ export const CREATE_ORDER = (request) => ({
   authenticatedRequest: true,
   body: JSON.stringify(request),
   method: POST_METHOD,
-  timer: {
-    title: "處理中",
-    length: 2000,
-  },
   url: USER_ORDER,
 });
 
@@ -350,9 +381,23 @@ export const GET_USER_PROFILE = () => ({
 
 export const LINK_USER_PUSH_NOTIFICATION_TOKEN = (request) => ({
   authenticatedRequest: true,
-  body: JSON.stringify(),
+  body: JSON.stringify(request),
   method: PUT_METHOD,
   url: USER_PROFILE + "/link_push_notification_token",
+});
+
+export const UPDATE_USER_PASSWORD = (request) => ({
+  authenticatedRequest: true,
+  body: JSON.stringify(request),
+  method: PUT_METHOD,
+  url: USER_PROFILE + "/change_password",
+});
+
+export const UPDATE_USER_PROFILE = (request) => ({
+  authenticatedRequest: true,
+  body: JSON.stringify(request),
+  method: PUT_METHOD,
+  url: USER_PROFILE + "/update_phoenix_user_profile",
 });
 
 // User Save Item

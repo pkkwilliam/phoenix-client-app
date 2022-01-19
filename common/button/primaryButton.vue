@@ -2,11 +2,14 @@
   <u-button
     class="custom-style"
     shape="circle"
+    type="info"
+    :disabled="disabled"
     :hairLine="true"
     :loading="loading"
     :size="size"
     @click="$emit('onClick')"
-    >{{ label }}</u-button
+  >
+    {{ label }}</u-button
   >
 </template>
 
@@ -39,5 +42,6 @@ export default {
   color: black;
   background-color: $u-phoenix-primary;
   margin: 0px;
+  width: inherit;
 }
 </style>

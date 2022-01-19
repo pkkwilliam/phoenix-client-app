@@ -21,7 +21,7 @@
 <script>
 import {
   ADDRESS_SELECTION_PAGE,
-  CHANGE_PASSWORD_PAGE,
+  BUSINESS_PAGE,
 } from "../../route/applicationRoute";
 import ApplicationLineBreaker from "../applicationLineBreaker.vue";
 
@@ -37,7 +37,7 @@ export default {
           label: "收貨地址",
           toPage: ADDRESS_SELECTION_PAGE,
         },
-        { iconName: "lock", label: "更改密碼", toPage: CHANGE_PASSWORD_PAGE },
+        { iconName: "shop", label: "申請企業賬號", toPage: BUSINESS_PAGE },
       ];
     },
   },

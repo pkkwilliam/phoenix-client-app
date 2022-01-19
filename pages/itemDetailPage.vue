@@ -23,11 +23,13 @@
           <save-item-button :item="item" />
         </template>
         <template slot="right">
-          <primary-button
-            label="我想要"
-            :disabled="!item.active"
-            @onClick="onClickBuy"
-          />
+          <view>
+            <primary-button
+              label="我想要"
+              :disabled="!item.active"
+              @onClick="onClickBuy"
+            />
+          </view>
         </template>
       </stick-bottom-bar>
     </view>

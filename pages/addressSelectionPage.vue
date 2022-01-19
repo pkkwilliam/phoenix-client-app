@@ -1,5 +1,8 @@
 <template>
   <view>
+    <view class="large-margin-top-spacer" v-if="isEmpty">
+      <u-empty text="未有收貨地址" mode="address" />
+    </view>
     <view class="container">
       <view
         class="space-between-center-container card medium-margin-top-spacer"
@@ -40,6 +43,9 @@ export default {
   computed: {
     addresses() {
       return this.$store.state.address.content;
+    },
+    isEmpty() {
+      return this.$store.state.address.content.length === 0;
     },
   },
   methods: {

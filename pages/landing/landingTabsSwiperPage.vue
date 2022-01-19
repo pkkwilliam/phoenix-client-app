@@ -54,6 +54,7 @@ import { SEARCH_ITEM_PAGE } from "../../route/applicationRoute";
 import ScanQrCodeButton from "../../components/navigationButton/item/scanQrCodeButton.vue";
 import ItemCategoryWaterfall from "../../components/item/itemCategoryWaterfall.vue";
 import SwipterItemScrollViewWrapper from "./swipterItemScrollViewWrapper.vue";
+import { processPushNotificationToken } from "../../util/notificationUtil";
 export default {
   components: {
     LandingPage,
@@ -104,6 +105,7 @@ export default {
   },
   mounted() {
     this.$appStateService.getUserProfile();
+    processPushNotificationToken(this);
   },
   async onPullDownRefresh() {
     uni.stopPullDownRefresh();

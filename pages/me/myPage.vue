@@ -1,10 +1,12 @@
 <template>
-  <view class="container large-margin-top-spacer">
+  <view
+    class="container large-margin-top-spacer sticky-bottom-container-padding"
+  >
     <view class="align-end-container">
       <my-setting-button />
     </view>
     <user-card :user="userProfile" />
-    <view class="my-order">
+    <view class="my-order card">
       <view class="space-around-center-container">
         <my-saved-item-button />
         <my-viewed-item-button />
@@ -16,7 +18,6 @@
       <view class="medium-margin-top-spacer">
         <view class="space-between-center-container">
           <text class="h3 black bold">我的交易</text>
-          <money-made />
         </view>
         <view class="space-around-center-container medium-margin-top-spacer">
           <my-item-list-button />
@@ -26,7 +27,7 @@
       </view>
       <shipment-pending-alert-rows />
     </view>
-    <view class="user-menu">
+    <view class="user-menu card">
       <user-menu />
     </view>
   </view>
@@ -43,7 +44,6 @@ import WorkbenchButton from "../../components/navigationButton/workbenchButton.v
 import MyItemListButton from "../../components/navigationButton/myItemListButton.vue";
 import MySoldButton from "../../components/navigationButton/mySoldButton.vue";
 import MyOrderButton from "../../components/navigationButton/myOrderButton.vue";
-import MoneyMade from "../../components/user/moneyMade.vue";
 import MySettingButton from "../../components/navigationButton/me/mySettingButton.vue";
 
 export default {
@@ -58,7 +58,6 @@ export default {
     MyItemListButton,
     MySoldButton,
     MyOrderButton,
-    MoneyMade,
     MySettingButton,
   },
   computed: {
@@ -79,8 +78,6 @@ export default {
 
 <style lang="scss" scoped>
 .my-order {
-  background-color: #ffffff;
-  border-radius: 8px;
   margin-top: 20rpx;
   padding: 35rpx;
   .line {
@@ -97,9 +94,10 @@ export default {
     font-size: 26rpx;
   }
 }
+.my-page-container {
+  padding-bottom: 125rpx;
+}
 .user-menu {
-  background-color: #ffffff;
-  border-radius: 8px;
   margin-top: 20rpx;
   padding-left: 35rpx;
   padding-right: 35rpx;

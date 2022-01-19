@@ -32,8 +32,11 @@ export default {
       list.forEach(async (media) => {
         // media with file means its not yet uploaded
         if (media.file) {
-          mediaUrls.push(await uploadMedia(media.url, this.execute));
-        } else {
+          const { mediaAccessUrl } = await uploadMedia(media.url, this.execute);
+          console.log("receive mediaAccessUrl:", mediaAccessUrl);
+          mediaUrls.push(mediaAccessUrl);
+          
+        } else if (!mediaUrls.includes(media.url)) {
           mediaUrls.push(media.url);
         }
         console.log(mediaUrls);

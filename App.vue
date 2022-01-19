@@ -27,8 +27,9 @@ export default {
     });
     setInterval(() => {
       var info = plus.push.getClientInfo();
-      //   console.log(JSON.stringify(info));
+      // console.log(JSON.stringify(info));
     }, 5000);
+    // check push notification token
     console.log(plus.os);
     /* 5+  push 消息推送 ps:使用:H5+的方式监听，实现推送*/
     plus.push.addEventListener(
@@ -49,13 +50,16 @@ export default {
         console.log(msg, !isAndroid);
         console.log(msg);
         if (!isAndroid) {
+          console.log("this is iOS");
           // 如果是IOS
-          const payload = msg.payload;
+          const { payload } = msg;
+          const { body, title } = payload;
+          console.log("parse json:", title, body);
           // 【APP离线】收到消息，但没有提醒（发生在一次收到多个离线消息时，只有一个有提醒，但其他的没有提醒）
           // 【APP在线】收到消息，不会触发系统消息,需要创建本地消息，但不能重复创建。必须加msg.type验证去除死循环
           if (msg.aps == null && msg.type === "receive") {
-            const messageTitle = payload.messageTitle || "default title";
-            const messageContent = payload.messageContent || "default content";
+            const messageTitle = title;
+            const messageContent = body;
             // 创建本地消息,发送的本地消息也会被receive方法接收到，但没有type属性，且aps是null
             plus.push.createMessage(messageContent, JSON.stringify(payload), {
               title: messageTitle,
@@ -63,32 +67,31 @@ export default {
           } else {
           }
         } else {
-          plus.push.createMessage(
-            "test here",
-            {},
-            {
-              title: "sdfsdf",
-            }
-          );
-          let payload = {};
-          console.log(typeof msg.payload === "object", typeof msg.payload);
-          if (typeof msg.payload === "object") {
-            payload = msg.payload || {};
-          } else {
-            payload = JSON.parse(msg.payload) || {};
-          }
-          console.log(payload);
-          const messageTitle = payload.messageTitle || "";
-          const messageContent = payload.messageContent || "";
-          plus.push.createMessage(messageContent, JSON.stringify(payload), {
-            title: messageTitle,
+          console.log("this is Android");
+          const { content, payload, title } = msg;
+          console.log(content, payload, title);
+          plus.push.createMessage(content, payload, {
+            title,
           });
+          // let payload = {};
+          // console.log(typeof msg.payload === "object", typeof msg.payload);
+          // if (typeof msg.payload === "object") {
+          //   payload = msg.payload || {};
+          // } else {
+          //   payload = JSON.parse(msg.payload) || {};
+          // }
+          // console.log(payload);
+          // const messageTitle = payload.messageTitle || "";
+          // const messageContent = payload.messageContent || "";
+          // plus.push.createMessage(messageContent, JSON.stringify(payload), {
+          //   title: messageTitle,
+          // });
         }
-        console.log(msg);
       },
       false
     );
   },
+
   onShow: function () {
     console.log("App Show");
   },

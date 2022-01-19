@@ -32,7 +32,7 @@
             <text>運費</text>
             <pre-order-shipping-fee :item="item" /> -->
             <text class="h4 price-primary">
-              摸魚正在尋找有物流公司...\n功能會在往後版本開放
+              摸魚正在尋找有意向的物流公司...\n功能會在往後版本開放
             </text>
           </view>
         </view>
@@ -58,11 +58,14 @@
             <text class="label small-margin-right-spacer">需要:</text>
             <display-currency-fish-coin class="should-pay" :value="orderCost" />
           </view>
-          <primary-button
-            label="立即交易"
-            :disabled="disabledSubmitButton"
-            @onClick="onClickSubmit"
-          />
+          <view>
+            <primary-button
+              label="立即交易"
+              :disabled="disabledSubmitButton"
+              :loading="loading"
+              @onClick="onClickSubmit"
+            />
+          </view>
         </template>
       </stick-bottom-bar>
     </view>
@@ -119,7 +122,11 @@ export default {
       return DELIVERY_TYPES.map((item) => item.label);
     },
     disabledSubmitButton() {
+      const { profile } = this.$store.state.userProfile;
       const { item, selectedAddress, selectedDeliveryTypeIndex } = this;
+      if (profile.balance < item.price) {
+        return true;
+      }
       if (selectedDeliveryTypeIndex === 1) {
         return !item || !selectedAddress;
       } else {
@@ -145,6 +152,7 @@ export default {
   data() {
     return {
       item: undefined,
+      loading: false,
       remark: undefined,
       selectedAddress: undefined,
       selectedDeliveryTypeIndex: 0,
@@ -159,19 +167,26 @@ export default {
       this.selectedDeliveryTypeIndex = index;
     },
     async onClickSubmit() {
-      const { item, remark, selectedAddress, selectedDeliveryTypeIndex } = this;
-      const deliveryAddress = selectedAddress
-        ? { id: selectedAddress.id }
-        : undefined;
-      const order = await this.execute(
-        CREATE_ORDER({
-          deliveryAddress,
-          item: { id: item.id },
-          itemDeliveryType: DELIVERY_TYPES[selectedDeliveryTypeIndex].key,
-          remark,
-        })
-      );
-      this.onCreateOrderSuccess(order);
+      this.loading = true;
+      try {
+        await new Promise((resolve) => setTimeout(() => resolve(), 2000));
+        const { item, remark, selectedAddress, selectedDeliveryTypeIndex } =
+          this;
+        const deliveryAddress = selectedAddress
+          ? { id: selectedAddress.id }
+          : undefined;
+        const order = await this.execute(
+          CREATE_ORDER({
+            deliveryAddress,
+            item: { id: item.id },
+            itemDeliveryType: DELIVERY_TYPES[selectedDeliveryTypeIndex].key,
+            remark,
+          })
+        );
+        this.onCreateOrderSuccess(order);
+      } finally {
+        this.loading = false;
+      }
     },
     onCreateOrderSuccess(order) {
       uni.navigateTo({ url: ORDER_CONFIRMED_PAGE(order).url });

@@ -31,7 +31,10 @@ export default {
       this.$emit("input", selectedSubCategory);
     },
   },
-  props: ["value", "category"],
+  props: {
+    value: Object,
+    category: Object,
+  },
 };
 </script>
 

@@ -14,6 +14,10 @@ let store = new Vuex.Store({
       content: [],
     },
     bearerToken: "",
+    business: {
+      dirty: true,
+      content: [],
+    },
     category: {
       dirty: true,
       content: [],
@@ -57,6 +61,12 @@ let store = new Vuex.Store({
     },
     setBearerToken(state, bearerToken) {
       state.bearerToken = bearerToken;
+    },
+    setBusiness(state, business) {
+      state.business = {
+        dirty: false,
+        content: business,
+      };
     },
     setBuyerPendingOrder(state, buyerPendingOrder) {
       state.buyerPendingOrder = {

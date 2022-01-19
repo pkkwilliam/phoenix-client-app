@@ -18,7 +18,7 @@
       <text class="h4 black lightly-bold">{{ description }}</text>
     </view>
     <view class="space-between-center-container medium-margin-top-spacer">
-      <mpay-guarantee />
+      <platform-guarantee />
       <item-view-and-save-count
         :viewCount="item.viewCount"
         :saveCount="item.saveCount"
@@ -31,17 +31,17 @@
 import { ITEM_DETAIL_PAGE } from "../../route/applicationRoute";
 import { convertSystemDateToDisplayDateYear } from "../../util/dateUtil";
 import displayCurrenyPrice from "../displayCurrenyPrice.vue";
-import MpayGuarantee from "../../components/guarantee/mpayGuarantee.vue";
 import StrikeThroughCurrencyPrice from "../strikeThroughCurrencyPrice.vue";
 import UserCardMini from "../user/userCardMini.vue";
 import ItemViewAndSaveCount from "./itemViewAndSaveCount.vue";
+import PlatformGuarantee from "../../components/guarantee/platformGuarantee.vue";
 export default {
   components: {
     displayCurrenyPrice,
-    MpayGuarantee,
     ItemViewAndSaveCount,
     StrikeThroughCurrencyPrice,
     UserCardMini,
+    PlatformGuarantee,
   },
   computed: {
     createDate() {

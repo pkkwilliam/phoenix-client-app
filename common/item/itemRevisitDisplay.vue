@@ -8,7 +8,7 @@
     <image v-for="(image, index) in images" :key="index" />
     <text class="h5 black">{{ description }}</text>
     <view>
-      <mpay-guarantee />
+      <platform-guarantee />
       <item-view-and-save-count
         :saveCount="item.saveCount"
         :viewCount="item.viewCount"
@@ -23,6 +23,7 @@ import MpayGuarantee from "../../components/guarantee/mpayGuarantee.vue";
 import StrikeThroughCurrencyPrice from "../strikeThroughCurrencyPrice.vue";
 import UserCardMini from "../user/userCardMini.vue";
 import ItemViewAndSaveCount from "./itemViewAndSaveCount.vue";
+import PlatformGuarantee from "../../components/guarantee/platformGuarantee.vue";
 export default {
   components: {
     StrikeThroughCurrencyPrice,
@@ -30,6 +31,7 @@ export default {
     ItemViewAndSaveCount,
     UserCardMini,
     DisplayCurrencyFishCoin,
+    PlatformGuarantee,
   },
   computed: {
     description() {

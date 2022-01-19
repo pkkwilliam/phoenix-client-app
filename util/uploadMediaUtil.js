@@ -16,6 +16,7 @@ export async function uploadMedia(blobUrl, execute) {
       success: (response) => {
         const { data, statusCode } = response;
         if (statusCode < 300) {
+          console.log("upload success");
           return resolve(response);
         } else {
           return reject("failed");
@@ -23,5 +24,6 @@ export async function uploadMedia(blobUrl, execute) {
       },
     });
   });
-  return JSON.parse(jsonResponse.data);
+  const { accessUrl, key } = JSON.parse(jsonResponse.data);
+  return { mediaAccessUrl: `${accessUrl}/${key}` };
 }

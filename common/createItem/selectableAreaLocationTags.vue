@@ -24,7 +24,9 @@ export default {
       this.$emit("input", this.itemLocations[index]);
     },
   },
-  props: ["value"],
+  props: {
+    value: String,
+  },
 };
 </script>
 

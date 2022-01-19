@@ -32,7 +32,9 @@ export default {
   mounted() {
     this.$appStateService.getCategory();
   },
-  props: ["value"],
+  props: {
+    value: Object,
+  },
 };
 </script>
 

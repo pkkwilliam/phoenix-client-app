@@ -5,7 +5,7 @@ import {
 
 export function createItemServiceRequestBody(
   descriptionRequest,
-  mediaJsonResponse,
+  mediaAccessUrls,
   itemLocation,
   categoryRequest,
   subCategoryRequest,
@@ -25,10 +25,7 @@ export function createItemServiceRequestBody(
   const requestBody = {
     availableDeliveryTypes: deliveryType,
     description: descriptionRequest,
-    images: mediaJsonResponse.map((media) => {
-      const { accessUrl, key, hash, bucket, mimeType } = media;
-      return `${accessUrl}/${key}`;
-    }),
+    images: mediaAccessUrls,
     itemCondition: conditionRequest.key,
     itemLocation,
     itemShippingInfo: {

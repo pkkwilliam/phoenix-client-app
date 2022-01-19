@@ -1,6 +1,7 @@
 import { CHINESE_TRADITIONAL } from "../enum/language";
 
 const LANGUAGE = "LANGUAGE";
+const USER_PUSH_NOTIFICATION_TOKEN = "USER_PUSH_NOTIFICATION_TOKEN";
 const USER_TOKEN = "USER_TOKEN";
 
 // Language
@@ -11,6 +12,14 @@ export function getLanguage() {
 
 export function setLanguage(language) {
   setStorage(LANGUAGE, language);
+}
+
+export function getPushNotificationToken() {
+  return getStorage(USER_PUSH_NOTIFICATION_TOKEN);
+}
+
+export function setPushNotificationToken(notificationToken) {
+  setStorage(USER_PUSH_NOTIFICATION_TOKEN, notificationToken);
 }
 
 // Token

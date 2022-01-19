@@ -1,6 +1,6 @@
 <template>
-  <view>
-    <change-password />
+  <view class="container">
+    <view class="card medium-margin-top-spacer"> <change-password /></view>
   </view>
 </template>
 

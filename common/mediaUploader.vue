@@ -1,6 +1,11 @@
 <template>
   <u-upload
     multiple
+    :fileList="[
+      {
+        url: 'https://phinational.org/wp-content/uploads/2017/07/fb-test-image-470x246.jpg',
+      },
+    ]"
     upload-text="選擇圖片"
     :auto-upload="false"
     :size-type="['compressed']"

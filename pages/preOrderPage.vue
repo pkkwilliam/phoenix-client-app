@@ -58,11 +58,14 @@
             <text class="label small-margin-right-spacer">實付款:</text>
             <display-currency-fish-coin class="should-pay" :value="orderCost" />
           </view>
-          <primary-button
-            label="立即支付"
-            :disabled="disabledSubmitButton"
-            @onClick="onClickSubmit"
-          />
+          <view>
+            <primary-button
+              label="立即支付"
+              :disabled="disabledSubmitButton"
+              :loading="loading"
+              @onClick="onClickSubmit"
+            />
+          </view>
         </template>
       </stick-bottom-bar>
     </view>
@@ -148,6 +151,7 @@ export default {
   data() {
     return {
       item: undefined,
+      loading: true,
       remark: undefined,
       selectedAddress: undefined,
       selectedDeliveryTypeIndex: 0,

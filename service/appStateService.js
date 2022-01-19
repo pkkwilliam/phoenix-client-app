@@ -1,6 +1,7 @@
 import {
   GET_ADDRESS_ALL,
   GET_BANK_ACCOUNT_ALL,
+  GET_BUSINESS_ALL,
   GET_BUYER_PENDING_ORDERS,
   GET_CATEGORY_ALL,
   GET_SELLER_PENDING_ORDERS,
@@ -60,6 +61,20 @@ export default class AppStateService {
         this.execute(GET_BUYER_PENDING_ORDERS()).then((buyerPendingOrder) => {
           this.store.commit("setBuyerPendingOrder", buyerPendingOrder);
           return resolve(buyerPendingOrder);
+        });
+      } else {
+        return resolve(content);
+      }
+    });
+  }
+
+  getBusiness({ force = false } = {}) {
+    const { dirty, content } = this.store.state.business;
+    return new Promise((resolve, reject) => {
+      if (dirty || force) {
+        this.execute(GET_BUSINESS_ALL()).then((business) => {
+          this.store.commit("setBusiness", business);
+          return resolve(business);
         });
       } else {
         return resolve(content);

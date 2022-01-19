@@ -12,6 +12,7 @@ import CategoryTap from "../components/category/categoryTap.vue";
 import SearchBar from "../components/searchBar.vue";
 import { LANDING_TAB } from "../route/applicationRoute";
 import { TabbarEventBus } from "./index/tabbar.vue";
+import { processPushNotificationToken } from "../util/notificationUtil";
 
 export const ON_CHANGE_CATEGORY_EMIT = "ON_CHANGE_CATEGORY_EMIT";
 export default {
@@ -29,7 +30,10 @@ export default {
     };
   },
   methods: {},
-  mounted() {},
+  mounted() {
+    console.log("at mounted");
+    processPushNotificationToken();
+  },
 };
 </script>
 <style lang="scss" scoped>

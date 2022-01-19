@@ -6,7 +6,6 @@
     {
       "path": "pages/index/tabbar",
       "style": {
-        "disableScroll": true,
         "navigationBarTitleText": "摸魚",
         "navigationStyle": "custom"
       }
@@ -44,6 +43,18 @@
       }
     },
     {
+      "path": "pages/business/businessPage",
+      "style": {
+        "navigationBarTitleText": "我的企業"
+      }
+    },
+    {
+      "path": "pages/business/businessFormPage",
+      "style": {
+        "navigationBarTitleText": "企業賬號表格"
+      }
+    },
+    {
       "path": "pages/cashOut/cashOutFormPage",
       "style": {
         "navigationBarTitleText": "提取現金"
@@ -58,7 +69,7 @@
     {
       "path": "pages/changePasswordPage",
       "style": {
-        "navigationBarTitleText": "修改密碼"
+        "navigationBarTitleText": "更改密碼"
       }
     },
     {

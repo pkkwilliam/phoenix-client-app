@@ -27,7 +27,9 @@
     <!-- image upload -->
     <view class="medium-margin-top-spacer">
       <scroll-view class="u-scroll-view" scroll-x scroll-with-animation>
-        <media-uploader :onChangeMedia="onChangeMediaList" />
+        <!-- <media-uploader :onChangeMedia="onChangeMediaList" /> -->
+        <!-- <auto-media-uploader v-model="selectedMedia" /> -->
+        <auto-media-uploader-v-2 v-model="selectedMedia" />
       </scroll-view>
     </view>
     <!-- item location -->
@@ -107,9 +109,7 @@ import SelectableItemConditionTags from "../common/createItem/selectableItemCond
 import SelectableSubCategoryTags from "../common/createItem/selectableSubCategoryTags.vue";
 import UButton from "../uview-ui/components/u-button/u-button.vue";
 import CostInputTextField from "../common/costInputTextField.vue";
-import { createItemServiceRequestBody } from "../service/serviceRequestBodyUtil";
-import { CREATE_ITEM } from "../service/service";
-import { uploadMedia } from "../util/uploadMediaUtil";
+import { CREATE_ITEM, UPDATE_ITEM } from "../service/service";
 import UPopup from "../uview-ui/components/u-popup/u-popup.vue";
 import {
   getRouterJsonParam,
@@ -117,6 +117,9 @@ import {
 } from "../route/applicationRoute";
 import DisplayCurrencyFishCoin from "../common/displayCurrency/displayCurrencyFishCoin.vue";
 import BarterCostInputTextField from "../common/createItem/barterCostInputTextField.vue";
+import AutoMediaUploader from "../common/media/autoMediaUploader.vue";
+import AutoMediaUploaderV2 from "../common/media/autoMediaUploaderV2.vue";
+import { ITEM_DELIVERY_TYPE_FACE_TO_FACE } from "../enum/itemDeliveryType";
 export default {
   components: {
     PrimaryButton,
@@ -132,6 +135,8 @@ export default {
     UPopup,
     DisplayCurrencyFishCoin,
     BarterCostInputTextField,
+    AutoMediaUploader,
+    AutoMediaUploaderV2,
   },
   computed: {
     displayPrice() {
@@ -163,8 +168,7 @@ export default {
         !selectedCategory ||
         !selectedItemCondition ||
         selectedMedia.length === 0 ||
-        !price ||
-        !selectedShippingChargeType
+        !price
       );
     },
     getCategory() {
@@ -176,6 +180,7 @@ export default {
   },
   data() {
     return {
+      id: undefined,
       deliveryTypeAndShippingCharge: undefined,
       description: undefined,
       isEdit: false,
@@ -195,53 +200,32 @@ export default {
     async onClickSubmit() {
       this.loading = true;
       try {
-        const {
-          deliveryTypeAndShippingCharge,
-          description,
-          selectedAreaLocation,
-          selectedCategory,
-          selectedItemCondition,
-          selectedSubCategory,
-          selectedMedia,
-        } = this;
-        const {
-          allowFaceToFace,
+        const serviceExecute = this.isEdit ? UPDATE_ITEM : CREATE_ITEM;
+        const successToastText = this.isEdit ? "更新成功" : "創建成功";
+        const { price } = this.deliveryTypeAndShippingCharge;
+        const requestBody = {
+          availableDeliveryTypes: [ITEM_DELIVERY_TYPE_FACE_TO_FACE.key],
+          category: { id: this.selectedCategory.id },
+          description: this.description,
+          id: this.id,
+          images: this.selectedMedia,
+          itemCondition: this.selectedItemCondition,
+          itemLocation: this.selectedAreaLocation,
+          itemShippingInfo: {
+            fixedShippingCharge: 0,
+          },
           price,
-          originalPrice,
-          selectedShippingChargeType,
-          shippingCost,
-        } = deliveryTypeAndShippingCharge;
-        const imageUrlsJsonResponse = await Promise.all(
-          selectedMedia.map(
-            async (media) => await uploadMedia(media.url, this.execute)
-          )
-        );
-        const requestBody = createItemServiceRequestBody(
-          description,
-          imageUrlsJsonResponse,
-          selectedAreaLocation,
-          selectedCategory,
-          selectedSubCategory,
-          selectedItemCondition,
-          price,
-          originalPrice,
-          selectedShippingChargeType,
-          shippingCost,
-          allowFaceToFace
-        );
-        this.execute(CREATE_ITEM(requestBody)).then((response) => {
-          uni.showToast({ title: "創建成功" });
+          subCategory: { id: this.selectedSubCategory.id },
+        };
+        this.execute(serviceExecute(requestBody)).then((response) => {
+          uni.showToast({ title: successToastText });
           setTimeout(() => {
-            uni.navigateBack();
-            uni.navigateTo({ url: ITEM_DETAIL_PAGE(response).url });
+            uni.redirectTo({ url: ITEM_DETAIL_PAGE(response).url });
           }, 1000);
         });
       } finally {
         this.loading = false;
       }
-    },
-    onChangeMediaList(listOfMedia) {
-      this.selectedMedia = listOfMedia;
     },
     onConfirmDeliveryTypeAndShippingCharge(values) {
       this.deliveryTypeAndShippingCharge = values;
@@ -252,28 +236,15 @@ export default {
     },
     setEditItem(item) {
       this.isEdit = true;
-      const {
-        availableDeliveryTypes,
-        description,
-        images,
-        itemCondition,
-        itemLocation,
-        itemShippingInfo,
-        category,
-        originalPrice,
-        price,
-        quantity,
-        subCategory,
-        title,
-      } = item;
-      this.description = description;
-      this.selectedMedia = images;
-      this.selectedItemCondition = itemCondition;
-      this.selectedAreaLocation = itemLocation;
-      this.selectedCategory = category;
-      this.selectedSubCategory = subCategory;
+      this.description = item.description;
+      this.id = item.id;
+      this.selectedMedia = item.images;
+      this.selectedItemCondition = item.itemCondition;
+      this.selectedAreaLocation = item.itemLocation;
+      this.selectedCategory = item.category;
+      this.selectedSubCategory = item.subCategory;
       this.deliveryTypeAndShippingCharge = {
-        price,
+        price: item.price,
       };
     },
   },

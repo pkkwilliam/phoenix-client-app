@@ -23,11 +23,18 @@
           <save-item-button :item="item" />
         </template>
         <template slot="right">
-          <view>
+          <view class="row-center-container">
+            <view class="medium-margin-right-spacer">
+              <primary-button
+                label="我想要"
+                :disabled="!item.active"
+                @onClick="() => onClickSubmit('PURCHASE')"
+              />
+            </view>
             <primary-button
-              label="我想要"
+              label="我想換"
               :disabled="!item.active"
-              @onClick="onClickBuy"
+              @onClick="() => onClickSubmit('BARTER')"
             />
           </view>
         </template>
@@ -42,6 +49,7 @@ import SellerCard from "../common/sellerCard.vue";
 import SellerCardRecetInfo from "../common/sellerCardRecetInfo.vue";
 import {
   BARTER_PRE_ORDER_PAGE,
+  CREATE_BARTER_REQUEST_PAGE,
   getRouterJsonParam,
   LOGIN_PAGE,
 } from "../route/applicationRoute";
@@ -74,9 +82,13 @@ export default {
         (response) => (this.item = response)
       );
     },
-    onClickBuy() {
+    onClickSubmit(purchaseType) {
       if (!this.isLogin()) {
         uni.navigateTo({ url: LOGIN_PAGE().url });
+        return;
+      }
+      if (purchaseType === "BARTER") {
+        uni.navigateTo({ url: CREATE_BARTER_REQUEST_PAGE(this.item).url });
       } else {
         uni.navigateTo({ url: BARTER_PRE_ORDER_PAGE(this.item).url });
       }

@@ -1,5 +1,5 @@
 <template>
-  <view class="stick-bottom-container-padding">
+  <view class="sticky-bottom-container-padding">
     <application-navigation-bar title="我買到的" />
     <view class="step-container">
       <sold-order-status-step :orderStatus="order.orderStatus" />
@@ -20,7 +20,7 @@
         </view>
       </view>
       <view class="card medium-margin-top-spacer">
-        <sold-order-receiver :order="order" />
+        <order-seller :order="order" />
       </view>
       <view class="card medium-margin-top-spacer">
         <sold-order-detail-info :order="order" />
@@ -49,6 +49,7 @@ import SoldOrderStatusStep from "../../common/order/orderStatusStep.vue";
 import { getRouterJsonParam } from "../../route/applicationRoute";
 import { GET_ORDER_BY_ID } from "../../service/service";
 import OrderActualPay from "../../common/order/orderActualPay.vue";
+import OrderSeller from "../../common/order/orderSeller.vue";
 
 export default {
   components: {
@@ -62,6 +63,7 @@ export default {
     SoldOrderDetailInfo,
     SoldOrderActionButton,
     OrderActualPay,
+    OrderSeller,
   },
   computed: {
     itemDeliveryType() {

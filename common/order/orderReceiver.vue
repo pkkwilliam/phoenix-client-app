@@ -1,7 +1,16 @@
 <template>
-  <view class="space-between-center-container">
+  <view>
     <text class="h4 black lightly-bold">收件人</text>
-    <text class="h5 secondary">{{ phoenNumber }}</text>
+    <view>
+      <view class="space-between-center-container">
+        <text class="h5 secondary">暱稱</text>
+        <text class="h5 secondary">{{ name }}</text>
+      </view>
+      <view class="space-between-center-container">
+        <text class="h5 secondary">電話</text>
+        <text class="h5 secondary">{{ phoenNumber }}</text>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -11,7 +20,7 @@ export default {
   computed: {
     name() {
       const { name, nickname } = this.userInfo;
-      return (name ? name : nickname) + "先生/小姐";
+      return name ? name : nickname;
     },
     phoenNumber() {
       const { countryCode, smsNumber } = this.userInfo;

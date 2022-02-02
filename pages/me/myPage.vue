@@ -2,7 +2,8 @@
   <view
     class="container large-margin-top-spacer sticky-bottom-container-padding"
   >
-    <view class="align-end-container">
+    <view class="flex-end-center-container">
+      <switch-business-account />
       <my-setting-button />
     </view>
     <user-card :user="userProfile" />
@@ -21,6 +22,7 @@
         </view>
         <view class="space-around-center-container medium-margin-top-spacer">
           <my-item-list-button />
+          <my-barter-order-button />
           <my-sold-button />
           <my-order-button />
         </view>
@@ -45,6 +47,8 @@ import MyItemListButton from "../../components/navigationButton/myItemListButton
 import MySoldButton from "../../components/navigationButton/mySoldButton.vue";
 import MyOrderButton from "../../components/navigationButton/myOrderButton.vue";
 import MySettingButton from "../../components/navigationButton/me/mySettingButton.vue";
+import SwitchBusinessAccount from "../../components/navigationButton/business/switchBusinessAccount.vue";
+import MyBarterOrderButton from "../../components/navigationButton/myBarterOrderButton.vue";
 
 export default {
   components: {
@@ -59,6 +63,8 @@ export default {
     MySoldButton,
     MyOrderButton,
     MySettingButton,
+    SwitchBusinessAccount,
+    MyBarterOrderButton,
   },
   computed: {
     userProfile() {
@@ -66,12 +72,12 @@ export default {
     },
   },
   mounted() {
-    this.$appStateService.getBuyerPendingOrder();
-    this.$appStateService.getSellerPendingOrder();
+    // this.$appStateService.getBuyerPendingOrder();
+    // this.$appStateService.getSellerPendingOrder();
   },
   refresh() {
-    this.$appStateService.getBuyerPendingOrder({ force: true });
-    this.$appStateService.getSellerPendingOrder({ force: true });
+    // this.$appStateService.getBuyerPendingOrder({ force: true });
+    // this.$appStateService.getSellerPendingOrder({ force: true });
   },
 };
 </script>

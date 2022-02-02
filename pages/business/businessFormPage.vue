@@ -96,13 +96,13 @@ export default {
   computed: {
     disabledSubmitButton() {
       return (
-        !this.businessRegistrationImageUrl ||
+        !this.businessRegistrationImageUrl.mediaUrls.length > 0 ||
         !this.businessRegistrationNumber ||
         !this.name ||
         !this.ownerCountryCode ||
         !this.ownerIdNumber ||
-        !this.ownerIdImageUrlBack ||
-        !this.ownerIdImageUrlFront ||
+        !this.ownerIdImageUrlBack.mediaUrls.length > 0 ||
+        !this.ownerIdImageUrlFront.mediaUrls.length > 0 ||
         !this.ownerName ||
         !this.ownerPhoneNumber
       );
@@ -110,14 +110,23 @@ export default {
   },
   data() {
     return {
-      businessRegistrationImageUrl: undefined,
+      businessRegistrationImageUrl: {
+        mediaUrls: [],
+        inProgress: false,
+      },
       businessRegistrationNumber: undefined,
       isEdit: false,
       name: undefined,
       ownerCountryCode: "853",
       ownerIdNumber: undefined,
-      ownerIdImageUrlBack: undefined,
-      ownerIdImageUrlFront: undefined,
+      ownerIdImageUrlBack: {
+        mediaUrls: [],
+        inProgress: false,
+      },
+      ownerIdImageUrlFront: {
+        mediaUrls: [],
+        inProgress: false,
+      },
       ownerName: undefined,
       ownerPhoneNumber: undefined,
     };
@@ -132,13 +141,14 @@ export default {
     onClickSubmit() {
       const executeFunction = this.isEdit ? UPDATE_BUSINESS : CREATE_BUSINESS;
       const requestBody = {
-        businessRegistrationImageUrl: this.businessRegistrationImageUrl[0],
+        businessRegistrationImageUrl:
+          this.businessRegistrationImageUrl.mediaUrls[0],
         businessRegistrationNumber: this.businessRegistrationNumber,
         name: this.name,
         ownerCountryCode: this.ownerCountryCode,
         ownerIdNumber: this.ownerIdNumber,
-        ownerIdImageUrlBack: this.ownerIdImageUrlBack[0],
-        ownerIdImageUrlFront: this.ownerIdImageUrlFront[0],
+        ownerIdImageUrlBack: this.ownerIdImageUrlBack.mediaUrls[0],
+        ownerIdImageUrlFront: this.ownerIdImageUrlFront.mediaUrls[0],
         ownerName: this.ownerName,
         ownerPhoneNumber: this.ownerPhoneNumber,
       };

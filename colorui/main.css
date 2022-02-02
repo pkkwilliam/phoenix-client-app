@@ -848,7 +848,7 @@ button.cuIcon.lg {
 }
 
 .cu-tag.badge:not([class*="bg-"]) {
-  background-color: #dd514c;
+  background-color: #fa3534;
 }
 
 .cu-tag:empty:not([class*="cuIcon-"]) {

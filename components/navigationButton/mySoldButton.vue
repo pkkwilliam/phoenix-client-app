@@ -18,8 +18,8 @@ import { MY_SOLD_PAGE } from "../../route/applicationRoute";
 export default {
   computed: {
     text() {
-      const { content } = this.$store.state.sellerPendingOrder;
-      return `我賣出的 ${content.length}`;
+      const { soldOrderPendingCount } = this.$store.state.statusSummary.content;
+      return `我賣出的 ${soldOrderPendingCount}`;
     },
   },
   methods: {

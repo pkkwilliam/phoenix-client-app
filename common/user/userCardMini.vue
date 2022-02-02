@@ -25,7 +25,7 @@ export default {
     },
     userNickname() {
       const { user } = this;
-      return user.nickname ? user.nickname : "小棕熊";
+      return user.nickname ? user.nickname : user.smsNumber;
     },
   },
   data() {

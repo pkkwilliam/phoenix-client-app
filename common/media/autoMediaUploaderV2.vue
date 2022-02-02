@@ -6,10 +6,12 @@
     upload-text="選擇圖片"
     :auto-upload="true"
     :before-upload="beforeUpload"
-    :fileList="fileList"
     :form-data="formData"
+    :fileList="fileList"
     :maxCount="maxCount"
     :size-type="['compressed']"
+    :showUploadList="true"
+    @on-choose-complete="onChooseComplete"
     @on-error="onErrorUpload"
     @on-remove="onRemove"
     @on-success="onSuccess"
@@ -23,13 +25,9 @@ import { GET_IMAGE_UPLOAD_TOKEN } from "../../service/service";
 import uUpload from "../../uview-ui/components/u-upload/u-upload.vue";
 export default {
   components: { uUpload },
-  computed: {
-    fileList() {
-      return this.value.map((image) => ({ url: image }));
-    },
-  },
+  computed: {},
   data() {
-    return { formData: { token: undefined } };
+    return { fileList: [], formData: { token: undefined } };
   },
   methods: {
     onErrorUpload(res, index, lists, name) {
@@ -43,44 +41,61 @@ export default {
       console.log("upload token", this.formData.token);
       return resolve();
     },
-    onSuccess(data, index, lists, name) {
-      console.log("onSuccess");
-      const mediaUrls = lists.map((media) => {
-        if (media.response) {
-          const { accessUrl, key } = media.response;
-          return accessUrl + "/" + key;
-        } else {
-          return media.url;
-        }
-      });
-
-      console.log(mediaUrls);
-      this.$refs.uUpload.clear();
-      this.$emit("input", mediaUrls);
+    async onChooseComplete(list, name) {
+      const emitBody = { ...this.value, inProgress: true };
+      this.$emit("input", emitBody);
+      await new Promise((resolve) => setTimeout(() => resolve(), 3000));
     },
-    async onUploaded(list, name) {
-      console.log("onUploaded");
+    async onSuccess(data, index, list, name) {
+      console.log("onSuccess", data, index, list, name);
+      let inProgress = false;
+      let mediaUrls = [];
+      for (let index = 0; index < list.length; index++) {
+        const currentMedia = list[index];
+        if (currentMedia.progress !== 100) {
+          inProgress = true;
+        } else if (currentMedia.response) {
+          const { accessUrl, key } = currentMedia.response;
+          mediaUrls.push(accessUrl + "/" + key);
+        } else {
+          mediaUrls.push(currentMedia.url);
+        }
+      }
+      console.log("finished uploaded", mediaUrls, inProgress);
+      this.$emit("input", { mediaUrls, inProgress });
+    },
+    onUploaded(list, name) {
+      console.log("onUploaded", list, name);
     },
     async onRemove(index, list, name) {
       console.log("onRemove");
       // it will cause error if image upload too quick
       await new Promise((resolve) => setTimeout(() => resolve(), 500));
       const mediaAccessUrl = list.map((media) => media.url);
-      console.log(mediaAccessUrl);
-      this.$emit("input", mediaAccessUrl);
+      this.$emit("input", { ...this.value, mediaUrls: mediaAccessUrl });
     },
   },
-  mounted() {
+  async mounted() {
+    // this must be call or else the first upload image might fail
     this.beforeUpload();
+    // should give sometime for it to pass in
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    this.fileList = this.initialMediaUrls.map((mediaUrl) => ({
+      url: mediaUrl,
+    }));
   },
   props: {
     value: {
-      default: () => [],
-      type: Array,
+      default: () => {},
+      type: Object,
     },
     maxCount: {
       default: 6,
       type: Number,
+    },
+    initialMediaUrls: {
+      default: [],
+      type: Array,
     },
   },
 };

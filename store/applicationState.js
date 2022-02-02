@@ -30,6 +30,10 @@ let store = new Vuex.Store({
       dirty: true,
       content: [],
     },
+    statusSummary: {
+      dirty: true,
+      content: {},
+    },
     subCategory: {
       content: {},
     },
@@ -59,6 +63,18 @@ let store = new Vuex.Store({
         content: bankAccount,
       };
     },
+    setBarterRequestSummaryDirty(state, dirty) {
+      state.barterRequestSummary = {
+        ...state.barterRequestSummary,
+        dirty,
+      };
+    },
+    setBarterRequestSummary(state, barterRequestSummary) {
+      state.barterRequestSummary = {
+        dirty: false,
+        content: barterRequestSummary,
+      };
+    },
     setBearerToken(state, bearerToken) {
       state.bearerToken = bearerToken;
     },
@@ -84,6 +100,12 @@ let store = new Vuex.Store({
       state.sellerPendingOrder = {
         dirty: false,
         content: sellerPendingOrder,
+      };
+    },
+    setStatusSummary(state, statusSummary) {
+      state.statusSummary = {
+        dirty: false,
+        content: statusSummary,
       };
     },
     setSubCategory(state, { category, subCategories }) {

@@ -11,8 +11,26 @@ export const ADDRESS_SELECTION_PAGE = () => ({
 export const ANNOUNCEMENT_DETAIL_PAGE = () => ({
   url: "/pages/announcementDetailPage",
 });
+export const BANK_ACCOUNT_FORM_PAGE = (bankAccount) => ({
+  url:
+    "/pages/bankAccount/bankAccountFormPage?bankAccount=" +
+    JSON.stringify(bankAccount),
+});
+export const BARTER_ORDER_PAGE = () => ({
+  url: "/pages/barterOrder/barterOrderPage",
+});
+export const BARTER_ORDER_DETAIL_PAGE = (barterOrder) => ({
+  url:
+    "/pages/barterOrder/barterOrderDetailPage?barterOrder=" +
+    JSON.stringify(barterOrder),
+});
 export const BARTER_PRE_ORDER_PAGE = (item) => ({
   url: "/pages/order/barterPreOrderPage?item=" + JSON.stringify(item),
+});
+export const BARTER_REQUEST_DETAIL_PAGE = (barterRequest) => ({
+  url:
+    "/pages/barterRequest/barterRequestDetailPage?barterRequest=" +
+    JSON.stringify(barterRequest),
 });
 export const BUSINESS_PAGE = () => ({
   url: "/pages/business/businessPage",
@@ -32,10 +50,9 @@ export const CASH_OUT_HISTORY_PAGE = () => ({
 export const CHANGE_PASSWORD_PAGE = () => ({
   url: "/pages/changePasswordPage",
 });
-export const BANK_ACCOUNT_FORM_PAGE = (bankAccount) => ({
+export const CREATE_BARTER_REQUEST_PAGE = (item) => ({
   url:
-    "/pages/bankAccount/bankAccountFormPage?bankAccount=" +
-    JSON.stringify(bankAccount),
+    "/pages/barterRequest/createBarterRequestPage?item=" + JSON.stringify(item),
 });
 export const FORGOT_PASSWORD_PAGE = () => ({
   url: "/pages/forgotPasswordPage",
@@ -57,6 +74,7 @@ export const PRE_ORDER_PAGE = (item) => ({
 });
 export const PARCEL_LIST_PAGE = () => ({ url: "/pages/parcelListPage" });
 export const PICKUP_CODE_PAGE = () => ({ url: "/pages/pickupCodePage" });
+export const REFILL_INFO_PAGE = () => ({ url: "/pages/refill/refillInfoPage" });
 export const REGISTER_PAGE = () => ({ url: "/pages/registerPage" });
 export const SELLER_ORDER_DETAIL_PAGE = (orderObject) => ({
   url:

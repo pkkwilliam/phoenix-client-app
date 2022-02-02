@@ -1,15 +1,21 @@
 <template>
   <view>
+    <view class="large-margin-top-spacer" v-if="isEmpty">
+      <u-empty text="無歷史記錄" mode="history" />
+    </view>
     <view v-for="(data, index) in dataList" :key="index">
       <slot name="content" :data="data" />
     </view>
   </view>
 </template>
-
 <script>
 export default {
   components: {},
-  computed: {},
+  computed: {
+    isEmpty() {
+      return this.dataList.length === 0;
+    },
+  },
   data() {
     return {
       currentPage: 0,

@@ -1,10 +1,15 @@
 <template>
-  <view class="space-between-container">
+  <view class="space-between-container" @click="onClickItem">
     <view class="row-container">
-      <image class="image" mode="aspectFill" :src="coverImage" />
+      <application-lazy-load-image
+        class="image"
+        mode="widthFix"
+        :image="coverImage"
+      />
+      <!-- <image class="image" mode="aspectFill" :src="coverImage" /> -->
       <text class="description">{{ description }}</text>
     </view>
-    <view class="align-end-container">
+    <view class="align-end-container" v-if="showPrice">
       <display-currency-fish-coin priceColor="secondary" :value="item.price" />
       <text class="h6 secondary quantity-text">x{{ quantity }}</text>
     </view>
@@ -12,10 +17,12 @@
 </template>
 
 <script>
+import { ITEM_DETAIL_PAGE } from "../../route/applicationRoute";
+import ApplicationLazyLoadImage from "../applicationComponent/applicationLazyLoadImage.vue";
 import DisplayCurrencyFishCoin from "../displayCurrency/displayCurrencyFishCoin.vue";
 
 export default {
-  components: { DisplayCurrencyFishCoin },
+  components: { DisplayCurrencyFishCoin, ApplicationLazyLoadImage },
   component: {},
   computed: {
     coverImage() {
@@ -25,11 +32,26 @@ export default {
       return this.item.description.substring(0, 15);
     },
   },
+  methods: {
+    onClickItem() {
+      if (this.clickable) {
+        uni.navigateTo({ url: ITEM_DETAIL_PAGE(this.item).url });
+      }
+    },
+  },
   props: {
+    clickable: {
+      default: true,
+      tyoe: Boolean,
+    },
     item: Object,
     quantity: {
       default: 1,
       type: Number,
+    },
+    showPrice: {
+      default: true,
+      type: Boolean,
     },
   },
 };

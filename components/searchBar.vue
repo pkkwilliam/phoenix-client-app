@@ -12,6 +12,7 @@
       :disabled="disabled"
       :show-action="true"
       @search="$emit('search', value)"
+      @custom="$emit('search', value)"
       @click="$emit('click')"
     />
   </view>

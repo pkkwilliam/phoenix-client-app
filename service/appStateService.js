@@ -1,10 +1,12 @@
 import {
   GET_ADDRESS_ALL,
   GET_BANK_ACCOUNT_ALL,
+  GET_BARTER_REQUEST_SUMMARY,
   GET_BUSINESS_ALL,
   GET_BUYER_PENDING_ORDERS,
   GET_CATEGORY_ALL,
   GET_SELLER_PENDING_ORDERS,
+  GET_STATUS_SUMMARY,
   GET_SUB_CATEGORY_BY_CATEGORY,
   GET_USER_PROFILE,
   GET_USER_SAVE_ITEM,
@@ -54,20 +56,6 @@ export default class AppStateService {
     });
   };
 
-  getBuyerPendingOrder({ force = false } = {}) {
-    const { dirty, content } = this.store.state.buyerPendingOrder;
-    return new Promise((resolve, reject) => {
-      if (dirty || force) {
-        this.execute(GET_BUYER_PENDING_ORDERS()).then((buyerPendingOrder) => {
-          this.store.commit("setBuyerPendingOrder", buyerPendingOrder);
-          return resolve(buyerPendingOrder);
-        });
-      } else {
-        return resolve(content);
-      }
-    });
-  }
-
   getBusiness({ force = false } = {}) {
     const { dirty, content } = this.store.state.business;
     return new Promise((resolve, reject) => {
@@ -75,6 +63,20 @@ export default class AppStateService {
         this.execute(GET_BUSINESS_ALL()).then((business) => {
           this.store.commit("setBusiness", business);
           return resolve(business);
+        });
+      } else {
+        return resolve(content);
+      }
+    });
+  }
+
+  getBuyerPendingOrder({ force = false } = {}) {
+    const { dirty, content } = this.store.state.buyerPendingOrder;
+    return new Promise((resolve, reject) => {
+      if (dirty || force) {
+        this.execute(GET_BUYER_PENDING_ORDERS()).then((buyerPendingOrder) => {
+          this.store.commit("setBuyerPendingOrder", buyerPendingOrder);
+          return resolve(buyerPendingOrder);
         });
       } else {
         return resolve(content);
@@ -103,6 +105,20 @@ export default class AppStateService {
         this.execute(GET_SELLER_PENDING_ORDERS()).then((sellerPendingOrder) => {
           this.store.commit("setSellerPendingOrder", sellerPendingOrder);
           return resolve(sellerPendingOrder);
+        });
+      } else {
+        return resolve(content);
+      }
+    });
+  }
+
+  getStatusSummary({ force = false } = {}) {
+    const { dirty, content } = this.store.state.statusSummary;
+    return new Promise((resolve, reject) => {
+      if (dirty || force) {
+        this.execute(GET_STATUS_SUMMARY()).then((statusSummary) => {
+          this.store.commit("setStatusSummary", statusSummary);
+          return resolve(statusSummary);
         });
       } else {
         return resolve(content);

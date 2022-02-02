@@ -18,8 +18,9 @@ import { MY_ORDER_PAGE } from "../../route/applicationRoute";
 export default {
   computed: {
     text() {
-      const { content } = this.$store.state.buyerPendingOrder;
-      return `我買到的 ${content.length}`;
+      const { purchasedOrderPendingCount } =
+        this.$store.state.statusSummary.content;
+      return `我買到的 ${purchasedOrderPendingCount}`;
     },
   },
   methods: {

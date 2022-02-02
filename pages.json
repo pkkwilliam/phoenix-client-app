@@ -43,6 +43,38 @@
       }
     },
     {
+      "path": "pages/barterOrder/barterOrderPage",
+      "style": {
+        "navigationBarTitleText": "換物訂單"
+      }
+    },
+    {
+      "path": "pages/barterOrder/barterOrderDetailPage",
+      "style": {
+        "navigationBarBackgroundColor": "#ffe24b",
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "換物訂單"
+      }
+    },
+    {
+      "path": "pages/barterRequest/barterRequestPage",
+      "style": {
+        "navigationBarTitleText": "以物換物"
+      }
+    },
+    {
+      "path": "pages/barterRequest/barterRequestDetailPage",
+      "style": {
+        "navigationBarTitleText": "以物換物"
+      }
+    },
+    {
+      "path": "pages/barterRequest/createBarterRequestPage",
+      "style": {
+        "navigationBarTitleText": "以物換物"
+      }
+    },
+    {
       "path": "pages/business/businessPage",
       "style": {
         "navigationBarTitleText": "我的企業"
@@ -70,6 +102,12 @@
       "path": "pages/changePasswordPage",
       "style": {
         "navigationBarTitleText": "更改密碼"
+      }
+    },
+    {
+      "path": "pages/chat/chatPage",
+      "style": {
+        "navigationBarTitleText": "消息"
       }
     },
     {
@@ -184,6 +222,12 @@
       "path": "pages/preOrderPage",
       "style": {
         "navigationBarTitleText": "購買寶貝"
+      }
+    },
+    {
+      "path": "pages/refill/refillInfoPage",
+      "style": {
+        "navigationBarTitleText": "充值方法"
       }
     },
     {

@@ -22,6 +22,7 @@
 import {
   ADDRESS_SELECTION_PAGE,
   BUSINESS_PAGE,
+  REFILL_INFO_PAGE,
 } from "../../route/applicationRoute";
 import ApplicationLineBreaker from "../applicationLineBreaker.vue";
 
@@ -38,6 +39,7 @@ export default {
           toPage: ADDRESS_SELECTION_PAGE,
         },
         { iconName: "shop", label: "申請企業賬號", toPage: BUSINESS_PAGE },
+        { iconName: "shop", label: "充值方法", toPage: REFILL_INFO_PAGE },
       ];
     },
   },

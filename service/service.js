@@ -12,6 +12,8 @@ const PUBLIC_ITEM = "/public/item/v1";
 
 const USER_ADDRESS = "/user/address/v1";
 const USER_BANK_ACCOUNT = "/user/bank_account/v1";
+const USER_BARTER_ORDER = "/user/barter_order/v1";
+const USER_BARTER_REQUEST = "/user/barter_request/v1";
 const USER_BUSINESS = "/user/business/v1";
 const USER_CASH_OUT = "/user/cash_out/v1";
 const USER_IMAGE_UPLOAD = "/user/image_upload/v1";
@@ -20,6 +22,7 @@ const USER_MPAY_ORDER = "/user/mpay_order/v1";
 const USER_ORDER = "/user/order/v1";
 const USER_PROFILE = "/user_profile/v1";
 const USER_SAVE_ITEM = "/user/user_save_item/v1";
+const USER_STATUS_SUMMARY = "/user/status_summary/v1";
 const USER_VIEW_ITEM = "/user/user_view_item/v1";
 
 // Address
@@ -138,6 +141,119 @@ export const UPDATE_BANK_ACCOUNT = (bankAccount) => ({
   url: USER_BANK_ACCOUNT,
 });
 
+// Barter Order
+export const GET_BARTER_ORDER_BY_ID = (barterOrderId) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url: USER_BARTER_ORDER + `/${barterOrderId}`,
+});
+
+export const GET_BARTER_ORDER_BY_BARTER_REQUEST_ID = (barterRequestId) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url: USER_BARTER_ORDER + `/barter_request_id/${barterRequestId}`,
+});
+
+export const GET_BARTER_ORDER_PAGINATION = (pageRequest, pageSize) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url:
+    USER_BARTER_ORDER +
+    `/pagination?${generatetPaginationRquestParam(pageRequest, pageSize)}`,
+});
+
+export const UPDATE_BARTER_ORDER_RECEIVE = (barterOrderId) => ({
+  authenticatedRequest: true,
+  method: PUT_METHOD,
+  timer: {
+    title: "更新中",
+    length: 2000,
+  },
+  url: USER_BARTER_ORDER + `/item_receive/${barterOrderId}`,
+});
+
+// Barter Request
+export const CREATE_BARTER_REQUEST = (request) => ({
+  authenticatedRequest: true,
+  body: JSON.stringify(request),
+  method: POST_METHOD,
+  timer: {
+    title: "提交中",
+    length: 2000,
+  },
+  url: USER_BARTER_REQUEST,
+});
+
+export const GET_BARTER_REQUEST_BY_ID = (barterRequestId) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url: USER_BARTER_REQUEST + `/${barterRequestId}`,
+});
+
+export const GET_BARTER_REQUEST_BY_BARTER_REQUEST_STATUS = (
+  barterRequestStatus,
+  pageRequest,
+  pageSize
+) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url:
+    USER_BARTER_REQUEST +
+    `/barter_request_status?barterRequestStatus=${barterRequestStatus}&pageRequest=${pageRequest}&pageSize=${pageSize}`,
+});
+
+export const GET_BARTER_REQUEST_OFFERER = (
+  barterRequestStatuses,
+  pageRequest,
+  pageSize
+) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url:
+    USER_BARTER_REQUEST +
+    `/offerer?barterRequestStatuses=${barterRequestStatuses}&pageRequest=${pageRequest}&pageSize=${pageSize}`,
+});
+
+export const GET_BARTER_REQUEST_RECEIVER = (
+  barterRequestStatuses,
+  pageRequest,
+  pageSize
+) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url:
+    USER_BARTER_REQUEST +
+    `/receiver?barterRequestStatuses=${barterRequestStatuses}&pageRequest=${pageRequest}&pageSize=${pageSize}`,
+});
+
+export const GET_BARTER_REQUEST_SUMMARY = () => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url: USER_BARTER_REQUEST + "/summary",
+});
+
+export const UPDATE_BARTER_REQUEST_OFFERER = (
+  barterRequestId,
+  barterRequestStatus
+) => ({
+  authenticatedRequest: true,
+  method: PUT_METHOD,
+  url:
+    USER_BARTER_REQUEST +
+    `/offerer/${barterRequestId}?barterRequestStatus=${barterRequestStatus}`,
+});
+
+export const UPDATE_BARTER_REQUEST_RECEIVER = (
+  barterRequestId,
+  barterRequestStatus
+) => ({
+  authenticatedRequest: true,
+  method: PUT_METHOD,
+  url:
+    USER_BARTER_REQUEST +
+    `/receiver/${barterRequestId}?barterRequestStatus=${barterRequestStatus}`,
+});
+
 // Business
 export const CREATE_BUSINESS = (request) => ({
   authenticatedRequest: true,
@@ -153,10 +269,6 @@ export const CREATE_BUSINESS = (request) => ({
 export const GET_BUSINESS_ALL = () => ({
   authenticatedRequest: true,
   method: GET_METHOD,
-  timer: {
-    title: "獲取企業中",
-    length: 2000,
-  },
   url: USER_BUSINESS + "/all",
 });
 
@@ -327,10 +439,22 @@ export const GET_BUYER_PENDING_ORDERS = () => ({
   url: USER_ORDER + "/get_buyer_pending_orders",
 });
 
+export const GET_ORDER_BY_BARTER_REQUEST_ID = (barterRequestId) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url: USER_ORDER + `/barter_request_id/${barterRequestId}`,
+});
+
 export const GET_ORDER_BY_ID = (orderId) => ({
   authenticatedRequest: true,
   method: GET_METHOD,
   url: USER_ORDER + `/${orderId}`,
+});
+
+export const GET_SELLER_INFO = (orderId) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url: USER_ORDER + `/${orderId}/seller_info`,
 });
 
 export const GET_SELLER_PENDING_ORDERS = () => ({
@@ -363,6 +487,13 @@ export const UPDATE_ORDER_AS_SHIPPED_BY_SELLER = (orderId) => ({
   authenticatedRequest: true,
   method: PUT_METHOD,
   url: USER_ORDER + `/${orderId}/shipped`,
+});
+
+// Status Summary
+export const GET_STATUS_SUMMARY = () => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url: USER_STATUS_SUMMARY,
 });
 
 // Sub Category
@@ -442,3 +573,7 @@ export const GET_USER_VIEW_ITEM = (pageRequest, pageSize) => ({
     USER_VIEW_ITEM +
     `/pagination_by_user?pageRequest=${pageRequest}&pageSize=${pageSize}`,
 });
+
+function generatetPaginationRquestParam(pageRequest, pageSize) {
+  return `pageRequest=${pageRequest}&pageSize=${pageSize}`;
+}

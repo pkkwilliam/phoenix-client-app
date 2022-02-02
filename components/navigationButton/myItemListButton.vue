@@ -18,7 +18,8 @@ import { MY_LIST_PAGE } from "../../route/applicationRoute";
 export default {
   computed: {
     text() {
-      return `我的發布`;
+      const { postedItemCount } = this.$store.state.statusSummary.content;
+      return `我的發布 ${postedItemCount}`;
     },
   },
   methods: {

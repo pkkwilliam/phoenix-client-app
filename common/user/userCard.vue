@@ -9,7 +9,7 @@
         <text class="h5 secondary">{{ userDescription }}</text>
       </view>
     </view>
-    <view class="small-margin-top-spacer">
+    <view class="small-margin-top-spacer" v-if="showQualifications">
       <phone-number-verified-tag />
     </view>
   </view>
@@ -44,6 +44,10 @@ export default {
   },
   props: {
     user: Object,
+    showQualifications: {
+      default: true,
+      type: Boolean,
+    },
   },
 };
 </script>

@@ -1,6 +1,6 @@
 // container size
 .sticky-bottom-container-padding {
-  padding-bottom: 125rpx !important;
+  padding-bottom: 120rpx !important;
 }
 
 .container {
@@ -54,6 +54,12 @@
 .align-end-container {
   @extend .column-container;
   align-items: flex-end;
+}
+
+.flex-end-center-container {
+  @extend .row-container;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .end-center-container {

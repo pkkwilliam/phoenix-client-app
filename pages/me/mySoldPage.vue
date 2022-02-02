@@ -10,7 +10,7 @@
             <user-card-mini :user="data.createBy" />
             <order-status-mini :orderStatus="data.orderStatus" />
           </view>
-          <view class="medium-margin-top-spacer" @click="onClickOrder(data)">
+          <view class="medium-margin-top-spacer">
             <sold-item class="medium-margin-top-spacer" :item="data.item" />
           </view>
           <!-- <view class="medium-margin-top-spacer">
@@ -22,8 +22,22 @@
               :order="data"
             />
           </view>
-          <view class="medium-margin-top-spacer align-end-container">
-            <order-action-button-mini type="seller" :order="data" />
+          <view class="medium-margin-top-spacer flex-end-center-container">
+            <u-button
+              class="button"
+              shape="circle"
+              size="mini"
+              type="warning"
+              :plain="true"
+              @click="onClickOrder(data)"
+            >
+              訂單詳細
+            </u-button>
+            <order-action-button-mini
+              class="button"
+              type="seller"
+              :order="data"
+            />
           </view>
         </view>
       </template>
@@ -44,9 +58,13 @@ import {
   ORDER_STATUS_DELIVERY_PENDING,
   ORDER_STATUS_PAYMENT_PENDING,
   ORDER_STATUS_SHIPMENT_PENDING,
+  ORDER_STATUS_DELIVERED,
+  ORDER_STATUS_COMMENTED,
+  ORDER_STATUS_FINISHED,
 } from "../../enum/orderStatus";
 import { SELLER_ORDER_DETAIL_PAGE } from "../../route/applicationRoute";
 import { GET_SELLER_ORDERS_BY_ORDER_STATUS } from "../../service/service";
+
 export default {
   components: {
     itemRevisitDisplay,
@@ -70,6 +88,9 @@ export default {
           ORDER_STATUS_PAYMENT_PENDING.key,
           ORDER_STATUS_DELIVERY_PENDING.key,
           ORDER_STATUS_SHIPMENT_PENDING.key,
+          ORDER_STATUS_DELIVERED.key,
+          ORDER_STATUS_COMMENTED.key,
+          ORDER_STATUS_FINISHED.key,
         ],
         pageRequest,
         pageSize
@@ -90,4 +111,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.button {
+  margin: 0px;
+  margin-left: 20rpx;
+}
 </style>

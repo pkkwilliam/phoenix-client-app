@@ -2,6 +2,8 @@
   <view>
     <!-- <landing-page v-if="PageCur == 'landingPage'"></landing-page> -->
     <landing-tabs-swiper-page v-if="PageCur == 'landingPage'" />
+    <barter-request-page v-if="PageCur == 'barterRequestPage'" />
+    <chat-page v-if="PageCur == 'chatPage'" />
     <my-page v-if="PageCur == 'me'"></my-page>
 
     <view class="box">
@@ -10,33 +12,40 @@
           <view class="cuIcon-cu-image">
             <image
               v-if="PageCur == 'landingPage'"
-              src="../../static/tabBar/index_cur.png"
-            ></image>
+              src="../../static/tabBar/home_cur.png"
+            />
             <image
               v-if="PageCur != 'landingPage'"
-              src="../../static/tabBar/index.png"
-            ></image>
+              src="../../static/tabBar/home.png"
+            />
           </view>
           <view :class="PageCur == 'landingPage' ? 'color_main' : 'text-gray'"
             >首頁</view
           >
         </view>
 
-        <!-- <view class="action" @click="NavChange" data-cur="search">
+        <view class="action" @click="NavChange" data-cur="barterRequestPage">
           <view class="cuIcon-cu-image">
+            <view
+              class="cu-tag badge"
+              v-if="barterRequestPagePendingCount > 0"
+              >{{ barterRequestPagePendingCount }}</view
+            >
             <image
-              v-if="PageCur == 'search'"
-              src="../../static/tabBar/shop_cur.png"
-            ></image>
+              v-if="PageCur == 'barterRequestPage'"
+              src="../../static/tabBar/barter_cur.png"
+            />
             <image
-              v-if="PageCur != 'search'"
-              src="../../static/tabBar/shop.png"
-            ></image>
+              v-if="PageCur != 'barterRequestPage'"
+              src="../../static/tabBar/barter.png"
+            />
           </view>
-          <view :class="PageCur == 'search' ? 'color_main' : 'text-gray'"
-            >技术栈</view
+          <view
+            :class="PageCur == 'barterRequestPage' ? 'color_main' : 'text-gray'"
           >
-        </view> -->
+            換物
+          </view>
+        </view>
 
         <view
           @click="NavChange"
@@ -47,41 +56,37 @@
             class="logo_btn"
             mode="widthFix"
             src="../../static/tabBar/create_item_button.png"
-          ></image>
+          />
         </view>
-        <!-- 
-        <view class="action" @click="NavChange" data-cur="news">
+        <view class="action" @click="NavChange" data-cur="chatPage">
           <view class="cuIcon-cu-image">
-            <view class="cu-tag badge">{{ message }}</view>
+            <!-- <view class="cu-tag badge">红点</view> -->
             <image
-              v-if="PageCur == 'news'"
-              src="../../static/tabBar/order_cur.png"
-            ></image>
+              v-if="PageCur == 'chatPage'"
+              src="../../static/tabBar/chat_cur.png"
+            />
             <image
-              v-if="PageCur != 'news'"
-              src="../../static/tabBar/order.png"
-            ></image>
+              v-if="PageCur != 'chatPage'"
+              src="../../static/tabBar/chat.png"
+            />
           </view>
-          <view :class="PageCur == 'news' ? 'color_main' : 'text-gray'"
-            >文章资讯</view
-          >
-        </view> -->
+          <view :class="PageCur == 'chatPage' ? 'color_main' : 'text-gray'">
+            消息
+          </view>
+        </view>
 
         <view class="action" @click="NavChange" data-cur="me">
           <view class="cuIcon-cu-image">
-            <view class="cu-tag badge"><!-- 红点 --></view>
+            <!-- <view class="cu-tag badge">红点</view> -->
             <image
               v-if="PageCur == 'me'"
               src="../../static/tabBar/me_cur.png"
-            ></image>
-            <image
-              v-if="PageCur != 'me'"
-              src="../../static/tabBar/me.png"
-            ></image>
+            />
+            <image v-if="PageCur != 'me'" src="../../static/tabBar/me.png" />
           </view>
-          <view :class="PageCur == 'me' ? 'color_main' : 'text-gray'"
-            >我的</view
-          >
+          <view :class="PageCur == 'me' ? 'color_main' : 'text-gray'">
+            我的
+          </view>
         </view>
       </view>
     </view>
@@ -99,6 +104,8 @@ import { CREATE_ITEM_TAB, LOGIN_PAGE } from "../../route/applicationRoute";
 import MyPage from "../me/myPage.vue";
 import Vue from "vue";
 import LandingTabsSwiperPage from "../landing/landingTabsSwiperPage.vue";
+import ChatPage from "../chat/chatPage.vue";
+import BarterRequestPage from "../barterRequest/barterRequestPage.vue";
 
 export const TabbarEventBus = new Vue();
 
@@ -112,6 +119,8 @@ export default {
     LoginPage,
     MyPage,
     LandingTabsSwiperPage,
+    ChatPage,
+    BarterRequestPage,
   },
   data() {
     return {
@@ -123,12 +132,12 @@ export default {
       duration: 1,
     };
   },
-  created() {},
-  // 分享小程序
-  onShareAppMessage(res) {
-    return {
-      title: "学技术·做软件·找案例·寻合作，快来「7he丶Kevin」吧！",
-    };
+  computed: {
+    barterRequestPagePendingCount() {
+      const { barterRequestReceiverPendingCount } =
+        this.$store.state.statusSummary.content;
+      return barterRequestReceiverPendingCount;
+    },
   },
   onLoad() {
     //获取退出时的tabbar记录
@@ -140,12 +149,18 @@ export default {
     // 	fail: function(res) {}
     // });
   },
-  mounted() {
-    this.$appStateService.getUserProfile();
+  async mounted() {
+    await this.$appStateService.getUserProfile();
+    await this.$appStateService.getStatusSummary();
   },
   methods: {
     NavChange: function (e) {
-      const requireAuthTab = ["createItemPage", "me"];
+      const requireAuthTab = [
+        "barterRequestPage",
+        "chatPage",
+        "createItemPage",
+        "me",
+      ];
       const targetTab = e.currentTarget.dataset.cur;
       if (requireAuthTab.includes(targetTab) && !this.isLogin()) {
         uni.navigateTo({ url: LOGIN_PAGE().url });

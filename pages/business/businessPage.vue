@@ -11,10 +11,26 @@
       >
         <view class="space-between-center-container">
           <text>ID: {{ business.id }}</text>
-          <text>狀態: {{ business.businessStatus }}</text>
+          <text>{{ getBusinessStatus(business.businessStatus) }}</text>
         </view>
         <view class="medium-margin-top-spacer">
           <text class="h3 black bold">{{ business.name }}</text>
+        </view>
+        <view class="medium-margin-top-spacer">
+          <text class="h3 black">{{ business.remark }}</text>
+        </view>
+        <view class="flex-end-center-container medium-margin-top-spacer">
+          <u-button
+            class="button"
+            size="mini"
+            shape="circle"
+            type="error"
+            v-if="!business.active"
+            :plain="true"
+            @click="onClickDelete"
+          >
+            删除
+          </u-button>
         </view>
       </view>
     </view>
@@ -29,6 +45,7 @@
 <script>
 import primaryButton from "../../common/button/primaryButton.vue";
 import { BUSINESS_FORM_PAGE } from "../../route/applicationRoute";
+import { getBusinessStatusLabelByKey } from "../../enum/businessStatus";
 
 export default {
   components: { primaryButton },
@@ -47,6 +64,10 @@ export default {
     onClickAddBusiness() {
       uni.navigateTo({ url: BUSINESS_FORM_PAGE().url });
     },
+    onClickDelete(business) {},
+    getBusinessStatus(businessStatusKey) {
+      return getBusinessStatusLabelByKey(businessStatusKey);
+    },
   },
   mounted() {
     this.$appStateService.getBusiness();
@@ -55,4 +76,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.button {
+  margin: 0px;
+}
 </style>

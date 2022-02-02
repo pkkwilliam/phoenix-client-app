@@ -1,6 +1,6 @@
 <template>
   <view class="space-between-container h4 black">
-    <text>實收</text>
+    <text class="h4 black bold">實收</text>
     <display-fish-coin-price :value="actualReceive" />
   </view>
 </template>

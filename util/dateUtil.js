@@ -53,6 +53,10 @@ export const convertSystemDateToDisplayDateTimeMinute = (date) => {
   )}:${addZeroToFrontForMonthOrDate(convertedDate.getMinutes())}`;
 };
 
+export const hoursDifference = (date) => {
+  return Math.floor(Math.abs(new Date() - new Date(date)) / (60 * 60 * 1000));
+};
+
 export const getServerBetweenDate = (numberOfFromDateAgo, numberOfTillDate) => {
   const fromDate = new Date(
     new Date().setDate(new Date().getDate() - numberOfFromDateAgo)

@@ -4,12 +4,14 @@
       class="medium-margin-right-spacer"
       :value="item.price"
     />
-    <barter-tag class="medium-margin-right-spacer" />
-    <face-to-face-trade-tag />
+    <barter-tag />
+    <area-tag class="medium-margin-left-spacer" :value="item.itemLocation" />
+    <face-to-face-trade-tag class="medium-margin-left-spacer" />
   </view>
 </template>
 
 <script>
+import AreaTag from "../../components/tag/areaTag.vue";
 import BarterTag from "../../components/tag/barterTag.vue";
 import FaceToFaceTradeTag from "../../components/tag/faceToFaceTradeTag.vue";
 import DiscountTag from "../discountTag.vue";
@@ -24,6 +26,7 @@ export default {
     DiscountTag,
     BarterTag,
     FaceToFaceTradeTag,
+    AreaTag,
   },
   computed: {
     discountRate() {

@@ -22,12 +22,12 @@ export default {
   components: { uUpload },
   computed: {
     fileList() {
-      return this.value.map((image) => ({ url: image }));
+      return this.value.mediaUrls.map((media) => ({ url: media }));
     },
   },
   methods: {
     async onChooseComplete(list, name) {
-      console.log("add media", list);
+      this.$emit("input", { ...this.value, inProgress: true });
       const mediaUrls = [];
       list.forEach(async (media) => {
         // media with file means its not yet uploaded
@@ -35,13 +35,12 @@ export default {
           const { mediaAccessUrl } = await uploadMedia(media.url, this.execute);
           console.log("receive mediaAccessUrl:", mediaAccessUrl);
           mediaUrls.push(mediaAccessUrl);
-          
         } else if (!mediaUrls.includes(media.url)) {
           mediaUrls.push(media.url);
         }
         console.log(mediaUrls);
       });
-      this.$emit("input", mediaUrls);
+      this.$emit("input", { ...this.value, mediaUrls, inProgress: false });
     },
     onRemove(index, list, name) {
       console.log("remove media");
@@ -50,8 +49,8 @@ export default {
   },
   props: {
     value: {
-      default: [],
-      type: Array,
+      default: () => {},
+      type: Object,
     },
     maxCount: {
       default: 6,

@@ -13,7 +13,7 @@
         <text class="h3 secondary lightly-bold">成色</text>
         <text class="h3 black lightly-bold value">{{ conditionLabel }}</text>
       </view>
-      <u-lazy-load
+      <application-lazy-load-image
         class="medium-margin-top-spacer"
         v-for="(imageUrl, index) in item.images"
         :border-radius="15"
@@ -39,6 +39,7 @@ import ItemDetailShippingInfo from "./itemDetailShippingInfo.vue";
 import StrikeThroughCurrencyPrice from "../strikeThroughCurrencyPrice.vue";
 import ItemViewAndSaveCount from "./itemViewAndSaveCount.vue";
 import PlatformGuarantee from "../../components/guarantee/platformGuarantee.vue";
+import ApplicationLazyLoadImage from "../applicationComponent/applicationLazyLoadImage.vue";
 
 export default {
   components: {
@@ -48,6 +49,7 @@ export default {
     ItemDetailShippingInfo,
     ItemViewAndSaveCount,
     PlatformGuarantee,
+    ApplicationLazyLoadImage,
   },
   computed: {
     conditionLabel() {

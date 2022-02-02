@@ -29,7 +29,10 @@
       <scroll-view class="u-scroll-view" scroll-x scroll-with-animation>
         <!-- <media-uploader :onChangeMedia="onChangeMediaList" /> -->
         <!-- <auto-media-uploader v-model="selectedMedia" /> -->
-        <auto-media-uploader-v-2 v-model="selectedMedia" />
+        <auto-media-uploader-v-2
+          v-model="selectedMedia"
+          :initialMediaUrls="selectedMedia.mediaUrls"
+        />
       </scroll-view>
     </view>
     <!-- item location -->
@@ -82,6 +85,9 @@
       <view class="space-between-center-container">
         <icon-sub-header iconName="dollar" label="價格" />
         <view class="row-center-container" @click="onToggleCostInput">
+          <view class="medium-margin-right-spacer">
+            <text class="green" v-if="isPriceZero">保護環境 以物換物</text>
+          </view>
           <display-currency-fish-coin :value="displayPrice" />
           <u-icon name="arrow-right" color="#a3a3a3" :size="26" />
         </view>
@@ -162,33 +168,41 @@ export default {
         selectedShippingChargeType,
         shippingCost,
       } = this?.deliveryTypeAndShippingCharge ?? {};
+      if (selectedMedia.inProgress) {
+        return true;
+      }
       return (
         !description ||
         !selectedAreaLocation ||
         !selectedCategory ||
         !selectedItemCondition ||
-        selectedMedia.length === 0 ||
-        !price
+        selectedMedia.mediaUrls.length === 0
       );
     },
     getCategory() {
       return this.selectedCategory;
     },
+    isPriceZero() {
+      return this.deliveryTypeAndShippingCharge.price === 0;
+    },
     submitLabel() {
+      if (this.selectedMedia.inProgress) {
+        return "圖片處理中";
+      }
       return this.isEdit ? "修改" : "發佈";
     },
   },
   data() {
     return {
       id: undefined,
-      deliveryTypeAndShippingCharge: undefined,
+      deliveryTypeAndShippingCharge: { price: 0 },
       description: undefined,
       isEdit: false,
       loading: false,
       selectedAreaLocation: undefined,
       selectedCategory: undefined,
       selectedItemCondition: undefined,
-      selectedMedia: [],
+      selectedMedia: { inProgress: false, mediaUrls: [] },
       selectedSubCategory: undefined,
       showCostInput: false,
     };
@@ -208,7 +222,7 @@ export default {
           category: { id: this.selectedCategory.id },
           description: this.description,
           id: this.id,
-          images: this.selectedMedia,
+          images: this.selectedMedia.mediaUrls,
           itemCondition: this.selectedItemCondition,
           itemLocation: this.selectedAreaLocation,
           itemShippingInfo: {
@@ -238,7 +252,7 @@ export default {
       this.isEdit = true;
       this.description = item.description;
       this.id = item.id;
-      this.selectedMedia = item.images;
+      this.selectedMedia = { inProgress: false, mediaUrls: item.images };
       this.selectedItemCondition = item.itemCondition;
       this.selectedAreaLocation = item.itemLocation;
       this.selectedCategory = item.category;

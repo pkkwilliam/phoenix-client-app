@@ -2,7 +2,11 @@
   <view>
     <view class="medium-margin-top-spacer">
       <text class="h4 black bold">大頭帖</text>
-      <auto-media-uploader-v-2 v-model="imageUrl" :maxCount="1" />
+      <auto-media-uploader-v-2
+        v-model="avatar"
+        :initialMediaUrls="avatar.mediaUrls"
+        :maxCount="1"
+      />
     </view>
     <view class="medium-margin-top-spacer">
       <text class="h4 black bold">暱稱</text>
@@ -13,7 +17,11 @@
       <u-input placeholder="請輸入個性簽名" v-model="description" />
     </view>
     <view class="medium-margin-top-spacer">
-      <primary-button :loading="loading" @onClick="onClickSubmit" />
+      <primary-button
+        :disabled="disableSubmitButton"
+        :loading="loading"
+        @onClick="onClickSubmit"
+      />
     </view>
   </view>
 </template>
@@ -24,10 +32,15 @@ import autoMediaUploaderV2 from "../../common/media/autoMediaUploaderV2.vue";
 import { UPDATE_USER_PROFILE } from "../../service/service";
 export default {
   components: { autoMediaUploaderV2, PrimaryButton },
+  computed: {
+    disableSubmitButton() {
+      return this.avatar.inProgress;
+    },
+  },
   data() {
     return {
       description: undefined,
-      imageUrl: undefined,
+      avatar: { mediaUrls: [], inProgress: false },
       loading: false,
       nickname: undefined,
     };
@@ -39,7 +52,7 @@ export default {
         const requestBody = {
           description: this.description,
           gender: "MALE",
-          imageUrl: this.imageUrl[0],
+          imageUrl: this.avatar.mediaUrls[0],
           name: this.name,
           nickname: this.nickname,
         };
@@ -59,8 +72,11 @@ export default {
     await this.$appStateService.getUserProfile();
     const { description, imageUrl, nickname } =
       this.$store.state.userProfile.profile;
+    this.avatar = {
+      mediaUrls: [imageUrl],
+      inProgress: false,
+    };
     this.description = description;
-    this.imageUrl = [imageUrl];
     this.nickname = nickname;
   },
 };

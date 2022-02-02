@@ -13,7 +13,6 @@
                 class="price"
                 :value="data.item.price"
               />
-              <strike-through-currency-price :value="data.item.originalPrice" />
             </view>
           </view>
           <view class="medium-margin-top-spacer">
@@ -29,7 +28,6 @@
 import DisplayCurrencyFishCoin from "../../common/displayCurrency/displayCurrencyFishCoin.vue";
 import UserSaveItem from "../../common/item/userSaveItem.vue";
 import paginationItemDisplay from "../../common/itemDisplayList/paginationItemDisplay.vue";
-import StrikeThroughCurrencyPrice from "../../common/strikeThroughCurrencyPrice.vue";
 import UserCardMini from "../../common/user/userCardMini.vue";
 import { GET_USER_VIEW_ITEM } from "../../service/service";
 export default {
@@ -37,7 +35,6 @@ export default {
     paginationItemDisplay,
     UserSaveItem,
     UserCardMini,
-    StrikeThroughCurrencyPrice,
     DisplayCurrencyFishCoin,
   },
   methods: {

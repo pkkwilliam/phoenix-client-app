@@ -1,6 +1,6 @@
 <template>
-  <view class="space-between-container h4 black">
-    <text>實付</text>
+  <view class="space-between-center-container h4 black">
+    <text class="h4 black bold">實付</text>
     <display-fish-coin-price :value="actualPay" />
   </view>
 </template>

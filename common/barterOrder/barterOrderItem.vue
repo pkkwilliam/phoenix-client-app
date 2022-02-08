@@ -62,7 +62,9 @@ export default {
   },
   methods: {
     onClickBarterOrder() {
-      uni.navigateTo({ url: BARTER_ORDER_DETAIL_PAGE(this.barterOrder).url });
+      uni.navigateTo({
+        url: BARTER_ORDER_DETAIL_PAGE(this.barterOrder.id).url,
+      });
     },
   },
   props: {

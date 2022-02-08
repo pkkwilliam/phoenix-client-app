@@ -38,7 +38,7 @@ if (process.env.NODE_ENV === "development") {
 } else {
   host = PROD_SERVICE_URL;
 }
-console.log(getUserToken());
+
 let host;
 let executeService = (service) =>
   serviceExecutor(

@@ -56,6 +56,11 @@
   align-items: flex-end;
 }
 
+.flex-end-container {
+  @extend .row-container;
+  justify-content: flex-end;
+}
+
 .flex-end-center-container {
   @extend .row-container;
   align-items: center;

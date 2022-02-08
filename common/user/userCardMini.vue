@@ -34,7 +34,7 @@ export default {
   methods: {
     onClick() {
       if (this.clickable) {
-        uni.navigateTo({ url: USER_PAGE(this.user).url });
+        uni.navigateTo({ url: USER_PAGE(this.user.sid).url });
       }
     },
   },

@@ -1,6 +1,8 @@
 <template>
   <view>
-    <u-button @click="toggleSelectModal"> 切換賬號 </u-button>
+    <u-button size="mini" type="info" @click="toggleSelectModal">
+      切換賬號
+    </u-button>
     <u-select
       confirm-text="確認"
       v-model="show"

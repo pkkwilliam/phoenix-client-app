@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     onClick() {
-      uni.navigateTo({ url: USER_PAGE(this.user).url });
+      uni.navigateTo({ url: USER_PAGE(this.user.sid).url });
     },
   },
   props: {

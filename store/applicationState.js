@@ -17,14 +17,24 @@ let store = new Vuex.Store({
     business: {
       dirty: true,
       content: [],
+      selectedBusinessIndex: {},
+    },
+    buyerPendingOrder: {
+      dirty: true,
+      content: [],
     },
     category: {
       dirty: true,
       content: [],
     },
-    buyerPendingOrder: {
+    chat: {
       dirty: true,
-      content: [],
+      content: {},
+      unreceivedCount: 0,
+    },
+    chatWebSocket: {
+      dirty: true,
+      refreshTime: 5000,
     },
     sellerPendingOrder: {
       dirty: true,
@@ -94,6 +104,25 @@ let store = new Vuex.Store({
       state.category = {
         dirty: false,
         content: categories,
+      };
+    },
+    setChat(state, chat) {
+      state.chat = {
+        ...state.chat,
+        dirty: false,
+        content: chat,
+      };
+    },
+    setChatUnreceivedCount(state, unreceivedCount) {
+      state.chat = {
+        ...state.chat,
+        unreceivedCount,
+      };
+    },
+    setChatWebSocket(state, dirty) {
+      state.chatWebSocket = {
+        ...state.chatWebSocket,
+        dirty,
       };
     },
     setSellerPendingOrder(state, sellerPendingOrder) {

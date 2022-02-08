@@ -1,9 +1,10 @@
 <template>
   <view class="wrap">
-    <cu-custom bgColor="bg-gradual-blue" :isBack="true">
+    <!-- <cu-custom bgColor="bg-gradual-blue" :isBack="true">
       <block slot="backText">返回</block>
       <block slot="content">以物換物</block>
-    </cu-custom>
+    </cu-custom> -->
+    <application-navigation-bar title="以物換物" />
     <u-tabs-swiper
       ref="tabs"
       :list="swipterItems"
@@ -50,6 +51,7 @@
 <script>
 import BarterRequestItem from "../../common/barterRequest/barterRequestItem.vue";
 import PaginationItemDisplay from "../../common/itemDisplayList/paginationItemDisplay.vue";
+import ApplicationNavigationBar from "../../common/navigation/applicationNavigationBar.vue";
 import barterRequestOffererList from "../../components/barterRequest/barterRequestOffererList.vue";
 import BarterRequestReceiverList from "../../components/barterRequest/barterRequestReceiverList.vue";
 import {
@@ -69,6 +71,7 @@ export default {
     BarterRequestReceiverList,
     PaginationItemDisplay,
     BarterRequestItem,
+    ApplicationNavigationBar,
   },
   computed: {
     statusSummaryDirty() {

@@ -101,9 +101,8 @@ export default {
     },
   },
   onLoad(option) {
-    const barterOrder = getRouterJsonParam(option, "barterOrder");
-    this.barterOrder = barterOrder;
-    this.getBarterOrder(barterOrder.id);
+    const barterOrderId = getRouterJsonParam(option, "barterOrderId");
+    this.getBarterOrder(barterOrderId);
     // for more accurate detail since we not able to pass accurate date from url param
   },
 };

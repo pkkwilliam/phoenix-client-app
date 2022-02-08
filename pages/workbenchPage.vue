@@ -22,11 +22,14 @@
         <view class="medium-margin-top-spacer" v-if="showCashOut">
           <workbench-cashout-button />
         </view>
+        <view class="medium-margin-top-spacer" v-if="showCashOutFishCoin">
+          <workbench-cash-out-fish-coin-button />
+        </view>
       </view>
       <view class="card medium-margin-top-spacer">
         <view class="space-between-center-container">
           <text class="h3 black bold">賣在摸魚</text>
-          <money-made />
+          <!-- <money-made /> -->
         </view>
         <view class="space-around-center-container medium-margin-top-spacer">
           <my-item-list-button />
@@ -51,6 +54,7 @@ import WorkbenchMenu from "../components/menu/workbenchMenu.vue";
 import ShipmentPendingAlertRows from "../components/myOrder/shipmentPendingAlert/shipmentPendingAlertRows.vue";
 import WorkbenchAddBankAccountButton from "../components/navigationButton/bank/workbenchAddBankAccountButton.vue";
 import WorkbenchCashoutButton from "../components/navigationButton/bank/workbenchCashoutButton.vue";
+import WorkbenchCashOutFishCoinButton from "../components/navigationButton/bank/workbenchCashOutFishCoinButton.vue";
 import WorkbenchCreateItemButton from "../components/navigationButton/item/workbenchCreateItemButton.vue";
 import MyItemListButton from "../components/navigationButton/myItemListButton.vue";
 import MySoldButton from "../components/navigationButton/mySoldButton.vue";
@@ -68,6 +72,7 @@ export default {
     WorkbenchAddBankAccountButton,
     WorkbenchCashoutButton,
     WorkbenchMenu,
+    WorkbenchCashOutFishCoinButton,
   },
   computed: {
     hasBankAccount() {
@@ -75,6 +80,9 @@ export default {
     },
     showCashOut() {
       return this.$store.state.userProfile.profile.balance >= 10;
+    },
+    showCashOutFishCoin() {
+      return this.$store.state.userProfile.profile.fishCoinBalance >= 200;
     },
     userProfile() {
       return this.$store.state.userProfile.profile;
@@ -84,6 +92,7 @@ export default {
     this.$appStateService.getBankAccount();
     this.$appStateService.getSellerPendingOrder();
     this.$appStateService.getUserProfile();
+    this.$appStateService.getStatusSummary();
   },
 };
 </script>

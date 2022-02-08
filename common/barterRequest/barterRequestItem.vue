@@ -72,7 +72,7 @@ export default {
   methods: {
     onClickBarterRequest() {
       uni.navigateTo({
-        url: BARTER_REQUEST_DETAIL_PAGE(this.barterRequest).url,
+        url: BARTER_REQUEST_DETAIL_PAGE(this.barterRequest.id).url,
       });
     },
   },

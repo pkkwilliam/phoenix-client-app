@@ -16,6 +16,7 @@ const USER_BARTER_ORDER = "/user/barter_order/v1";
 const USER_BARTER_REQUEST = "/user/barter_request/v1";
 const USER_BUSINESS = "/user/business/v1";
 const USER_CASH_OUT = "/user/cash_out/v1";
+const USER_CHAT_MESSAGE = "/user/chat_message/v1";
 const USER_IMAGE_UPLOAD = "/user/image_upload/v1";
 const USER_ITEM = "/user/item/v1";
 const USER_MPAY_ORDER = "/user/mpay_order/v1";
@@ -295,6 +296,15 @@ export const CREATE_CASH_OUT = (request) => ({
   url: USER_CASH_OUT,
 });
 
+export const GET_CASH_OUT_ESTIMATE = (cashOutType, cashOutValue) => ({
+  authenticatedRequest: false,
+  method: GET_METHOD,
+  url:
+    USER_CASH_OUT +
+    `/cash_out_estimate` +
+    queryParams({ cashOutType, cashOutValue }, true, "comma"),
+});
+
 export const GET_CASH_OUT_PAGINATION = (pageRequest, pageSize) => ({
   authenticatedRequest: true,
   method: GET_METHOD,
@@ -306,6 +316,41 @@ export const GET_CATEGORY_ALL = () => ({
   authenticatedRequest: false,
   method: GET_METHOD,
   url: PUBLIC_CATEGORY + "/all",
+});
+
+// Chat Message
+export const CREATE_CHAT_MESSAGE = (toUserSid, chatMessage) => ({
+  authenticatedRequest: true,
+  body: JSON.stringify(chatMessage),
+  method: POST_METHOD,
+  url: USER_CHAT_MESSAGE + `/${toUserSid}`,
+});
+
+export const GET_OPPOSITE_PARTIES = (pageRequest, pageSize) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url:
+    USER_CHAT_MESSAGE +
+    `/opposite_parties?${generatetPaginationRquestParam(
+      pageRequest,
+      pageSize
+    )}`,
+});
+
+export const GET_UNRECEIVED_CHAT_MESSAGE = (pageRequest, pageSize) => ({
+  authenticatedRequest: true,
+  method: GET_METHOD,
+  url:
+    USER_CHAT_MESSAGE +
+    `/unreceived?${generatetPaginationRquestParam(pageRequest, pageSize)}`,
+});
+
+export const UPDATE_OPPOSITE_USER_CHAT_MESSAGE_RECEIVED = (
+  oppositeUserSid
+) => ({
+  authenticatedRequest: true,
+  method: PUT_METHOD,
+  url: USER_CHAT_MESSAGE + `/received/${oppositeUserSid}`,
 });
 
 // Image Upload

@@ -3,7 +3,7 @@
     class="container large-margin-top-spacer sticky-bottom-container-padding"
   >
     <view class="flex-end-center-container">
-      <switch-business-account />
+      <switch-business-account class="medium-margin-right-spacer" />
       <my-setting-button />
     </view>
     <user-card :user="userProfile" />
@@ -23,8 +23,8 @@
         <view class="space-around-center-container medium-margin-top-spacer">
           <my-item-list-button />
           <my-barter-order-button />
-          <my-sold-button />
           <my-order-button />
+          <my-sold-button />
         </view>
       </view>
       <shipment-pending-alert-rows />

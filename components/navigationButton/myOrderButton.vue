@@ -1,12 +1,6 @@
 <template>
   <view class="column-center-container" @click="onClick">
-    <u-icon
-      class="icon-container"
-      custom-prefix="phoenix-custom-icon"
-      name="bag"
-      size="38"
-      :top="-1"
-    />
+    <image class="image" src="../../static/myTrade/my_order.png" />
     <view class="small-margin-top-spacer">
       <text class="h4 secondary">{{ text }}</text>
     </view>
@@ -20,7 +14,7 @@ export default {
     text() {
       const { purchasedOrderPendingCount } =
         this.$store.state.statusSummary.content;
-      return `我買到的 ${purchasedOrderPendingCount}`;
+      return `我的收獲 ${purchasedOrderPendingCount}`;
     },
   },
   methods: {
@@ -37,5 +31,9 @@ export default {
   border-radius: 100px;
   color: #ffffff;
   padding: 12rpx;
+}
+.image {
+  height: 50rpx;
+  width: 50rpx;
 }
 </style>

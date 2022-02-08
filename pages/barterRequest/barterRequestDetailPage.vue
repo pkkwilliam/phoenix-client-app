@@ -85,9 +85,7 @@ import {
 } from "../../enum/barterRole";
 import {
   BARTER_ORDER_DETAIL_PAGE,
-  BUYER_ORDER_DETAIL_PAGE,
   getRouterJsonParam,
-  SELLER_ORDER_DETAIL_PAGE,
 } from "../../route/applicationRoute";
 import {
   convertSystemDateToDisplayDateYear,
@@ -97,7 +95,6 @@ import { getBarterRequestInfo } from "../../common/barterRequest/barterRequestUt
 import {
   GET_BARTER_ORDER_BY_BARTER_REQUEST_ID,
   GET_BARTER_REQUEST_BY_ID,
-  GET_ORDER_BY_BARTER_REQUEST_ID,
   UPDATE_BARTER_REQUEST_OFFERER,
   UPDATE_BARTER_REQUEST_RECEIVER,
 } from "../../service/service";
@@ -224,14 +221,14 @@ export default {
       const barterOrder = await this.execute(
         GET_BARTER_ORDER_BY_BARTER_REQUEST_ID(id)
       );
-      uni.navigateTo({ url: BARTER_ORDER_DETAIL_PAGE(barterOrder).url });
+      uni.navigateTo({ url: BARTER_ORDER_DETAIL_PAGE(barterOrder.id).url });
     },
   },
   async onLoad(options) {
     await this.$appStateService.getUserProfile();
-    const barterRequest = getRouterJsonParam(options, "barterRequest");
+    const barterRequestId = getRouterJsonParam(options, "barterRequestId");
     this.barterRequest = await this.execute(
-      GET_BARTER_REQUEST_BY_ID(barterRequest.id)
+      GET_BARTER_REQUEST_BY_ID(barterRequestId)
     );
     this.barterRequestType = barterRequest.barterRole;
   },

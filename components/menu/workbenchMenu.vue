@@ -20,6 +20,10 @@
 
 <script>
 import {
+  CASH_OUT_TYPE_CASH,
+  CASH_OUT_TYPE_FISH_COIN,
+} from "../../enum/cashOutType";
+import {
   CASH_OUT_HISTORY_PAGE,
   CASH_OUT_PAGE,
   MY_BANK_ACCOUNT_PAGE,
@@ -33,7 +37,16 @@ export default {
   computed: {
     menuItems() {
       return [
-        { iconName: "dollar-bag", label: "提取現金", toPage: CASH_OUT_PAGE },
+        {
+          iconName: "dollar-bag",
+          label: "提取現金",
+          toPage: () => CASH_OUT_PAGE(CASH_OUT_TYPE_CASH.key),
+        },
+        {
+          iconName: "fish_coin",
+          label: "提取魚獲",
+          toPage: () => CASH_OUT_PAGE(CASH_OUT_TYPE_FISH_COIN.key),
+        },
         {
           iconName: "history-list",
           label: "提取現金歷史",

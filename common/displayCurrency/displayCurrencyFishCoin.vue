@@ -1,13 +1,13 @@
 <template>
-  <view>
+  <view class="row-center-container">
     <u-icon
       class="icon-container light-blue"
       custom-prefix="phoenix-custom-icon"
       name="fish_coin"
-      size="38"
-      :top="3"
+      :size="iconSize"
+      :top="0"
     />
-    <text class="h2 blue">{{ value }}</text>
+    <text :class="text">{{ value }}</text>
   </view>
 </template>
 
@@ -15,10 +15,31 @@
 import uIcon from "../../uview-ui/components/u-icon/u-icon.vue";
 export default {
   components: { uIcon },
-  computed: {},
+  computed: {
+    iconSize() {
+      switch (this.size) {
+        case "large":
+          return 78;
+        default:
+          return 38;
+      }
+    },
+    text() {
+      switch (this.size) {
+        case "large":
+          return "large-text";
+        default:
+          return "default-text";
+      }
+    },
+  },
   props: {
     priceColor: {
       default: "primary",
+      type: String,
+    },
+    size: {
+      default: "default",
       type: String,
     },
     value: {
@@ -30,4 +51,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.default-text {
+  color: $u-phoenix-blue;
+  font-size: 34rpx;
+}
+.large-text {
+  color: $u-phoenix-blue;
+  font-size: 72rpx;
+}
 </style>

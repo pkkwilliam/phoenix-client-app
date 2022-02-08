@@ -17,14 +17,12 @@
       <view>
         <text class="h2 lightly-bold">{{ user.nickname }}</text>
       </view>
-      <view class="small-margin-top-spacer">
+      <view class="space-between-center-container small-margin-top-spacer">
         <phone-number-verified-tag />
+        <chat-message-button type="button" :toUser="user" />
       </view>
       <view class="small-margin-top-spacer">
         <text>{{ user.description }}</text>
-      </view>
-      <view class="small-margin-top-spacer">
-        <text class="secondary">{{ user.sid }}</text>
       </view>
       <view class="medium-margin-top-spacer">
         <application-line-breaker />
@@ -61,6 +59,7 @@ import UserLikeCountButton from "../../components/navigationButton/user/userLike
 import UserSubscribeCountButton from "../../components/navigationButton/user/userSubscribeCountButton.vue";
 import UserFansCountButton from "../../components/navigationButton/user/userFansCountButton.vue";
 import DisplayCurrencyFishCoin from "../../common/displayCurrency/displayCurrencyFishCoin.vue";
+import ChatMessageButton from "../../components/navigationButton/chat/chatMessageButton.vue";
 export default {
   components: {
     PaginationItemDisplay,
@@ -73,6 +72,7 @@ export default {
     UserLikeCountButton,
     UserSubscribeCountButton,
     DisplayCurrencyFishCoin,
+    ChatMessageButton,
   },
   computed: {
     userAvatarImageUrl() {
@@ -91,8 +91,10 @@ export default {
     },
   },
   onLoad(options) {
-    const user = getRouterJsonParam(options, "user");
-    this.user = user;
+    const userSid = getRouterJsonParam(options, "userSid");
+    this.user = {
+      sid: userSid,
+    };
   },
   onReachBottom() {
     this.$appStateService.setItemPagination(USER_PAGE);

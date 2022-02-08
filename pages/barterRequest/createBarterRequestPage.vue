@@ -106,7 +106,9 @@ export default {
       this.execute(CREATE_BARTER_REQUEST(requestBody)).then((barterRequest) => {
         this.$appStateService.getStatusSummary({ force: true });
         console.log(JSON.stringify(barterRequest), "createeed");
-        uni.redirectTo({ url: BARTER_REQUEST_DETAIL_PAGE(barterRequest).url });
+        uni.redirectTo({
+          url: BARTER_REQUEST_DETAIL_PAGE(barterRequest.id).url,
+        });
       });
     },
     getCreatedItemServiceRequest(pageRequest, pageSize) {

@@ -3,7 +3,7 @@
     <view class="sticky-bottom-container-padding">
       <view class="card">
         <view class="space-between-center-container">
-          <user-card :user="item.createBy" />
+          <user-card :user="item.createBy" v-if="item.createBy" />
         </view>
         <view
           class="column-center-center-container medium-margin-top-spacer"
@@ -14,13 +14,18 @@
         <item-detail :item="item" />
       </view>
       <view class="card medium-margin-top-spacer">
-        <user-card :user="item.createBy" />
+        <user-card :user="item.createBy" v-if="item.createBy" />
       </view>
     </view>
     <view class="cu-bar foot">
       <stick-bottom-bar>
         <template slot="left">
           <save-item-button :item="item" />
+          <chat-message-button
+            class="medium-margin-left-spacer full-width"
+            type="bottom-navigation"
+            :toUser="item.createBy"
+          />
         </template>
         <template slot="right">
           <view class="row-center-container">
@@ -59,6 +64,7 @@ import UserSubscribeButton from "../components/subscribe/UserSubscribeButton.vue
 import SaveItemButton from "../components/item/saveItemButton.vue";
 import StickBottomBar from "../common/navigation/stickBottomBar.vue";
 import PrimaryButton from "../common/button/primaryButton.vue";
+import ChatMessageButton from "../components/navigationButton/chat/chatMessageButton.vue";
 
 export default {
   components: {
@@ -70,10 +76,11 @@ export default {
     SaveItemButton,
     StickBottomBar,
     PrimaryButton,
+    ChatMessageButton,
   },
   data() {
     return {
-      item: undefined,
+      item: { id: undefined },
     };
   },
   methods: {
@@ -95,8 +102,8 @@ export default {
     },
   },
   onLoad(option) {
-    const item = getRouterJsonParam(option, "item");
-    this.item = item;
+    const itemId = getRouterJsonParam(option, "itemId");
+    this.item = { id: itemId };
     this.getItem();
   },
 };

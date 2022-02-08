@@ -35,7 +35,7 @@ export default {
   methods: {
     onClickItem() {
       if (this.clickable) {
-        uni.navigateTo({ url: ITEM_DETAIL_PAGE(this.item).url });
+        uni.navigateTo({ url: ITEM_DETAIL_PAGE(this.item.id).url });
       }
     },
   },

@@ -78,7 +78,8 @@ export default {
       });
     },
     onClickItem(item) {
-      uni.navigateTo({ url: ITEM_DETAIL_PAGE(item).url });
+      console.log(JSON.stringify(item));
+      uni.navigateTo({ url: ITEM_DETAIL_PAGE(item.id).url });
     },
   },
   mounted() {

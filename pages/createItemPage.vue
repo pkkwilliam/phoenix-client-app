@@ -115,7 +115,7 @@ import SelectableItemConditionTags from "../common/createItem/selectableItemCond
 import SelectableSubCategoryTags from "../common/createItem/selectableSubCategoryTags.vue";
 import UButton from "../uview-ui/components/u-button/u-button.vue";
 import CostInputTextField from "../common/costInputTextField.vue";
-import { CREATE_ITEM, UPDATE_ITEM } from "../service/service";
+import { CREATE_ITEM, GET_ITEM, UPDATE_ITEM } from "../service/service";
 import UPopup from "../uview-ui/components/u-popup/u-popup.vue";
 import {
   getRouterJsonParam,
@@ -234,7 +234,7 @@ export default {
         this.execute(serviceExecute(requestBody)).then((response) => {
           uni.showToast({ title: successToastText });
           setTimeout(() => {
-            uni.redirectTo({ url: ITEM_DETAIL_PAGE(response).url });
+            uni.redirectTo({ url: ITEM_DETAIL_PAGE(response.id).url });
           }, 1000);
         });
       } finally {
@@ -262,10 +262,10 @@ export default {
       };
     },
   },
-
-  onLoad(options) {
-    const item = getRouterJsonParam(options, "item");
-    if (item) {
+  async onLoad(options) {
+    const itemId = getRouterJsonParam(options, "itemId");
+    if (itemId) {
+      const item = await this.execute(GET_ITEM(itemId));
       this.setEditItem(item);
     }
   },

@@ -32,11 +32,13 @@
               }}</text>
             </view>
           </view>
-          <view class="end-center-container medium-margin-top-spacer">
-            <text class="h5">金額:</text>
-            <display-currency-fish-coin
-              :value="data.amount - data.commissionFee"
-            />
+          <view class="align-end-container medium-margin-top-spacer">
+            <view class="row-center-container" v-if="isCashOutFishCoin(data)">
+              <text>用</text>
+              <display-currency-fish-coin :value="data.amount" />
+              <text>換取</text>
+            </view>
+            <display-currency-mop :value="data.actualReceive" />
           </view>
         </view>
       </template>
@@ -46,13 +48,19 @@
 
 <script>
 import DisplayCurrencyFishCoin from "../../common/displayCurrency/displayCurrencyFishCoin.vue";
+import DisplayCurrencyMop from "../../common/displayCurrency/displayCurrencyMop.vue";
 import paginationItemDisplay from "../../common/itemDisplayList/paginationItemDisplay.vue";
 import { getBankLabelByKey } from "../../enum/bank";
+import { CASH_OUT_TYPE_FISH_COIN } from "../../enum/cashOutType";
 import { GET_CASH_OUT_PAGINATION } from "../../service/service";
 import { convertSystemDateToDisplayDateTimeMinute } from "../../util/dateUtil";
 
 export default {
-  components: { paginationItemDisplay, DisplayCurrencyFishCoin },
+  components: {
+    paginationItemDisplay,
+    DisplayCurrencyFishCoin,
+    DisplayCurrencyMop,
+  },
   methods: {
     getCashOutPagination(pageRequest, pageSize) {
       return GET_CASH_OUT_PAGINATION(pageRequest, pageSize);
@@ -62,6 +70,9 @@ export default {
     },
     transformCreateTime(date) {
       return convertSystemDateToDisplayDateTimeMinute(date);
+    },
+    isCashOutFishCoin(cashOut) {
+      return cashOut.cashOutType === CASH_OUT_TYPE_FISH_COIN.key;
     },
   },
   onReachBottom() {

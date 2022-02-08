@@ -89,10 +89,10 @@ export default {
       });
     },
     onClickEdit() {
-      uni.navigateTo({ url: CREATE_ITEM_TAB(this.item).url });
+      uni.navigateTo({ url: CREATE_ITEM_TAB(this.item.id).url });
     },
     onClickItem() {
-      uni.navigateTo({ url: ITEM_DETAIL_PAGE(this.item).url });
+      uni.navigateTo({ url: ITEM_DETAIL_PAGE(this.item.id).url });
     },
   },
   props: {

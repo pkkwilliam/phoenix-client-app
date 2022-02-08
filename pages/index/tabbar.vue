@@ -60,7 +60,9 @@
         </view>
         <view class="action" @click="NavChange" data-cur="chatPage">
           <view class="cuIcon-cu-image">
-            <!-- <view class="cu-tag badge">红点</view> -->
+            <view class="cu-tag badge" v-if="messagePagePendingCount > 0">{{
+              messagePagePendingCount
+            }}</view>
             <image
               v-if="PageCur == 'chatPage'"
               src="../../static/tabBar/chat_cur.png"
@@ -106,6 +108,7 @@ import Vue from "vue";
 import LandingTabsSwiperPage from "../landing/landingTabsSwiperPage.vue";
 import ChatPage from "../chat/chatPage.vue";
 import BarterRequestPage from "../barterRequest/barterRequestPage.vue";
+import { startWebsocket } from "../../util/chatUtil";
 
 export const TabbarEventBus = new Vue();
 
@@ -138,6 +141,10 @@ export default {
         this.$store.state.statusSummary.content;
       return barterRequestReceiverPendingCount;
     },
+    messagePagePendingCount() {
+      const { unreceivedCount } = this.$store.state.chat;
+      return unreceivedCount;
+    },
   },
   onLoad() {
     //获取退出时的tabbar记录
@@ -152,6 +159,7 @@ export default {
   async mounted() {
     await this.$appStateService.getUserProfile();
     await this.$appStateService.getStatusSummary();
+    startWebsocket(this.execute, this.$store);
   },
   methods: {
     NavChange: function (e) {

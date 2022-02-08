@@ -21,7 +21,7 @@ export default {
   computed: {
     transformBankAccounts() {
       return this.bankAccounts.map((bankAccount) => ({
-        value: bankAccount.id,
+        value: bankAccount,
         label: this.getBankAccountLabel(bankAccount),
       }));
     },
@@ -36,10 +36,10 @@ export default {
       return `${beneficialName} ${bankLabel}-${beneficialAccountNumber}`;
     },
     onSelect(bankAccount) {
-      const accountId = bankAccount[0].value;
+      const account = bankAccount[0].value;
       const label = bankAccount[0].label;
       this.label = label;
-      this.$emit("onSelect", accountId);
+      this.$emit("onSelect", account);
     },
   },
   props: {

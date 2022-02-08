@@ -81,7 +81,7 @@ export default {
       this.resetPagination();
     },
     onClickItem(item) {
-      uni.navigateTo({ url: ITEM_DETAIL_PAGE(item).url });
+      uni.navigateTo({ url: ITEM_DETAIL_PAGE(item.id).url });
     },
     resetPagination() {
       this.$refs.uWaterfall.clear();

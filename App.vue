@@ -1,5 +1,6 @@
 <script>
 import Vue from "vue";
+import { startWebsocket } from "./util/chatUtil";
 export default {
   onLaunch: function () {
     uni.getSystemInfo({

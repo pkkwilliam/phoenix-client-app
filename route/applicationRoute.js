@@ -19,18 +19,18 @@ export const BANK_ACCOUNT_FORM_PAGE = (bankAccount) => ({
 export const BARTER_ORDER_PAGE = () => ({
   url: "/pages/barterOrder/barterOrderPage",
 });
-export const BARTER_ORDER_DETAIL_PAGE = (barterOrder) => ({
+export const BARTER_ORDER_DETAIL_PAGE = (barterOrderId) => ({
   url:
-    "/pages/barterOrder/barterOrderDetailPage?barterOrder=" +
-    JSON.stringify(barterOrder),
+    "/pages/barterOrder/barterOrderDetailPage?barterOrderId=" +
+    JSON.stringify(barterOrderId),
 });
 export const BARTER_PRE_ORDER_PAGE = (item) => ({
   url: "/pages/order/barterPreOrderPage?item=" + JSON.stringify(item),
 });
-export const BARTER_REQUEST_DETAIL_PAGE = (barterRequest) => ({
+export const BARTER_REQUEST_DETAIL_PAGE = (barterRequestId) => ({
   url:
-    "/pages/barterRequest/barterRequestDetailPage?barterRequest=" +
-    JSON.stringify(barterRequest),
+    "/pages/barterRequest/barterRequestDetailPage?barterRequestId=" +
+    JSON.stringify(barterRequestId),
 });
 export const BUSINESS_PAGE = () => ({
   url: "/pages/business/businessPage",
@@ -41,14 +41,21 @@ export const BUSINESS_FORM_PAGE = (business) => ({
 export const BUYER_ORDER_DETAIL_PAGE = (orderObject) => ({
   url: "/pages/order/buyerOrderDetailPage?order=" + JSON.stringify(orderObject),
 });
-export const CASH_OUT_PAGE = () => ({
-  url: "/pages/cashOut/cashOutFormPage",
+export const CASH_OUT_PAGE = (cashOutType) => ({
+  url:
+    "/pages/cashOut/cashOutFormPage?cashOutType=" + JSON.stringify(cashOutType),
 });
 export const CASH_OUT_HISTORY_PAGE = () => ({
   url: "/pages/cashOut/cashOutHistoryPage",
 });
 export const CHANGE_PASSWORD_PAGE = () => ({
   url: "/pages/changePasswordPage",
+});
+export const CHAT_PAGE = () => ({
+  url: "/pages/chat/chatPage",
+});
+export const CHAT_MESSAGE_PAGE = (toUserSid) => ({
+  url: "/pages/chat/chatMessagePage?toUserSid=" + JSON.stringify(toUserSid),
 });
 export const CREATE_BARTER_REQUEST_PAGE = (item) => ({
   url:
@@ -58,7 +65,7 @@ export const FORGOT_PASSWORD_PAGE = () => ({
   url: "/pages/forgotPasswordPage",
 });
 export const ITEM_DETAIL_PAGE = (itemObject) => ({
-  url: "/pages/itemDetailPage?item=" + JSON.stringify(itemObject),
+  url: "/pages/itemDetailPage?itemId=" + JSON.stringify(itemObject),
 });
 export const LOGIN_PAGE = () => ({
   url: "/pages/loginPage",
@@ -114,12 +121,12 @@ export const SHIPPING_COST_ESTIMATE_PAGE = () => ({
 export const WORKBENCH_PAGE = () => ({
   url: "/pages/workbenchPage",
 });
-export const USER_PAGE = (user) => ({
-  url: `/pages/user/userPage?user=${JSON.stringify(user)}`,
+export const USER_PAGE = (userSid) => ({
+  url: `/pages/user/userPage?userSid=${JSON.stringify(userSid)}`,
 });
 // tab
-export const CREATE_ITEM_TAB = (item) => ({
-  url: "/pages/createItemPage?item=" + JSON.stringify(item),
+export const CREATE_ITEM_TAB = (itemId) => ({
+  url: "/pages/createItemPage?itemId=" + JSON.stringify(itemId),
 });
 export const LANDING_TAB = () => ({
   url: "/pages/index/tabbar",

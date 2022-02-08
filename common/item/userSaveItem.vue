@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     onClickItem() {
-      uni.navigateTo({ url: ITEM_DETAIL_PAGE(this.item).url });
+      uni.navigateTo({ url: ITEM_DETAIL_PAGE(this.item.id).url });
     },
   },
   props: {

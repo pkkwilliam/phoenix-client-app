@@ -23,7 +23,7 @@ export default {
     hasUnreceived() {
       console.log(this.userChat.messages);
       const { received } = this.userLastMessage();
-      return received;
+      return !received;
     },
     lastMessageContent() {
       const { content } = this.userLastMessage();

@@ -1,6 +1,5 @@
 <script>
 import Vue from "vue";
-import { startWebsocket } from "./util/chatUtil";
 export default {
   onLaunch: function () {
     uni.getSystemInfo({
@@ -71,7 +70,8 @@ export default {
           console.log("this is Android");
           const { content, payload, title } = msg;
           console.log(content, payload, title);
-          plus.push.createMessage(content, payload, {
+          const { body } = JSON.parse(content);
+          plus.push.createMessage(body, payload, {
             title,
           });
           // let payload = {};

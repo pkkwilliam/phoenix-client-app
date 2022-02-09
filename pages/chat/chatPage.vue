@@ -3,13 +3,15 @@
     <!-- <cu-custom bgColor="bg-gradual-blue" :isBack="false">
       <block slot="content">消息</block>
     </cu-custom> -->
-    <application-navigation-bar title="消息" />
+    <application-navigation-bar title="消息" :isBack="false" />
     <u-empty text="消息列表為空" mode="message" v-if="userChats.length < 1" />
-    <view v-for="(userChat, index) in userChats" :key="index">
-      <application-line-breaker v-if="index === 0" />
-      <chat-user-row class="chat-user-row" :userChat="userChat" />
-      <application-line-breaker />
-    </view>
+    <scroll-view>
+      <view v-for="(userChat, index) in userChats" :key="index">
+        <application-line-breaker v-if="index === 0" />
+        <chat-user-row class="chat-user-row" :userChat="userChat" />
+        <application-line-breaker />
+      </view>
+    </scroll-view>
   </view>
 </template>
 
@@ -17,7 +19,7 @@
 import chatUserRow from "../../common/chat/chatUserRow.vue";
 import ApplicationNavigationBar from "../../common/navigation/applicationNavigationBar.vue";
 import ApplicationLineBreaker from "../../components/applicationLineBreaker.vue";
-import { getChatList, startWebsocket } from "../../util/chatUtil";
+import { startWebsocket } from "../../util/chatUtil";
 export default {
   components: { chatUserRow, ApplicationLineBreaker, ApplicationNavigationBar },
   computed: {
@@ -31,7 +33,6 @@ export default {
   props: {},
   mounted() {
     startWebsocket(this.execute, this.$store);
-    // getChatList(this.execute, this.$store);
   },
 };
 </script>

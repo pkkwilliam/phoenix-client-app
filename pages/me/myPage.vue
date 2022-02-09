@@ -1,6 +1,11 @@
 <template>
   <view
-    class="container large-margin-top-spacer sticky-bottom-container-padding"
+    class="
+      safearea-container
+      container
+      large-margin-top-spacer
+      sticky-bottom-container-padding
+    "
   >
     <view class="flex-end-center-container">
       <switch-business-account class="medium-margin-right-spacer" />

@@ -39,6 +39,7 @@
 <script>
 import { LOGIN, REQUEST_VERIFICATION } from "../service/service";
 import { COUNTRY_CODES } from "../common/countryCodes";
+import { startWebsocket } from "../util/chatUtil";
 export default {
   components: {},
   computed: {
@@ -101,6 +102,8 @@ export default {
       this.execute(LOGIN(requestBody))
         .then((userProfile) => {
           this.$store.commit("setUserProfile", userProfile);
+          this.$appStateService.getStatusSummary();
+          startWebsocket(this.execute, this.$store);
           uni.navigateBack();
         })
         .catch(() => {});

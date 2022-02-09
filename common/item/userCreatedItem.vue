@@ -75,6 +75,7 @@ export default {
     onClickDeleteItem() {
       const onClickConfirm = async () => {
         await this.execute(DELETE_ITEM(this.item.id));
+        this.$appStateService.getStatusSummary({ force: true });
         this.$emit("onItemDeleted");
       };
       uni.showModal({

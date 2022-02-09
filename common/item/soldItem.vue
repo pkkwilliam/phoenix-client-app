@@ -1,12 +1,12 @@
 <template>
   <view class="space-between-container" @click="onClickItem">
     <view class="row-container">
-      <application-lazy-load-image
+      <!-- <application-lazy-load-image
         class="image"
         mode="widthFix"
         :image="coverImage"
-      />
-      <!-- <image class="image" mode="aspectFill" :src="coverImage" /> -->
+      /> -->
+      <image class="image" mode="aspectFill" :src="coverImage" />
       <text class="description">{{ description }}</text>
     </view>
     <view class="align-end-container" v-if="showPrice">

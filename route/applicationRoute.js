@@ -24,8 +24,8 @@ export const BARTER_ORDER_DETAIL_PAGE = (barterOrderId) => ({
     "/pages/barterOrder/barterOrderDetailPage?barterOrderId=" +
     JSON.stringify(barterOrderId),
 });
-export const BARTER_PRE_ORDER_PAGE = (item) => ({
-  url: "/pages/order/barterPreOrderPage?item=" + JSON.stringify(item),
+export const BARTER_PRE_ORDER_PAGE = (itemId) => ({
+  url: "/pages/order/barterPreOrderPage?itemId=" + JSON.stringify(itemId),
 });
 export const BARTER_REQUEST_DETAIL_PAGE = (barterRequestId) => ({
   url:
@@ -57,9 +57,10 @@ export const CHAT_PAGE = () => ({
 export const CHAT_MESSAGE_PAGE = (toUserSid) => ({
   url: "/pages/chat/chatMessagePage?toUserSid=" + JSON.stringify(toUserSid),
 });
-export const CREATE_BARTER_REQUEST_PAGE = (item) => ({
+export const CREATE_BARTER_REQUEST_PAGE = (itemId) => ({
   url:
-    "/pages/barterRequest/createBarterRequestPage?item=" + JSON.stringify(item),
+    "/pages/barterRequest/createBarterRequestPage?itemId=" +
+    JSON.stringify(itemId),
 });
 export const FORGOT_PASSWORD_PAGE = () => ({
   url: "/pages/forgotPasswordPage",
@@ -121,8 +122,12 @@ export const SHIPPING_COST_ESTIMATE_PAGE = () => ({
 export const WORKBENCH_PAGE = () => ({
   url: "/pages/workbenchPage",
 });
-export const USER_PAGE = (userSid) => ({
-  url: `/pages/user/userPage?userSid=${JSON.stringify(userSid)}`,
+export const USER_PAGE = (userSid, description, imageUrl) => ({
+  url: `/pages/user/userPage?user=${JSON.stringify({
+    userSid,
+    description,
+    imageUrl,
+  })}`,
 });
 // tab
 export const CREATE_ITEM_TAB = (itemId) => ({

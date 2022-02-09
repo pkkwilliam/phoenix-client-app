@@ -6,6 +6,7 @@
     {
       "path": "pages/index/tabbar",
       "style": {
+        "disableScroll": true,
         "navigationBarTitleText": "摸魚",
         "navigationStyle": "custom"
       }

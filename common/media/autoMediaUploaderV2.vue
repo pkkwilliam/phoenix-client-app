@@ -1,6 +1,6 @@
 <template>
   <u-upload
-    action="https://up-na0.qiniup.com"
+    action="https://up-z2.qiniup.com"
     multiple
     ref="uUpload"
     upload-text="選擇圖片"

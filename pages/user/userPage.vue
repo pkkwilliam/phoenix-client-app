@@ -90,10 +90,15 @@ export default {
       return GET_ITEMS_BY_USER_ID(this.user.sid, pageRequest, pageSize);
     },
   },
-  onLoad(options) {
-    const userSid = getRouterJsonParam(options, "userSid");
+  async onLoad(options) {
+    const { userSid, description, imageUrl } = getRouterJsonParam(
+      options,
+      "user"
+    );
     this.user = {
       sid: userSid,
+      description,
+      imageUrl,
     };
   },
   onReachBottom() {

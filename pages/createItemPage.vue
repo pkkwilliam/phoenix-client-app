@@ -1,105 +1,107 @@
 <template>
-  <view class="container safearea-container">
-    <view class="space-between-center-container medium-margin-top-spacer">
-      <text @click="onClickCancel">取消</text>
-      <u-button
-        class="submit-button"
-        shape="circle"
-        size="mini"
-        type="primary"
-        :disabled="disabledSubmitButton"
-        :loading="loading"
-        @click="onClickSubmit"
-      >
-        {{ submitLabel }}
-      </u-button>
-    </view>
-    <view class="medium-margin-top-spacer">
-      <u-input
-        placeholder="說說你的使用感受，入手渠道，轉手原因..."
-        type="textarea"
-        v-model="description"
-        :autoHeight="true"
-        :height="200"
-        :maxlength="9999"
-      />
-    </view>
-    <!-- image upload -->
-    <view class="medium-margin-top-spacer">
-      <scroll-view class="u-scroll-view" scroll-x scroll-with-animation>
-        <!-- <media-uploader :onChangeMedia="onChangeMediaList" /> -->
-        <!-- <auto-media-uploader v-model="selectedMedia" /> -->
-        <auto-media-uploader-v-2
-          v-model="selectedMedia"
-          :initialMediaUrls="selectedMedia.mediaUrls"
-        />
-      </scroll-view>
-    </view>
-    <!-- item location -->
-    <view class="medium-margin-top-spacer">
-      <icon-sub-header iconName="location" label="物品所在地區" />
+  <view class="safearea-container">
+    <view class="container">
+      <view class="space-between-center-container">
+        <text @click="onClickCancel">取消</text>
+        <u-button
+          class="submit-button"
+          shape="circle"
+          size="mini"
+          type="primary"
+          :disabled="disabledSubmitButton"
+          :loading="loading"
+          @click="onClickSubmit"
+        >
+          {{ submitLabel }}
+        </u-button>
+      </view>
       <view class="medium-margin-top-spacer">
-        <scroll-view scroll-x class="u-scroll-view" scroll-with-animation>
-          <selectable-area-location-tags v-model="selectedAreaLocation" />
-        </scroll-view>
+        <u-input
+          placeholder="說說你的使用感受，入手渠道，轉手原因..."
+          type="textarea"
+          v-model="description"
+          :autoHeight="true"
+          :height="200"
+          :maxlength="9999"
+        />
       </view>
-    </view>
-    <!-- item category and condition -->
-    <view class="medium-margin-top-spacer">
-      <icon-sub-header iconName="list" label="分類/類型/成色" />
-      <view class="row-center-container medium-margin-top-spacer">
-        <view class="label-container medium-margin-right-spacer">
-          <text>分類</text>
-        </view>
-        <scroll-view scroll-x class="u-scroll-view" scroll-with-animation>
-          <selectable-category-tags v-model="selectedCategory" />
-        </scroll-view>
-      </view>
-      <view
-        class="row-center-container medium-margin-top-spacer"
-        v-if="selectedCategory"
-      >
-        <view class="label-container medium-margin-right-spacer">
-          <text>類型</text>
-        </view>
+      <!-- image upload -->
+      <view class="medium-margin-top-spacer">
         <scroll-view class="u-scroll-view" scroll-x scroll-with-animation>
-          <selectable-sub-category-tags
-            v-model="selectedSubCategory"
-            :category="selectedCategory"
+          <!-- <media-uploader :onChangeMedia="onChangeMediaList" /> -->
+          <!-- <auto-media-uploader v-model="selectedMedia" /> -->
+          <auto-media-uploader-v-2
+            v-model="selectedMedia"
+            :initialMediaUrls="selectedMedia.mediaUrls"
           />
         </scroll-view>
       </view>
-      <view class="row-center-container medium-margin-top-spacer">
-        <view class="label-container medium-margin-right-spacer">
-          <text>成色</text>
-        </view>
-        <view>
-          <scroll-view class="u-scroll-view" scroll-x>
-            <selectable-item-condition-tags v-model="selectedItemCondition" />
+      <!-- item location -->
+      <view class="medium-margin-top-spacer">
+        <icon-sub-header iconName="location" label="物品所在地區" />
+        <view class="medium-margin-top-spacer">
+          <scroll-view scroll-x class="u-scroll-view" scroll-with-animation>
+            <selectable-area-location-tags v-model="selectedAreaLocation" />
           </scroll-view>
         </view>
       </view>
-    </view>
-
-    <view class="medium-margin-top-spacer">
-      <view class="space-between-center-container">
-        <icon-sub-header iconName="dollar" label="價格" />
-        <view class="row-center-container" @click="onToggleCostInput">
-          <view class="medium-margin-right-spacer">
-            <text class="green" v-if="isPriceZero">保護環境 以物換物</text>
+      <!-- item category and condition -->
+      <view class="medium-margin-top-spacer">
+        <icon-sub-header iconName="list" label="分類/類型/成色" />
+        <view class="row-center-container medium-margin-top-spacer">
+          <view class="label-container medium-margin-right-spacer">
+            <text>分類</text>
           </view>
-          <display-currency-fish-coin :value="displayPrice" />
-          <u-icon name="arrow-right" color="#a3a3a3" :size="26" />
+          <scroll-view scroll-x class="u-scroll-view" scroll-with-animation>
+            <selectable-category-tags v-model="selectedCategory" />
+          </scroll-view>
+        </view>
+        <view
+          class="row-center-container medium-margin-top-spacer"
+          v-if="selectedCategory"
+        >
+          <view class="label-container medium-margin-right-spacer">
+            <text>類型</text>
+          </view>
+          <scroll-view class="u-scroll-view" scroll-x scroll-with-animation>
+            <selectable-sub-category-tags
+              v-model="selectedSubCategory"
+              :category="selectedCategory"
+            />
+          </scroll-view>
+        </view>
+        <view class="row-center-container medium-margin-top-spacer">
+          <view class="label-container medium-margin-right-spacer">
+            <text>成色</text>
+          </view>
+          <view>
+            <scroll-view class="u-scroll-view" scroll-x>
+              <selectable-item-condition-tags v-model="selectedItemCondition" />
+            </scroll-view>
+          </view>
         </view>
       </view>
-      <u-popup border-radius="16" mode="bottom" v-model="showCostInput">
-        <view class="card">
-          <barter-cost-input-text-field
-            :deliveryTypeAndShippingCharge="deliveryTypeAndShippingCharge"
-            @onSubmit="onConfirmDeliveryTypeAndShippingCharge"
-          />
+
+      <view class="medium-margin-top-spacer">
+        <view class="space-between-center-container">
+          <icon-sub-header iconName="dollar" label="價格" />
+          <view class="row-center-container" @click="onToggleCostInput">
+            <view class="medium-margin-right-spacer">
+              <text class="green" v-if="isPriceZero">保護環境 以物換物</text>
+            </view>
+            <display-currency-fish-coin :value="displayPrice" />
+            <u-icon name="arrow-right" color="#a3a3a3" :size="26" />
+          </view>
         </view>
-      </u-popup>
+        <u-popup border-radius="16" mode="bottom" v-model="showCostInput">
+          <view class="card">
+            <barter-cost-input-text-field
+              :deliveryTypeAndShippingCharge="deliveryTypeAndShippingCharge"
+              @onSubmit="onConfirmDeliveryTypeAndShippingCharge"
+            />
+          </view>
+        </u-popup>
+      </view>
     </view>
   </view>
 </template>
@@ -126,6 +128,7 @@ import BarterCostInputTextField from "../common/createItem/barterCostInputTextFi
 import AutoMediaUploader from "../common/media/autoMediaUploader.vue";
 import AutoMediaUploaderV2 from "../common/media/autoMediaUploaderV2.vue";
 import { ITEM_DELIVERY_TYPE_FACE_TO_FACE } from "../enum/itemDeliveryType";
+import { ITEM_TYPE_BARTER } from "../enum/itemType";
 export default {
   components: {
     PrimaryButton,
@@ -198,6 +201,7 @@ export default {
       deliveryTypeAndShippingCharge: { price: 0 },
       description: undefined,
       isEdit: false,
+      itemType: ITEM_TYPE_BARTER.key,
       loading: false,
       selectedAreaLocation: undefined,
       selectedCategory: undefined,
@@ -228,10 +232,12 @@ export default {
           itemShippingInfo: {
             fixedShippingCharge: 0,
           },
+          itemType: this.itemType,
           price,
           subCategory: { id: this.selectedSubCategory.id },
         };
         this.execute(serviceExecute(requestBody)).then((response) => {
+          this.$appStateService.getStatusSummary({ force: true });
           uni.showToast({ title: successToastText });
           setTimeout(() => {
             uni.redirectTo({ url: ITEM_DETAIL_PAGE(response.id).url });

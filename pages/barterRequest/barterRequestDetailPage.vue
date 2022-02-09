@@ -1,12 +1,19 @@
 <template>
   <view class="container">
     <view class="card medium-margin-top-spacer">
-      <user-card :showQualifications="false" :user="barterRequest.createBy" />
+      <user-card
+        :showQualifications="false"
+        :user="barterRequest.createBy"
+        v-if="loaded"
+      />
       <view class="medium-margin-top-spacer">
         <text class="h3">{{ info }}</text>
       </view>
       <view class="medium-margin-top-spacer">
-        <barter-request-price-difference-row :barterRequest="barterRequest" />
+        <barter-request-price-difference-row
+          :barterRequest="barterRequest"
+          v-if="loaded"
+        />
       </view>
       <view class="medium-margin-top-spacer" v-if="isPending">
         <text class="brown">{{ expiryCountDown }}</text>
@@ -23,11 +30,12 @@
       <text class="h3 black bold">想要物品</text>
       <application-line-breaker />
       <view class="medium-margin-top-spacer">
-        <text class="h5 secondary">
+        <text class="h5 secondary" v-if="loaded">
           {{ createTimeConverter(barterRequest.requestItem.createTime) }}
         </text>
       </view>
       <sold-item
+        v-if="loaded"
         class="small-margin-top-spacer"
         :clickable="true"
         :item="barterRequest.requestItem"
@@ -44,7 +52,7 @@
         <text class="h5 secondary">
           {{ createTimeConverter(item.createTime) }}
         </text>
-        <sold-item class="small-margin-top-spacer" :item="item" />
+        <sold-item class="small-margin-top-spacer" v-if="loaded" :item="item" />
       </view>
     </view>
     <view class="medium-margin-top-spacer">
@@ -154,6 +162,7 @@ export default {
     return {
       barterRequest: {},
       barterRequestType: BARTER_ROLE_OFFERER.key,
+      loaded: false,
     };
   },
   methods: {
@@ -230,7 +239,8 @@ export default {
     this.barterRequest = await this.execute(
       GET_BARTER_REQUEST_BY_ID(barterRequestId)
     );
-    this.barterRequestType = barterRequest.barterRole;
+    this.barterRequestType = this.barterRequest.barterRole;
+    this.loaded = true;
   },
 };
 </script>

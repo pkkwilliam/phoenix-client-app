@@ -93,7 +93,7 @@ import StickBottomBar from "../../common/navigation/stickBottomBar.vue";
 import PrimaryGradientButton from "../../common/button/primaryGradientButton.vue";
 
 import "../../css/applicationTextField.scss";
-import { CREATE_ORDER } from "../../service/service";
+import { CREATE_ORDER, GET_ITEM } from "../../service/service";
 import PreOrderPaymentAid from "../../common/pre-order/preOrderPaymentAid.vue";
 import DisplayCurrencyFishCoin from "../../common/displayCurrency/displayCurrencyFishCoin.vue";
 import PrimaryButton from "../../common/button/primaryButton.vue";
@@ -158,9 +158,9 @@ export default {
       selectedDeliveryTypeIndex: 0,
     };
   },
-  onLoad(options) {
-    const item = getRouterJsonParam(options, "item");
-    this.item = item;
+  async onLoad(options) {
+    const itemId = getRouterJsonParam(options, "itemId");
+    this.item = await this.execute(GET_ITEM(itemId));
   },
   methods: {
     deliverySectionChange(index) {

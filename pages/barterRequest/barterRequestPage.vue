@@ -4,7 +4,7 @@
       <block slot="backText">返回</block>
       <block slot="content">以物換物</block>
     </cu-custom> -->
-    <application-navigation-bar title="以物換物" />
+    <application-navigation-bar title="以物換物" :isBack="false" />
     <u-tabs-swiper
       ref="tabs"
       :list="swipterItems"

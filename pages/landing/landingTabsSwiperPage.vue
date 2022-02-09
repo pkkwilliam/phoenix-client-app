@@ -1,6 +1,6 @@
 <template>
-  <view class="container medium-margin-top-spacer">
-    <view class="wrap">
+  <view class="safearea-container">
+    <view class="wrap container">
       <view class="space-around-center-container u-tabs-box">
         <u-tabs-swiper
           ref="tabs"
@@ -127,7 +127,7 @@ page {
 .wrap {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - var(--window-top));
+  height: calc(100vh - var(--status-bar-height));
   width: 100%;
 }
 .swiper-box {

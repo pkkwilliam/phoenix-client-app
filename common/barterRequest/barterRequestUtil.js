@@ -11,8 +11,8 @@ export function getBarterRequestType(barterRequest, store) {
 
 export function getBarterRequestInfo(barterRequest) {
   const { barterRole, offerItems, requestItem } = barterRequest;
-  const offererInfo = `用${offerItems.length}件物品換取1件物品`;
-  const receiverInfo = `想用${offerItems.length}物品換取您1件物品`;
+  const offererInfo = `用${offerItems?.length ?? 0}件物品換取1件物品`;
+  const receiverInfo = `想用${offerItems?.length ?? 0}物品換取您1件物品`;
   return barterRole === BARTER_ROLE_OFFERER.key ? offererInfo : receiverInfo;
 }
 

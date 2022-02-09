@@ -28,26 +28,23 @@
         </pagination-item-display>
       </view>
     </view>
-    <view
-      class="
-        cu-bar
-        foot
-        flex-end-center-container
-        summary-container
-        bottom-container
-      "
-    >
-      <text class="h3 white bold"
-        >{{ `已選${offerItems.length}件物品 價差` }}
-      </text>
-      <display-currency-fish-coin :value="valueDifference" />
-      <view>
-        <primary-button
-          :disabled="submitButtonDisable"
-          @onClick="createBarterRequest"
-        >
-          換物
-        </primary-button>
+    <view class="cu-bar foot container">
+      <view class="flex-end-center-container summary-container full-width q">
+        <text class="h3 white bold"
+          >{{ `已選${offerItems.length}件物品 價差` }}
+        </text>
+        <display-currency-fish-coin
+          class="medium-margin-right-spacer"
+          :value="valueDifference"
+        />
+        <view>
+          <primary-button
+            :disabled="submitButtonDisable"
+            @onClick="createBarterRequest"
+          >
+            換物
+          </primary-button>
+        </view>
       </view>
     </view>
   </view>
@@ -69,6 +66,7 @@ import {
 import {
   CREATE_BARTER_REQUEST,
   GET_CREATED_ITEMS,
+  GET_ITEM,
 } from "../../service/service";
 export default {
   components: {
@@ -133,9 +131,9 @@ export default {
       }
     },
   },
-  onLoad(options) {
-    const item = getRouterJsonParam(options, "item");
-    this.item = item;
+  async onLoad(options) {
+    const itemId = getRouterJsonParam(options, "itemId");
+    this.item = await this.execute(GET_ITEM(itemId));
     this.offerItems = [];
   },
 };

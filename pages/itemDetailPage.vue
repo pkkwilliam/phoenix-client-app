@@ -3,7 +3,11 @@
     <view class="sticky-bottom-container-padding">
       <view class="card">
         <view class="space-between-center-container">
-          <user-card :user="item.createBy" v-if="item.createBy" />
+          <user-card
+            v-if="item.createBy"
+            :showQualifications="false"
+            :user="item.createBy"
+          />
         </view>
         <view
           class="column-center-center-container medium-margin-top-spacer"
@@ -95,9 +99,9 @@ export default {
         return;
       }
       if (purchaseType === "BARTER") {
-        uni.navigateTo({ url: CREATE_BARTER_REQUEST_PAGE(this.item).url });
+        uni.navigateTo({ url: CREATE_BARTER_REQUEST_PAGE(this.item.id).url });
       } else {
-        uni.navigateTo({ url: BARTER_PRE_ORDER_PAGE(this.item).url });
+        uni.navigateTo({ url: BARTER_PRE_ORDER_PAGE(this.item.id).url });
       }
     },
   },
